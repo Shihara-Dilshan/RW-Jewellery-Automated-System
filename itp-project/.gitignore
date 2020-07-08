@@ -31,3 +31,68 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**
+!**/src/test/**
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+
+### VS Code ###
+.vscode/
+
+
+/Back-End/HELP.md
+/Back-End/target/
+/Back-End/!.mvn/wrapper/maven-wrapper.jar
+/Back-End/!**/src/main/**
+/Back-End/!**/src/test/**
+
+### STS ###
+/Back-End/.apt_generated
+/Back-End/.classpath
+/Back-End/.factorypath
+/Back-End/.project
+/Back-End/.settings
+/Back-End/.springBeans
+/Back-End/.sts4-cache
+
+### IntelliJ IDEA ###
+/Back-End/.idea
+/Back-End/*.iws
+/Back-End/*.iml
+/Back-End/*.ipr
+
+### NetBeans ###
+/Back-End/nbproject/private/
+/Back-End/nbbuild/
+/Back-End/dist/
+/Back-End/nbdist/
+/Back-End/.nb-gradle/
+/Back-End/build/
+
+### VS Code ###
+/Back-End/.vscode/

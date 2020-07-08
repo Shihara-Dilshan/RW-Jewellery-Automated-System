@@ -1,11 +1,4 @@
-<<<<<<< HEAD
-## commit by umesha again agaian
-=======
-jhdjsd
-dsfdsfd
-
->>>>>>> 663eb66469bc1d9b077789ed6e14754eb2e92188
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 

@@ -1,4 +1,4 @@
-package com.noobstack.expense.model;
+package com.noobstack.jewellery.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

@@ -1,4 +1,4 @@
-package com.noobstack.expense.model;
+package com.noobstack.jewellery.model;
 
 import com.sun.istack.NotNull;
 

@@ -1,3 +1,3 @@
-# ITP-project
-# ITP-project
-#My name Lasindu
+# ITP-project - Front_End -> React
+# ITP-project - Back_End -> Spring Boot
+

@@ -1,58 +1,5 @@
-body {
-}
-
 a {
   text-decoration: none;
-}
-
-#loginImge {
-  vertical-align: -11px;
-  padding-right: 2px;
-  height: 35px;
-  width: 35px;
-}
-
-#loginImge2 {
-  vertical-align: -11px;
-  padding-right: 2px;
-  height: 35px;
-  width: 35px;
-  margin-left: 10px;
-}
-
-.loginBtns {
-  width: 100%;
-  height: 60px;
-}
-.hide {
-  display: none;
-}
-
-.show {
-  display: block;
-}
-
-.socialMedia {
-  display: flex;
-  flex-direction: row;
-}
-
-.socialMedia > div {
-  padding-right: 1vh;
-}
-
-#myForm {
-  margin-top: 11vh;
-  margin-bottom: 200px;
-}
-
-#catExplore {
-  width: 100%;
-}
-
-#signUPFRM {
-  margin-top: 5vh;
-  margin-bottom: 11vh;
 }
 
 .test {

@@ -19,7 +19,7 @@ class Slider extends Component {
       <div className="slider test">
         <ul className="slides">
           <li>
-            <img alt="" src="https://raw.githubusercontent.com/Shihara-Dilshan/img/master/wp4923981-react-js-wallpapers.jpg" />
+            <img alt="" src="./../../../../public/assets/images/Reena.jpg" />
             <div className="caption center-align">
               <h3>This is our big Tagline!</h3>
               <h5 className="light grey-text text-lighten-3">
@@ -28,7 +28,7 @@ class Slider extends Component {
             </div>
           </li>
           <li>
-            <img alt="" src="https://raw.githubusercontent.com/Shihara-Dilshan/img/master/wp4924004-react-js-wallpapers.jpg" />
+            <img alt="" src="./../../../../public/assets/images/Reena.jpg" />
             <div className="caption left-align">
               <h3>Left Aligned Caption</h3>
               <h5 className="light grey-text text-lighten-3">

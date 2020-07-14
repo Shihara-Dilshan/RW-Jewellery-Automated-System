@@ -6,7 +6,7 @@ const Slider = () => {
     var elems = document.querySelectorAll(".slider");
     M.Slider.init(elems, {
       indicators: false,
-      height: 400,
+      height: 600,
       transition: 500,
       interval: 6000,
     });
@@ -16,7 +16,7 @@ const Slider = () => {
     <div class="slider">
       <ul class="slides">
         <li>
-          <img src="https://raw.githubusercontent.com/Shihara-Dilshan/ITP-project/master/itp-project/front-end/public/Assets/Images/jacek-dylag-FXXfE5RqkqY-unsplash.jpg" />
+          <img src="https://raw.githubusercontent.com/Shihara-Dilshan/ITP-project/master/itp-project/front-end/public/Assets/Images/Front-image-2.jpg" />
           <div class="caption center-align">
             <h3>Jewellery</h3>
             <h5 class="light grey-text text-lighten-3">
@@ -25,7 +25,7 @@ const Slider = () => {
           </div>
         </li>
         <li>
-          <img src="https://lorempixel.com/580/250/nature/2" />
+          <img src="https://raw.githubusercontent.com/Shihara-Dilshan/ITP-project/master/itp-project/front-end/public/Assets/Images/Front-image-5.jpg" />
           <div class="caption left-align">
             <h3>Rings that bind time</h3>
             <h5 class="light grey-text text-lighten-3">
@@ -34,7 +34,7 @@ const Slider = () => {
           </div>
         </li>
         <li>
-          <img src="https://lorempixel.com/580/250/nature/3" />
+          <img src="https://raw.githubusercontent.com/Shihara-Dilshan/ITP-project/master/itp-project/front-end/public/Assets/Images/Front-image-3.jpg" />
           <div class="caption right-align">
             <h3>Clasped with class</h3>
             <h5 class="light grey-text text-lighten-3">
@@ -43,7 +43,7 @@ const Slider = () => {
           </div>
         </li>
         <li>
-          <img src="https://lorempixel.com/580/250/nature/4" />
+          <img src="https://raw.githubusercontent.com/Shihara-Dilshan/ITP-project/master/itp-project/front-end/public/Assets/Images/Front-image-6.jpg" />
           <div class="caption center-align">
             <h3>Hanging art</h3>
             <h5 class="light grey-text text-lighten-3">

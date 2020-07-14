@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import M from "materialize-css";
 import "../../App.css";
 
@@ -13,9 +14,11 @@ class Navbar extends Component {
       <React.Fragment>
         <nav className="grey darken-3">
           <div className="nav-wrapper">
-            <a href="#!" className="brand-logo">
-              RW Jewellery
-            </a>
+            <div className="brand-logo">
+              <Link onClick={this.showSlider} to="/">
+                RW Jewellery
+              </Link>
+            </div>
             <a
               href="index.html"
               data-target="mobile-demo"

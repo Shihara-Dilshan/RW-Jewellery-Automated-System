@@ -1,25 +1,25 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 # edfdfdfdfdf
 # dependencies
-/Front-End/my-app/node_modules
-/Front-End/my-app/.pnp
-/Front-End/my-app/.pnp.js
+/Front-End/node_modules
+/Front-End/.pnp
+/Front-End/.pnp.js
 
 .pnp
 .pnp.js
 # testing
-/Front-End/my-app/coverage
+/my-app/coverage
 /coverage
 # production
-/Front-End/my-app/my-app/build
+/my-app/my-app/build
 /build
 
 # misc
-/Front-End/my-app/.DS_Store
-/Front-End/my-app/.env.local
-/Front-End/my-app/.env.development.local
-/Front-End/my-app/.env.test.local
-/Front-End/my-app/.env.production.local
+/my-app/.DS_Store
+/my-app/.env.local
+/my-app/.env.development.local
+/my-app/.env.test.local
+/my-app/.env.production.local
 
 .DS_Store
 .env.local

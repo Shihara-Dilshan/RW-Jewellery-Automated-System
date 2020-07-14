@@ -16,7 +16,7 @@ const Slider = () => {
     <div class="slider">
       <ul class="slides">
         <li>
-          <img src="https://lorempixel.com/580/250/nature/1" />
+          <img src="https://raw.githubusercontent.com/Shihara-Dilshan/ITP-project/master/itp-project/front-end/public/Assets/Images/jacek-dylag-FXXfE5RqkqY-unsplash.jpg" />
           <div class="caption center-align">
             <h3>Jewellery</h3>
             <h5 class="light grey-text text-lighten-3">

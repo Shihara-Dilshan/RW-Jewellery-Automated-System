@@ -2,16 +2,17 @@ package com.noobstack.jewellery.model;
 
 import com.sun.istack.NotNull;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.UUID;
 
 @Entity
 @Table(name = "category")
 public class Category {
 
     @Id
-    private long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @NotNull
+    private UUID id;
     @NotNull
     private String name;
 
@@ -19,16 +20,16 @@ public class Category {
         //for spring boot
     }
 
-    public Category(long id, String name) {
-        this.id = id;
+    public Category(String name) {
+        this.id = UUID.randomUUID();
         this.name = name;
     }
 
-    public long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

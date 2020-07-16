@@ -1,17 +1,19 @@
 package com.noobstack.jewellery.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import com.sun.istack.NotNull;
+
+import javax.persistence.*;
 import java.util.Set;
+import java.util.UUID;
 
 @Entity
 @Table(name="users")
 public class User {
 
     @Id
-    private long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @NotNull
+    private UUID id;
     private String name;
     private String email;
     @OneToMany
@@ -22,17 +24,17 @@ public class User {
         //default constructor for Spring
     }
 
-    public User(long id, String name, String email) {
-        this.id = id;
+    public User(String name, String email) {
+        this.id = UUID.randomUUID();
         this.name = name;
         this.email = email;
     }
 
-    public long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

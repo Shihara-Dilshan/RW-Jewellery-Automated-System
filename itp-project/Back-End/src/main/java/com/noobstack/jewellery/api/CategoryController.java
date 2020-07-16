@@ -1,57 +1,50 @@
 package com.noobstack.jewellery.api;
 
 import com.noobstack.jewellery.model.Category;
-import com.noobstack.jewellery.repository.CategoryRepository;
+import com.noobstack.jewellery.service.categoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Collection;
-import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api")
 public class CategoryController {
 
-    private CategoryRepository categoryRepository;
+    private final categoryService CategoryService;
 
     @Autowired
-    public CategoryController(CategoryRepository categoryRepository) {
+    public CategoryController(categoryService CategoryService) {
         super();
-        this.categoryRepository = categoryRepository;
+        this.CategoryService = CategoryService;
     }
 
-    @GetMapping("/categories")
-    Collection<Category> categories(){
-        return  categoryRepository.findAll();
+    @GetMapping("/categories") /* get all the categories*/
+    Collection<Category> getAllCategories(){
+        return this.CategoryService.categories();
     }
 
-    @GetMapping("/categories/{id}")
-    ResponseEntity<?> getCategory(@PathVariable Long id){
-        Optional<Category> category = categoryRepository.findById(id);
-        return category.map(response -> ResponseEntity.ok().body(response))
-                                            .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    @GetMapping("/categories/{id}") /*get category by id*/
+    ResponseEntity<?> getCategoryById(@PathVariable UUID id){
+        return this.CategoryService.getCategory(id);
     }
 
-    @PostMapping("/category")
+    @PostMapping("/category") /*add new category*/
     ResponseEntity<Category> createCategory(@Validated  @RequestBody Category category) throws URISyntaxException {
-        Category result = categoryRepository.save(category);
-        return ResponseEntity.created(new URI("/api/category" + result.getId())).body(result);
+        return this.CategoryService.createCategory(category);
     }
 
-    @PutMapping("/category/{id}")
+    @PutMapping("/category/{id}") /*update an exiting category*/
     ResponseEntity<Category> updateCategory(@Validated @RequestBody Category category){
-        Category result = categoryRepository.save(category);
-        return ResponseEntity.ok().body(result);
+        return this.CategoryService.updateCategory(category);
     }
 
-    @DeleteMapping("/category/{id}")
-    ResponseEntity<?> deleteCategory(@PathVariable Long id){
-        categoryRepository.deleteById(id);
-        return ResponseEntity.ok().build();
+    @DeleteMapping("/category/{id}") /*delete an exiting category*/
+    ResponseEntity<?> deleteCategory(@PathVariable UUID id){
+        return this.CategoryService.deleteCategory(id);
     }
 }

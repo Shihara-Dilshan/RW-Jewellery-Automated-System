@@ -1,17 +1,19 @@
 package com.noobstack.jewellery.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import com.sun.istack.NotNull;
+
+import javax.persistence.*;
 import java.time.Instant;
+import java.util.UUID;
 
 @Entity
 @Table(name = "expense")
 public class Expense {
 
     @Id
-    private long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @NotNull
+    private UUID id;
     private Instant expenseDate;
     private String description;
     @ManyToOne
@@ -23,24 +25,24 @@ public class Expense {
         //for spring boot
     }
 
-    public Expense(long id, Instant expenseDate, String description, Category category, User user) {
-        this.id = id;
+    public Expense(Instant expenseDate, String description, Category category, User user) {
+        this.id = UUID.randomUUID();
         this.expenseDate = expenseDate;
         this.description = description;
         this.category = category;
         this.user = user;
     }
 
-    public long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
     public Instant getExpenseDate() {
-        return expenseDate;
+        return this.expenseDate;
     }
 
     public void setExpenseDate(Instant expenseDate) {
@@ -48,7 +50,7 @@ public class Expense {
     }
 
     public String getDescription() {
-        return description;
+        return this.description;
     }
 
     public void setDescription(String description) {
@@ -56,7 +58,7 @@ public class Expense {
     }
 
     public Category getCategory() {
-        return category;
+        return this.category;
     }
 
     public void setCategory(Category category) {
@@ -64,7 +66,7 @@ public class Expense {
     }
 
     public User getUser() {
-        return user;
+        return this.user;
     }
 
     public void setUser(User user) {

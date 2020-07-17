@@ -49,7 +49,7 @@ public class categoryService {
     //delete an exiting category
     public ResponseEntity<?> deleteCategory(UUID id){
         categoryRepository.deleteById(id);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok().build(); 
     }
 
 

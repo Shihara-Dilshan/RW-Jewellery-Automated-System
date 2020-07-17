@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import M from "materialize-css";
 
 const Navbar = () => {
@@ -10,14 +11,14 @@ const Navbar = () => {
   return (
     <React.Fragment>
       <nav>
-        <div class="nav-wrapper grey darken-3">
-          <a href="#!" class="brand-logo">
-            RW Jewellery
+        <div className="nav-wrapper grey darken-3">
+          <Link to="/">
+            <li className="brand-logo">RW Jewellery</li>
+          </Link>
+          <a href="#!" data-target="mobile-demo" className="sidenav-trigger">
+            <i className="material-icons">menu</i>
           </a>
-          <a href="#!" data-target="mobile-demo" class="sidenav-trigger">
-            <i class="material-icons">menu</i>
-          </a>
-          <ul class="right hide-on-med-and-down">
+          <ul className="right hide-on-med-and-down">
             <li>
               <a href="sass.html">About us</a>
             </li>
@@ -37,16 +38,16 @@ const Navbar = () => {
               <a href="mobile.html">Contact</a>
             </li>
             <li>
-              <a href="mobile.html">Login</a>
+              <Link to="/login">Login</Link>
             </li>
             <li>
-              <a href="mobile.html">Sign up</a>
+              <Link to="/signup">Sign up</Link>
             </li>
           </ul>
         </div>
       </nav>
 
-      <ul class="sidenav" id="mobile-demo">
+      <ul className="sidenav" id="mobile-demo">
         <li>
           <a href="sass.html">About us</a>
         </li>

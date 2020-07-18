@@ -8,6 +8,7 @@ import Footer from './components/Layout/Footer'
 import Home from "./components/Home/Home";
 import SignUp from "./components/SignUp/SignUp";
 import Login from "./components/Login/Login"
+import UserProfile from './components/UserProfile/UserProfile'
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
           <Route path="/" exact component={Home} />
           <Route path="/signup" exact component={SignUp} />
           <Route path="/login" exact component={Login} />
+          <Route path="/profile" exact component={UserProfile} />
         </Switch>
       </div>
       <Footer />

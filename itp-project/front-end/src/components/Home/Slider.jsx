@@ -7,7 +7,7 @@ class Slider extends Component {
     const elems = document.querySelectorAll(".slider");
     M.Slider.init(elems, {
       indicators: false,
-      height: 600,
+      height: 500,
       transition: 500,
       interval: 6000,
     });
@@ -19,25 +19,7 @@ class Slider extends Component {
         <ul className="slides">
           <SliderImage
             image={
-              "https://raw.githubusercontent.com/Shihara-Dilshan/img/master/ITP/Front-image-2.jpg"
-            }
-            title={"Jewellery"}
-            description={
-              "Find your perfect jewellery piece to mark your special moment."
-            }
-            classPosition={"caption center-align"}
-          />
-          <SliderImage
-            image={
-              "https://raw.githubusercontent.com/Shihara-Dilshan/img/master/ITP/Front-image-5.jpg"
-            }
-            title={"Rings that bind time"}
-            description={"Here's our small slogan."}
-            classPosition={"caption left-align"}
-          />
-          <SliderImage
-            image={
-              "https://raw.githubusercontent.com/Shihara-Dilshan/img/master/ITP/Front-image-3.jpg"
+              "https://raw.githubusercontent.com/Shihara-Dilshan/img/master/ITP/model/Front-image-3.jpg"
             }
             title={"Clasped with class"}
             description={
@@ -47,7 +29,25 @@ class Slider extends Component {
           />
           <SliderImage
             image={
-              "https://raw.githubusercontent.com/Shihara-Dilshan/img/master/ITP/Front-image-6.jpg"
+              "https://raw.githubusercontent.com/Shihara-Dilshan/img/master/ITP/model/Front-image-2.jpg"
+            }
+            title={"Jewellery"}
+            description={
+              "Find your perfect jewellery piece to mark your special moment."
+            }
+            classPosition={"caption right-align"}
+          />
+          <SliderImage
+            image={
+              "https://raw.githubusercontent.com/Shihara-Dilshan/img/master/ITP/model/Front-image-5.jpg"
+            }
+            title={"Rings that bind time"}
+            description={"Here's our small slogan."}
+            classPosition={"caption left-align"}
+          />
+          <SliderImage
+            image={
+              "https://raw.githubusercontent.com/Shihara-Dilshan/img/master/ITP/model/Front-image-6.jpg"
             }
             title={"Hanging art"}
             description={

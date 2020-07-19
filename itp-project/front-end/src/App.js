@@ -6,9 +6,11 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Navbar from "./components/Layout/Navbar";
 import Footer from './components/Layout/Footer'
 import Home from "./components/Home/Home";
-import SignUp from "./components/SignUp/SignUp";
-import Login from "./components/Login/Login"
-import UserProfile from './components/UserProfile/UserProfile'
+import SignUp from "./components/User/SignUp/SignUp";
+import Login from "./components/User/Login/Login";
+import UserProfile from './components/User/UserProfile/UserProfile';
+import confirmEmail from './components/User/UserProfile/confirmEmail';
+import PurchaseContainer from './components/User/userPurchase/PurchaseContainer';
 
 const App = () => {
   return (
@@ -20,6 +22,8 @@ const App = () => {
           <Route path="/signup" exact component={SignUp} />
           <Route path="/login" exact component={Login} />
           <Route path="/profile" exact component={UserProfile} />
+          <Route path="/confirmEmail" exact component={confirmEmail} />
+          <Route pathe="/myDetails" exact component={PurchaseContainer} />
         </Switch>
       </div>
       <Footer />

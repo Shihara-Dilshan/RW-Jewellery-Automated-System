@@ -1,15 +1,17 @@
 import React, { Component } from "react";
-import "./../../App.css";
 
-class Login extends Component {
-  state = {};
+class confirmEmail extends Component {
+  constructor() {
+    super();
+    this.state = {};
+  }
 
   style = () => {
     return {
       backgroundColor: "#f5f5f5",
       borderRadius: "5px",
-      marginTop: "50px",
-      marginBottom: "90px",
+      marginTop: "40px",
+      marginBottom: "40px",
     };
   };
 
@@ -27,19 +29,19 @@ class Login extends Component {
             <div className="card-image hide-on-small-only">
               <img
                 alt=""
-                src="https://image.freepik.com/free-vector/online-registration-concept-with-flat-design_23-2147976704.jpg"
+                src="https://raw.githubusercontent.com/Shihara-Dilshan/img/master/ITP/Layout/online-registration-concept-with-flat-design_23-2147972686.jpg"
                 height="100%"
               />
             </div>
             <div className="card-stacked">
               <div className="card-content">
-                <h4 className="center-align grey-text">Login</h4>
+                <h4 className="center-align grey-text">Confirm Email</h4>
                 <div className="row">
                   <form className="col s12">
                     <div className="row">
-                      <div className="input-field col s12">
-                        <input id="email" type="email" className="validate" />
-                        <label htmlFor="email">Email</label>
+                      <div className="col s12">
+                        <br/>
+                        <p className="grey-text left-align">We have send and email to shihara@gmail.com</p>
                       </div>
                     </div>
                     <div className="row">
@@ -49,14 +51,13 @@ class Login extends Component {
                           type="password"
                           className="validate"
                         />
-                        <label htmlFor="password">Password</label>
+                        <label htmlFor="password">Enter confirmation code here</label>
                       </div>
                     </div>
                     <div className="container center-align grey-text">
                       <p>
                         <label>
-                          <input type="checkbox" className="filled-in" />
-                          <span>Remeber Me</span>
+                        <p className="grey-text center-align">haven't got email? send it agian</p>
                           <br />
                           <br />
                         </label>
@@ -67,18 +68,16 @@ class Login extends Component {
                         className="btn center-align grey darken-3"
                         style={{ width: "100%" }}
                       >
-                        Login
+                        Confirm
                       </button>
                     </div>
                     <div
                       className="container center-align grey-text"
                       style={this.getStyle()}
                     >
-                      <p>forget password?</p>
+                      <br/>
+                      <p>Change email</p>
                       <br />
-                    </div>
-                    <div className="center-align center">
-                      <p className="teal-text">create new account</p>
                     </div>
                   </form>
                 </div>
@@ -91,4 +90,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default confirmEmail;

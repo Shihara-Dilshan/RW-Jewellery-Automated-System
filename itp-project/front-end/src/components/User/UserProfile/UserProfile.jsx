@@ -1,10 +1,18 @@
 import React, { Component } from "react";
-import "./../../App.css";
+import "./../../../App.css";
 
 class UserProfile extends Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      emailComfirmationStatus: ""
+    };
+  }
+
+  componentDidMount(){
+    setTimeout(() => {
+      this.setState({emailComfirmationStatus:"your email addess hasn't validated yet.Click here to validate your email"});
+    }, 2000);
   }
 
   style = () => {
@@ -39,7 +47,7 @@ class UserProfile extends Component {
               <div className="card-content">
                 <h4 className="center-align grey-text">Profile</h4>
                 <div className="row">
-                  <br />
+                  <p className="red-text align center">{this.state.emailComfirmationStatus}</p><br/>
                   <form className="col s12">
                     <div className="row">
                       <div className="input-field col s6 disabled">

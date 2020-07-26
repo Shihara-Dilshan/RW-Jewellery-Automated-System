@@ -17,7 +17,6 @@ import java.util.UUID;
 public class categoryService {
 
     private final CategoryRepository categoryRepository;
-
     @Autowired
     public categoryService(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
@@ -50,7 +49,7 @@ public class categoryService {
     //delete an exiting category
     public ResponseEntity<?> deleteCategory(UUID id){
         categoryRepository.deleteById(id);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok().build(); 
     }
 
 

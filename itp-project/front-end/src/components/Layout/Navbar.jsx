@@ -3,21 +3,22 @@ import { Link } from "react-router-dom";
 import M from "materialize-css";
 
 class Navbar extends Component {
-  state = {
-    isLoading: true,
-    loginStatus: "Login",
-    signUpStatus: "Sign up",
-    route1: "login",
-    route2: "signup",
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoading: true,
+      loginStatus: "Login",
+      signUpStatus: "Sign up",
+      route1: "login",
+      route2: "signup",
+    };
+  }
 
   componentDidMount() {
     document.addEventListener("DOMContentLoaded", function () {
       const elems = document.querySelectorAll(".sidenav");
       M.Sidenav.init(elems);
     });
-
-   
   }
 
   render() {

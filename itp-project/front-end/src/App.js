@@ -11,7 +11,7 @@ import Login from "./components/User/Login/Login";
 import UserProfile from './components/User/UserProfile/UserProfile';
 import confirmEmail from './components/User/UserProfile/confirmEmail';
 import PurchaseContainer from './components/User/userPurchase/PurchaseContainer';
-import RequestDelivery from "./components/Delivery/RequestingDelivery/RequestDelivery";
+import RequestDelivery from './components/Delivery/RequestingDelivery/RequestDelivery'
 
 const App = () => {
   return (
@@ -24,8 +24,8 @@ const App = () => {
           <Route path="/login" exact component={Login} />
           <Route path="/profile" exact component={UserProfile} />
           <Route path="/confirmEmail" exact component={confirmEmail} />
-          <Route pathe="/myDetails" exact component={PurchaseContainer} />
-          <Route path="/delivery" exeact component={RequestDelivery}/>
+          <Route path="/myDetails" exact component={PurchaseContainer} />
+          <Route path="/delivery" exact component={RequestDelivery} />
         </Switch>
       </div>
       <Footer />

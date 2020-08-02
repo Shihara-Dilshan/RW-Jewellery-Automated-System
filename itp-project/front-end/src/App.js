@@ -12,6 +12,8 @@ import UserProfile from './components/User/UserProfile/UserProfile';
 import confirmEmail from './components/User/UserProfile/confirmEmail';
 import PurchaseContainer from './components/User/userPurchase/PurchaseContainer';
 import RequestDelivery from './components/Delivery/RequestingDelivery/RequestDelivery'
+import DeliveryRequestsFromCustomer from "./components/Delivery/DeliveryRequestAdminView/DeliveryRequestsFromCustomer";
+import AssignDriver from "./components/Delivery/AssignDriver/AssignDriver";
 
 const App = () => {
   return (
@@ -26,6 +28,8 @@ const App = () => {
           <Route path="/confirmEmail" exact component={confirmEmail} />
           <Route path="/myDetails" exact component={PurchaseContainer} />
           <Route path="/delivery" exact component={RequestDelivery} />
+          <Route path="/DeliveryRequestsadmin" exact component={DeliveryRequestsFromCustomer} />
+          <Route path="/AssignDriver" exact component={AssignDriver} />
         </Switch>
       </div>
       <Footer />

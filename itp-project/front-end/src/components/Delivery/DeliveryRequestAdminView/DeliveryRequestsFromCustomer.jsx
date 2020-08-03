@@ -5,10 +5,12 @@ class DeliveryRequestsFromCustomer extends Component {
   
   style = () => {
     return {
+      
       backgroundColor: "#f5f5f5",
       borderRadius: "5px",
       marginTop: "-5px",
       marginBottom: "-15px",
+      
     };
   };
   
@@ -18,7 +20,7 @@ class DeliveryRequestsFromCustomer extends Component {
             <div class="card-panel #eeeeee grey lighten-3" style={this.style()}>
                 <h4 className="center-align grey-text"><b>DELIVERY REQUESTS FROM CUSTOMER</b></h4>
                 
-                <table className="centered">
+                <table className="centered" >
         <thead>
           <tr>
               <th >Customer Id</th>
@@ -32,7 +34,7 @@ class DeliveryRequestsFromCustomer extends Component {
               <th>Customer Name</th>
               <th>Item Category</th>
               <th>Date</th>
-              
+              <th>Distance</th>
               <th>Assign Driver</th>
               <th>Delivery Status</th>
             </tr>
@@ -50,8 +52,10 @@ class DeliveryRequestsFromCustomer extends Component {
             <td>0771234567</td>
             <td>Yamitha Uluvita</td>
             <td>Bangles</td>
+
             <td>01/08/2020</td>
-            
+
+            <td>45KM</td>
             <td><a className="btn center-align grey darken-3 " href="/AssignDriver">Assign Driver</a></td>
             <td>Not Delivered</td>
 
@@ -68,7 +72,7 @@ class DeliveryRequestsFromCustomer extends Component {
             <td>Lasindu Kushan</td>
             <td>Ring</td>
             <td>02/08/2020</td>
-            
+            <td>45KM</td>
             <td><a className="btn center-align grey darken-3 " href="/AssignDriver">Assign Driver</a></td>
             <td>Not Delivered</td>
 
@@ -85,7 +89,7 @@ class DeliveryRequestsFromCustomer extends Component {
             <td>Shihara Dilshan</td>
             <td>Ear Ring</td>
             <td>04/08/2020</td>
-            
+            <td>45KM</td>
             <td><a className="btn center-align grey darken-3 " href="/AssignDriver">Assign Driver</a></td>
             <td>Not Delivered</td>
 
@@ -102,7 +106,7 @@ class DeliveryRequestsFromCustomer extends Component {
             <td>Ruvin Wijesinghe </td>
             <td>Chain</td>
             <td>09/06/2020</td>
-            
+            <td>45KM</td>
             <td><a className="btn center-align grey darken-3 " href="/AssignDriver">Assign Driver</a></td>
             <td>Not Delivered</td>
             </tr>
@@ -118,8 +122,8 @@ class DeliveryRequestsFromCustomer extends Component {
             <td>Ruvin Wijesinghe </td>
             <td>Chain</td>
             <td>07/05/2020</td>
-            
-            <td><a className="btn center-align grey darken-3 " href="/AssignDriver">Assign Driver</a></td>
+            <td>45KM</td>
+            <td style={{fontSize:"10px !important"}}><a className="btn center-align grey darken-3 " href="/AssignDriver" >Assign Driver</a></td>
             <td>Not Delivered</td>
             </tr>
 

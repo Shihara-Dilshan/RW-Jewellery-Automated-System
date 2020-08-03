@@ -1,9 +1,36 @@
 body {
   padding:  0;
   margin: 0;
-  background: linear-gradient(to right, #424242, #ffffff);
+  align-items: center;
+  /*background: linear-gradient(to right, #424242, #ffffff);*/
 }
 
+
+
+nav-button{
+ 
+  font-weight: bold;
+  font-family: sans-serif;
+  font-weight: bold;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  }
+
+
+a:hover {
+  background-image: linear-gradient(to bottom, #ebcfb4, #edb461); 
+  box-shadow: 0 5px 15px rgba(242, 97);
+  border-radius: 10px !important;
+  margin-left: 40px;
+  transition: .5s !important;
+  height: 60px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  font-family: sans-serif !important;
+  color: black;
+  font-weight: 500;
+  
+}
 .socialMedia {
   display: flex;
   flex-direction: row;
@@ -69,3 +96,5 @@ body {
     opacity: 1;
   }
 }
+
+ 

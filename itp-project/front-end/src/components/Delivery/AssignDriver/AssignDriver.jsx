@@ -14,15 +14,15 @@ class AssignDriver extends Component {
 
   render() {
     document.addEventListener("DOMContentLoaded", function () {
-      var elems = document.querySelectorAll("select");
-      var instances = M.FormSelect.init(elems);
+      const elems = document.querySelectorAll("select");
+      M.FormSelect.init(elems);
     });
     return (
       <div className="container" style={this.style()}>
         <div class="col s12 m7">
           <div class="card horizontal">
             <div class="card-image">
-              <img src="https://image.freepik.com/free-vector/delivery-service-with-masks-concept_23-2148498594.jpg" />
+              <img alt="" src="https://image.freepik.com/free-vector/delivery-service-with-masks-concept_23-2148498594.jpg" />
             </div>
             <div class="card-stacked">
               <div class="card-content">
@@ -36,7 +36,7 @@ class AssignDriver extends Component {
                     <option value="4">Driver5</option>
                   </select>
                 </div>
-                <a
+                <a href="#!"
                   className="btn center-align grey darken-3 "
                   style={{ width: "100%", margin: "100px !important" }}
                 >

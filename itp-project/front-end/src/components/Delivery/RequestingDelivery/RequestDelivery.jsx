@@ -14,8 +14,8 @@ class RequestDelivery extends Component {
 
   render() {
     document.addEventListener("DOMContentLoaded", function () {
-      var elems = document.querySelectorAll("select");
-      var instances = M.FormSelect.init(elems);
+      const elems = document.querySelectorAll("select");
+      M.FormSelect.init(elems);
     });
 
     return (
@@ -90,6 +90,7 @@ class RequestDelivery extends Component {
                     </div>
 
                     <a
+                      href="#!"
                       className="btn center-align grey darken-3 "
                       style={{ width: "100%", margin: "100px !important" }}
                     >

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import Slider from "./Slider";
+import CardContainer from './CardContainer'
 
 class Home extends Component {
   state = {};
@@ -8,6 +9,7 @@ class Home extends Component {
     return (
       <div>
         <Slider />
+        <CardContainer />
       </div>
     );
   }

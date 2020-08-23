@@ -1,5 +1,8 @@
 package com.noobstack.jewellery.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
 import java.util.Set;
 import java.util.UUID;
@@ -9,20 +12,24 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID customer_id;
+    @NotNull
     private String name;
+    private String firstName;
     private String lastName;
     private String telephone;
     private String address;
     private String NIC;
 
     @ManyToMany
+    @JsonIgnore
     private Set<Service> service;
 
     public Customer() {
     }
 
-    public Customer(String name, String lastName, String telephone, String address, String NIC, Set<Service> service) {
+    public Customer(String name,String firstName,String lastName, String telephone, String address, String NIC, Set<Service> service) {
         this.name = name;
+        this.firstName = firstName;
         this.lastName = lastName;
         this.telephone = telephone;
         this.address = address;
@@ -44,6 +51,14 @@ public class Customer {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getLastName() {
@@ -91,6 +106,7 @@ public class Customer {
         return "Customer{" +
                 "customer_id=" + customer_id +
                 ", name='" + name + '\'' +
+                ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", telephone='" + telephone + '\'' +
                 ", address='" + address + '\'' +

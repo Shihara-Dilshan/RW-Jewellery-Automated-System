@@ -10,7 +10,7 @@ class SocialMedia extends Component {
         <div className="container">
           <div className="row">
             <div className="col s12">
-              <h4>Follow NoobStack</h4>
+              <h4>Follow RW Jewellery</h4>
               <p>Follow us on social media for </p>
               <a
                 href="https://www.facebook.com/profile.php?id=100009084205665&ref=bookmarks"

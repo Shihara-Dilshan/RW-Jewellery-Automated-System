@@ -10,15 +10,15 @@ class StaticCards extends Component {
             <div className="col s12 m4">
               <div className="card-panel">
                 <i className="material-icons large teal-text">all_inclusive</i>
-                <h4>Go from zero to hero</h4>
-                <p>We will try to teach everything from the stratch</p>
+                <h4>Valueble items</h4>
+                <p>We always Deliver the best product for you</p>
               </div>
             </div>
             <div className="col s12 m4">
               <div className="card-panel">
                 <i className="material-icons large teal-text">fitness_center</i>
-                <h4>Coding challenges</h4>
-                <p>Learn by solving problems</p>
+                <h4>Fast delivery</h4>
+                <p>Available delivery for inside the any part of the country</p>
               </div>
             </div>
             <div className="col s12 m4">
@@ -26,12 +26,11 @@ class StaticCards extends Component {
                 <i className="material-icons large teal-text">
                   insert_emoticon
                 </i>
-                <h4>Full stack developer</h4>
+                <h4>Secure Payment</h4>
                 <p>
-                  Be a Full stack developer with only java script.{" "}
+                  We never collect your personal credentials{" "}
                   <span className="span teal-text">
                     {" "}
-                    <a href="/">Check here</a>
                   </span>
                 </p>
               </div>

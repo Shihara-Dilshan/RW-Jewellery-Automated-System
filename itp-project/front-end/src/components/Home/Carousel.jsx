@@ -21,22 +21,22 @@ class Carousel extends Component {
     return (
       <div className="carousel problems" id="slider2">
         <a className="carousel-item large" href="#one!">
-          <Image image="https://raw.githubusercontent.com/Shihara-Dilshan/img/master/ITP/model/Front-image-2.jpg" />
+          <Image image="https://raw.githubusercontent.com/Shihara-Dilshan/img/master/ITP/categories/fallon-michael-orVNEDAylaU-unsplash.jpg" />
         </a>
         <a className="carousel-item" href="#two!">
-          <Image image="https://raw.githubusercontent.com/Shihara-Dilshan/img/master/ITP/model/Front-image-6.jpg" />
+          <Image image="https://raw.githubusercontent.com/Shihara-Dilshan/img/master/ITP/categories/atul-vinayak-jKvwtbrxzdY-unsplash.jpg" />
         </a>
         <a className="carousel-item" href="#three!">
           {" "}
-          <Image image="https://raw.githubusercontent.com/Shihara-Dilshan/img/master/ITP/model/Front-image-3.jpg" />
+          <Image image="https://raw.githubusercontent.com/Shihara-Dilshan/img/master/ITP/categories/cornelia-ng-hxtKsjWSd3M-unsplash.jpg" />
         </a>
         <a className="carousel-item" href="#four!">
           {" "}
-          <Image image="https://raw.githubusercontent.com/Shihara-Dilshan/img/master/ITP/model/Front-image-4jpg.jpg" />
+          <Image image="https://raw.githubusercontent.com/Shihara-Dilshan/img/master/ITP/categories/kyle-cut-media-Dcw_Z5o7ovY-unsplash.jpg" />
         </a>
         <a className="carousel-item" href="#five!">
           {" "}
-          <Image image="https://raw.githubusercontent.com/Shihara-Dilshan/img/master/ITP/model/Front-image-2.jpg" />
+          <Image image="https://raw.githubusercontent.com/Shihara-Dilshan/img/master/ITP/categories/nick-karvounis-RjeVqc8eC3s-unsplash.jpg" />
         </a>
       </div>
     );

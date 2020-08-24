@@ -11,13 +11,33 @@ class RequestDelivery extends Component {
       marginBottom: "-15px",
     };
   };
+  async SubmitDelivery(event) {
+    event.preventDefault();
+    const city = document.getElementById("City").value;
+    const location = document.getElementById("Location").value;
+    const phoneNumber = document.getElementById("PhoneNumber").value;
+    const province = document.getElementById("Province");
+    const district = document.getElementById("District");
+    
+    await fetch("/api/RequestDelivery", {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify({deliveryAddress : location,deliveryCity : city,status : "Pending"}),
+    });
+  }
   
- 
   
   render() {
     document.addEventListener('DOMContentLoaded', function() {
       var elems = document.querySelectorAll('select');
       var instances = M.FormSelect.init(elems,);
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('.modal');
+      var instances = M.Modal.init(elems,);
     });
     
         return (
@@ -72,7 +92,9 @@ class RequestDelivery extends Component {
                         <label htmlFor="Phone Number">Enter Phone number</label>
                       </div>
                       <div className="input-field col s12">
-    <select>
+    <select
+    id="Province"
+    >
       <option value="" disabled selected></option>
       <option value="1">Central Province</option>
       <option value="2">Eastern Province</option>
@@ -104,7 +126,12 @@ class RequestDelivery extends Component {
     </div>
   </div>
   
-  <a className="btn center-align grey darken-3 " style={{width:"100%", margin:"100px !important" }}>Add Request</a>
+  <button
+         data-target="modal1" 
+         class="btn modal-trigger"
+         style={{ width: "100%" }}
+         onClick={this.SubmitDelivery}
+      >ADD REQUEST</button>
     </form>
     </div>
     </div>
@@ -112,14 +139,21 @@ class RequestDelivery extends Component {
           </div>
       </div>
     
+      
+
+
+<div id="modal1" class="modal">
+  <div class="modal-content">
+    <h4>Your Delivery Chargers - RS 450/=</h4>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-close waves-effect waves-green btn-flat">OK</a>
+  </div>
+</div>
+
     </div>
     
-    
-  
-                
-            
-        );
+);
     }
 }
-
 export default RequestDelivery;

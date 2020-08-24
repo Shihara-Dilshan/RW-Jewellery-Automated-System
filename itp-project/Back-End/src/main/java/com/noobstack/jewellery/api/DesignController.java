@@ -4,11 +4,10 @@ import com.noobstack.jewellery.model.Design;
 import com.noobstack.jewellery.service.DesignService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
+import java.net.URISyntaxException;
 import java.util.List;
 import java.util.UUID;
 
@@ -30,6 +29,21 @@ public class DesignController {
     @GetMapping("/designs/{id}")
     ResponseEntity<?> getDesignById(@PathVariable UUID id){
         return this.designService.getDesignById(id);
+    }
+
+    @PostMapping("/designs/addnew")
+    ResponseEntity<Design> addNewDesign(@Validated @RequestBody Design design) throws URISyntaxException {
+        return this.designService.addNewDesign(design);
+    }
+
+    @PutMapping("/designs/update/{id}")
+    ResponseEntity<Design> updateDesign(@Validated @RequestBody Design design){
+        return this.designService.updateDesign(design);
+    }
+
+    @DeleteMapping("/designs/delete/{id}")
+    ResponseEntity<?> deleteDesign(@PathVariable UUID id){
+        return this.designService.deleteDesign(id);
     }
 
 }

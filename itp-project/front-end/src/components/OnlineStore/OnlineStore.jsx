@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import Card from "./card";
+import Card from "./Card";
 import Slider from "./Slider";
 import Searchd from "./searchd";
 
-class onlinestore extends Component {
+class OnlineStore extends Component {
   constructor() {
     super();
     this.state = {};
@@ -49,4 +49,4 @@ class onlinestore extends Component {
   }
 }
 
-export default onlinestore;
+export default OnlineStore;

@@ -22,7 +22,7 @@ public class DeliveryService {
         Delivery Result = deliverRepository.save(delivery);
         return ResponseEntity.created(new URI("/api/RequestDelivery" + Result.getDelivery_id())).body(Result);
     }
-
+    //all deliveries
     public List<Delivery> getAlldeliveries(){
         return this.deliverRepository.findAll();
     }

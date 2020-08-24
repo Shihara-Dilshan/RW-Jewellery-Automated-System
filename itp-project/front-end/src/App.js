@@ -15,6 +15,8 @@ import RequestDelivery from './components/Delivery/RequestingDelivery/RequestDel
 import DeliveryRequestsFromCustomer from "./components/Delivery/DeliveryRequestAdminView/DeliveryRequestsFromCustomer";
 import AssignDriver from "./components/Delivery/AssignDriver/AssignDriver";
 import DeliveryRequestMore from "./components/Delivery/DeliveryRequestAdminView/DeliveryRequestMore";
+import OnlineStore from './components/OnlineStore/OnlineStore';
+import Buy from './components/Buy/Buy';
 
 const App = () => {
   return (
@@ -32,6 +34,8 @@ const App = () => {
           <Route path="/DeliveryRequestsadmin" exact component={DeliveryRequestsFromCustomer} />
           <Route path="/AssignDriver" exact component={AssignDriver} />
           <Route path="/DeliveryRequestMore" exact component={DeliveryRequestMore}/>
+          <Route path="/onlinestore" exact component={OnlineStore} />
+          <Route path="/buy" exact component={Buy} />
         </Switch>
       </div>
       <Footer />

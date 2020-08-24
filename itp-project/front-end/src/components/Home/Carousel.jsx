@@ -7,14 +7,14 @@ import "../../App.css";
 
 class Carousel extends Component {
   state = {};
-  render() {
-    document.addEventListener("DOMContentLoaded", function () {
-      var elems = document.querySelectorAll(".carousel");
-      // eslint-disable-next-line 
-      var instances = M.Carousel.init(elems, {});
-    });
+  componentDidMount() {
+    var elems = document.querySelectorAll(".carousel");
     // eslint-disable-next-line
-    var instance = M.Carousel.init({
+    M.Carousel.init(elems, {});
+  }
+  render() {
+    // eslint-disable-next-line
+    M.Carousel.init({
       fullWidth: true,
       indicators: true,
     });

@@ -16,7 +16,7 @@ class Home extends Component {
         <StaticCards />
         <SocialMedia />
         <Carousel />
-        
+  
       </div>
     );
   }

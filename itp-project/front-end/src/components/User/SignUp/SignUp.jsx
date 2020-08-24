@@ -13,6 +13,36 @@ class SignUp extends Component {
     };
   };
 
+  async signUp(e){
+  	await e.preventDefault();
+  	let name = document.getElementById('email').value;
+  	let firstName = document.getElementById('first_name').value;
+  	let lastName = document.getElementById('last_name').value;
+  	let telephone = document.getElementById('mobile').value;
+        let address = document.getElementById('address').value;
+        let nic = document.getElementById('NIC').value;
+        
+        const reg = await fetch('/api/v2/customer/register', {
+        	headers: {
+        		Accept: "application/json",
+        		"Content-Type": "application/json",
+        	},
+        	method: "POST",
+        	body: JSON.stringify({
+        		name: name,
+        		firstName: firstName,
+        		lastName: lastName,
+        		telephone: telephone,
+        		address: address,
+        		nic: nic
+        	}),
+        });
+        
+        console.log(reg);
+        
+  	
+  }
+
   render() {
     return (
       <div className="contsainer test" style={this.style()}>
@@ -67,6 +97,18 @@ class SignUp extends Component {
                     </div>
                     <div className="row">
                       <div className="input-field col s12">
+                        <input id="address" type="text" className="validate" />
+                        <label htmlFor="address">Address</label>
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="input-field col s12">
+                        <input id="NIC" type="text" className="validate" />
+                        <label htmlFor="NIC">NIC</label>
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="input-field col s12">
                         <input
                           id="mobile"
                           type="text"
@@ -98,6 +140,7 @@ class SignUp extends Component {
                       <button
                         className="btn center-align grey darken-3"
                         style={{ width: "100%" }}
+                        onClick={this.signUp}
                       >
                         signup
                       </button>

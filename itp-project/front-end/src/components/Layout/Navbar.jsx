@@ -43,7 +43,7 @@ class Navbar extends Component {
                 <a href="collapsible.html">Collections</a>
               </li>
               <li>
-                <a href="mobile.html">Online Store</a>
+                <Link to="/onlinestore">Online Store</Link>
               </li>
               <li>
                 <a href="mobile.html">Services</a>

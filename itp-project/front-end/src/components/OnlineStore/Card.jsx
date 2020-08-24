@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 class Card extends Component {
   render() {
@@ -25,9 +26,9 @@ class Card extends Component {
               #N jewellery<i class="material-icons right">more_vert</i>
             </span>
 
-            <a class="waves-effect orange accent-3 btn" href="buy">
+            <Link to="/buy" class="waves-effect orange accent-3 btn">
               <i class="material-icons left">monetization_on</i>Buy
-            </a>
+            </Link>
 
             <a
               class="waves-effect orange accent-3 btn "

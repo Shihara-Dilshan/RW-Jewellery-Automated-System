@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class buy extends Component {
+class Buy extends Component {
   constructor() {
     super();
     this.state = {};
@@ -147,4 +147,4 @@ class buy extends Component {
   }
 }
 
-export default buy;
+export default Buy;

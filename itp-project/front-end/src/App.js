@@ -14,6 +14,7 @@ import PurchaseContainer from './components/User/userPurchase/PurchaseContainer'
 import RequestDelivery from './components/Delivery/RequestingDelivery/RequestDelivery'
 import DeliveryRequestsFromCustomer from "./components/Delivery/DeliveryRequestAdminView/DeliveryRequestsFromCustomer";
 import AssignDriver from "./components/Delivery/AssignDriver/AssignDriver";
+import DeliveryRequestMore from "./components/Delivery/DeliveryRequestAdminView/DeliveryRequestMore";
 
 const App = () => {
   return (
@@ -30,6 +31,7 @@ const App = () => {
           <Route path="/delivery" exact component={RequestDelivery} />
           <Route path="/DeliveryRequestsadmin" exact component={DeliveryRequestsFromCustomer} />
           <Route path="/AssignDriver" exact component={AssignDriver} />
+          <Route path="/DeliveryRequestMore" exact component={DeliveryRequestMore}/>
         </Switch>
       </div>
       <Footer />

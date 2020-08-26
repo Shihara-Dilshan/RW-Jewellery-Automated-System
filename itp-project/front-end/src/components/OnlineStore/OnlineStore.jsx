@@ -1,47 +1,77 @@
 import React, { Component } from "react";
 import Card from "./Card";
 import Slider from "./Slider";
-import Searchd from "./searchd";
 
 class OnlineStore extends Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      jewelry: [],
+    };
+  }
+
+  componentDidMount() {
+    //api call
+    this.setState({
+      jewelry: [
+        {
+          jew_id: "JEW-1234",
+          category: "Ring",
+          description: "Description 1",
+          imageSrc:
+            "https://raw.githubusercontent.com/Shihara-Dilshan/img/master/ITP/items/jacek-dylag-FXXfE5RqkqY-unsplash.jpg",
+          Meterial: "Gold",
+          title: "Jewellery 1",
+          supply_Price: "12000",
+          supplyer_Id: "SUP-1236",
+        },
+        {
+          jew_id: "JEW-1565",
+          category: "Ring",
+          description: "Description 2",
+          imageSrc:
+            "https://raw.githubusercontent.com/Shihara-Dilshan/img/master/ITP/items/jacek-dylag-FXXfE5RqkqY-unsplash.jpg",
+          Meterial: "White Gold",
+          title: "Jewellery 1",
+          supply_Price: "32000",
+          supplyer_Id: "SUP-1236",
+        },
+        {
+          jew_id: "JEW-1456",
+          category: "Ring",
+          description: "Description 3",
+          imageSrc:
+            "https://raw.githubusercontent.com/Shihara-Dilshan/img/master/ITP/items/jacek-dylag-FXXfE5RqkqY-unsplash.jpg",
+          Meterial: "Silver",
+          title: "Jewellery 1",
+          supply_Price: "9000",
+          supplyer_Id: "SUP-1236",
+        },
+      ],
+    });
   }
 
   render() {
     return (
       <div>
         <Slider />
+        <br></br>
+        <hr></hr>
+
         <div className="container">
-          <h2>Filters</h2>
-          <div class="row">
-            <div class="col s0"></div>
-            <Searchd />
-          </div>
-
-          <h1 style={{ fontFamily: "Montserrat", color: "#7B6536" }}>
-            Jewellery
-          </h1>
-          <br></br>
-
-          {/*------------row----------------*/}
-          <div class="row">
-            <Card />
-            <Card />
-            <Card />
-          </div>
-          {/*------------row----------------*/}
-          <div class="row">
-            <Card />
-            <Card />
-            <Card />
-          </div>
-          {/*------------row----------------*/}
-          <div class="row">
-            <Card />
-            <Card />
-            <Card />
+          <div className="row">
+            {this.state.jewelry.map((jeweler) => {
+              return (
+                <Card
+                  imageSrc={jeweler.imageSrc}
+                  title={jeweler.title}
+                  description={jeweler.description}
+                  supply_Price={jeweler.supply_Price}
+                  Meterial={jeweler.Meterial}
+                  key={jeweler.jew_id}
+                />
+              );
+            })}
           </div>
         </div>
       </div>

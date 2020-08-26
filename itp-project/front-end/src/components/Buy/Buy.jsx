@@ -3,7 +3,10 @@ import React, { Component } from "react";
 class Buy extends Component {
   constructor() {
     super();
-    this.state = {};
+  }
+
+  change() {
+    console.log("changed");
   }
 
   stylecard = () => {
@@ -36,49 +39,84 @@ class Buy extends Component {
     };
   };
 
+  async sumbitPayment(e) {
+    await e.preventDefault();
+    let amount = document.getElementById("amount").value;
+
+    const pay = await fetch("/api/v2/payment/sendPayment", {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify({
+        amount: amount,
+      }),
+    });
+
+    console.log(pay);
+  }
+
   render() {
     return (
-      <div class="col s12 m4">
-        <h2 class="header" style={this.stylehead()}>
+      <div className="col s12 m4">
+        <h2 className="header" style={this.stylehead()}>
           ORDER DETAIL
         </h2>
-        <div class="card horizontal" style={this.stylecard()}>
-          <div class="card-image">
-            <img src="https://unblast.com/wp-content/uploads/2020/04/Online-Shopping-Illustration.jpg" />
+        <div className="card horizontal" style={this.stylecard()}>
+          <div className="card-image hide-on-small-only">
+            <img
+              alt=""
+              src="https://unblast.com/wp-content/uploads/2020/04/Online-Shopping-Illustration.jpg"
+            />
           </div>
-          <div class="card-stacked">
-            <div class="card-content">
+          <div className="card-stacked">
+            <div className="card-content">
               <div>
                 <form>
                   <h6>Personal Details</h6>
-                  <label for="fname">First name:</label>
-                  <input type="text" id="fname" name="fname" required></input>
+                  <label htmlFor="fname">First name:</label>
+                  <input
+                    type="text"
+                    id="fname"
+                    name="fname"
+                    disabled={true}
+                  ></input>
                   <br></br>
-                  <label for="lname">Last name:</label>
-                  <input type="text" id="lname" name="lname" required></input>
+                  <label htmlFor="lname">Last name:</label>
+                  <input
+                    type="text"
+                    id="lname"
+                    name="lname"
+                    disabled={true}
+                  ></input>
                   <br></br>
-                  <label for="address">Address:</label>
+                  <label htmlFor="address">Address:</label>
                   <input
                     type="text"
                     id="address"
                     name="address"
-                    required
+                    disabled={true}
                   ></input>
                   <br></br>
-                  <label for="tp">Telephone Number:</label>
-                  <input
+                  <label htmlFor="tp">Telephone Number:</label>
+                  {/*<input
                     type="number"
                     id="tp"
                     name="tp"
                     maxLength="10"
                     placeholder="07********"
-                    required
-                  ></input>
+                    disabled={true}
+                  ></input>*/}
+                  <div>
+                    <p id="current_date">Current Time : 201220-1.2-12</p>
+                  </div>
                   <br></br>
                   <h6>Payement Method</h6>
                   <label>
                     <input
-                      class="with-gap"
+                      onChange={this.change}
+                      className="with-gap"
                       name="group1"
                       type="radio"
                       checked
@@ -88,7 +126,8 @@ class Buy extends Component {
                   <br></br>
                   <label>
                     <input
-                      class="with-gap"
+                      onChange={this.change}
+                      className="with-gap"
                       name="group1"
                       type="radio"
                       checked
@@ -99,7 +138,8 @@ class Buy extends Component {
                   <h6>Do You Want a Delivery?</h6>
                   <label>
                     <input
-                      class="with-gap"
+                      onChange={this.change}
+                      className="with-gap"
                       name="group2"
                       type="radio"
                       checked
@@ -109,7 +149,8 @@ class Buy extends Component {
                   <br></br>
                   <label>
                     <input
-                      class="with-gap"
+                      onChange={this.change}
+                      className="with-gap"
                       name="group2"
                       type="radio"
                       checked
@@ -117,25 +158,33 @@ class Buy extends Component {
                     <span>No</span>
                   </label>
                   <br></br>
-                  <h6>Total</h6>
+                  <label htmlFor="price">Total</label>
+                  <input
+                    type="number"
+                    id="amount"
+                    value="12000"
+                    disabled={true}
+                  ></input>
                 </form>
               </div>
 
-              <div class="row">
+              <div className="row">
                 <a
-                  class="col 12 m4 waves-effect orange accent-3 btn"
+                  onClick={this.sumbitPayment}
+                  className="col 12 m4 waves-effect orange accent-3 btn"
                   style={this.stylebutton()}
                   href="mobile.html"
                 >
-                  <i class="material-icons  left ">card_membership</i>Comfirm
+                  <i className="material-icons  left ">card_membership</i>
+                  Comfirm
                 </a>
 
                 <a
-                  class="col 12 m4 waves-effect  grey lighten-2 btn"
+                  className="col 12 m4 waves-effect  grey lighten-2 btn"
                   style={this.stylebutton2()}
                   href="mobile.html"
                 >
-                  <i class="material-icons  left ">arrow_back</i>Back to
+                  <i className="material-icons  left ">arrow_back</i>Back to
                   Previous
                 </a>
               </div>

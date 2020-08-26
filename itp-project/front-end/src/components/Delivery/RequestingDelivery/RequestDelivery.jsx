@@ -16,9 +16,9 @@ class RequestDelivery extends Component {
     event.preventDefault();
     const city = document.getElementById("City").value;
     const location = document.getElementById("Location").value;
-    const phoneNumber = document.getElementById("PhoneNumber").value;
-    const province = document.getElementById("Province");
-    const district = document.getElementById("District");
+    //const phoneNumber = document.getElementById("PhoneNumber").value;
+    //const province = document.getElementById("Province");
+    //const district = document.getElementById("District");
 
     await fetch("/api/RequestDelivery", {
       headers: {
@@ -40,8 +40,8 @@ class RequestDelivery extends Component {
       M.FormSelect.init(elems);
     });
     document.addEventListener("DOMContentLoaded", function () {
-      var elems = document.querySelectorAll(".modal");
-      var instances = M.Modal.init(elems);
+      const elems = document.querySelectorAll(".modal");
+      M.Modal.init(elems);
     });
 
     return (

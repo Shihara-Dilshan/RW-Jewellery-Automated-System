@@ -1,53 +1,43 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-
 class Card extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  buttonStyle = () => {
+    return {
+      width: "50%",
+    };
+  };
+
   render() {
     return (
-      <div class="col s12 m4">
-        <div
-          class="card card-panel yellow lighten-5  grid-column-gap 2px"
-          style={{
-            marginTop: "30px",
-            border: null,
-            borderRadius: "5px",
-          }}
-        >
-          <div class="card-image waves-effect waves-block waves-light">
-            <img
-              class="activator"
-              style={{ marginTop: "5px" }}
-              alt=""
-              src="https://www.desktopbackground.org/download/o/2014/10/25/845452_gold-jewellery-wallpapers_960x854_h.jpg"
-            />
+      <div className="col s12 m4 test">
+        <div className="card">
+          <div className="card-image">
+            <img src={this.props.imageSrc} alt="" />
+            <span className="card-title">{this.props.title}</span>
           </div>
-          <div class="card-content">
-            <span class="card-title activator grey-text text-darken-4 ">
-              #N jewellery<i class="material-icons right">more_vert</i>
-            </span>
-
-            <Link to="/buy" class="waves-effect orange accent-3 btn">
-              <i class="material-icons left">monetization_on</i>Buy
-            </Link>
-
-            <a
-              class="waves-effect orange accent-3 btn "
-              style={{ marginLeft: "1%" }}
-              href="mobile.html"
+          <div className="card-content">
+            <p>{this.props.description}</p>
+          </div>
+          <div className="card-content">
+            <p>RS. {this.props.supply_Price}</p>
+            <p>{this.props.Meterial}</p>
+          </div>
+          <div className="card-content card-action white-text ">
+            <li
+              className="btn white-text grey darken-3"
+              style={this.buttonStyle()}
             >
-              <i class="material-icons  left ">shopping_cart</i>Cart
-            </a>
-          </div>
-          <div class="card-reveal card-panel #fff9c4 yellow lighten-4">
-            <span class="card-title  text-darken-4 ba ">
-              Necklace<i class="material-icons right">close</i>
-            </span>
-            <p>
-              Various techniques are used in jewelry-making, including forging,
-              casting, repoussage, the art of frosting metals (imparting a
-              grainy and matte appearance to a metal surface using a stamp in
-              the form of a blunt awl or small tube),
-            </p>
+              Buy
+            </li>
+            <li
+              className="btn white-text grey darken-3"
+              style={this.buttonStyle()}
+            >
+              Cart
+            </li>
           </div>
         </div>
       </div>

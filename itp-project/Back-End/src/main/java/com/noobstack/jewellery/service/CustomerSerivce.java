@@ -33,7 +33,6 @@ public class CustomerSerivce {
                 ResponseEntity.ok().body(response))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
-
     public ResponseEntity<Customer> addNewCustomer(Customer customer) throws URISyntaxException {
         Customer result = this.customerRepo.save(customer);
         return ResponseEntity.created(new URI("/designs/addnew" + result.getCustomer_id())).body(result);

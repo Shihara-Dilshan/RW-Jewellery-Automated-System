@@ -4,6 +4,14 @@ body {
  
 }
 
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
 .socialMedia {
   display: flex;
   flex-direction: row;

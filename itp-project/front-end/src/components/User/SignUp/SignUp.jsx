@@ -1,8 +1,49 @@
 import React, { Component } from "react";
+import FacebookLogin from "react-facebook-login";
+import { Redirect } from "react-router-dom";
 import "./../../../App.css";
 
 class SignUp extends Component {
   state = {};
+
+  async responseFacebook(response) {
+    console.log(response);
+    
+    let email = response.email;
+    let name = response.name;
+    const call = await fetch(`/api/v2/customer/find/${email}`);
+    const result = await call.json().catch( err => console.log(err));
+    console.log(result);
+      
+    if(result === undefined) {
+    	const reg = await fetch("/api/v2/customer/register", {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify({
+          name: email,
+          firstName: response.name.trim().split(" ")[0],
+          lastName: response.name.trim().split(" ")[1],
+          
+        }),
+      });
+
+      console.log(reg);
+    }else{
+    
+    }
+    sessionStorage.setItem("email", response.email);
+    sessionStorage.setItem("FirstName", response.name.trim().split(" ")[0]);
+    sessionStorage.setItem("LastName", response.name.trim().split(" ")[1]);
+    sessionStorage.setItem("profileImg", response.picture.data.url);
+    
+  };
+
+  componentClicked = () => {
+    console.log();
+  };
 
   style = () => {
     return {
@@ -13,35 +54,11 @@ class SignUp extends Component {
     };
   };
 
-  async signUp(e){
-  	await e.preventDefault();
-  	let name = document.getElementById('email').value;
-  	let firstName = document.getElementById('first_name').value;
-  	let lastName = document.getElementById('last_name').value;
-  	let telephone = document.getElementById('mobile').value;
-        let address = document.getElementById('address').value;
-        let nic = document.getElementById('NIC').value;
-        
-        const reg = await fetch('/api/v2/customer/register', {
-        	headers: {
-        		Accept: "application/json",
-        		"Content-Type": "application/json",
-        	},
-        	method: "POST",
-        	body: JSON.stringify({
-        		name: name,
-        		firstName: firstName,
-        		lastName: lastName,
-        		telephone: telephone,
-        		address: address,
-        		nic: nic
-        	}),
-        });
-        
-        console.log(reg);
-        
-  	
-  }
+  getStyle = () => {
+    return {
+      width: "20%",
+    };
+  };
 
   render() {
     return (
@@ -50,6 +67,7 @@ class SignUp extends Component {
           <div className="card horizontal">
             <div className="card-image hide-on-small-only">
               <img
+                id="signUpImage"
                 alt=""
                 src="https://image.freepik.com/free-vector/online-registration-concept-with-isometric-view_23-2147976706.jpg"
                 height="100%"
@@ -64,10 +82,17 @@ class SignUp extends Component {
                       {" "}
                       If you already have an account with us, please login at
                       the{" "}
-                      <a href="index.html" className="teal-text">
+                      <a
+                        href="index.html"
+                        className="teal-text"
+                        id="loginNagivate"
+                      >
                         login page
                       </a>
                     </p>
+                    <div className="progress hide test">
+                      <div className="indeterminate"></div>
+                    </div>
                   </div>
                   <br />
                   <form className="col s12">
@@ -78,7 +103,9 @@ class SignUp extends Component {
                           type="text"
                           className="validate"
                         />
-                        <label htmlFor="first_name">First Name</label>
+                        <label htmlFor="first_name" id="firstNameLabel">
+                          First Name
+                        </label>
                       </div>
                       <div className="input-field col s6">
                         <input
@@ -86,38 +113,28 @@ class SignUp extends Component {
                           type="text"
                           className="validate"
                         />
-                        <label htmlFor="last_name">Last Name</label>
+                        <label htmlFor="last_name" id="lastNameLabel">
+                          Last Name
+                        </label>
                       </div>
                     </div>
                     <div className="row">
                       <div className="input-field col s12">
                         <input id="email" type="email" className="validate" />
-                        <label htmlFor="email">Email</label>
+                        <label htmlFor="email" id="emailNameLabel">
+                          Email
+                        </label>
                       </div>
                     </div>
                     <div className="row">
                       <div className="input-field col s12">
-                        <input id="address" type="text" className="validate" />
-                        <label htmlFor="address">Address</label>
+                        <input id="mobile" type="text" />
+                        <label htmlFor="mobile" id="telephoneLable">
+                          Telephone
+                        </label>
                       </div>
                     </div>
-                    <div className="row">
-                      <div className="input-field col s12">
-                        <input id="NIC" type="text" className="validate" />
-                        <label htmlFor="NIC">NIC</label>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="input-field col s12">
-                        <input
-                          id="mobile"
-                          type="text"
-                        />
-                        <label htmlFor="mobile">Telephone</label>
-                      </div>
-                    </div>
-                    
-                    
+
                     <div className="row">
                       <div className="input-field col s6">
                         <input
@@ -125,7 +142,9 @@ class SignUp extends Component {
                           type="password"
                           className="validate"
                         />
-                        <label htmlFor="password">Password</label>
+                        <label htmlFor="password" id="passwordLabel">
+                          Password
+                        </label>
                       </div>
                       <div className="input-field col s6">
                         <input
@@ -133,8 +152,13 @@ class SignUp extends Component {
                           type="password"
                           className="validate"
                         />
-                        <label htmlFor="password">Confirm Password</label>
+                        <label htmlFor="cpassword" id="cpasswordLabel">
+                          Confirm Password
+                        </label>
                       </div>
+                    </div>
+                    <div className="progress hide test">
+                      <div className="indeterminate"></div>
                     </div>
                     <div className="center-align center">
                       <button
@@ -144,15 +168,23 @@ class SignUp extends Component {
                       >
                         signup
                       </button>
-                    </div><br/>
+                    </div>
+                    <br />
                     <div className="container center-align">
                       <p>or else sign up with</p>
-                      <br/>
+                      <br />
                     </div>
+
                     <div className="container center-align">
-                    <i className="fab fa-facebook fa-2x blue-text"></i>
-                    { " "}
-                    <i className="fab fa-google-plus-square fa-2x red-text"></i>
+                      <FacebookLogin
+                        appId="3204620366282734"
+                        autoLoad={false}
+                        fields="name,email,picture"
+                        onClick={this.componentClicked}
+                        callback={this.responseFacebook}
+                      />
+                      {""}
+                      
                     </div>
                   </form>
                 </div>
@@ -163,6 +195,76 @@ class SignUp extends Component {
       </div>
     );
   }
+
+  async signUp(e) {
+    await e.preventDefault();
+    let isvalid = true;
+    let emptyColumns = [];
+
+    let name = SignUp.mytrim(document.getElementById("email").value);
+    let firstName = SignUp.mytrim(document.getElementById("first_name").value);
+    let lastName = SignUp.mytrim(document.getElementById("last_name").value);
+    let telephone = SignUp.mytrim(document.getElementById("mobile").value);
+
+    name.length === 0
+      ? emptyColumns.push(document.getElementById("emailNameLabel"))
+      : console.log("email is not empty");
+    firstName.length === 0
+      ? emptyColumns.push(document.getElementById("firstNameLabel"))
+      : console.log("fname is not empty");
+    lastName.length === 0
+      ? emptyColumns.push(document.getElementById("lastNameLabel"))
+      : console.log("lname is not empty");
+    telephone.length === 0
+      ? emptyColumns.push(document.getElementById("telephoneLable"))
+      : console.log("mobile is not empty");
+
+    emptyColumns.length === 0 ? (isvalid = true) : (isvalid = false);
+
+    if (isvalid) {
+      //show the wait indicators
+      let waitIndicator = document.querySelectorAll(".progress");
+      waitIndicator.forEach((item) => {
+        item.classList.remove("hide");
+        item.classList.add("show");
+      });
+
+      //hide unnessocery lines
+      let loginButton = document.getElementById("loginNagivate");
+      loginButton.classList.add("hide");
+
+      //api call
+      const reg = await fetch("/api/v2/customer/register", {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify({
+          name: name,
+          firstName: firstName,
+          lastName: lastName,
+          telephone: telephone,
+        }),
+      });
+
+      console.log(reg);
+    } else {
+      emptyColumns.forEach((emptyColumn) => {
+        emptyColumn.classList.add("red-text");
+      });
+
+      setTimeout(() => {
+        emptyColumns.forEach((emptyColumn) => {
+          emptyColumn.classList.remove("red-text");
+        });
+      }, 2000);
+    }
+  }
+
+  static mytrim = (inputString) => {
+    return inputString.replace(/\s/g, "");
+  };
 }
 
 export default SignUp;

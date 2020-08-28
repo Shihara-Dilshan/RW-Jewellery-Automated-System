@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.UUID;
-
 @RestController
 @RequestMapping("/api")
 public class DeliveryControleer {
@@ -21,14 +20,12 @@ public class DeliveryControleer {
     ResponseEntity<?> getDeliveryByID(@PathVariable UUID id){
         return this.deliveryService.getdeliveryByid(id);
     }
-    @RequestMapping("/delivery/deliveryBoy/{deliverBoy}")
+    @GetMapping("/delivery/deliveryBoy/{deliverBoy}")
     List<Delivery> getDeliveryByDeliveryBoy(@PathVariable DeliverBoy deliverBoy){
-        return this.deliveryService.getdeliveryByDeliveryBoy(deliverBoy);
-    }
+        return this.deliveryService.getdeliveryByDeliveryBoy(deliverBoy); }
     @RequestMapping("/delivery/deliveryStatus/{status}")
     List<Delivery> getDeliveryByStatus(@PathVariable String status){
-        return this.deliveryService.getdeliveryByStatus(status);
-    }
+        return this.deliveryService.getdeliveryByStatus(status); }
     @GetMapping("/alldelivery")
     List<Delivery> getAlldeliveries(){
         return this.deliveryService.getAlldeliveries();
@@ -39,11 +36,11 @@ public class DeliveryControleer {
     }
     @PostMapping("/RequestDelivery")
     ResponseEntity<Delivery> RequestDelivery(@Validated @RequestBody Delivery delivery) throws URISyntaxException {
-        return this.deliveryService.RequestDelivery(delivery);
-    }
+        return this.deliveryService.RequestDelivery(delivery); }
     @DeleteMapping("/deletedelivery/{id}")
     ResponseEntity<?> deleteDelivery(@PathVariable UUID id){
         return this.deliveryService.deletedelivery(id);
     }
+
 
 }

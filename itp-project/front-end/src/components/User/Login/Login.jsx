@@ -1,8 +1,76 @@
 import React, { Component } from "react";
+import FacebookLogin from "react-facebook-login";
 import "./../../../App.css";
 
 class Login extends Component {
   state = {};
+  
+  
+  async login(e){
+  	e.preventDefault();
+  	let email = document.getElementById('Lemail').value;
+  	const call = await fetch(`/api/v2/customer/find/${email}`);
+    	const result = await call.json().catch( err => console.log(err));
+    	console.log(result);
+    	
+    	if(result === undefined){
+    		let emailLabel = document.getElementById('LemailLabel');
+    		emailLabel.innerHTML = "This account does not Exist";
+    		emailLabel.classList.add("red-text");
+    		setTimeout( () => {
+    			emailLabel.innerHTML = "Email";
+    			emailLabel.classList.remove("red-text");
+
+    		}, 2000 );
+    	}else{
+    		sessionStorage.setItem("userId", result.customer_id);
+    		sessionStorage.setItem("email", result.name);
+    		sessionStorage.setItem("FirstName", result.firstName);
+    		sessionStorage.setItem("LastName", result.lastName);
+    	}
+  
+    	
+    	
+  }
+  
+  async responseFacebook(response) {
+    console.log(response);
+    
+    let email = response.email;
+    let name = response.name;
+    const call = await fetch(`/api/v2/customer/find/${email}`);
+    const result = await call.json().catch( err => console.log(err));
+    console.log(result);
+      
+    if(result === undefined) {
+    	const reg = await fetch("/api/v2/customer/register", {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify({
+          name: email,
+          firstName: response.name.trim().split(" ")[0],
+          lastName: response.name.trim().split(" ")[1],
+          
+        }),
+      });
+
+      console.log(reg);
+    }else{
+    
+    }
+    sessionStorage.setItem("email", response.email);
+    sessionStorage.setItem("FirstName", response.name.trim().split(" ")[0]);
+    sessionStorage.setItem("LastName", response.name.trim().split(" ")[1]);
+    sessionStorage.setItem("profileImg", response.picture.data.url);
+    
+  };
+
+  componentClicked = () => {
+    console.log();
+  };
 
   style = () => {
     return {
@@ -38,8 +106,8 @@ class Login extends Component {
                   <form className="col s12">
                     <div className="row">
                       <div className="input-field col s12">
-                        <input id="email" type="email" className="validate" />
-                        <label htmlFor="email">Email</label>
+                        <input id="Lemail" type="email" className="validate" />
+                        <label htmlFor="Lemail" id="LemailLabel">Email</label>
                       </div>
                     </div>
                     <div className="row">
@@ -64,6 +132,7 @@ class Login extends Component {
                     </div>
                     <div className="center-align center">
                       <button
+                        onClick={this.login}
                         className="btn center-align grey darken-3"
                         style={{ width: "100%" }}
                       >
@@ -76,6 +145,17 @@ class Login extends Component {
                     >
                       <p>forget password?</p>
                       <br />
+                    </div>
+                       <div className="container center-align">
+                      <FacebookLogin
+                        appId="3204620366282734"
+                        autoLoad={false}
+                        fields="name,email,picture"
+                        onClick={this.componentClicked}
+                        callback={this.responseFacebook}
+                      />
+                      {""}
+                      
                     </div>
                     <div className="center-align center">
                       <p className="teal-text">create new account</p>

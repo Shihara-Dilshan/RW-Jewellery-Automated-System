@@ -34,6 +34,8 @@ class SignUp extends Component {
     }else{
     
     }
+    
+    sessionStorage.setItem("userId", result.customer_id);
     sessionStorage.setItem("email", response.email);
     sessionStorage.setItem("FirstName", response.name.trim().split(" ")[0]);
     sessionStorage.setItem("LastName", response.name.trim().split(" ")[1]);

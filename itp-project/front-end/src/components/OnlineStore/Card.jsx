@@ -29,6 +29,7 @@ class Card extends Component {
             <li
               className="btn white-text grey darken-3"
               style={this.buttonStyle()}
+              onClick
             >
               Buy
             </li>

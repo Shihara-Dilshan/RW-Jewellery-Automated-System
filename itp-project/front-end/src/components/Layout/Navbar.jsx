@@ -7,19 +7,29 @@ class Navbar extends Component {
     super(props);
     this.state = {
       isLoading: true,
-      loginStatus: "Login",
-      signUpStatus: "Sign up",
-      route1: "login",
-      route2: "signup",
-      jewelry: [],
+      tab1: "Login",
+      tab1Route: "/login",
+      tab2: "Sign Up",
+      tab2Route: "/signup",
     };
   }
 
-  drop = () => {
-    return {
-      minWidth: "25%",
-    };
-  };
+  componentDidMount() {
+    setInterval(() => {
+      if (sessionStorage.getItem("email") !== null) {
+        this.setState({
+          tab1: "Account",
+          tab1Route: "/profile",
+          tab2: "Logout",
+          tab2Route: "/logout",
+        });
+      }
+    }, 200);
+    const elems = document.querySelectorAll(".sidenav");
+    M.Sidenav.init(elems, {
+      edge: "right",
+    });
+  }
 
   render() {
     return (
@@ -83,15 +93,29 @@ class Navbar extends Component {
               <li>
                 <a href="mobile.html">Services</a>
               </li>
+
               <li>
                 <a href="mobile.html">Contact</a>
               </li>
 
               <li>
-                <Link to={this.state.route1}>{this.state.loginStatus}</Link>
+                <Link to={this.state.tab1Route}>{this.state.tab1}</Link>
               </li>
               <li>
-                <Link to={this.state.route2}>{this.state.signUpStatus}</Link>
+                <Link to={this.state.tab2Route}>{this.state.tab2}</Link>
+              </li>
+              <li>
+                <img
+                  alt=""
+                  src={sessionStorage.getItem("profileImg")}
+                  style={{
+                    height: "30px",
+                    width: "30px",
+                    verticalAlign: "-10px",
+                    borderRadius: "5px",
+                    marginRight: "5px",
+                  }}
+                />
               </li>
               <li>
                 <a

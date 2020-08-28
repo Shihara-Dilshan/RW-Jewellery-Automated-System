@@ -8,6 +8,7 @@ import Carousel from "./Carousel";
 
 class Home extends Component {
   state = {};
+
   render() {
     return (
       <div>

@@ -5,14 +5,34 @@ class UserProfile extends Component {
   constructor() {
     super();
     this.state = {
-      emailComfirmationStatus: ""
+      emailComfirmationStatus: "",
+      firstName: "required *",
+      lastName: "required *",
+      email: "required *",
+      mobile: "required *",
+      address: "required *",
     };
   }
 
   componentDidMount(){
-    setTimeout(() => {
+  
+  if(sessionStorage.getItem("email") === null){
+  	this.props.history.push("/");
+  }else{
+  	setTimeout(() => {
       this.setState({emailComfirmationStatus:"your email addess hasn't validated yet.Click here to validate your email"});
     }, 2000);
+    this.setState({
+      firstName: sessionStorage.getItem("FirstName"),
+      lastName: sessionStorage.getItem("LastName"),
+      email: sessionStorage.getItem("email"),
+      mobile: sessionStorage.getItem("telephone"),
+      address: sessionStorage.getItem("address"),
+    });
+  
+  }
+  
+    
   }
 
   style = () => {
@@ -55,18 +75,16 @@ class UserProfile extends Component {
                           id="first_name"
                           type="text"
                           className="validate"
-                          value="dilshan"
+                          value={this.state.firstName}
                         />
-                        <label htmlFor="first_name">First Name</label>
                       </div>
                       <div className="input-field col s6">
                         <input
                           id="last_name"
                           type="text"
                           className="validate"
-                          value="shihara"
+                          value={this.state.lastName}
                         />
-                        <label htmlFor="last_name">Last Name</label>
                       </div>
                     </div>
                     <div className="row">
@@ -75,25 +93,20 @@ class UserProfile extends Component {
                           id="email"
                           type="email"
                           className="validate"
-                          value="shihara@gmail.com"
+                          value={this.state.email}
+                          disabled
                         />
-                        <label htmlFor="email">Email</label>
                       </div>
                     </div>
                     <div className="row">
                       <div className="input-field col s12">
-                        <input id="mobile" type="text" value="0750935556" />
-                        <label htmlFor="mobile">Telephone</label>
+                        <input id="mobile" type="text" value={this.state.mobile} />
                       </div>
                     </div>
-
-                    <div class="input-field col s12">
-                      <textarea
-                        id="textarea1"
-                        class="materialize-textarea"
-                        value="55/f Alapalavala handessa"
-                      ></textarea>
-                      <label for="textarea1">Textarea</label>
+                    <div className="row">
+                      <div className="input-field col s12">
+                        <input id="address" type="text" value={this.state.address} />
+                      </div>
                     </div>
                     <div className="center-align center">
                       <button

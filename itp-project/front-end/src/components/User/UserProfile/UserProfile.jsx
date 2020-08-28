@@ -15,7 +15,11 @@ class UserProfile extends Component {
   }
 
   componentDidMount(){
-    setTimeout(() => {
+  
+  if(sessionStorage.getItem("email") === null){
+  	this.props.history.push("/");
+  }else{
+  	setTimeout(() => {
       this.setState({emailComfirmationStatus:"your email addess hasn't validated yet.Click here to validate your email"});
     }, 2000);
     this.setState({
@@ -25,6 +29,10 @@ class UserProfile extends Component {
       mobile: sessionStorage.getItem("telephone"),
       address: sessionStorage.getItem("address"),
     });
+  
+  }
+  
+    
   }
 
   style = () => {

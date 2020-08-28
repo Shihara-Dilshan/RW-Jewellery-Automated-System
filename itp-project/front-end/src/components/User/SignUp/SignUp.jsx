@@ -6,7 +6,7 @@ import "./../../../App.css";
 class SignUp extends Component {
   state = {};
 
-  async responseFacebook(response) {
+  responseFacebook = async (response) => {
     console.log(response);
     
     let email = response.email;
@@ -32,14 +32,15 @@ class SignUp extends Component {
 
       console.log(reg);
     }else{
-    
+    	sessionStorage.setItem("userId", result.customer_id);
+    	sessionStorage.setItem("email", response.email);
+    	sessionStorage.setItem("FirstName", response.name.trim().split(" ")[0]);
+    	sessionStorage.setItem("LastName", response.name.trim().split(" ")[1]);
+    	sessionStorage.setItem("profileImg", response.picture.data.url);
+    	this.props.history.push("/");
     }
     
-    sessionStorage.setItem("userId", result.customer_id);
-    sessionStorage.setItem("email", response.email);
-    sessionStorage.setItem("FirstName", response.name.trim().split(" ")[0]);
-    sessionStorage.setItem("LastName", response.name.trim().split(" ")[1]);
-    sessionStorage.setItem("profileImg", response.picture.data.url);
+    
     
   };
 

@@ -3,10 +3,12 @@ import FacebookLogin from "react-facebook-login";
 import "./../../../App.css";
 
 class Login extends Component {
-  state = {};
-  
-  
-  async login(e){
+  constructor(props){
+    super(props);
+    this.state = {};
+  }
+
+  login = async(e) => {
   	e.preventDefault();
   	let email = document.getElementById('Lemail').value;
   	const call = await fetch(`/api/v2/customer/find/${email}`);
@@ -26,14 +28,15 @@ class Login extends Component {
     		sessionStorage.setItem("userId", result.customer_id);
     		sessionStorage.setItem("email", result.name);
     		sessionStorage.setItem("FirstName", result.firstName);
-    		sessionStorage.setItem("LastName", result.lastName);
+        	sessionStorage.setItem("LastName", result.lastName);
+        	this.props.history.push("/");
     	}
   
     	
     	
   }
   
-  async responseFacebook(response) {
+  responseFacebook = async(response) => {
     console.log(response);
     
     let email = response.email;
@@ -65,6 +68,7 @@ class Login extends Component {
     sessionStorage.setItem("FirstName", response.name.trim().split(" ")[0]);
     sessionStorage.setItem("LastName", response.name.trim().split(" ")[1]);
     sessionStorage.setItem("profileImg", response.picture.data.url);
+    this.props.history.push("/");
     
   };
 

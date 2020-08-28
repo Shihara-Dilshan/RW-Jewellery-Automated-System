@@ -15,7 +15,11 @@ class UserProfile extends Component {
   }
 
   componentDidMount(){
-    setTimeout(() => {
+  
+  if(sessionStorage.getItem("email") === null){
+  	this.props.history.push("/");
+  }else{
+  	setTimeout(() => {
       this.setState({emailComfirmationStatus:"your email addess hasn't validated yet.Click here to validate your email"});
     }, 2000);
     this.setState({
@@ -25,6 +29,10 @@ class UserProfile extends Component {
       mobile: sessionStorage.getItem("telephone"),
       address: sessionStorage.getItem("address"),
     });
+  
+  }
+  
+    
   }
 
   style = () => {
@@ -95,13 +103,10 @@ class UserProfile extends Component {
                         <input id="mobile" type="text" value={this.state.mobile} />
                       </div>
                     </div>
-
-                    <div class="input-field col s12">
-                      <textarea
-                        id="textarea1"
-                        class="materialize-textarea"
-                        value={this.state.address}
-                      ></textarea>
+                    <div className="row">
+                      <div className="input-field col s12">
+                        <input id="address" type="text" value={this.state.address} />
+                      </div>
                     </div>
                     <div className="center-align center">
                       <button

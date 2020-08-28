@@ -1,7 +1,10 @@
 body {
-  padding:  0;
+  padding: 0;
   margin: 0;
- 
+}
+
+#cartSection {
+  display: block !important;
 }
 
 .socialMedia {

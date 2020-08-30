@@ -20,6 +20,7 @@ class Slider extends Component {
           <SliderImage
             image={
               "https://raw.githubusercontent.com/Shihara-Dilshan/img/master/ITP/model/Front-image-3.jpg"
+              
             }
             title={"Clasped with class"}
             description={

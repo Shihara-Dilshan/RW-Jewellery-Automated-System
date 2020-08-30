@@ -17,12 +17,14 @@ import AssignDriver from "./components/Delivery/AssignDriver/AssignDriver";
 import DeliveryRequestMore from "./components/Delivery/DeliveryRequestAdminView/DeliveryRequestMore";
 import OnlineStore from './components/OnlineStore/OnlineStore';
 import Buy from './components/Buy/Buy';
+import IButton from './components/Home/IButton';
 
 const App = () => {
   return (
     <Router>
       <div className="App">
         <Navbar />
+        <IButton />
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/signup" exact component={SignUp} />

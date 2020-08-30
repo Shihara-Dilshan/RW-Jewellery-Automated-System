@@ -42,7 +42,13 @@ class Navbar extends Component {
     });
     let tableRow = e.target.parentElement.parentElement.parentElement;
     tableRow.style.display = "none";
-    console.log(currentCart);
+    M.toast({html: 'Item has been removed from the cart'})
+  };
+
+  getStyle = () => {
+    return {
+      color: "red !important",
+    };
   };
 
   componentDidMount() {
@@ -65,11 +71,11 @@ class Navbar extends Component {
   render() {
     return (
       <React.Fragment>
-        <nav>
-          <ul id="slide-out" class="sidenav" style={{ width: "50%" }}>
+        <nav id="scroll" className="scrollspy">
+          <ul id="slide-out" className="sidenav" style={{ width: "50%" }}>
             <li>
               <a href="#!">
-                <i class="material-icons">add_shopping_cart</i>My{" "}
+                <i className="material-icons">add_shopping_cart</i>My{" "}
                 <span className="teal-text">Cart</span>
               </a>
             </li>
@@ -82,46 +88,30 @@ class Navbar extends Component {
                 </div>
                 <div className="col s12 m6">
                   {" "}
-                  <button style={{ width: "100%" }} className="btn">
+                  <button style={{ width: "100%" }} className="btn grey darken-3">
                     Check Out
                   </button>
                 </div>
               </div>
             </li>
             <li>
-              <div class="divider"></div>
+              <div className="divider"></div>
             </li>
             <li>
-              <a href="#!" class="subheader">
-                Current items
-              </a>
-            </li>
-            {this.state.cart.map((item) => {
-              return (
-                <li>
-                  <div className="row">
-                    <h3 className="gfhide">{this.props.jew_id}</h3>
-                    <div className="col s9">
-                      <table style={{ width: "100%", color: "black" }}>
-                        <tbody>
-                          <tr>
+              <div className="row">
+                <div className="col s12">
+                  <table style={{ width: "100%", color: "black" }}>
+                    <tbody>
+                      {this.state.cart.map((item) => {
+                        return (
+                          <tr style={{ width: "100%"}} key={item.id}>
                             <td>{item.name}</td>
-                            <td>{item.price}</td>
-                            <td>{item.id}</td>
+                            <td style={{float:"right"}}>{item.price}</td>
+                            <td style={{display:"none"}}>{item.id}</td>
                             <td>
-                              <button className="btn" style={{ width: "100%" }}>
+                              <button className="btn white red-text" style={{float: "right"}}>
                                 <i
-                                  class="material-icons"
-                                  style={{ lineHeight: "30px" }}
-                                >
-                                  monetization_on
-                                </i>
-                              </button>
-                            </td>
-                            <td>
-                              <button className="btn" style={{ width: "100%" }}>
-                                <i
-                                  class="material-icons"
+                                  className="material-icons"
                                   style={{ lineHeight: "30px" }}
                                   onClick={this.removeItem}
                                 >
@@ -131,17 +121,14 @@ class Navbar extends Component {
                             </td>
                             <td>{this.props.jew_id}</td>
                           </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                    <div className="col s3"></div>
-                  </div>
-                </li>
-              );
-            })}
-            <button style={{ width: "100%" }} className="btn" disabled>
-              Total Price :
-            </button>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+                <div className="col s3"></div>
+              </div>
+            </li>
           </ul>
 
           <div className="nav-wrapper grey darken-3">
@@ -196,11 +183,12 @@ class Navbar extends Component {
                   href="#!"
                   id="cartSection"
                   data-target="slide-out"
-                  class="sidenav-trigger"
+                  className="sidenav-trigger"
                   onClick={this.viewCart}
                 >
-                  <i class="material-icons">add_shopping_cart</i>
+                  <i className="material-icons">add_shopping_cart</i>
                 </a>
+                <span class="new badge" style={{position:"relative",top:"20px",right:"35px"}}>4</span>
               </li>
             </ul>
           </div>

@@ -15,6 +15,10 @@ body {
   display: none;
 }
 
+td {
+  padding: 0px !important;
+}
+
 .socialMedia {
   display: flex;
   flex-direction: row;

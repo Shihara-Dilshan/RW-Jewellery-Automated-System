@@ -1,8 +1,17 @@
 import React, { Component } from "react";
 
 class Buy extends Component {
-  constructor() {
-    super();
+  componentDidMount() {
+    setInterval(() => {
+      if (sessionStorage.getItem("email") !== null) {
+        this.setState({
+          tab1: "Account",
+          tab1Route: "/profile",
+          tab2: "Logout",
+          tab2Route: "/logout",
+        });
+      }
+    }, 200);
   }
 
   change() {
@@ -162,7 +171,7 @@ class Buy extends Component {
                   <input
                     type="number"
                     id="amount"
-                    value="12000"
+                    value="{item.price}"
                     disabled={true}
                   ></input>
                 </form>

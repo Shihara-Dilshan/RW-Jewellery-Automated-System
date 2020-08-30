@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import FacebookLogin from "react-facebook-login";
-import { Redirect } from "react-router-dom";
 import "./../../../App.css";
 
 class SignUp extends Component {
@@ -8,15 +7,14 @@ class SignUp extends Component {
 
   responseFacebook = async (response) => {
     console.log(response);
-    
+
     let email = response.email;
-    let name = response.name;
     const call = await fetch(`/api/v2/customer/find/${email}`);
-    const result = await call.json().catch( err => console.log(err));
+    const result = await call.json().catch((err) => console.log(err));
     console.log(result);
-      
-    if(result === undefined) {
-    	const reg = await fetch("/api/v2/customer/register", {
+
+    if (result === undefined) {
+      const reg = await fetch("/api/v2/customer/register", {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
@@ -26,22 +24,18 @@ class SignUp extends Component {
           name: email,
           firstName: response.name.trim().split(" ")[0],
           lastName: response.name.trim().split(" ")[1],
-          
         }),
       });
 
       console.log(reg);
-    }else{
-    	sessionStorage.setItem("userId", result.customer_id);
-    	sessionStorage.setItem("email", response.email);
-    	sessionStorage.setItem("FirstName", response.name.trim().split(" ")[0]);
-    	sessionStorage.setItem("LastName", response.name.trim().split(" ")[1]);
-    	sessionStorage.setItem("profileImg", response.picture.data.url);
-    	this.props.history.push("/");
+    } else {
+      sessionStorage.setItem("userId", result.customer_id);
+      sessionStorage.setItem("email", response.email);
+      sessionStorage.setItem("FirstName", response.name.trim().split(" ")[0]);
+      sessionStorage.setItem("LastName", response.name.trim().split(" ")[1]);
+      sessionStorage.setItem("profileImg", response.picture.data.url);
+      this.props.history.push("/");
     }
-    
-    
-    
   };
 
   componentClicked = () => {
@@ -187,7 +181,6 @@ class SignUp extends Component {
                         callback={this.responseFacebook}
                       />
                       {""}
-                      
                     </div>
                   </form>
                 </div>

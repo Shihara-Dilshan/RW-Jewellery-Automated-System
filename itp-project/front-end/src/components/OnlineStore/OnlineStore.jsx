@@ -32,7 +32,7 @@ class OnlineStore extends Component {
           imageSrc:
             "https://raw.githubusercontent.com/Shihara-Dilshan/img/master/ITP/items/jacek-dylag-FXXfE5RqkqY-unsplash.jpg",
           Meterial: "White Gold",
-          title: "Jewellery 1",
+          title: "Jewellery 2",
           supply_Price: "32000",
           supplyer_Id: "SUP-1236",
         },
@@ -43,7 +43,7 @@ class OnlineStore extends Component {
           imageSrc:
             "https://raw.githubusercontent.com/Shihara-Dilshan/img/master/ITP/items/jacek-dylag-FXXfE5RqkqY-unsplash.jpg",
           Meterial: "Silver",
-          title: "Jewellery 1",
+          title: "Jewellery 3",
           supply_Price: "9000",
           supplyer_Id: "SUP-1236",
         },
@@ -55,7 +55,7 @@ class OnlineStore extends Component {
     return (
       <div>
         <Slider />
-        <br></br>
+
         <hr></hr>
 
         <div className="container">
@@ -69,6 +69,7 @@ class OnlineStore extends Component {
                   supply_Price={jeweler.supply_Price}
                   Meterial={jeweler.Meterial}
                   key={jeweler.jew_id}
+                  jew_id={jeweler.jew_id}
                 />
               );
             })}

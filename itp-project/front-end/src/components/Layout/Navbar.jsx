@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import M from "materialize-css";
 
+import "./../../App.css";
+
 class Navbar extends Component {
   constructor(props) {
     super(props);
@@ -11,8 +13,37 @@ class Navbar extends Component {
       tab1Route: "/login",
       tab2: "Sign Up",
       tab2Route: "/signup",
+      cart: [],
+      cartUpated: false,
     };
   }
+
+  viewCart = () => {
+    if (sessionStorage.getItem("cart") !== null) {
+      this.setState({
+        cart: JSON.parse(sessionStorage.getItem("cart")),
+      });
+    }
+  };
+
+  removeItem = (e) => {
+    e.preventDefault();
+    let removeID =
+      e.target.parentElement.parentElement.parentElement.childNodes[2]
+        .innerHTML;
+
+    let currentCart = JSON.parse(sessionStorage.getItem("cart"));
+    currentCart = currentCart.filter((item) => {
+      return item.id !== removeID;
+    });
+    sessionStorage.setItem("cart", JSON.stringify(currentCart));
+    this.setState({
+      cartUpated: true,
+    });
+    let tableRow = e.target.parentElement.parentElement.parentElement;
+    tableRow.style.display = "none";
+    console.log(currentCart);
+  };
 
   componentDidMount() {
     setInterval(() => {
@@ -61,13 +92,56 @@ class Navbar extends Component {
               <div class="divider"></div>
             </li>
             <li>
-              <a class="subheader">Current items</a>
-            </li>
-            <li>
-              <a class="waves-effect" href="#!">
-                Third Link With Waves
+              <a href="#!" class="subheader">
+                Current items
               </a>
             </li>
+            {this.state.cart.map((item) => {
+              return (
+                <li>
+                  <div className="row">
+                    <h3 className="gfhide">{this.props.jew_id}</h3>
+                    <div className="col s9">
+                      <table style={{ width: "100%", color: "black" }}>
+                        <tbody>
+                          <tr>
+                            <td>{item.name}</td>
+                            <td>{item.price}</td>
+                            <td>{item.id}</td>
+                            <td>
+                              <button className="btn" style={{ width: "100%" }}>
+                                <i
+                                  class="material-icons"
+                                  style={{ lineHeight: "30px" }}
+                                >
+                                  monetization_on
+                                </i>
+                              </button>
+                            </td>
+                            <td>
+                              <button className="btn" style={{ width: "100%" }}>
+                                <i
+                                  class="material-icons"
+                                  style={{ lineHeight: "30px" }}
+                                  onClick={this.removeItem}
+                                >
+                                  remove_shopping_cart
+                                </i>
+                              </button>
+                            </td>
+                            <td>{this.props.jew_id}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div className="col s3"></div>
+                  </div>
+                </li>
+              );
+            })}
+            <button style={{ width: "100%" }} className="btn" disabled>
+              Total Price :
+            </button>
           </ul>
 
           <div className="nav-wrapper grey darken-3">
@@ -119,10 +193,11 @@ class Navbar extends Component {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="#!"
                   id="cartSection"
                   data-target="slide-out"
                   class="sidenav-trigger"
+                  onClick={this.viewCart}
                 >
                   <i class="material-icons">add_shopping_cart</i>
                 </a>

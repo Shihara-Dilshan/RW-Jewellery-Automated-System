@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 class DeliveryRequestsFromCustomer extends Component {
   constructor() {
@@ -8,7 +9,6 @@ class DeliveryRequestsFromCustomer extends Component {
       temp: "",
     };
   }
-
   style = () => {
     return {
       backgroundColor: "#f5f5f5",
@@ -18,10 +18,15 @@ class DeliveryRequestsFromCustomer extends Component {
     };
   };
 
+  getData = (e) => {
+    let deliverID =
+      e.target.parentElement.parentElement.parentElement.firstChild.innerHTML;
+    sessionStorage.setItem("assignItemDriver", deliverID);
+  };
   async componentDidMount() {
     const APICall = await fetch("/api/alldelivery");
-    const result = await APICall.json();
-    this.setState({ Deliveries: result });
+    const Result = await APICall.json();
+    this.setState({ Deliveries: Result });
   }
   render() {
     return (
@@ -36,8 +41,8 @@ class DeliveryRequestsFromCustomer extends Component {
           <table className="responsive-table">
             <thead>
               <tr>
-                <th>Customer ID</th>
                 <th>Delivery Number</th>
+                <th>Customer ID</th>
                 <th>Item Code</th>
                 <th>Address For Deliver</th>
                 <th>Item Category</th>
@@ -50,20 +55,25 @@ class DeliveryRequestsFromCustomer extends Component {
             </thead>
 
             <tbody>
-              {this.state.Deliveries.map((Delivery, index) => {
+              {this.state.Deliveries.map((Delivery) => {
                 return (
                   <tr className="center-align grey-text">
-                    <td>CUS1234</td>
                     <td>{Delivery.delivery_id}</td>
+                    <td>CUS1234</td>
                     <td>B123</td>
                     <td>{Delivery.deliveryAddress}</td>
                     <td>Bangles</td>
                     <td>2020-08-06</td>
                     <td>12000/=</td>
                     <td>
-                      <button className="btn center-align grey darken-3">
-                        Assign
-                      </button>
+                      <Link to="/AssignDriver">
+                        <button
+                          onClick={this.getData}
+                          className="btn center-align grey darken-3"
+                        >
+                          Assign
+                        </button>
+                      </Link>
                     </td>
                     <td>{Delivery.status}</td>
                     <td>

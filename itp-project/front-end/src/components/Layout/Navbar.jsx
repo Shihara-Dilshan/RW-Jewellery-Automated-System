@@ -42,7 +42,7 @@ class Navbar extends Component {
     });
     let tableRow = e.target.parentElement.parentElement.parentElement;
     tableRow.style.display = "none";
-    M.toast({html: 'Item has been removed from the cart'})
+    M.toast({ html: "Item has been removed from the cart" });
   };
 
   getStyle = () => {
@@ -88,7 +88,10 @@ class Navbar extends Component {
                 </div>
                 <div className="col s12 m6">
                   {" "}
-                  <button style={{ width: "100%" }} className="btn grey darken-3">
+                  <button
+                    style={{ width: "100%" }}
+                    className="btn grey darken-3"
+                  >
                     Check Out
                   </button>
                 </div>
@@ -104,12 +107,15 @@ class Navbar extends Component {
                     <tbody>
                       {this.state.cart.map((item) => {
                         return (
-                          <tr style={{ width: "100%"}} key={item.id}>
+                          <tr style={{ width: "100%" }} key={item.id}>
                             <td>{item.name}</td>
-                            <td style={{float:"right"}}>{item.price}</td>
-                            <td style={{display:"none"}}>{item.id}</td>
+                            <td style={{ float: "right" }}>{item.price}</td>
+                            <td style={{ display: "none" }}>{item.id}</td>
                             <td>
-                              <button className="btn white red-text" style={{float: "right"}}>
+                              <button
+                                className="btn white red-text"
+                                style={{ float: "right" }}
+                              >
                                 <i
                                   className="material-icons"
                                   style={{ lineHeight: "30px" }}
@@ -152,7 +158,7 @@ class Navbar extends Component {
                 <Link to="/onlinestore">Online Store</Link>
               </li>
               <li>
-              <Link to="/services">Services</Link>
+                <Link to="/services">Services</Link>
               </li>
 
               <li>
@@ -188,7 +194,12 @@ class Navbar extends Component {
                 >
                   <i className="material-icons">add_shopping_cart</i>
                 </a>
-                <span class="new badge" style={{position:"relative",top:"20px",right:"35px"}}>4</span>
+                <span
+                  class="new badge"
+                  style={{ position: "relative", top: "20px", right: "35px" }}
+                >
+                  4
+                </span>
               </li>
             </ul>
           </div>

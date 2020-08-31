@@ -58,6 +58,7 @@ class Login extends Component {
     } else {
     }
     sessionStorage.setItem("email", response.email);
+    sessionStorage.setItem("userId", result.customer_id);
     sessionStorage.setItem("FirstName", response.name.trim().split(" ")[0]);
     sessionStorage.setItem("LastName", response.name.trim().split(" ")[1]);
     sessionStorage.setItem("profileImg", response.picture.data.url);

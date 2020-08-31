@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import M from 'materialize-css';
+import M from "materialize-css";
 
 import "./../../App.css";
 
@@ -22,7 +22,7 @@ class Card extends Component {
     let currentCart = JSON.parse(sessionStorage.getItem("cart"));
     currentCart.push(currentItem);
     sessionStorage.setItem("cart", JSON.stringify(currentCart));
-    M.toast({html: 'Item has been added to the cart'})
+    M.toast({ html: "Item has been added to the cart" });
   };
 
   buttonStyle = () => {
@@ -57,8 +57,7 @@ class Card extends Component {
               style={this.buttonStyle()}
             >
               Buy
-            </li>
-            {" "}
+            </li>{" "}
             <li
               className="white-text grey darken-3 waves-effect waves-teal btn-flat"
               style={this.buttonStyle()}

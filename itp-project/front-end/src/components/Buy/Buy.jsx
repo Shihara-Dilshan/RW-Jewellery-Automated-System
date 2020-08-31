@@ -14,7 +14,15 @@ class Buy extends Component {
     }, 200);
   }
 
-  change() {
+  detail = () => {
+    sessionStorage.getItem("cart");
+    this.setState({
+      cart: JSON.parse(sessionStorage.getItem("cart"))[0],
+    });
+  };
+
+  change(e) {
+    e.preventDefault();
     console.log("changed");
   }
 
@@ -51,12 +59,14 @@ class Buy extends Component {
   async sumbitPayment(e) {
     await e.preventDefault();
     let amount = document.getElementById("amount").value;
+    let sell = sessionStorage.getItem;
 
     const pay = await fetch("/api/v2/payment/sendPayment", {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
+
       method: "POST",
       body: JSON.stringify({
         amount: amount,
@@ -64,6 +74,8 @@ class Buy extends Component {
     });
 
     console.log(pay);
+
+    /*const sell = await fetch("/api/v2/sellable/sendSellable")*/
   }
 
   render() {
@@ -89,6 +101,7 @@ class Buy extends Component {
                     type="text"
                     id="fname"
                     name="fname"
+                    value={sessionStorage.getItem("FirstName")}
                     disabled={true}
                   ></input>
                   <br></br>
@@ -97,6 +110,7 @@ class Buy extends Component {
                     type="text"
                     id="lname"
                     name="lname"
+                    value={sessionStorage.getItem("LastName")}
                     disabled={true}
                   ></input>
                   <br></br>
@@ -108,18 +122,14 @@ class Buy extends Component {
                     disabled={true}
                   ></input>
                   <br></br>
-                  <label htmlFor="tp">Telephone Number:</label>
-                  {/*<input
-                    type="number"
-                    id="tp"
-                    name="tp"
-                    maxLength="10"
-                    placeholder="07********"
+                  <label htmlFor="address">Date</label>
+                  <input
+                    type="text"
+                    id="current_date"
+                    name="address"
                     disabled={true}
-                  ></input>*/}
-                  <div>
-                    <p id="current_date">Current Time : 201220-1.2-12</p>
-                  </div>
+                    value="2020-08-30"
+                  ></input>
                   <br></br>
                   <h6>Payement Method</h6>
                   <label>
@@ -128,6 +138,7 @@ class Buy extends Component {
                       className="with-gap"
                       name="group1"
                       type="radio"
+                      value="Pending"
                       checked
                     />
                     <span>Cash</span>
@@ -137,9 +148,11 @@ class Buy extends Component {
                     <input
                       onChange={this.change}
                       className="with-gap"
+                      id="check1"
                       name="group1"
                       type="radio"
                       checked
+                      value="Paid"
                     />
                     <span>Credit Card</span>
                   </label>
@@ -171,7 +184,7 @@ class Buy extends Component {
                   <input
                     type="number"
                     id="amount"
-                    value="{item.price}"
+                    value={JSON.parse(sessionStorage.getItem("cart"))[0].price}
                     disabled={true}
                   ></input>
                 </form>
@@ -193,8 +206,8 @@ class Buy extends Component {
                   style={this.stylebutton2()}
                   href="mobile.html"
                 >
-                  <i className="material-icons  left ">arrow_back</i>Back to
-                  Previous
+                  <i className="material-icons  left ">arrow_back</i>
+                  Back to Previous
                 </a>
               </div>
             </div>

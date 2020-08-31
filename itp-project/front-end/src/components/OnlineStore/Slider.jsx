@@ -15,10 +15,11 @@ class Slider extends Component {
 
   render() {
     return (
+      <React.Fragment>
       <div className="slider test">
         <ul className="slides">
           <SliderImage
-            image={"https://wallpapercave.com/wp/wp2375373.jpg"}
+            image={"https://raw.githubusercontent.com/Shihara-Dilshan/img/master/ITP/model/Front-image-4jpg.jpg"}
             title={"Necklesses"}
             description={
               "Stylish bracelets that put you in a class of your own."
@@ -27,7 +28,7 @@ class Slider extends Component {
           />
           <SliderImage
             image={
-              "https://i.pinimg.com/originals/60/cf/65/60cf65a4e6e95f7c04c30e764495e11f.jpg"
+              "http://www.voguejewellers.lk/wp-content/uploads/2019/05/Front-image-1-1.jpg"
             }
             title={"Rings"}
             description={
@@ -36,14 +37,14 @@ class Slider extends Component {
             classPosition={"caption right-align"}
           />
           <SliderImage
-            image={"https://wallpaperaccess.com/full/2149633.jpg"}
+            image={"https://raw.githubusercontent.com/Shihara-Dilshan/img/master/ITP/model/Front-image-4jpg.jpg"}
             title={"Bracelets"}
             description={"Here's our small slogan."}
             classPosition={"caption left-align"}
           />
           <SliderImage
             image={
-              "https://images.wallpaperscraft.com/image/earrings_pearls_gold_80692_3840x2400.jpg"
+              "https://raw.githubusercontent.com/Shihara-Dilshan/img/master/ITP/model/bridal.jpg"
             }
             title={"Earrings"}
             description={
@@ -53,6 +54,7 @@ class Slider extends Component {
           />
         </ul>
       </div>
+      </React.Fragment>
     );
   }
 }

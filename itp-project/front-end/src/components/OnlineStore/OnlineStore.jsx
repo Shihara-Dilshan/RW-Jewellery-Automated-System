@@ -15,35 +15,35 @@ class OnlineStore extends Component {
     this.setState({
       jewelry: [
         {
-          jew_id: "JEW-1234",
+          jew_id: "2f010e8b-c841-47e3-b5cf-4f7b1c5a5e66",
           category: "Ring",
-          description: "Description 1",
+          description: "Bangles for every wrist in a range of designs that are contemporary and sophisticated yet timelessly sublime.",
           imageSrc:
-            "https://raw.githubusercontent.com/Shihara-Dilshan/img/master/ITP/items/jacek-dylag-FXXfE5RqkqY-unsplash.jpg",
+            "https://raw.githubusercontent.com/Shihara-Dilshan/img/master/ITP/categories/nick-karvounis-RjeVqc8eC3s-unsplash.jpg",
           Meterial: "Gold",
-          title: "Jewellery 1",
+          title: "Bangles",
           supply_Price: "12000",
           supplyer_Id: "SUP-1236",
         },
         {
-          jew_id: "JEW-1565",
+          jew_id: "cf13e097-3869-40fd-8846-c1406d5a626a",
           category: "Ring",
-          description: "Description 2",
+          description: "Pendants that are modern art or spiritual symbols, includes a range of Dhammachackras and Crosses.",
           imageSrc:
-            "https://raw.githubusercontent.com/Shihara-Dilshan/img/master/ITP/items/jacek-dylag-FXXfE5RqkqY-unsplash.jpg",
+            "https://raw.githubusercontent.com/Shihara-Dilshan/img/master/ITP/categories/fallon-michael-orVNEDAylaU-unsplash.jpg",
           Meterial: "White Gold",
-          title: "Jewellery 1",
+          title: "Pendents",
           supply_Price: "32000",
           supplyer_Id: "SUP-1236",
         },
         {
-          jew_id: "JEW-1456",
+          jew_id: "ba04f607-fc5f-4205-ad89-56344514d07c",
           category: "Ring",
-          description: "Description 3",
+          description: "Stylish bracelets that put you in a class of your own",
           imageSrc:
-            "https://raw.githubusercontent.com/Shihara-Dilshan/img/master/ITP/items/jacek-dylag-FXXfE5RqkqY-unsplash.jpg",
+            "https://raw.githubusercontent.com/Shihara-Dilshan/img/master/ITP/categories/nick-karvounis-RjeVqc8eC3s-unsplash.jpg",
           Meterial: "Silver",
-          title: "Jewellery 1",
+          title: "Bracelets",
           supply_Price: "9000",
           supplyer_Id: "SUP-1236",
         },
@@ -55,9 +55,9 @@ class OnlineStore extends Component {
     return (
       <div>
         <Slider />
-        <br></br>
-        <hr></hr>
-
+        <h4 className="center-align">
+          <span className="teal-text">Popular</span> Items
+        </h4>
         <div className="container">
           <div className="row">
             {this.state.jewelry.map((jeweler) => {
@@ -69,6 +69,7 @@ class OnlineStore extends Component {
                   supply_Price={jeweler.supply_Price}
                   Meterial={jeweler.Meterial}
                   key={jeweler.jew_id}
+                  jew_id={jeweler.jew_id}
                 />
               );
             })}

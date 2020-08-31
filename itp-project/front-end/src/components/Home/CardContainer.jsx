@@ -15,7 +15,7 @@ class CardContainer extends Component {
         </h4>
         <div className="row">
           <CategoryCard
-            imageSrc="https://raw.githubusercontent.com/Shihara-Dilshan/img/master/ITP/categories/jacek-dylag-FXXfE5RqkqY-unsplash.jpg"
+            imageSrc="https://raw.githubusercontent.com/Shihara-Dilshan/img/master/ITP/categories/nick-karvounis-RjeVqc8eC3s-unsplash.jpg"
             title="Diamand Mixed"
             description="Our most valueble categories that can revunue upto 10 million dollers"
           />

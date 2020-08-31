@@ -46,4 +46,14 @@ public class DeliveryService {
         deliverRepository.deleteById(id);
         return ResponseEntity.ok().build();
     }
+    public Delivery updateStatus(UUID id,Delivery delivery) {
+        delivery.setDelivery_id(id);
+        return deliverRepository.save(delivery);
+    }
+    public Delivery AssignDriver(UUID id,Delivery delivery) {
+        delivery.setDelivery_id(id);
+        return deliverRepository.save(delivery);
+    }
+
+
 }

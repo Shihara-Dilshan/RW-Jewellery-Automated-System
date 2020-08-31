@@ -28,6 +28,7 @@ class AssignDriver extends Component {
 
   async componentDidMount() {
     console.log(this.state.deliverId);
+    // eslint-disable-next-line
     const username = document.getElementById("username").value;
     const APICall = await fetch("/api/alldrivers");
     const Result = await APICall.json();

@@ -53,7 +53,7 @@ class Card extends Component {
           <h3 className="hide">{this.props.jew_id}</h3>
           <div className="card-content card-action white-text ">
             <li
-              className="btn white-text grey darken-3"
+              className=" white-text grey darken-3 waves-effect waves-teal btn-flat"
               style={this.buttonStyle()}
             >
               Buy

@@ -82,9 +82,9 @@ class Navbar extends Component {
                 </div>
                 <div className="col s12 m6">
                   {" "}
-                  <button style={{ width: "100%" }} className="btn">
+                  <a style={{ width: "100%" }} className="btn">
                     Check Out
-                  </button>
+                  </a>
                 </div>
               </div>
             </li>

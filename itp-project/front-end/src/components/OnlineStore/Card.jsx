@@ -41,7 +41,7 @@ class Card extends Component {
             <p>{this.props.description}</p>
           </div>
           <div className="card-content">
-            <p>RS. {this.props.supply_Price}</p>
+            <p>{this.props.supply_Price}</p>
           </div>
           <div className="card-content">
             <p>{this.props.Meterial}</p>

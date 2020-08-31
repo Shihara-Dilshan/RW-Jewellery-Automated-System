@@ -30,6 +30,7 @@ class RequestDelivery extends Component {
         deliveryAddress: location,
         deliveryCity: city,
         status: "Pending",
+        deliverBoy: "NotAssgned",
       }),
     });
   }

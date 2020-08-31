@@ -26,13 +26,20 @@ public class DeliveryControleer {
     @RequestMapping("/delivery/deliveryStatus/{status}")
     List<Delivery> getDeliveryByStatus(@PathVariable String status){
         return this.deliveryService.getdeliveryByStatus(status); }
+
     @GetMapping("/alldelivery")
     List<Delivery> getAlldeliveries(){
         return this.deliveryService.getAlldeliveries();
     }
+
     @GetMapping("/alldrivers")
     List<DeliverBoy> getAllDeliveryDrivers(){
         return this.deliveryService.getAlldeliverdrivers();
+    }
+
+    @PostMapping( "AssignDriver/{deliveryID}")
+    public Delivery AssignDriver(@PathVariable("deliveryID") UUID id, @RequestBody Delivery delivery) {
+        return deliveryService.AssignDriver(id, delivery);
     }
     @PostMapping("/RequestDelivery")
     ResponseEntity<Delivery> RequestDelivery(@Validated @RequestBody Delivery delivery) throws URISyntaxException {
@@ -42,5 +49,8 @@ public class DeliveryControleer {
         return this.deliveryService.deletedelivery(id);
     }
 
-
+    @PutMapping( "updatestatus/{deliveryID}")
+    public Delivery updateDeliveryStatus(@PathVariable("deliveryID") UUID id, @RequestBody Delivery delivery) {
+        return deliveryService.updateStatus(id, delivery);
+    }
 }

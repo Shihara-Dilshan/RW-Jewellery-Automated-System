@@ -19,7 +19,9 @@ class DeliveryRequestsFromCustomer extends Component {
   };
 
   getData = (e) => {
-    console.log(e.target);
+    let deliverID =
+      e.target.parentElement.parentElement.parentElement.firstChild.innerHTML;
+    sessionStorage.setItem("assignItemDriver", deliverID);
   };
   async componentDidMount() {
     const APICall = await fetch("/api/alldelivery");
@@ -39,8 +41,8 @@ class DeliveryRequestsFromCustomer extends Component {
           <table className="responsive-table">
             <thead>
               <tr>
-                <th>Customer ID</th>
                 <th>Delivery Number</th>
+                <th>Customer ID</th>
                 <th>Item Code</th>
                 <th>Address For Deliver</th>
                 <th>Item Category</th>
@@ -56,8 +58,8 @@ class DeliveryRequestsFromCustomer extends Component {
               {this.state.Deliveries.map((Delivery) => {
                 return (
                   <tr className="center-align grey-text">
-                    <td>CUS1234</td>
                     <td>{Delivery.delivery_id}</td>
+                    <td>CUS1234</td>
                     <td>B123</td>
                     <td>{Delivery.deliveryAddress}</td>
                     <td>Bangles</td>

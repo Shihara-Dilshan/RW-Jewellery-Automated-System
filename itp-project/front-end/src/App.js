@@ -18,6 +18,7 @@ import DeliveryRequestMore from "./components/Delivery/DeliveryRequestAdminView/
 import OnlineStore from './components/OnlineStore/OnlineStore';
 import Buy from './components/Buy/Buy';
 import IButton from './components/Home/IButton';
+import ServiceHome from './components/Service/ServiceHome';
 
 const App = () => {
   return (
@@ -38,6 +39,7 @@ const App = () => {
           <Route path="/DeliveryRequestMore" exact component={DeliveryRequestMore}/>
           <Route path="/onlinestore" exact component={OnlineStore} />
           <Route path="/buy" exact component={Buy} />
+          <Route path="/services" exact component={ServiceHome} />
         </Switch>
       </div>
       <Footer />

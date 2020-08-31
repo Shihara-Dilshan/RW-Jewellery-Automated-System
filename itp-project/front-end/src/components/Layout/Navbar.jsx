@@ -152,7 +152,7 @@ class Navbar extends Component {
                 <Link to="/onlinestore">Online Store</Link>
               </li>
               <li>
-                <a href="mobile.html">Services</a>
+              <Link to="/services">Services</Link>
               </li>
 
               <li>

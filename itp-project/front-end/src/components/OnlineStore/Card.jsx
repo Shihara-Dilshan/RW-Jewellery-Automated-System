@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import M from 'materialize-css';
+import M from "materialize-css";
 
 import "./../../App.css";
 
@@ -22,12 +22,12 @@ class Card extends Component {
     let currentCart = JSON.parse(sessionStorage.getItem("cart"));
     currentCart.push(currentItem);
     sessionStorage.setItem("cart", JSON.stringify(currentCart));
-    M.toast({html: 'Item has been added to the cart'})
+    M.toast({ html: "Item has been added to the cart" });
   };
 
   buttonStyle = () => {
     return {
-      width: "45%",
+      width: "49%",
     };
   };
 
@@ -41,11 +41,11 @@ class Card extends Component {
           </div>
           <div className="card-content">
             <p>{this.props.description}</p>
-            <p>RS. {this.props.supply_Price}</p>
+            <p>{this.props.supply_Price}</p>
             <p>{this.props.Meterial}</p>
           </div>
           <div className="card-content hide">
-            <p>RS. {this.props.supply_Price}</p>
+            <p>{this.props.supply_Price}</p>
           </div>
           <div className="card-content hide">
             <p>{this.props.Meterial}</p>
@@ -53,17 +53,17 @@ class Card extends Component {
           <h3 className="hide">{this.props.jew_id}</h3>
           <div className="card-content card-action white-text ">
             <li
-              className="btn white-text grey darken-3"
+              className="white-text grey darken-3 waves-effect waves-teal btn-flat"
               style={this.buttonStyle()}
             >
               Buy
-            </li>
+            </li>{" "}
             <li
-              className="btn white-text grey darken-3"
+              className="white-text grey darken-3 waves-effect waves-teal btn-flat"
               style={this.buttonStyle()}
               onClick={this.addItem}
             >
-              Cart
+              Add to cart
             </li>
           </div>
         </div>

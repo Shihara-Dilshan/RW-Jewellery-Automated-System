@@ -11,14 +11,10 @@ import Login from "./components/User/Login/Login";
 import UserProfile from "./components/User/UserProfile/UserProfile";
 import confirmEmail from "./components/User/UserProfile/confirmEmail";
 import PurchaseContainer from "./components/User/userPurchase/PurchaseContainer";
-import RequestDelivery from "./components/Delivery/RequestingDelivery/RequestDelivery";
-import DeliveryRequestsFromCustomer from "./components/Delivery/DeliveryRequestAdminView/DeliveryRequestsFromCustomer";
-import AssignDriver from "./components/Delivery/AssignDriver/AssignDriver";
-import DeliveryRequestMore from "./components/Delivery/DeliveryRequestAdminView/DeliveryRequestMore";
 import OnlineStore from "./components/OnlineStore/OnlineStore";
 import Buy from "./components/Buy/Buy";
 import IButton from "./components/Home/IButton";
-import DeliveryDriver from "./components/Delivery/DeliveryDriver/DeliveryDriver";
+import ServiceHome from "./components/Service/ServiceHome";
 
 const App = () => {
   return (
@@ -33,21 +29,9 @@ const App = () => {
           <Route path="/profile" exact component={UserProfile} />
           <Route path="/confirmEmail" exact component={confirmEmail} />
           <Route path="/myDetails" exact component={PurchaseContainer} />
-          <Route path="/delivery" exact component={RequestDelivery} />
-          <Route
-            path="/DeliveryRequestsadmin"
-            exact
-            component={DeliveryRequestsFromCustomer}
-          />
-          <Route path="/AssignDriver" exact component={AssignDriver} />
-          <Route
-            path="/DeliveryRequestMore"
-            exact
-            component={DeliveryRequestMore}
-          />
           <Route path="/onlinestore" exact component={OnlineStore} />
           <Route path="/buy" exact component={Buy} />
-          <Route path="/DeliveryDriver" exact component={DeliveryDriver} />
+          <Route path="/services" exact component={ServiceHome} />
         </Switch>
       </div>
       <Footer />

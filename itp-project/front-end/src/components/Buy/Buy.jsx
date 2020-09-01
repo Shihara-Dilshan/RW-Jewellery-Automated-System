@@ -1,20 +1,39 @@
 import React, { Component } from "react";
 
 class Buy extends Component {
-  componentDidMount() {
-    setInterval(() => {
-      if (sessionStorage.getItem("email") !== null) {
-        this.setState({
-          tab1: "Account",
-          tab1Route: "/profile",
-          tab2: "Logout",
-          tab2Route: "/logout",
-        });
-      }
-    }, 200);
+  constructor() {
+    super();
+    this.state = {
+      total: 0,
+    };
   }
 
-  change() {
+  componentDidMount() {
+    let totalCart = 0;
+    let cart = JSON.parse(sessionStorage.getItem("cart"));
+    cart.forEach((item) => {
+      totalCart += Number.parseInt(item.price);
+    });
+    this.setState({
+      total: totalCart,
+    });
+  }
+
+  detail = () => {
+    // if (
+    //   sessionStorage.getItem("cart")[0] === undefined ||
+    //   sessionStorage.getItem("cart") === null
+    // ) {
+    //   return;
+    // }
+    // sessionStorage.getItem("cart");
+    // this.setState({
+    //   cart: JSON.parse(sessionStorage.getItem("cart"))[0],
+    // });
+  };
+
+  change(e) {
+    e.preventDefault();
     console.log("changed");
   }
 
@@ -51,19 +70,37 @@ class Buy extends Component {
   async sumbitPayment(e) {
     await e.preventDefault();
     let amount = document.getElementById("amount").value;
+    /*let paymentstatus = document.getElementById("check1").value;*/
+    let userId = sessionStorage.getItem("userId");
 
-    const pay = await fetch("/api/v2/payment/sendPayment", {
+    const response = await fetch("/api/v2/payment/sendPayment", {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
+
       method: "POST",
       body: JSON.stringify({
         amount: amount,
+        /*paymentstatus: paymentstatus,*/
       }),
     });
 
-    console.log(pay);
+    console.log(response);
+
+    const update = await fetch("/api/v2/sellable/updateSellable/{id}", {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+
+      method: "PUT",
+      body: JSON.stringify({
+        usreId: userId,
+      }),
+    });
+
+    console.log(update);
   }
 
   render() {
@@ -89,6 +126,7 @@ class Buy extends Component {
                     type="text"
                     id="fname"
                     name="fname"
+                    value={sessionStorage.getItem("FirstName")}
                     disabled={true}
                   ></input>
                   <br></br>
@@ -97,29 +135,19 @@ class Buy extends Component {
                     type="text"
                     id="lname"
                     name="lname"
+                    value={sessionStorage.getItem("LastName")}
                     disabled={true}
                   ></input>
                   <br></br>
-                  <label htmlFor="address">Address:</label>
+                  <br></br>
+                  <label htmlFor="address">Date</label>
                   <input
                     type="text"
-                    id="address"
+                    id="current_date"
                     name="address"
                     disabled={true}
+                    value="2020-08-30"
                   ></input>
-                  <br></br>
-                  <label htmlFor="tp">Telephone Number:</label>
-                  {/*<input
-                    type="number"
-                    id="tp"
-                    name="tp"
-                    maxLength="10"
-                    placeholder="07********"
-                    disabled={true}
-                  ></input>*/}
-                  <div>
-                    <p id="current_date">Current Time : 201220-1.2-12</p>
-                  </div>
                   <br></br>
                   <h6>Payement Method</h6>
                   <label>
@@ -127,7 +155,9 @@ class Buy extends Component {
                       onChange={this.change}
                       className="with-gap"
                       name="group1"
+                      id="check"
                       type="radio"
+                      value="Pending"
                       checked
                     />
                     <span>Cash</span>
@@ -137,9 +167,11 @@ class Buy extends Component {
                     <input
                       onChange={this.change}
                       className="with-gap"
+                      id="check1"
                       name="group1"
                       type="radio"
                       checked
+                      value="Paid"
                     />
                     <span>Credit Card</span>
                   </label>
@@ -171,7 +203,7 @@ class Buy extends Component {
                   <input
                     type="number"
                     id="amount"
-                    value="{item.price}"
+                    value={this.state.total}
                     disabled={true}
                   ></input>
                 </form>
@@ -193,8 +225,8 @@ class Buy extends Component {
                   style={this.stylebutton2()}
                   href="mobile.html"
                 >
-                  <i className="material-icons  left ">arrow_back</i>Back to
-                  Previous
+                  <i className="material-icons  left ">arrow_back</i>
+                  Back to Previous
                 </a>
               </div>
             </div>

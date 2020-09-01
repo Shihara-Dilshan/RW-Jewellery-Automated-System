@@ -1,5 +1,6 @@
 package com.noobstack.jewellery.api;
 
+
 import com.noobstack.jewellery.model.Sellable;
 import com.noobstack.jewellery.service.SellableService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,11 @@ public class SellableController {
     @PostMapping("/sendSellable")
     ResponseEntity<Sellable> addNewSellable(@Validated @RequestBody Sellable sellable) throws URISyntaxException{
         return this.sellableService.addNewSellable(sellable);
+    }
+
+    @PutMapping("/updateSellable/{id}")
+    ResponseEntity<Sellable> updateSellableJew(@RequestBody Sellable sellable){
+        return this.sellableService.updateSellableJew(sellable);
     }
 
 }

@@ -37,4 +37,8 @@ public class SellableService {
     }
 
 
+    public ResponseEntity<Sellable> updateSellableJew(Sellable sellable) {
+        Sellable result = this.sellableRepository.save(sellable);
+        return ResponseEntity.ok().body(result);
+    }
 }

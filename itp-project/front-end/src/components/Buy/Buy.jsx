@@ -1,24 +1,35 @@
 import React, { Component } from "react";
 
 class Buy extends Component {
+  constructor() {
+    super();
+    this.state = {
+      total: 0,
+    };
+  }
+
   componentDidMount() {
-    setInterval(() => {
-      if (sessionStorage.getItem("email") !== null) {
-        this.setState({
-          tab1: "Account",
-          tab1Route: "/profile",
-          tab2: "Logout",
-          tab2Route: "/logout",
-        });
-      }
-    }, 200);
+    let totalCart = 0;
+    let cart = JSON.parse(sessionStorage.getItem("cart"));
+    cart.forEach((item) => {
+      totalCart += Number.parseInt(item.price);
+    });
+    this.setState({
+      total: totalCart,
+    });
   }
 
   detail = () => {
-    sessionStorage.getItem("cart");
-    this.setState({
-      cart: JSON.parse(sessionStorage.getItem("cart"))[0],
-    });
+    // if (
+    //   sessionStorage.getItem("cart")[0] === undefined ||
+    //   sessionStorage.getItem("cart") === null
+    // ) {
+    //   return;
+    // }
+    // sessionStorage.getItem("cart");
+    // this.setState({
+    //   cart: JSON.parse(sessionStorage.getItem("cart"))[0],
+    // });
   };
 
   change(e) {
@@ -59,9 +70,10 @@ class Buy extends Component {
   async sumbitPayment(e) {
     await e.preventDefault();
     let amount = document.getElementById("amount").value;
-    let sell = sessionStorage.getItem;
+    /*let paymentstatus = document.getElementById("check1").value;*/
+    let userId = sessionStorage.getItem("userId");
 
-    const pay = await fetch("/api/v2/payment/sendPayment", {
+    const response = await fetch("/api/v2/payment/sendPayment", {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -70,12 +82,25 @@ class Buy extends Component {
       method: "POST",
       body: JSON.stringify({
         amount: amount,
+        /*paymentstatus: paymentstatus,*/
       }),
     });
 
-    console.log(pay);
+    console.log(response);
 
-    /*const sell = await fetch("/api/v2/sellable/sendSellable")*/
+    const update = await fetch("/api/v2/sellable/updateSellable/{id}", {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+
+      method: "PUT",
+      body: JSON.stringify({
+        usreId: userId,
+      }),
+    });
+
+    console.log(update);
   }
 
   render() {
@@ -114,13 +139,6 @@ class Buy extends Component {
                     disabled={true}
                   ></input>
                   <br></br>
-                  <label htmlFor="address">Address:</label>
-                  <input
-                    type="text"
-                    id="address"
-                    name="address"
-                    disabled={true}
-                  ></input>
                   <br></br>
                   <label htmlFor="address">Date</label>
                   <input
@@ -137,6 +155,7 @@ class Buy extends Component {
                       onChange={this.change}
                       className="with-gap"
                       name="group1"
+                      id="check"
                       type="radio"
                       value="Pending"
                       checked
@@ -184,7 +203,7 @@ class Buy extends Component {
                   <input
                     type="number"
                     id="amount"
-                    value={JSON.parse(sessionStorage.getItem("cart"))[0].price}
+                    value={this.state.total}
                     disabled={true}
                   ></input>
                 </form>

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import M from "materialize-css";
+import './../../../App.css';
 class RequestDelivery extends Component {
   constructor() {
     super();
@@ -61,7 +62,7 @@ class RequestDelivery extends Component {
     });
 
     return (
-      <div className="constainer" style={this.style()}>
+      <div className="constainer test" style={this.style()}>
         <div className="row">
           <div className="col s6 hide-on-med-only">
             <div className="card-image">

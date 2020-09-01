@@ -36,9 +36,9 @@ public class SellableService {
         return ResponseEntity.created(new URI("/sendSellable" + result.getJewellery_id())).body(result);
     }
 
-
-    public ResponseEntity<Sellable> updateSellableJew(Sellable sellable) {
+    public ResponseEntity<Sellable> updateSellable(Sellable sellable){
         Sellable result = this.sellableRepository.save(sellable);
         return ResponseEntity.ok().body(result);
     }
+
 }

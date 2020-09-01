@@ -15,6 +15,7 @@ import OnlineStore from "./components/OnlineStore/OnlineStore";
 import Buy from "./components/Buy/Buy";
 import IButton from "./components/Home/IButton";
 import ServiceHome from "./components/Service/ServiceHome";
+import RequestDelivery from "./components/Delivery/RequestingDelivery/RequestDelivery"
 
 const App = () => {
   return (
@@ -32,6 +33,7 @@ const App = () => {
           <Route path="/onlinestore" exact component={OnlineStore} />
           <Route path="/buy" exact component={Buy} />
           <Route path="/services" exact component={ServiceHome} />
+          <Route path="/requestdelivery" exat component={RequestDelivery} />
         </Switch>
       </div>
       <Footer />

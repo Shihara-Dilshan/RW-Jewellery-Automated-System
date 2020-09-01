@@ -15,7 +15,7 @@ class OnlineStore extends Component {
     this.setState({
       jewelry: [
         {
-          jew_id: "2f010e8b-c841-47e3-b5cf-4f7b1c5a5e66",
+          jew_id: "89296cc2-eb5c-4458-a49f-a19ef9ee9822",
           category: "Ring",
           description: "Bangles for every wrist in a range of designs that are contemporary and sophisticated yet timelessly sublime.",
           imageSrc:
@@ -26,7 +26,7 @@ class OnlineStore extends Component {
           supplyer_Id: "SUP-1236",
         },
         {
-          jew_id: "cf13e097-3869-40fd-8846-c1406d5a626a",
+          jew_id: "89296cc2-eb5c-4458-a49f-a19ef9ee9822",
           category: "Ring",
           description: "Pendants that are modern art or spiritual symbols, includes a range of Dhammachackras and Crosses.",
           imageSrc:
@@ -37,7 +37,7 @@ class OnlineStore extends Component {
           supplyer_Id: "SUP-1236",
         },
         {
-          jew_id: "ba04f607-fc5f-4205-ad89-56344514d07c",
+          jew_id: "89296cc2-eb5c-4458-a49f-a19ef9ee9822",
           category: "Ring",
           description: "Stylish bracelets that put you in a class of your own",
           imageSrc:

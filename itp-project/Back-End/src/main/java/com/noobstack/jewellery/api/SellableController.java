@@ -31,10 +31,10 @@ public class SellableController {
     ResponseEntity<Sellable> addNewSellable(@Validated @RequestBody Sellable sellable) throws URISyntaxException{
         return this.sellableService.addNewSellable(sellable);
     }
-
-    @PutMapping("/updateSellable/{id}")
-    ResponseEntity<Sellable> updateSellableJew(@RequestBody Sellable sellable){
-        return this.sellableService.updateSellableJew(sellable);
+    
+    @PutMapping("/update/{id}")
+    ResponseEntity<Sellable> updateSellable(@Validated @RequestBody Sellable Sellable){
+        return this.sellableService.updateSellable(Sellable);
     }
 
 }

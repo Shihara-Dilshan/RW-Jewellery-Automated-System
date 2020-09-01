@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 
+import './../../App.css';
+
 class Buy extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       total: 0,
     };
@@ -67,7 +69,7 @@ class Buy extends Component {
     };
   };
 
-  async sumbitPayment(e) {
+  sumbitPayment = async (e) => {
     await e.preventDefault();
     let amount = document.getElementById("amount").value;
     /*let paymentstatus = document.getElementById("check1").value;*/
@@ -87,25 +89,31 @@ class Buy extends Component {
     });
 
     console.log(response);
-
-    const update = await fetch("/api/v2/sellable/updateSellable/{id}", {
+    let itemId = JSON.parse(sessionStorage.getItem('cart'))[0].id;
+    const update = await fetch(`/api/v2/sellable/update/${itemId}`, {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
 
       method: "PUT",
-      body: JSON.stringify({
-        usreId: userId,
-      }),
+      body: JSON.stringify(
+      	{
+        "jewellery_id": itemId,
+        "customer": { "customer_id": userId},
+        "sellprice": 13323
+	}
+      ),
     });
 
     console.log(update);
+    this.props.history.push("/RequestDelivery");
+    
   }
 
   render() {
     return (
-      <div className="col s12 m4">
+      <div className="col s12 m4 test">
         <h2 className="header" style={this.stylehead()}>
           ORDER DETAIL
         </h2>

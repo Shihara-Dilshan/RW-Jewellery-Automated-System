@@ -72,7 +72,7 @@ class Navbar extends Component {
     return (
       <React.Fragment>
         <nav id="scroll" className="scrollspy">
-          <ul id="slide-out" className="sidenav" style={{ width: "50%" }}>
+          <ul id="slide-out" className="sidenav sidenav-close" style={{ width: "50%" }}>
             <li>
               <a href="#!">
                 <i className="material-icons">add_shopping_cart</i>My{" "}
@@ -92,7 +92,7 @@ class Navbar extends Component {
                     style={{ width: "100%" }}
                     className="btn grey darken-3"
                   >
-                    Check Out
+                    <Link to="/buy">Check Out</Link>
                   </button>
                 </div>
               </div>

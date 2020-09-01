@@ -1,7 +1,14 @@
 import React, { Component } from "react";
 import M from "materialize-css";
 class RequestDelivery extends Component {
-  state = {};
+  constructor() {
+    super();
+    this.state = {
+      distance: " ",
+      cal: "40",
+      DeliveryCharge: " ",
+    };
+  }
 
   style = () => {
     return {
@@ -16,9 +23,6 @@ class RequestDelivery extends Component {
     event.preventDefault();
     const city = document.getElementById("City").value;
     const location = document.getElementById("Location").value;
-    //const phoneNumber = document.getElementById("PhoneNumber").value;
-    //const province = document.getElementById("Province");
-    //const district = document.getElementById("District");
 
     await fetch("/api/RequestDelivery", {
       headers: {
@@ -30,10 +34,21 @@ class RequestDelivery extends Component {
         deliveryAddress: location,
         deliveryCity: city,
         status: "Pending",
-        deliverBoy: "NotAssgned",
       }),
     });
   }
+  handldistance = (event) => {
+    this.setState({
+      distance: event.target.value,
+    });
+  };
+
+  exe = (event) => {
+    this.setState({
+      DeliveryCharge: parseInt(this.state.distance) * parseInt(this.state.cal),
+    });
+    this.SubmitDelivery(event);
+  };
 
   render() {
     document.addEventListener("DOMContentLoaded", function () {
@@ -78,7 +93,14 @@ class RequestDelivery extends Component {
                         </label>
                       </div>
                       <div className="input-field col s6">
-                        <input id="Distance" type="text" className="validate" />
+                        <input
+                          id="Distance"
+                          type="text"
+                          className="validate"
+                          value={this.state.distance}
+                          onChange={this.handldistance}
+                        />
+
                         <label htmlFor="Distance">
                           How far is it from Mawanella to the given location
                         </label>
@@ -118,9 +140,10 @@ class RequestDelivery extends Component {
 
                     <button
                       data-target="modal1"
+                      type="submit"
                       class="btn modal-trigger"
                       style={{ width: "100%" }}
-                      onClick={this.SubmitDelivery}
+                      onClick={this.exe}
                     >
                       ADD REQUEST
                     </button>
@@ -131,7 +154,7 @@ class RequestDelivery extends Component {
 
             <div id="modal1" class="modal">
               <div class="modal-content">
-                <h4>Your Delivery Chargers - RS 450/=</h4>
+                <h4>Your Delivery Chargers - {this.state.DeliveryCharge} /=</h4>
               </div>
               <div class="modal-footer">
                 <a

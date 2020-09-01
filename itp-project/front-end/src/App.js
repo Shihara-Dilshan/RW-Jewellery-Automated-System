@@ -11,11 +11,10 @@ import Login from "./components/User/Login/Login";
 import UserProfile from "./components/User/UserProfile/UserProfile";
 import confirmEmail from "./components/User/UserProfile/confirmEmail";
 import PurchaseContainer from "./components/User/userPurchase/PurchaseContainer";
-import OnlineStore from './components/OnlineStore/OnlineStore';
-import Buy from './components/Buy/Buy';
-import IButton from './components/Home/IButton';
-import ServiceHome from './components/Service/ServiceHome';
-
+import OnlineStore from "./components/OnlineStore/OnlineStore";
+import Buy from "./components/Buy/Buy";
+import IButton from "./components/Home/IButton";
+import ServiceHome from "./components/Service/ServiceHome";
 
 const App = () => {
   return (

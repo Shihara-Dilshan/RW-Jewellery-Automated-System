@@ -19,6 +19,7 @@ import RequestDelivery from "./components/Delivery/RequestingDelivery/RequestDel
 import Update from "./components/User/UserProfile/Update";
 import ForgetPassword from './components/User/ForgetPassword/ForgetPassword';
 import GetRecoverCode from './components/User/ForgetPassword/GetRecoverCode';
+import Logout from './components/User/Logout/Logout';
 
 const App = () => {
   return (
@@ -40,6 +41,7 @@ const App = () => {
           <Route path="/update" exact component={Update} />
           <Route path="/forgetpassword" exact component={ForgetPassword} />
           <Route path="/recover" exact component={GetRecoverCode} />
+          <Route path="/logout" exact component={Logout} />
         </Switch>
       </div>
       <Footer />

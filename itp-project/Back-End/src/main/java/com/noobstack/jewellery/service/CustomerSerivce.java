@@ -44,6 +44,11 @@ public class CustomerSerivce {
         Customer result = this.customerRepo.save(customer);
         return ResponseEntity.created(new URI("/designs/addnew" + result.getCustomer_id())).body(result);
     }
+    
+    public ResponseEntity<Customer> updateCustomer(Customer customer){
+        Customer result = this.customerRepo.save(customer);
+        return ResponseEntity.ok().body(result);
+    }
 
 
 }

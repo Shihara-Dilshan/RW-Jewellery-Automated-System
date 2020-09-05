@@ -41,5 +41,10 @@ public class CustomerController {
     ResponseEntity<Customer> addNewCustomer(@Validated @RequestBody Customer customer) throws URISyntaxException {
         return this.customerSerivce.addNewCustomer(customer);
     }
+    
+    @PutMapping("/update/{id}")
+    ResponseEntity<Customer> updateCustomer(@Validated @RequestBody Customer customer){
+        return this.customerSerivce.updateCustomer(customer);
+    }
 
 }

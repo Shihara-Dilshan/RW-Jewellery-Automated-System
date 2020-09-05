@@ -19,6 +19,7 @@ public class Customer {
     private String telephone;
     private String address;
     private String NIC;
+    private String PWord;
 
     @ManyToMany
     @JsonIgnore
@@ -27,7 +28,15 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(String name,String firstName,String lastName, String telephone, String address, String NIC, Set<Service> service) {
+    public String getPWord() {
+        return PWord;
+    }
+
+    public void setPWord(String PWord) {
+        this.PWord = PWord;
+    }
+
+    public Customer(String name, String firstName, String lastName, String telephone, String address, String NIC, Set<Service> service, String PWord) {
         this.name = name;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -35,6 +44,7 @@ public class Customer {
         this.address = address;
         this.NIC = NIC;
         this.service = service;
+        this.PWord = PWord;
     }
 
     public UUID getCustomer_id() {
@@ -111,6 +121,7 @@ public class Customer {
                 ", telephone='" + telephone + '\'' +
                 ", address='" + address + '\'' +
                 ", NIC='" + NIC + '\'' +
+                ", PWord='" + PWord + '\'' +
                 ", service=" + service +
                 '}';
     }

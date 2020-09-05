@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import FacebookLogin from "react-facebook-login";
+import { Link } from "react-router-dom";
 import "./../../../App.css";
+
+import ForgetPassword from '../ForgetPassword/ForgetPassword';
 
 class Login extends Component {
   constructor(props) {
@@ -135,7 +138,7 @@ class Login extends Component {
             <div className="card-image hide-on-small-only">
               <img
                 alt=""
-                src="https://image.freepik.com/free-vector/online-registration-concept-with-flat-design_23-2147976704.jpg"
+                src="https://image.freepik.com/free-vector/mobile-login-concept-illustration_114360-2650.jpg"
                 height="100%"
               />
             </div>
@@ -185,7 +188,7 @@ class Login extends Component {
                       className="container center-align grey-text"
                       style={this.getStyle()}
                     >
-                      <p>forget password?</p>
+                      <Link to="/forgetpassword"> <p>forget password?</p></Link>
                       <br />
                     </div>
                     <div className="container center-align">
@@ -199,7 +202,9 @@ class Login extends Component {
                       {""}
                     </div>
                     <div className="center-align center">
+                      <Link to="/signup">
                       <p className="teal-text">create new account</p>
+                      </Link>
                     </div>
                   </form>
                 </div>

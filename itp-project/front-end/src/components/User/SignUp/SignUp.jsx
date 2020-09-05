@@ -73,7 +73,7 @@ class SignUp extends Component {
               <img
                 id="signUpImage"
                 alt=""
-                src="https://image.freepik.com/free-vector/online-registration-concept-with-isometric-view_23-2147976706.jpg"
+                src="https://image.freepik.com/free-vector/account-concept-illustration_114360-399.jpg"
                 height="100%"
               />
             </div>

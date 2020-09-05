@@ -17,6 +17,8 @@ import IButton from "./components/Home/IButton";
 import ServiceHome from "./components/Service/ServiceHome";
 import RequestDelivery from "./components/Delivery/RequestingDelivery/RequestDelivery";
 import Update from "./components/User/UserProfile/Update";
+import ForgetPassword from './components/User/ForgetPassword/ForgetPassword';
+import GetRecoverCode from './components/User/ForgetPassword/GetRecoverCode';
 
 const App = () => {
   return (
@@ -34,8 +36,10 @@ const App = () => {
           <Route path="/onlinestore" exact component={OnlineStore} />
           <Route path="/buy" exact component={Buy} />
           <Route path="/services" exact component={ServiceHome} />
-          <Route path="/requestdelivery" exat component={RequestDelivery} />
-          <Route path="/update" exat component={Update} />
+          <Route path="/requestdelivery" exact component={RequestDelivery} />
+          <Route path="/update" exact component={Update} />
+          <Route path="/forgetpassword" exact component={ForgetPassword} />
+          <Route path="/recover" exact component={GetRecoverCode} />
         </Switch>
       </div>
       <Footer />

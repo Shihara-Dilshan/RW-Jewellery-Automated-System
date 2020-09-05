@@ -123,7 +123,7 @@ class Update extends Component {
             >
               <img
                 alt=""
-                src="https://raw.githubusercontent.com/Shihara-Dilshan/img/master/ITP/Layout/online-registration-concept_23-2147980578.jpg"
+                src="https://image.freepik.com/free-vector/online-page-concept-illustration_114360-3022.jpg"
                 height="100%"
               />
             </div>

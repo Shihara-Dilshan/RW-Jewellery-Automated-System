@@ -21,7 +21,7 @@ class Parallax extends Component{
         return(
             <React.Fragment className="test">
                 <div class="parallax-container test">
-      <div class="parallax"><img alt="" src="http://www.voguejewellers.lk/wp-content/uploads/2019/05/Front-image-1-1.jpg" /></div>
+            <div class="parallax"><img alt="" src="http://www.voguejewellers.lk/wp-content/uploads/2019/05/Front-image-1-1.jpg" /></div>
     </div>
     <div class="section white test">
       <StaticCards />

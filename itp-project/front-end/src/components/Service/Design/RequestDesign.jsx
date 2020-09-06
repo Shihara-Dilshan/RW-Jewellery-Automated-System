@@ -8,27 +8,28 @@ class RequestDesign extends Component{
     constructor(){
 	super();
 	this.state = {
-	    allDesigns : [],	
+	    allDesigns : [],
+	    isLoading : true,	
 	};
     }
 
     componentDidMount(){
- 	const elems = document.querySelectorAll('select');
-        M.FormSelect.init(elems, {});
-
+    
+        setTimeout( () => {
+        	const elems = document.querySelectorAll('select');
+       	 M.FormSelect.init(elems, {});
+        },1000)
+ 	
         var elems2 = document.querySelectorAll('.datepicker');
     	M.Datepicker.init(elems2, {});
-   
-	this.setState({
-	    allDesigns : [{"design_id":"d72d735e-20a1-4072-ae75-3da40d36d9bb","name":"Design-X 36mm","description":"Best design for material and edge designs","imageUrl":"https://raw.githubusercontent.com/Shihara-Dilshan/img/master/ITP/items/Gem-Banner-1.jpg"},
-			  {"design_id":"d72d735e-20a1-4072-ae75-3da40d36d9bb","name":"Design-X 36mm","description":"Best design for material and edge designs","imageUrl":"https://raw.githubusercontent.com/Shihara-Dilshan/img/master/ITP/items/Gem-Banner-1.jpg"},
-			  {"design_id":"d72d735e-20a1-4072-ae75-3da40d36d9bb","name":"Design-X 36mm","description":"Best design for material and edge designs","imageUrl":"https://raw.githubusercontent.com/Shihara-Dilshan/img/master/ITP/items/Gem-Banner-1.jpg"},			
-			  {"design_id":"d72d735e-20a1-4072-ae75-3da40d36d9bb","name":"Design-X 36mm","description":"Best design for material and edge designs","imageUrl":"https://raw.githubusercontent.com/Shihara-Dilshan/img/master/ITP/items/Gem-Banner-1.jpg"},
-			  {"design_id":"d72d735e-20a1-4072-ae75-3da40d36d9bb","name":"Design-X 36mm","description":"Best design for material and edge designs","imageUrl":"https://raw.githubusercontent.com/Shihara-Dilshan/img/master/ITP/items/Gem-Banner-1.jpg"},
-			  {"design_id":"d72d735e-20a1-4072-ae75-3da40d36d9bb","name":"Design-X 36mm","description":"Best design for material and edge designs","imageUrl":"https://raw.githubusercontent.com/Shihara-Dilshan/img/master/ITP/items/Gem-Banner-1.jpg"}
-			]
-	  }
-	);
+
+	fetch('/api/v2/designs/')
+		.then(res => res.json())
+		.then(data => this.setState({ 
+				allDesigns : data,
+				isLoading : false,	
+				}))
+		.catch(err => console.log(err));
     }
 
     style = () => {
@@ -66,11 +67,13 @@ class RequestDesign extends Component{
                   <form className="col s12">
                     <div className="row">
 			<div className="col s6"> <input type="text" disabled value="Type"/></div>
-			<div className="col s6"> <select>
-		      <option value="" disabled selected>Choose your option</option>
-		      <option value="1">Option 1</option>
-		      <option value="2">Option 2</option>
-		      <option value="3">Option 3</option>
+			<div className="col s6">
+			 <select>
+			{this.state.allDesigns.map( (design) => {
+				return(
+				    <option key={design.design_id} value={design.design_id}>{design.name}</option>
+				);
+			})}
 		    </select>
 		    </div>
 		    </div>
@@ -93,31 +96,17 @@ class RequestDesign extends Component{
 			      <p>
 			      <label>
 				<input name="group1" type="radio" checked />
-				<span>Red</span>
+				<span>Start making</span>
 			      </label>
 			    </p>
 			    <p>
 			      <label>
 				<input name="group1" type="radio" />
-				<span>Yellow</span>
+				<span>Wait untill I hand-over the gold</span>
 			      </label>
 			    </p>
 			 </div>
-			<div className="col s6"> 
-			      <h6>Which one to choose</h6>
-			      <p>
-			      <label>
-				<input name="group2" type="radio" checked />
-				<span>Red</span>
-			      </label>
-			    </p>
-			    <p>
-			      <label>
-				<input name="group2" type="radio" />
-				<span>Yellow</span>
-			      </label>
-			    </p>
-			 </div>
+
 		  </div>
 		 <div className="row">
 			<div className="col s6"> <input type="text" disabled value="Choose a date to complete"/></div>
@@ -153,14 +142,13 @@ class RequestDesign extends Component{
         </div>
       </div>
       <h4 className="center align-center"> <span className="teal-text center align-center">Choose</span> a Designs </h4>
-      <div className="container">
+      <div className="contdainer">
           <div className="row">
-	      <DesignCard />
-              <DesignCard />
-              <DesignCard />
-              <DesignCard />
-	      <DesignCard />
-              <DesignCard />
+          	{this.state.allDesigns.map( (design) => {
+				return(
+				    <DesignCard imgSrc={design.imageUrl} desName={design.name} desc={design.description} />
+				);
+		})}
 	  </div>
       </div>
     </React.Fragment>

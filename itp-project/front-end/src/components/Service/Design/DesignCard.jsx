@@ -11,12 +11,12 @@ class DesignCard extends Component{
 		<div class="col s12 m4">
 		      <div class="card">
 			<div class="card-image">
-			  <img src="https://raw.githubusercontent.com/Shihara-Dilshan/img/master/ITP/model/Front-image-3.jpg" />
-			  <span class="card-title">Card Title</span>
+			  <img src={this.props.imgSrc} />
+			  <span class="card-title black-text">{this.props.desName}</span>
 			  <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
 			</div>
 			<div class="card-content">
-			  <p>I am a very simple card. I use effectively.</p>
+			  <p>{this.props.desc}</p>
 			</div>
 		      </div>
 		  </div>

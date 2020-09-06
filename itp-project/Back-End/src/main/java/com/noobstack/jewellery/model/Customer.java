@@ -22,7 +22,6 @@ public class Customer {
     private String PWord;
 
     @ManyToMany
-    @JsonIgnore
     private Set<Service> service;
 
     public Customer() {

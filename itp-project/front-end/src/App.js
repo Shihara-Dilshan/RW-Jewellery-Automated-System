@@ -21,8 +21,8 @@ import ForgetPassword from './components/User/ForgetPassword/ForgetPassword';
 import GetRecoverCode from './components/User/ForgetPassword/GetRecoverCode';
 import Logout from './components/User/Logout/Logout';
 import ChangePassword from './components/User/ForgetPassword/ChangePassword';
-
 import RequestDesign from './components/Service/Design/RequestDesign';
+import PaymentInfo from './components/Service/Design/PaymentInfo';
 
 
 const App = () => {
@@ -48,6 +48,7 @@ const App = () => {
           <Route path="/logout" exact component={Logout} />
           <Route path="/updatepassword" exact component={ChangePassword} />
           <Route path="/requestdesign" exact component={RequestDesign} />
+          <Route path="/paymnentinfo" exact component={PaymentInfo} />
         </Switch>
       </div>
       <Footer />

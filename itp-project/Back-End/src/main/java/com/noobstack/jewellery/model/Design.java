@@ -15,14 +15,16 @@ public class Design {
     private String name;
     private String description;
     private String imageUrl;
+    private String price;
 
     public Design() {
     }
 
-    public Design(String name, String description, String imageUrl) {
+    public Design(String name, String description, String imageUrl, String price) {
         this.name = name;
         this.description = description;
         this.imageUrl = imageUrl;
+        this.price = price;
     }
 
     public UUID getDesign_id() {
@@ -57,6 +59,14 @@ public class Design {
         this.imageUrl = imageUrl;
     }
 
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
     @Override
     public String toString() {
         return "Design{" +
@@ -64,6 +74,7 @@ public class Design {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", imageUrl='" + imageUrl + '\'' +
+                ", price=" + price +
                 '}';
     }
 }

@@ -5,11 +5,12 @@ import DesignCard from './DesignCard';
 import M from 'materialize-css';
 
 class RequestDesign extends Component{
-    constructor(){
-	super();
+    constructor(props){
+	super(props);
 	this.state = {
 	    allDesigns : [],
 	    isLoading : true,	
+	    selectedDesign : "",
 	};
     }
 
@@ -31,6 +32,20 @@ class RequestDesign extends Component{
 				}))
 		.catch(err => console.log(err));
     }
+    
+    requestDesign = (e) => {
+        e.preventDefault();
+    	const weight = document.getElementById('weight').value;
+    	if(weight <= 0){
+    	    alert("Invalid weight");
+    	}else{
+    		const discount = Number.parseInt(weight) * 20;
+    		const designId = this.state.selectedDesign;
+    		const requestDetails = {"discount": discount, "selectedDesign": designId };
+    		sessionStorage.setItem('designRequestDet', JSON.stringify(requestDetails));
+    		this.props.history.push("/paymnentinfo");
+    	}
+    }
 
     style = () => {
     return {
@@ -46,6 +61,11 @@ class RequestDesign extends Component{
       width: "20%",
     };
   };
+  
+  selectDesign = (e) => {
+  	const selectedDesign = e.target.value;
+  	this.setState({selectedDesign : selectedDesign});
+  }
 
    designImage = () => {
        const designImage = document.getElementById("DesignImage");
@@ -68,7 +88,7 @@ class RequestDesign extends Component{
                     <div className="row">
 			<div className="col s6"> <input type="text" disabled value="Type"/></div>
 			<div className="col s6">
-			 <select>
+			 <select onChange={this.selectDesign}>
 			{this.state.allDesigns.map( (design) => {
 				return(
 				    <option key={design.design_id} value={design.design_id}>{design.name}</option>
@@ -80,13 +100,11 @@ class RequestDesign extends Component{
 		   <div className="row">
                       <div className="input-field col s12">
                         <input
-                          id="email"
-                          type="email"
-                          className="validate"
-                          value={this.state.email}
+                          id="weight"
+                          type="text"
                         />
-                        <label htmlFor="email" id="emailLabel" className="active">
-                          Weight of the jewellery
+                        <label htmlFor="weight" id="weightLabel">
+                          Weight of the Gold
                         </label>
                       </div>
                     </div>
@@ -122,9 +140,10 @@ class RequestDesign extends Component{
 			<input class="file-path validate" type="text" placeholder="Upload an image" />
 		      </div>
 		     <br />
-		     <div className="row"><div className="col s12"><button className="btn center center-align grey darken-3" style={{width: "100%"}}>Proceed</button></div></div>
+		     
 		    </div>
  		   </div>
+ 		   <div className="row"><div className="col s12"><button onClick={this.requestDesign} className="btn center center-align grey darken-3" style={{width: "100%"}}>Proceed</button></div></div>
                   </form>
                 </div>
               </div>
@@ -146,7 +165,7 @@ class RequestDesign extends Component{
           <div className="row">
           	{this.state.allDesigns.map( (design) => {
 				return(
-				    <DesignCard imgSrc={design.imageUrl} desName={design.name} desc={design.description} />
+				    <DesignCard imgSrc={design.imageUrl} desName={design.name} desc={design.description} price={design.price} />
 				);
 		})}
 	  </div>

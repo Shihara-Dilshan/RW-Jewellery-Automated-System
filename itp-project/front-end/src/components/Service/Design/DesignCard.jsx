@@ -17,6 +17,7 @@ class DesignCard extends Component{
 			</div>
 			<div class="card-content">
 			  <p>{this.props.desc}</p>
+			  <p>{this.props.price}</p>
 			</div>
 		      </div>
 		  </div>

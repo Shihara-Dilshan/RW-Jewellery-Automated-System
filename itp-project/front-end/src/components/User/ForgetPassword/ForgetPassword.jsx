@@ -104,7 +104,8 @@ class ForgetPassword extends Component {
   		text: `hi ${userName}, your recover code is ${code}`,
 	};
  
-	await mailgun.messages().send(data, function (error, body) {
+	mailgun.messages().send(data, function (error, body) {
+	  console.log(body);
 	  return body;
 	});
   }

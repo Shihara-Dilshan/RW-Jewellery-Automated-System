@@ -53,7 +53,7 @@ class GetRecoverCode extends Component {
            sessionStorage.setItem("LastName", result.lastName);
            sessionStorage.setItem("telephone", result.telephone);
            sessionStorage.setItem("address", result.address);
-           setTimeout( () => {this.props.history.push("/UserProfile");} , 1000);
+           setTimeout( () => {this.props.history.push("/updatepassword");} , 1000);
            
     	   
     	}else{

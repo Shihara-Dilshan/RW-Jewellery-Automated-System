@@ -21,8 +21,7 @@ class StaticCards extends Component {
                 <i className="material-icons large grey-text">replay</i>
                 <h4>Repair Jewellery</h4>
                 <p>Available delivery for inside the any part of the</p>
-                <button className="btn grey darken-3" style={{width: "100%"}}>Request <a href="#!" class="btn-floating pulse grey darken-3"><i class="material-icons">menu</i></a></button>
-                
+                <Link to="/requestrepair"><button className="btn grey darken-3" style={{width: "100%"}}>Request <a href="#!" class="btn-floating pulse grey darken-3"><i class="material-icons">menu</i></a></button></Link>
 
               </div>
             </div>

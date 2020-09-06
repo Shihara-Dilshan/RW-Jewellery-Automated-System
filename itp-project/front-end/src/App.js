@@ -23,6 +23,7 @@ import Logout from './components/User/Logout/Logout';
 import ChangePassword from './components/User/ForgetPassword/ChangePassword';
 import RequestDesign from './components/Service/Design/RequestDesign';
 import PaymentInfo from './components/Service/Design/PaymentInfo';
+import RequestRepair from './components/Service/Repair/RequestRepair';
 
 
 const App = () => {
@@ -49,6 +50,7 @@ const App = () => {
           <Route path="/updatepassword" exact component={ChangePassword} />
           <Route path="/requestdesign" exact component={RequestDesign} />
           <Route path="/paymnentinfo" exact component={PaymentInfo} />
+	  <Route path="/requestrepair" exact component={RequestRepair} />
         </Switch>
       </div>
       <Footer />

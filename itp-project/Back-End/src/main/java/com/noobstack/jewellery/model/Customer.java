@@ -21,9 +21,6 @@ public class Customer {
     private String NIC;
     private String PWord;
 
-    @ManyToMany
-    private Set<Service> service;
-
     public Customer() {
     }
 
@@ -35,14 +32,13 @@ public class Customer {
         this.PWord = PWord;
     }
 
-    public Customer(String name, String firstName, String lastName, String telephone, String address, String NIC, Set<Service> service, String PWord) {
+    public Customer(String name, String firstName, String lastName, String telephone, String address, String NIC, String PWord) {
         this.name = name;
         this.firstName = firstName;
         this.lastName = lastName;
         this.telephone = telephone;
         this.address = address;
         this.NIC = NIC;
-        this.service = service;
         this.PWord = PWord;
     }
 
@@ -102,13 +98,6 @@ public class Customer {
         this.NIC = NIC;
     }
 
-    public Set<Service> getService() {
-        return service;
-    }
-
-    public void setService(Set<Service> service) {
-        this.service = service;
-    }
 
     @Override
     public String toString() {
@@ -121,7 +110,6 @@ public class Customer {
                 ", address='" + address + '\'' +
                 ", NIC='" + NIC + '\'' +
                 ", PWord='" + PWord + '\'' +
-                ", service=" + service +
                 '}';
     }
 }

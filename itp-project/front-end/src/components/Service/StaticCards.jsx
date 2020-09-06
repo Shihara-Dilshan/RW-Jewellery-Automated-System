@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from 'react-router-dom';
 
 class StaticCards extends Component {
   state = {};
@@ -12,7 +13,7 @@ class StaticCards extends Component {
                 <i className="material-icons large grey-text">brush</i>
                 <h4>Design Jewellery</h4>
                 <p>Make your own Design from our years of experience</p>
-                <button className="btn grey darken-3" style={{width: "100%"}}>Request <a href="#!" class="btn-floating pulse grey darken-3"><i class="material-icons">menu</i></a></button>
+                <Link to="/requestdesign"><button className="btn grey darken-3" style={{width: "100%"}}>Request <a href="#!" class="btn-floating pulse grey darken-3"><i class="material-icons">menu</i></a></button></Link>
               </div>
             </div>
             <div className="col s12 m4">

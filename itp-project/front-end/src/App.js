@@ -22,6 +22,9 @@ import GetRecoverCode from './components/User/ForgetPassword/GetRecoverCode';
 import Logout from './components/User/Logout/Logout';
 import ChangePassword from './components/User/ForgetPassword/ChangePassword';
 
+import RequestDesign from './components/Service/Design/RequestDesign';
+
+
 const App = () => {
   return (
     <Router>
@@ -44,6 +47,7 @@ const App = () => {
           <Route path="/recover" exact component={GetRecoverCode} />
           <Route path="/logout" exact component={Logout} />
           <Route path="/updatepassword" exact component={ChangePassword} />
+          <Route path="/requestdesign" exact component={RequestDesign} />
         </Switch>
       </div>
       <Footer />

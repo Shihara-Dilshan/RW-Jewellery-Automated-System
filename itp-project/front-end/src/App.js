@@ -15,8 +15,12 @@ import OnlineStore from "./components/OnlineStore/OnlineStore";
 import Buy from "./components/Buy/Buy";
 import IButton from "./components/Home/IButton";
 import ServiceHome from "./components/Service/ServiceHome";
-import RequestDelivery from "./components/Delivery/RequestingDelivery/RequestDelivery"
-
+import RequestDelivery from "./components/Delivery/RequestingDelivery/RequestDelivery";
+import DeliveryRequestsFromCustomer from "./components/Delivery/DeliveryRequestAdminView/DeliveryRequestsFromCustomer";
+import AssignDriver from "./components/Delivery/AssignDriver/AssignDriver";
+import DeliveryCancellRequest from "./components/Delivery/DeliverCancelRequest/DeliveryCancellRequest";
+import DeliveredItems from "./components/Delivery/DeliveredItems/DeliveredItems";
+import DeliveryDriver from "./components/Delivery/DeliveryDriver/DeliveryDriver";
 const App = () => {
   return (
     <Router>
@@ -34,6 +38,19 @@ const App = () => {
           <Route path="/buy" exact component={Buy} />
           <Route path="/services" exact component={ServiceHome} />
           <Route path="/requestdelivery" exat component={RequestDelivery} />
+          <Route
+            path="/deliveryadmin"
+            exat
+            component={DeliveryRequestsFromCustomer}
+          />
+          <Route path="/AssignDriver" exat component={AssignDriver} />
+          <Route
+            path="/DeliveryCancellRequest"
+            exat
+            component={DeliveryCancellRequest}
+          />
+          <Route path="/DeliveredItems" exat component={DeliveredItems} />
+          <Route path="/DeliveryDriver" exat component={DeliveryDriver} />
         </Switch>
       </div>
       <Footer />

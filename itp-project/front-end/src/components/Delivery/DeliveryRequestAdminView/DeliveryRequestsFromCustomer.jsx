@@ -28,12 +28,27 @@ class DeliveryRequestsFromCustomer extends Component {
     const Result = await APICall.json();
     this.setState({ Deliveries: Result });
   }
+
   render() {
     return (
       <div className="#eeeeee grey lighten-3">
-        <button className="btn center-align grey darken-3" style={this.style()}>
-          More Details
-        </button>
+        <Link to="/DeliveredItems">
+          <button
+            className="btn center-align grey darken-3"
+            style={this.style()}
+          >
+            Delivered Items
+          </button>
+        </Link>
+        <Link to="/DeliveryCancellRequest">
+          <button
+            className="btn center-align grey darken-3"
+            style={this.style()}
+          >
+            Delivery Cancell Requests
+          </button>
+        </Link>
+
         <h4 className="center-align grey-text">
           <b>DELIVERY REQUESTS FROM CUSTOMER</b>
         </h4>

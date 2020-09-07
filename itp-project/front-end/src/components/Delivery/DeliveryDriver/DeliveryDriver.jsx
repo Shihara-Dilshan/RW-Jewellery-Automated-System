@@ -7,6 +7,7 @@ class DeliveryDriver extends Component {
     this.state = {
       DeliveryPendingRequest: [],
       temp: "",
+      TempDel: {},
     };
   }
   async componentDidMount() {
@@ -16,10 +17,21 @@ class DeliveryDriver extends Component {
     this.setState({ DeliveryPendingRequest: Result });
     const DeliveryID = document.getElementById("DID").value;
     console.log(DeliveryID);
+    const apitemp = await fetch(`api/deliverybyid/${DeliveryID}`);
+    const tempResult = await apitemp.json();
+    this.setState({ TempDel: tempResult });
   }
-  async UpdateDelivery(event) {
+  async UpdateDeliverd(event) {
     event.preventDefault();
     const DeliveryID = document.getElementById("DID").value;
+    const DriverID = "0bed41a0-e6f7-11ea-adc1-0242ac120002";
+    const Daddress = document.getElementById("address").value;
+    const DCity = document.getElementById("city").value;
+
+    const Ddistance = document.getElementById("distance").value;
+    const DProvince = document.getElementById("province").value;
+    const DphoneNumber = document.getElementById("phoneNumber").value;
+    const Ddistrict = document.getElementById("district").value;
     await fetch(`/api/updatestatus/${DeliveryID}`, {
       headers: {
         Accept: "application/json",
@@ -27,7 +39,17 @@ class DeliveryDriver extends Component {
       },
       method: "PUT",
       body: JSON.stringify({
-        status: "Dilivered",
+        delivery_id: DeliveryID,
+        deliveryAddress: "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii",
+        deliveryCity: "gfgfgfgfgfgfgfgfgfhhhhhhhhhhhh",
+        requestedTime: null,
+        deliveredTime: null,
+        status: "Delivered Success",
+        distance: Ddistance,
+        deliveryProvince: DProvince,
+        phoneNumber: DphoneNumber,
+        district: Ddistrict,
+        deliverBoy: { emp_id: DriverID },
       }),
     });
   }
@@ -58,7 +80,7 @@ class DeliveryDriver extends Component {
                     <td>{DelivereyPending.deliveryAddress}</td>
                     <td>{DelivereyPending.deliveryCity}</td>
                     <input
-                      value="djhjd"
+                      value={DelivereyPending.delivery_id}
                       id="DID"
                       type="text"
                       class="validate"
@@ -70,7 +92,7 @@ class DeliveryDriver extends Component {
                       <Link to="#">
                         <button
                           className="btn center-align grey darken-3"
-                          onClick={this.UpdateDelivery}
+                          onClick={this.UpdateDeliverd}
                         >
                           Update as a delivered
                         </button>
@@ -81,6 +103,49 @@ class DeliveryDriver extends Component {
               })}
             </tbody>
           </table>
+          <input
+            id="address"
+            type="text"
+            className="validate"
+            value={this.state.TempDel.deliveryAddress}
+            hidden
+          />
+          <input
+            id="city"
+            type="text"
+            className="validate"
+            value={this.state.TempDel.deliveryCity}
+            hidden
+          />
+
+          <input
+            id="distance"
+            type="text"
+            className="validate"
+            value={this.state.TempDel.distance}
+            hidden
+          />
+          <input
+            id="province"
+            type="text"
+            className="validate"
+            value={this.state.TempDel.Province}
+            hidden
+          />
+          <input
+            id="phoneNumber"
+            type="text"
+            className="validate"
+            value={this.state.TempDel.phoneNumber}
+            hidden
+          />
+          <input
+            id="district"
+            type="text"
+            className="validate"
+            value={this.state.TempDel.district}
+            hidden
+          />
         </div>
       </div>
     );

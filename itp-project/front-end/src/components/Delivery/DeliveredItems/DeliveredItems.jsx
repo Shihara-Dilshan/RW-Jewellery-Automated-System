@@ -25,12 +25,11 @@ class DeliveredItems extends Component {
     };
   };
   async componentDidMount() {
-    let Status = "Pending";
+    let Status = "Dilivered";
     const APICall = await fetch(`/api/delivery/deliveryStatus/${Status}`);
     const Result = await APICall.json();
     this.setState({ DeliveredItems: Result });
   }
-
   render() {
     document.addEventListener("DOMContentLoaded", function () {
       const elems = document.querySelectorAll(".modal");
@@ -41,7 +40,7 @@ class DeliveredItems extends Component {
         <h4 className="center-align grey-text">
           <b>DELIVERED ITEMS</b>
         </h4>
-        <table>
+        <table class="responsive-table">
           <thead>
             <tr>
               <th>Delivery Number</th>

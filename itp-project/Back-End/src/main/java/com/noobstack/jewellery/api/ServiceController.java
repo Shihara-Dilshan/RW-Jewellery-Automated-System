@@ -1,5 +1,6 @@
 package com.noobstack.jewellery.api;
 
+import com.noobstack.jewellery.model.Customer;
 import com.noobstack.jewellery.model.Design;
 import com.noobstack.jewellery.model.Service;
 import com.noobstack.jewellery.service.DesignService;
@@ -32,6 +33,9 @@ public class ServiceController {
     ResponseEntity<?> getServiceById(@PathVariable UUID id){
         return this.serviceService.getServiceById(id);
     }
+
+    @PostMapping("allSellablebyuser")
+    ResponseEntity<?> findByCustomer(@Validated @RequestBody Customer customer) {return this.serviceService.findByCustomer(customer);}
 
     @PostMapping("/services/addnew")
     ResponseEntity<com.noobstack.jewellery.model.Service> addNewService(@Validated @RequestBody Service service) throws URISyntaxException {

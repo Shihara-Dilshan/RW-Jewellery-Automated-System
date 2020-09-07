@@ -1,5 +1,7 @@
 package com.noobstack.jewellery.service;
 
+import com.noobstack.jewellery.model.Customer;
+import com.noobstack.jewellery.model.Sellable;
 import com.noobstack.jewellery.repository.ServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,6 +30,13 @@ public class ServiceService {
     public ResponseEntity<?> getServiceById(UUID id){
         Optional<com.noobstack.jewellery.model.Service> service = this.serviceRepository.findById(id);
         return service.map( response ->
+                ResponseEntity.ok().body(response))
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    public ResponseEntity<?> findByCustomer(Customer customer) {
+        Optional<com.noobstack.jewellery.model.Service> service =this.serviceRepository.findByCustomer(customer);
+        return service.map(response ->
                 ResponseEntity.ok().body(response))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }

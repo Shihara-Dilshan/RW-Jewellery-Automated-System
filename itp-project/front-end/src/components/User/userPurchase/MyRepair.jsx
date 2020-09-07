@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import { Link } from 'react-router-dom';
 
-class PurchaseCard1 extends Component {
+class MyRepair extends Component {
   constructor(props) {
     super(props);
     this.state = { userPurchuses: undefined};
@@ -31,8 +31,8 @@ class PurchaseCard1 extends Component {
     return (
         <div class="col s12 m4 test">
           <div className="card-panel">
-                <i className="material-icons large grey-text">account_balance</i>
-                <h5>My Jewellery</h5>
+                <i className="material-icons large grey-text">build</i>
+                <h5>My Repair</h5>
                 <p>1</p> 
                 <Link to="/purchusetable"><button className="btn grey darken-3" style={{width:"50%"}}>View</button></Link>
               </div>
@@ -41,4 +41,4 @@ class PurchaseCard1 extends Component {
   };
 }
 
-export default PurchaseCard1;
+export default MyRepair;

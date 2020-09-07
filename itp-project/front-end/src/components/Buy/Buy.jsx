@@ -114,6 +114,25 @@ class Buy extends Component {
 	}
       ),
     });
+    
+    const updateSellableItem = await fetch(`/api/v2/sellable/update/${itemId}`,{
+    	headers: {
+           Accept: "application/json",
+           "Content-Type": "application/json",
+        },
+
+        method: "PUT",
+        body: JSON.stringify(
+      	{
+      	   sellprice: amount,
+      	   amount: itemId,
+      	   customer: {customer_id: userId},
+	}
+      ),
+    
+    
+    });
+    
 
     this.props.history.push("/RequestDelivery");
   };

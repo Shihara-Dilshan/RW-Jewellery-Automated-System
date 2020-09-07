@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-import FacebookLogin from "react-facebook-login";
 import { Link } from "react-router-dom";
 import "./../../../App.css";
 
-import ForgetPassword from '../ForgetPassword/ForgetPassword';
 
 class Logout extends Component {
   constructor(props) {

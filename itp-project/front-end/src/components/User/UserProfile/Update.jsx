@@ -75,7 +75,7 @@ class Update extends Component {
         }),
       	
       });
-      
+      // eslint-disable-next-line
       const result = await APICall.json();
       setTimeout( () => {
       	M.toast({ html: "Successfully Updated" });

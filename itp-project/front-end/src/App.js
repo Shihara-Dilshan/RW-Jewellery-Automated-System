@@ -53,6 +53,7 @@ const App = () => {
           <Route path="/paymnentinfo" exact component={PaymentInfo} />
 	  <Route path="/requestrepair" exact component={RequestRepair} />
 	  <Route path="/purchusetable" exact component={PurchuseTable} />
+          <Route path="/requestrepair" exact component={RequestRepair} />
         </Switch>
       </div>
       <Footer />

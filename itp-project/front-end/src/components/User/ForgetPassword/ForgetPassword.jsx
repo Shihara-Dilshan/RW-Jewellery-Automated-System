@@ -1,9 +1,6 @@
 import React, { Component } from "react";
-import FacebookLogin from "react-facebook-login";
-import { Link } from "react-router-dom";
-import AES from 'crypto-js/aes';
 import CryptoJS from 'crypto-js';
-import M from "materialize-css";
+
 
 import "./../../../App.css";
 
@@ -17,9 +14,7 @@ class ForgetPassword extends Component {
   passwordRecover = async (e) => {
     e.preventDefault();
     let email = document.getElementById("Lemail").value;
-    let password = document.getElementById("password").value;
     let emailFirstCheck = ForgetPassword.removeWhiteSpaces(email);
-    let passwordFirstCheck = ForgetPassword.removeWhiteSpaces(password);
     if(emailFirstCheck === "" || emailFirstCheck === null || emailFirstCheck === undefined){
     	let emailLabel = document.getElementById("LemailLabel");
         emailLabel.innerHTML = "Email cannot be empty";
@@ -125,7 +120,7 @@ class ForgetPassword extends Component {
             <div className="card-stacked">
               <div className="card-content">
                 <h4 className="center-align grey-text">Forget password?</h4>
-                <p className="center-align teal-text">Don't worry. You still can recover your account &#128540; Please Enter your account email and last password that you can remember</p>
+                <p className="center-align teal-text">Don't worry. You still can recover your account. Please Enter your account email and last password that you can remember</p>
                 <div className="row">
                   <form className="col s12">
                     <div className="row">

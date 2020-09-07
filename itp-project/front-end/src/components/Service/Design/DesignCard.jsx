@@ -11,9 +11,9 @@ class DesignCard extends Component{
 		<div class="col s12 m4">
 		      <div class="card">
 			<div class="card-image">
-			  <img src={this.props.imgSrc} />
+			  <img alt="" src={this.props.imgSrc} />
 			  <span class="card-title black-text">{this.props.desName}</span>
-			  <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+			  <a href="#!" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
 			</div>
 			<div class="card-content">
 			  <p>{this.props.desc}</p>

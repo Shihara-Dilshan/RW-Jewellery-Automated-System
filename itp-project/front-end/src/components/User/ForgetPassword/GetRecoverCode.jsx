@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-import FacebookLogin from "react-facebook-login";
-import { Link } from "react-router-dom";
+// eslint-disable-next-line
 import AES from 'crypto-js/aes';
 import CryptoJS from 'crypto-js';
-import M from "materialize-css";
 
 import "./../../../App.css";
 

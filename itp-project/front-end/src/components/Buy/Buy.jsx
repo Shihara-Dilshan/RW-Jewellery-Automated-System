@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import './../../App.css';
+import "./../../App.css";
 
 class Buy extends Component {
   constructor(props) {
@@ -73,6 +73,7 @@ class Buy extends Component {
     await e.preventDefault();
     let amount = document.getElementById("amount").value;
     /*let paymentstatus = document.getElementById("check1").value;*/
+    // eslint-disable-next-line
     let userId = sessionStorage.getItem("userId");
 
     const putPayment = await fetch("/api/v2/payment/sendPayment", {
@@ -92,23 +93,12 @@ class Buy extends Component {
     const paymentId = response.payment_id;
     
 
+
     let itemId = JSON.parse(sessionStorage.getItem('cart'))[0].id;
-    const update = await fetch(`/api/v2/sellable/update/${itemId}`, {
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
 
-      method: "PUT",
-      body: JSON.stringify(
-      	{
-        "jewellery_id": itemId,
-        "customer": { "customer_id": userId},
-        "sellprice": amount
-	}
-      ),
-    });
-
+    console.log(response);
+	
+    // eslint-disable-next-line
     const postOrder = await fetch(`/api/v2/order/sendorder`,{
     	headers: {
            Accept: "application/json",
@@ -126,8 +116,7 @@ class Buy extends Component {
     });
 
     this.props.history.push("/RequestDelivery");
-    
-  }
+  };
 
   render() {
     return (

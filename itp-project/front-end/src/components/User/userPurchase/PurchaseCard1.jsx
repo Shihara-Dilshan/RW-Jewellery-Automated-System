@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 
-import PurchuseTable from './PurchuseTable';
 import { Link } from 'react-router-dom';
 
 class PurchaseCard1 extends Component {

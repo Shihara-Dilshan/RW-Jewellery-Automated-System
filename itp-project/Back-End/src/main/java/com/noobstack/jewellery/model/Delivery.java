@@ -15,6 +15,10 @@ public class Delivery {
     private LocalDate requestedTime;
     private LocalDate deliveredTime;
     private String status;
+    private String distance;
+    private String deliveryProvince;
+    private String phoneNumber;
+    private String district;
 
     @ManyToOne
     private DeliverBoy deliverBoy;
@@ -22,13 +26,18 @@ public class Delivery {
     public Delivery() {
     }
 
-    public Delivery(String deliveryAddress, String deliveryCity, LocalDate requestedTime, LocalDate deliveredTime, String status, DeliverBoy deliverBoy) {
+    public Delivery(String deliveryAddress, String deliveryCity, LocalDate requestedTime, LocalDate deliveredTime, String status, DeliverBoy deliverBoy , String distance, String deliveryProvince, String phoneNumber, String district) {
         this.deliveryAddress = deliveryAddress;
         this.deliveryCity = deliveryCity;
         this.requestedTime = requestedTime;
         this.deliveredTime = deliveredTime;
         this.status = status;
         this.deliverBoy = deliverBoy;
+        this.distance = distance;
+        this.deliveryProvince = deliveryProvince;
+        this.phoneNumber= phoneNumber;
+        this.district=district;
+
     }
 
     public UUID getDelivery_id() {
@@ -87,6 +96,38 @@ public class Delivery {
         this.deliverBoy = deliverBoy;
     }
 
+    public String getDistance() {
+        return distance;
+    }
+
+    public void setDistance(String distance) {
+        this.distance = distance;
+    }
+
+    public String getDeliveryProvince() {
+        return deliveryProvince;
+    }
+
+    public void setDeliveryProvince(String deliveryProvince) {
+        this.deliveryProvince = deliveryProvince;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district;
+    }
+
     @Override
     public String toString() {
         return "Delivery{" +
@@ -96,7 +137,12 @@ public class Delivery {
                 ", requestedTime=" + requestedTime +
                 ", deliveredTime=" + deliveredTime +
                 ", status='" + status + '\'' +
+                ", distance='" + distance + '\'' +
+                ", deliveryProvince='" + deliveryProvince + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", district='" + district + '\'' +
                 ", deliverBoy=" + deliverBoy +
                 '}';
     }
+
 }

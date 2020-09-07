@@ -1,8 +1,4 @@
 import React, { Component } from "react";
-import FacebookLogin from "react-facebook-login";
-import { Link } from "react-router-dom";
-import AES from 'crypto-js/aes';
-import CryptoJS from 'crypto-js';
 import M from "materialize-css";
 
 import "./../../../App.css";
@@ -46,6 +42,7 @@ class ChangePassword extends Component {
     const userFName = sessionStorage.getItem('FirstName');
     const password = document.getElementById('newpassword');
     
+    // eslint-disable-next-line
     const update = await fetch(`/api/v2/customer/update/${userId}`, {
     	headers: {
           Accept: "application/json",

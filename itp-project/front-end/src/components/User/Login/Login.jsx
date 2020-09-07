@@ -3,7 +3,6 @@ import FacebookLogin from "react-facebook-login";
 import { Link } from "react-router-dom";
 import "./../../../App.css";
 
-import ForgetPassword from '../ForgetPassword/ForgetPassword';
 
 class Login extends Component {
   constructor(props) {

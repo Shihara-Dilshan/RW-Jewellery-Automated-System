@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 
 import DesignCard from './DesignCard';
 import M from 'materialize-css';

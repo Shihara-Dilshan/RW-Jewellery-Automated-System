@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import FacebookLogin from "react-facebook-login";
-import { Link } from "react-router-dom";
 import "./../../../App.css";
 import M from "materialize-css";
 
@@ -17,7 +15,7 @@ class RequestRepair extends Component {
 
   request = async (e) => {
 	e.preventDefault();
-	const item_name = document.getElementById('item_name').value;
+	//const item_name = document.getElementById('item_name').value;
 	const damage_type = document.getElementById('damage_type').value;
 	const current_price = document.getElementById('price').value;
 	const description = document.getElementById('desc').value;
@@ -51,6 +49,7 @@ class RequestRepair extends Component {
           	description: description
         }),
   	});
+  	// eslint-disable-next-line
   	const resultRepair = await insertRequestRepair.json();
   	
   	setTimeout( () => {

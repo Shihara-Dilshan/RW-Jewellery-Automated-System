@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import FacebookLogin from "react-facebook-login";
-import { Link } from "react-router-dom";
 import "./../../../App.css";
 import M from "materialize-css";
 
@@ -17,7 +15,6 @@ class PaymentInfo extends Component {
   componentDidMount(){
   	const discount = JSON.parse(sessionStorage.getItem('designRequestDet')).discount;
 	const designId = JSON.parse(sessionStorage.getItem('designRequestDet')).selectedDesign;
-	let finalPrice;
 	
 	fetch(`/api/v2/designs/${designId}`)
 		.then(res => res.json())
@@ -68,6 +65,7 @@ class PaymentInfo extends Component {
           	design: { design_id: designId},
         }),
   	});
+  	// eslint-disable-next-line
   	const resultDesign = await insertRequestDesign.json();
   	
   	setTimeout( () => {

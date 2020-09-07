@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import './../../App.css';
+import "./../../App.css";
 
 class Buy extends Component {
   constructor(props) {
@@ -89,7 +89,7 @@ class Buy extends Component {
     });
 
     console.log(response);
-    let itemId = JSON.parse(sessionStorage.getItem('cart'))[0].id;
+    let itemId = JSON.parse(sessionStorage.getItem("cart"))[0].id;
     const update = await fetch(`/api/v2/sellable/update/${itemId}`, {
       headers: {
         Accept: "application/json",
@@ -97,19 +97,16 @@ class Buy extends Component {
       },
 
       method: "PUT",
-      body: JSON.stringify(
-      	{
-        "jewellery_id": itemId,
-        "customer": { "customer_id": userId},
-        "sellprice": 13323
-	}
-      ),
+      body: JSON.stringify({
+        jewellery_id: itemId,
+        customer: { customer_id: userId },
+        sellprice: 13323,
+      }),
     });
 
     console.log(update);
     this.props.history.push("/RequestDelivery");
-    
-  }
+  };
 
   render() {
     return (

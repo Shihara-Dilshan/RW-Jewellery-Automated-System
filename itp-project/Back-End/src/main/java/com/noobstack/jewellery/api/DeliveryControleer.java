@@ -1,6 +1,7 @@
 package com.noobstack.jewellery.api;
 import com.noobstack.jewellery.model.DeliverBoy;
 import com.noobstack.jewellery.model.Delivery;
+import com.noobstack.jewellery.repository.DeliverRepository;
 import com.noobstack.jewellery.service.DeliveryService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -12,9 +13,12 @@ import java.util.UUID;
 @RequestMapping("/api")
 public class DeliveryControleer {
     private final DeliveryService deliveryService;
-    public DeliveryControleer(DeliveryService deliveryService) {
+    private final DeliverRepository deliverRepository;
+    public DeliveryControleer(DeliveryService deliveryService, DeliverRepository deliverRepository) {
         super();
         this.deliveryService = deliveryService;
+
+        this.deliverRepository = deliverRepository;
     }
     @GetMapping("/deliverybyid/{id}")
     ResponseEntity<?> getDeliveryByID(@PathVariable UUID id){

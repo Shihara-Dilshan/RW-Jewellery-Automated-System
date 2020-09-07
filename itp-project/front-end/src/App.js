@@ -50,7 +50,7 @@ const App = () => {
           <Route path="/updatepassword" exact component={ChangePassword} />
           <Route path="/requestdesign" exact component={RequestDesign} />
           <Route path="/paymnentinfo" exact component={PaymentInfo} />
-	  <Route path="/requestrepair" exact component={RequestRepair} />
+          <Route path="/requestrepair" exact component={RequestRepair} />
         </Switch>
       </div>
       <Footer />

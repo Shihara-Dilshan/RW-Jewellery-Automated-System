@@ -1,5 +1,6 @@
 package com.noobstack.jewellery.service;
 
+import com.noobstack.jewellery.model.Customer;
 import com.noobstack.jewellery.model.Payment;
 import com.noobstack.jewellery.model.Sellable;
 import com.noobstack.jewellery.repository.SellableRepository;
@@ -30,6 +31,15 @@ public class SellableService {
                 ResponseEntity.ok().body(response))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
+
+    public ResponseEntity<?> findByCustomer(Customer customer) {
+        Optional<Sellable> sellable =this.sellableRepository.findByCustomer(customer);
+        return sellable.map(response ->
+                ResponseEntity.ok().body(response))
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+
 
     public ResponseEntity<Sellable> addNewSellable(Sellable sellable) throws URISyntaxException{
         Sellable result = this.sellableRepository.save(sellable);

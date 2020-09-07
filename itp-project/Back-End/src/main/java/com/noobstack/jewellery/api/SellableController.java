@@ -1,6 +1,7 @@
 package com.noobstack.jewellery.api;
 
 
+import com.noobstack.jewellery.model.Customer;
 import com.noobstack.jewellery.model.Sellable;
 import com.noobstack.jewellery.service.SellableService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,9 @@ public class SellableController {
 
     @GetMapping
     ResponseEntity<?> getSellableById(@PathVariable UUID id) {return this.sellableService.getSellableById(id);}
+
+    @PostMapping("allSellablebyuser")
+    ResponseEntity<?> findByCustomer(@Validated @RequestBody Customer customer) {return this.sellableService.findByCustomer(customer);}
 
     @PostMapping("/sendSellable")
     ResponseEntity<Sellable> addNewSellable(@Validated @RequestBody Sellable sellable) throws URISyntaxException{

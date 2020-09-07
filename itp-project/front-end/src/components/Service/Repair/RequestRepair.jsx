@@ -35,11 +35,29 @@ class RequestRepair extends Component {
         	}),
   	});
   	const result = await insertService.json();
+  	const serviceId = result.service_id
 
-	setTimeout( () => {
-		const ServiceID = result.service_id;
-		console.log(result);
-	},2000);
+	
+	const insertRequestRepair = await fetch(`/api/v2/repairs/addnew`,{
+  		headers: {
+          	    Accept: "application/json",
+          	    "Content-Type": "application/json",
+        	},
+        	method: "POST",
+        	body: JSON.stringify({
+          	damagetype: damage_type,
+          	service_id: serviceId,
+          	current_price: current_price,
+          	description: description
+        }),
+  	});
+  	const resultRepair = await insertRequestRepair.json();
+  	
+  	setTimeout( () => {
+  	   M.toast({ html: "Your Request has been placed. You can bring your gold to us" });
+  	   this.props.history.push("/");
+  	}, 2000);
+
   	
 
   }

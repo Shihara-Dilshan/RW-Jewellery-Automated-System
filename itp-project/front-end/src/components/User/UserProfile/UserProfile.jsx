@@ -131,32 +131,37 @@ class UserProfile extends Component {
                     <div className="center-align center">
                       <div className="row">
                           <div className="col s6 m6">
+                          	<Link to="/update">
                           	<button
 		                className="btn center-align grey darken-3"
 		                style={{ width: "100%" }}
 		                >
 		                Update Profile
 		              </button>
+		              </Link>
                           </div>
                           <div className="col s6 m6">
+                          	<Link to="/updatepassword">
                           	<button
 		                className="btn center-align grey darken-3"
 		                style={{ width: "100%" }}
 		              >
 		                Change Password
 		              </button>
+		              </Link>
                           </div>
                       </div>
                       <Link to="/update" >
                       
                       </Link>
+                      <Link to="myDetails">
                       <button
                         className="btn center-align purple lighten-2"
                         style={{ width: "100%" }}
                       >
                         View my Purchuses
                       </button>
-
+		      </Link>
                     </div>
                     
                   </form>

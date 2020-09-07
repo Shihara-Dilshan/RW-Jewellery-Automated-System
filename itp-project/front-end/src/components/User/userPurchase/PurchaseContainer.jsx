@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import PurchaseCard from './PurchaseCard';
+import PurchaseCard1 from './PurchaseCard1';
 
 class PurchaseContainer extends Component{
     constructor(){
@@ -19,12 +19,8 @@ class PurchaseContainer extends Component{
     render = () => {
         return(
             <div className="row grey-text center-align" style={this.getStyle()}>
-                <PurchaseCard />
-                <PurchaseCard />
-                <PurchaseCard />
-                <PurchaseCard />
-                <PurchaseCard />
-                <PurchaseCard />
+                <PurchaseCard1 />
+           
             </div>
         );
     }

@@ -27,7 +27,7 @@ public class OrderService {
 
     public ResponseEntity<Orders> addNewOrder (Orders orders) throws URISyntaxException{
         Orders result = this.ordersRepository.save(orders);
-        return ResponseEntity.created(new URI("/sendOrder"+result.getO_id())).body(result);
+        return ResponseEntity.created(new URI("/sendorder"+result.getO_id())).body(result);
     }
 
     public ResponseEntity<?> getOrderById(UUID id) {

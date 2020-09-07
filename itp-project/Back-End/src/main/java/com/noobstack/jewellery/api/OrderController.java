@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping
+@RequestMapping("/api/v2/order")
 public class OrderController {
 
     private final OrderService orderService;
@@ -27,7 +27,7 @@ public class OrderController {
     @GetMapping("/{orderid}")
     ResponseEntity<?> getOrderById(@PathVariable UUID id) {return  this.orderService.getOrderById(id);}
 
-    @PostMapping("/sendOrder")
+    @PostMapping("/sendorder")
     ResponseEntity<Orders> addNewOrder(@Validated @RequestBody Orders orders) throws URISyntaxException{
         return this.orderService.addNewOrder(orders);
     }

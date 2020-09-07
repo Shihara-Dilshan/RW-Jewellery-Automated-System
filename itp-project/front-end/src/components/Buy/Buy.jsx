@@ -75,7 +75,7 @@ class Buy extends Component {
     /*let paymentstatus = document.getElementById("check1").value;*/
     let userId = sessionStorage.getItem("userId");
 
-    const response = await fetch("/api/v2/payment/sendPayment", {
+    const putPayment = await fetch("/api/v2/payment/sendPayment", {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -87,8 +87,11 @@ class Buy extends Component {
         /*paymentstatus: paymentstatus,*/
       }),
     });
+    
+    const response = await putPayment.json();
+    const paymentId = response.payment_id;
+    
 
-    console.log(response);
     let itemId = JSON.parse(sessionStorage.getItem('cart'))[0].id;
     const update = await fetch(`/api/v2/sellable/update/${itemId}`, {
       headers: {
@@ -101,12 +104,27 @@ class Buy extends Component {
       	{
         "jewellery_id": itemId,
         "customer": { "customer_id": userId},
-        "sellprice": 13323
+        "sellprice": amount
 	}
       ),
     });
 
-    console.log(update);
+    const postOrder = await fetch(`/api/v2/order/sendorder`,{
+    	headers: {
+           Accept: "application/json",
+           "Content-Type": "application/json",
+        },
+
+      method: "POST",
+      body: JSON.stringify(
+      	{
+      	   recipe: "requested",
+      	   payment:{ payment_id: paymentId},
+      	   sellable: {jewellery_id: itemId},
+	}
+      ),
+    });
+
     this.props.history.push("/RequestDelivery");
     
   }

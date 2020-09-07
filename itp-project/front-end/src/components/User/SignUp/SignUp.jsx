@@ -1,9 +1,14 @@
 import React, { Component } from "react";
 import FacebookLogin from "react-facebook-login";
+import { Link } from "react-router-dom";
 import "./../../../App.css";
+import M from "materialize-css";
 
 class SignUp extends Component {
-  state = {};
+  constructor(props){
+      super(props);
+      this.state = {};
+  }
 
   responseFacebook = async (response) => {
     console.log(response);
@@ -34,6 +39,8 @@ class SignUp extends Component {
       sessionStorage.setItem("FirstName", response.name.trim().split(" ")[0]);
       sessionStorage.setItem("LastName", response.name.trim().split(" ")[1]);
       sessionStorage.setItem("profileImg", response.picture.data.url);
+      sessionStorage.setItem("telephone", result.telephone);
+      sessionStorage.setItem("address", result.address);
       this.props.history.push("/");
     }
   };
@@ -66,7 +73,7 @@ class SignUp extends Component {
               <img
                 id="signUpImage"
                 alt=""
-                src="https://image.freepik.com/free-vector/online-registration-concept-with-isometric-view_23-2147976706.jpg"
+                src="https://image.freepik.com/free-vector/account-concept-illustration_114360-399.jpg"
                 height="100%"
               />
             </div>
@@ -79,17 +86,10 @@ class SignUp extends Component {
                       {" "}
                       If you already have an account with us, please login at
                       the{" "}
-                      <a
-                        href="index.html"
-                        className="teal-text"
-                        id="loginNagivate"
-                      >
+                      <Link to="/login">
                         login page
-                      </a>
+                      </Link>
                     </p>
-                    <div className="progress hide test">
-                      <div className="indeterminate"></div>
-                    </div>
                   </div>
                   <br />
                   <form className="col s12">
@@ -192,7 +192,7 @@ class SignUp extends Component {
     );
   }
 
-  async signUp(e) {
+  signUp = async (e) => {
     await e.preventDefault();
     let isvalid = true;
     let emptyColumns = [];
@@ -201,6 +201,8 @@ class SignUp extends Component {
     let firstName = SignUp.mytrim(document.getElementById("first_name").value);
     let lastName = SignUp.mytrim(document.getElementById("last_name").value);
     let telephone = SignUp.mytrim(document.getElementById("mobile").value);
+    let password = SignUp.mytrim(document.getElementById("password").value);
+    let cpassword = SignUp.mytrim(document.getElementById("cpassword").value);
 
     name.length === 0
       ? emptyColumns.push(document.getElementById("emailNameLabel"))
@@ -214,7 +216,13 @@ class SignUp extends Component {
     telephone.length === 0
       ? emptyColumns.push(document.getElementById("telephoneLable"))
       : console.log("mobile is not empty");
-
+    password.length === 0
+      ? emptyColumns.push(document.getElementById("passwordLabel"))
+      : console.log("mobile is not empty");
+    cpassword.length === 0
+      ? emptyColumns.push(document.getElementById("cpasswordLabel"))
+      : console.log("mobile is not empty");
+    
     emptyColumns.length === 0 ? (isvalid = true) : (isvalid = false);
 
     if (isvalid) {
@@ -225,9 +233,6 @@ class SignUp extends Component {
         item.classList.add("show");
       });
 
-      //hide unnessocery lines
-      let loginButton = document.getElementById("loginNagivate");
-      loginButton.classList.add("hide");
 
       //api call
       const reg = await fetch("/api/v2/customer/register", {
@@ -241,9 +246,27 @@ class SignUp extends Component {
           firstName: firstName,
           lastName: lastName,
           telephone: telephone,
+          pword: password,
         }),
       });
-
+      setTimeout( () => {
+        waitIndicator.forEach((item) => {
+           item.classList.remove("show");
+           item.classList.add("hide");
+        });
+      	M.toast({ html: "Successfully registered" });
+      	setTimeout(async() => {
+      	    const call = await fetch(`/api/v2/customer/find/${name}`);
+    	    const result = await call.json().catch((err) => console.log(err));
+      	    sessionStorage.setItem("userId", result.customer_id);
+      	    sessionStorage.setItem("email", result.name);
+      	    sessionStorage.setItem("FirstName", result.firstName);
+            sessionStorage.setItem("LastName", result.lastName);
+            sessionStorage.setItem("telephone", result.telephone);
+            sessionStorage.setItem("address", result.address);
+            this.props.history.push("/");
+      	},1000);
+      }, 1000);
       console.log(reg);
     } else {
       emptyColumns.forEach((emptyColumn) => {

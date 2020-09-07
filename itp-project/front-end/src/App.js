@@ -16,11 +16,16 @@ import Buy from "./components/Buy/Buy";
 import IButton from "./components/Home/IButton";
 import ServiceHome from "./components/Service/ServiceHome";
 import RequestDelivery from "./components/Delivery/RequestingDelivery/RequestDelivery";
-import DeliveryRequestsFromCustomer from "./components/Delivery/DeliveryRequestAdminView/DeliveryRequestsFromCustomer";
-import AssignDriver from "./components/Delivery/AssignDriver/AssignDriver";
-import DeliveryCancellRequest from "./components/Delivery/DeliverCancelRequest/DeliveryCancellRequest";
-import DeliveredItems from "./components/Delivery/DeliveredItems/DeliveredItems";
-import DeliveryDriver from "./components/Delivery/DeliveryDriver/DeliveryDriver";
+import Update from "./components/User/UserProfile/Update";
+import ForgetPassword from './components/User/ForgetPassword/ForgetPassword';
+import GetRecoverCode from './components/User/ForgetPassword/GetRecoverCode';
+import Logout from './components/User/Logout/Logout';
+import ChangePassword from './components/User/ForgetPassword/ChangePassword';
+import RequestDesign from './components/Service/Design/RequestDesign';
+import PaymentInfo from './components/Service/Design/PaymentInfo';
+import RequestRepair from './components/Service/Repair/RequestRepair';
+
+
 const App = () => {
   return (
     <Router>
@@ -37,20 +42,15 @@ const App = () => {
           <Route path="/onlinestore" exact component={OnlineStore} />
           <Route path="/buy" exact component={Buy} />
           <Route path="/services" exact component={ServiceHome} />
-          <Route path="/requestdelivery" exat component={RequestDelivery} />
-          <Route
-            path="/deliveryadmin"
-            exat
-            component={DeliveryRequestsFromCustomer}
-          />
-          <Route path="/AssignDriver" exat component={AssignDriver} />
-          <Route
-            path="/DeliveryCancellRequest"
-            exat
-            component={DeliveryCancellRequest}
-          />
-          <Route path="/DeliveredItems" exat component={DeliveredItems} />
-          <Route path="/DeliveryDriver" exat component={DeliveryDriver} />
+          <Route path="/requestdelivery" exact component={RequestDelivery} />
+          <Route path="/update" exact component={Update} />
+          <Route path="/forgetpassword" exact component={ForgetPassword} />
+          <Route path="/recover" exact component={GetRecoverCode} />
+          <Route path="/logout" exact component={Logout} />
+          <Route path="/updatepassword" exact component={ChangePassword} />
+          <Route path="/requestdesign" exact component={RequestDesign} />
+          <Route path="/paymnentinfo" exact component={PaymentInfo} />
+          <Route path="/requestrepair" exact component={RequestRepair} />
         </Switch>
       </div>
       <Footer />

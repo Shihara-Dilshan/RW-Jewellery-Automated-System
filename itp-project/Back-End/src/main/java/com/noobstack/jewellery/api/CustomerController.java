@@ -36,9 +36,15 @@ public class CustomerController {
     ResponseEntity<?> checkCustomerByEmail(@PathVariable String email){
         return this.customerSerivce.checkCustomerByEmail(email);
     }
+
     @PostMapping("/register")
     ResponseEntity<Customer> addNewCustomer(@Validated @RequestBody Customer customer) throws URISyntaxException {
         return this.customerSerivce.addNewCustomer(customer);
+    }
+    
+    @PutMapping("/update/{id}")
+    ResponseEntity<Customer> updateCustomer(@Validated @RequestBody Customer customer){
+        return this.customerSerivce.updateCustomer(customer);
     }
 
 }

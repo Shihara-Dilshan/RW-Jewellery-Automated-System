@@ -19,22 +19,27 @@ public class Customer {
     private String telephone;
     private String address;
     private String NIC;
-
-    @ManyToMany
-    @JsonIgnore
-    private Set<Service> service;
+    private String PWord;
 
     public Customer() {
     }
 
-    public Customer(String name,String firstName,String lastName, String telephone, String address, String NIC, Set<Service> service) {
+    public String getPWord() {
+        return PWord;
+    }
+
+    public void setPWord(String PWord) {
+        this.PWord = PWord;
+    }
+
+    public Customer(String name, String firstName, String lastName, String telephone, String address, String NIC, String PWord) {
         this.name = name;
         this.firstName = firstName;
         this.lastName = lastName;
         this.telephone = telephone;
         this.address = address;
         this.NIC = NIC;
-        this.service = service;
+        this.PWord = PWord;
     }
 
     public UUID getCustomer_id() {
@@ -93,13 +98,6 @@ public class Customer {
         this.NIC = NIC;
     }
 
-    public Set<Service> getService() {
-        return service;
-    }
-
-    public void setService(Set<Service> service) {
-        this.service = service;
-    }
 
     @Override
     public String toString() {
@@ -111,7 +109,7 @@ public class Customer {
                 ", telephone='" + telephone + '\'' +
                 ", address='" + address + '\'' +
                 ", NIC='" + NIC + '\'' +
-                ", service=" + service +
+                ", PWord='" + PWord + '\'' +
                 '}';
     }
 }

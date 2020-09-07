@@ -13,12 +13,17 @@ public class Service {
     private String jewellerytype;
     private String imageUrl;
 
+    @ManyToOne
+    private Customer customer;
+
     public Service() {
     }
 
-    public Service(String jewellerytype, String imageUrl) {
+    public Service(UUID service_id, String jewellerytype, String imageUrl, Customer customer) {
+        this.service_id = service_id;
         this.jewellerytype = jewellerytype;
         this.imageUrl = imageUrl;
+        this.customer = customer;
     }
 
     public UUID getService_id() {
@@ -45,12 +50,21 @@ public class Service {
         this.imageUrl = imageUrl;
     }
 
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
     @Override
     public String toString() {
         return "Service{" +
                 "service_id=" + service_id +
                 ", jewellerytype='" + jewellerytype + '\'' +
                 ", imageUrl='" + imageUrl + '\'' +
+                ", customer=" + customer +
                 '}';
     }
 }

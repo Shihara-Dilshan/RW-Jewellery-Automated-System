@@ -88,12 +88,12 @@ class ForgetPassword extends Component {
   static sendEmail = async(email, code, userName) => {
         
 
-  	var api_key = 'ba251f9e3bfddb1ba040119d661ecba9-7cd1ac2b-7aa29c60';
-	var domain = 'sandbox4eab8755f9304dcd8a83626af0597370.mailgun.org';
+  	var api_key = '';
+	var domain = '';
 	var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
  
 	var data = {
-  		from: 'Mailgun Sandbox <postmaster@sandbox4eab8755f9304dcd8a83626af0597370.mailgun.org>',
+  		from: '',
   		to: email,
   		subject: 'Recover Password RW-Jewellery',
   		text: `hi ${userName}, your recover code is ${code}`,

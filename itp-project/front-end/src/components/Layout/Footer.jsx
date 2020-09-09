@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom'; 
 
 const Footer = () => {
   return (
@@ -13,6 +14,11 @@ const Footer = () => {
             <p className="grey-text text-lighten-4">
               Total solution for any jewellery
             </p>
+            <Link to="adminlogin">
+            <p className="grey-text text-lighten-4">
+              Admin Login
+            </p>
+            </Link>
           </div>
           <div className="col l4 offset-l2 s12">
             <h5 className="white-text">Follow us</h5>

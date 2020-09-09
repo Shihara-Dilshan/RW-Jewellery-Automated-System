@@ -88,6 +88,7 @@ class RequestDesign extends Component{
 			<div className="col s6"> <input type="text" disabled value="Type"/></div>
 			<div className="col s6">
 			 <select onChange={this.selectDesign}>
+			 <option value="1" selected disabled>Choose A design</option>
 			{this.state.allDesigns.map( (design) => {
 				return(
 				    <option key={design.design_id} value={design.design_id}>{design.name}</option>

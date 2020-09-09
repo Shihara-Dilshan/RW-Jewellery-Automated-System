@@ -46,10 +46,9 @@ class RequestDelivery extends Component {
     });
   }
   async componentDidMount() {
-    // eslint-disable-next-line
+
     const CusIDS = sessionStorage.getItem("userId");
-    const CusID = "d0986dda-ef5e-11ea-adc1-0242ac120002";
-    const APICall = await fetch(`/api/v2/customer/${CusID}`);
+    const APICall = await fetch(`/api/v2/customer/${CusIDS}`);
     const result = await APICall.json();
     this.setState({ customerDetails: result });
   }
@@ -59,10 +58,19 @@ class RequestDelivery extends Component {
     });
   };
   exe = (event) => {
+  
+    const indicator = document.getElementById('indigator');
+    indicator.classList.remove('hide');
+    indicator.classList.add('show');
     this.setState({
       DeliveryCharge: parseInt(this.state.distance) * parseInt(this.state.cal),
     });
     this.SubmitDelivery(event);
+    
+    setTimeout( () => {
+        M.toast({ html: "Your request has been recorded" });
+    	this.props.history.push("/");
+    },1000);
   };
   render() {
     document.addEventListener("DOMContentLoaded", function () {
@@ -183,6 +191,9 @@ class RequestDelivery extends Component {
                     >
                       ADD REQUEST
                     </button>
+                    <div className="progress hide test" id="indigator">
+                      <div className="indeterminate"></div>
+                    </div>
                   </form>
                 </div>
               </div>

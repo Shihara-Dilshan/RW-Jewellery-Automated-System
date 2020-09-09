@@ -4,10 +4,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
 @Entity
+@Table(name = "customer")
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,15 +26,8 @@ public class Customer {
     public Customer() {
     }
 
-    public String getPWord() {
-        return PWord;
-    }
-
-    public void setPWord(String PWord) {
-        this.PWord = PWord;
-    }
-
-    public Customer(String name, String firstName, String lastName, String telephone, String address, String NIC, String PWord) {
+    public Customer(UUID customer_id, String name, String firstName, String lastName, String telephone, String address, String NIC, String PWord) {
+        this.customer_id = customer_id;
         this.name = name;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -98,6 +93,13 @@ public class Customer {
         this.NIC = NIC;
     }
 
+    public String getPWord() {
+        return PWord;
+    }
+
+    public void setPWord(String PWord) {
+        this.PWord = PWord;
+    }
 
     @Override
     public String toString() {

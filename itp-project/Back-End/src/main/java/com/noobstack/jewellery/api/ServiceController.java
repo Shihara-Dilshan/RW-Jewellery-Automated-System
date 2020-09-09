@@ -34,9 +34,6 @@ public class ServiceController {
         return this.serviceService.getServiceById(id);
     }
 
-    @PostMapping("allSellablebyuser")
-    ResponseEntity<?> findByCustomer(@Validated @RequestBody Customer customer) {return this.serviceService.findByCustomer(customer);}
-
     @PostMapping("/services/addnew")
     ResponseEntity<com.noobstack.jewellery.model.Service> addNewService(@Validated @RequestBody Service service) throws URISyntaxException {
         return this.serviceService.addNewService(service);

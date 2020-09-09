@@ -1,5 +1,7 @@
 package com.noobstack.jewellery.model;
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
 import java.util.UUID;
 
@@ -11,26 +13,30 @@ public class Jewellery {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID jewellery_id;
     private String name;
-    private String description;
-    private String category;
     private String material;
     private String image_url;
     private Double supplyPrice;
 
     @ManyToOne
+    @NotNull
     private Supplier supplier;
+
+    @OneToOne
+    @NotNull
+    @JoinColumn(name = "category_id", referencedColumnName = "categoryId")
+    private Category category;
 
     public Jewellery() {
     }
 
-    public Jewellery(String name, String description, String category, String material, String image_url, Double supplyPrice, Supplier supplier) {
+    public Jewellery(UUID jewellery_id, String name, String material, String image_url, Double supplyPrice, Supplier supplier, Category category) {
+        this.jewellery_id = jewellery_id;
         this.name = name;
-        this.description = description;
-        this.category = category;
         this.material = material;
         this.image_url = image_url;
         this.supplyPrice = supplyPrice;
         this.supplier = supplier;
+        this.category = category;
     }
 
     public UUID getJewellery_id() {
@@ -47,22 +53,6 @@ public class Jewellery {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
     }
 
     public String getMaterial() {
@@ -97,17 +87,24 @@ public class Jewellery {
         this.supplier = supplier;
     }
 
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
     @Override
     public String toString() {
         return "Jewellery{" +
                 "jewellery_id=" + jewellery_id +
                 ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", category='" + category + '\'' +
                 ", material='" + material + '\'' +
                 ", image_url='" + image_url + '\'' +
                 ", supplyPrice=" + supplyPrice +
                 ", supplier=" + supplier +
+                ", category=" + category +
                 '}';
     }
 }

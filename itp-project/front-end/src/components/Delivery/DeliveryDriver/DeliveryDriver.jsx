@@ -25,7 +25,9 @@ class DeliveryDriver extends Component {
     event.preventDefault();
     const DeliveryID = document.getElementById("DID").value;
     const DriverID = "0bed41a0-e6f7-11ea-adc1-0242ac120002";
+    // eslint-disable-next-line
     const Daddress = document.getElementById("address").value;
+    // eslint-disable-next-line
     const DCity = document.getElementById("city").value;
 
     const Ddistance = document.getElementById("distance").value;

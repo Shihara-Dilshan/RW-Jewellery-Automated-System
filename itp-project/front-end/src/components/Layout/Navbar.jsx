@@ -9,10 +9,22 @@ class Navbar extends Component {
     super(props);
     this.state = {
       isLoading: true,
-      tab1: "Login",
-      tab1Route: "/login",
-      tab2: "Sign Up",
-      tab2Route: "/signup",
+      tab1: "",
+      tab1Route: "",
+      tab2: "",
+      tab2Route: "",
+      tab3: "",
+      tab3Route: "",
+      tab4: "",
+      tab4Route: "",
+      tab5: "",
+      tab5Route: "",
+      tab6: "",
+      tab6Route: "",
+      tab7: "",
+      tab7Route: "",
+      tab8: "",
+      tab8Route: "",
       cart: [],
       cartUpated: false,
     };
@@ -53,13 +65,77 @@ class Navbar extends Component {
 
   componentDidMount() {
     setInterval(() => {
-      if (sessionStorage.getItem("email") !== null) {
+      if(sessionStorage.getItem('adminAccount') === null){
+        let cart = document.getElementById("cartIcon");
+        let DP = document.getElementById("profileImg");
+        cart.classList.add("show");
+        DP.classList.add("hide");
+        if (sessionStorage.getItem("email") !== null) {
+        
+        DP.classList.remove("hide");
+        DP.classList.add("show");
+    
         this.setState({
-          tab1: "Account",
-          tab1Route: "/profile",
-          tab2: "Logout",
-          tab2Route: "/logout",
+          tab1: "About Us",
+          tab1Route: "/about",
+          tab2: "Jewelry",
+          tab2Route: "/about",
+          tab3: "Collections",
+          tab3Route: "/about",
+          tab4: "Online Store",
+          tab4Route: "/onlinestore",
+          tab5: "Services",
+          tab5Route: "/services",
+          tab6: "Contact",
+          tab6Route: "/contact",
+          tab7: "Account",
+          tab7Route: "/profile",
+          tab8: "Logout",
+          tab8Route: "/logout",
         });
+      }else{
+      	  this.setState({
+      	  tab1: "About Us",
+          tab1Route: "/about",
+          tab2: "Jewelry",
+          tab2Route: "/about",
+          tab3: "Collections",
+          tab3Route: "/about",
+          tab4: "Online Store",
+          tab4Route: "/onlinestore",
+          tab5: "Services",
+          tab5Route: "/services",
+          tab6: "Contact",
+          tab6Route: "/contact",
+          tab7: "Login",
+          tab7Route: "/login",
+          tab8: "Sign Up",
+          tab8Route: "/signup",
+        });
+      }
+      }else{
+      	this.setState({
+      	  tab1: "Manage Jewelry",
+          tab1Route: "",
+          tab2: "Manage Rental",
+          tab2Route: "/rental",
+          tab3: "Employee Leave",
+          tab3Route: "/about",
+          tab4: "Manage Delivery",
+          tab5: "Manage Service",
+          tab5Route: "/services",
+          tab6: "Manage Supply",
+          tab6Route: "/contact",
+          tab4Route: "/onlinestore",
+          tab7: "Dash Board",
+          tab7Route: "/profile",
+          tab8: "Logout",
+          tab8Route: "/logout",
+        });
+        let cart = document.getElementById("cartIcon");
+        let DP = document.getElementById("profileImg");
+        cart.classList.add("hide");
+        DP.classList.add("hide");
       }
     }, 200);
     const elems = document.querySelectorAll(".sidenav");
@@ -146,32 +222,32 @@ class Navbar extends Component {
             </a>
             <ul className="right hide-on-med-and-down">
               <li>
-                <a href="sass.html">About us</a>
+              	<Link to={this.state.tab1Route}>{this.state.tab1}</Link>
               </li>
               <li>
-                <a href="badges.html">Jewellery</a>
+              	<Link to={this.state.tab2Route}>{this.state.tab2}</Link>
               </li>
               <li>
-                <a href="collapsible.html">Collections</a>
+                <Link to={this.state.tab3Route}>{this.state.tab3}</Link>
               </li>
               <li>
-                <Link to="/onlinestore">Online Store</Link>
+                <Link to={this.state.tab4Route}>{this.state.tab4}</Link>
               </li>
               <li>
-                <Link to="/services">Services</Link>
-              </li>
-
-              <li>
-                <a href="mobile.html">Contact</a>
+                <Link to={this.state.tab5Route}>{this.state.tab5}</Link>
               </li>
 
               <li>
-                <Link to={this.state.tab1Route}>{this.state.tab1}</Link>
+                <Link to={this.state.tab6Route}>{this.state.tab6}</Link>
+              </li>
+
+              <li>
+                <Link to={this.state.tab7Route}>{this.state.tab7}</Link>
               </li>
               <li>
-                <Link to={this.state.tab2Route}>{this.state.tab2}</Link>
+                <Link to={this.state.tab8Route}>{this.state.tab8}</Link>
               </li>
-              <li>
+              <li id="profileImg">
                 <img
                   alt=""
                   src={sessionStorage.getItem("profileImg")}
@@ -184,7 +260,7 @@ class Navbar extends Component {
                   }}
                 />
               </li>
-              <li>
+              <li id="cartIcon">
                 <a
                   href="#!"
                   id="cartSection"

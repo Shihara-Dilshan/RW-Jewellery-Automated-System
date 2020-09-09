@@ -3,8 +3,8 @@ import M from "materialize-css";
 
 import "./../../../App.css";
 class AssignDriver extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       DeliveryDrivers: [],
       temp: "",
@@ -39,7 +39,7 @@ class AssignDriver extends Component {
     const elems = document.querySelectorAll("select");
     M.FormSelect.init(elems);
   }
-  async AssignDriver(event) {
+   AssignDriver = async (event) => {
     event.preventDefault();
     const DeliverID = sessionStorage.getItem("assignItemDriver");
     const DriverID = document.getElementById("DriverID").value;
@@ -70,6 +70,11 @@ class AssignDriver extends Component {
         deliverBoy: { emp_id: DriverID },
       }),
     });
+    
+    setTimeout( () => {
+    	this.props.history.push("/del");
+    },1000)
+    
   }
   render() {
     document.addEventListener("DOMContentLoaded", function () {

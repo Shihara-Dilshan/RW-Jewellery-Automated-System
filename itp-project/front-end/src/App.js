@@ -25,7 +25,14 @@ import RequestDesign from './components/Service/Design/RequestDesign';
 import PaymentInfo from './components/Service/Design/PaymentInfo';
 import RequestRepair from './components/Service/Repair/RequestRepair';
 import PurchuseTable from './components/User/userPurchase/PurchuseTable';
-
+import DesignTable from './components/User/userPurchase/DesignTable';
+import DeliveryRequestsFromCustomer from './components/Delivery/DeliveryRequestAdminView/DeliveryRequestsFromCustomer';
+import AssignDriver from './components/Delivery/AssignDriver/AssignDriver';
+import DeliveredItems from './components/Delivery/DeliveredItems/DeliveredItems';
+import DeliveryCancellRequest from './components/Delivery/DeliverCancelRequest/DeliveryCancellRequest';
+import DeliveryDriver from './components/Delivery/DeliveryDriver/DeliveryDriver';
+import AdminLogin from "./components/Admin/AdminLogin/AdminLogin";
+import DashBoard from "./components/Admin/DashBoard/DashBoard";
 
 const App = () => {
   return (
@@ -54,6 +61,14 @@ const App = () => {
 	  <Route path="/requestrepair" exact component={RequestRepair} />
 	  <Route path="/purchusetable" exact component={PurchuseTable} />
           <Route path="/requestrepair" exact component={RequestRepair} />
+          <Route path="/del" exact component={DeliveryRequestsFromCustomer} />
+          <Route path="/designtable" exact component={DesignTable} />
+          <Route path="/AssignDriver" exact component={AssignDriver} />
+          <Route path="/DeliveredItems" exact component={DeliveredItems} />
+          <Route path="/DeliveryCancellRequest" exact component={DeliveryCancellRequest} />
+          <Route path="/DeliveryDriver" exact component={DeliveryDriver} />
+          <Route path="/adminlogin" exact component={AdminLogin} />
+          <Route path="/dashboard" exact component={DashBoard} />
         </Switch>
       </div>
       <Footer />

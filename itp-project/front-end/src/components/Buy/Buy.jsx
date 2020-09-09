@@ -72,7 +72,7 @@ class Buy extends Component {
   sumbitPayment = async (e) => {
     await e.preventDefault();
     let amount = document.getElementById("amount").value;
-    /*let paymentstatus = document.getElementById("check1").value;*/
+    let paymentstatus = document.getElementById("check1").value;
     // eslint-disable-next-line
     let userId = sessionStorage.getItem("userId");
 
@@ -85,7 +85,7 @@ class Buy extends Component {
       method: "POST",
       body: JSON.stringify({
         amount: amount,
-        /*paymentstatus: paymentstatus,*/
+        paymentstatus: paymentstatus,
       }),
     });
     
@@ -114,7 +114,7 @@ class Buy extends Component {
 	}
       ),
     });
-    
+    // eslint-disable-next-line
     const updateSellableItem = await fetch(`/api/v2/sellable/update/${itemId}`,{
     	headers: {
            Accept: "application/json",

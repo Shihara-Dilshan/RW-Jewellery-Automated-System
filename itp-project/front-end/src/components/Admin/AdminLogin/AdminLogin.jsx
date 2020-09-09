@@ -3,18 +3,18 @@ import { Link } from "react-router-dom";
 import "./../../../App.css";
 
 
-class Logout extends Component {
+class AdminLogin extends Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
 
-  logout = async (e) => {
+  adminloginF = async (e) => {
     e.preventDefault();
-    sessionStorage.clear();
-    this.props.history.push("/");
+    sessionStorage.setItem("adminAccount" , "account1");
+    this.props.history.push("/dashboard");
+    
   };
-
 
   style = () => {
     return {
@@ -43,43 +43,56 @@ class Logout extends Component {
             <div className="card-image hide-on-small-only">
               <img
                 alt=""
-                src="https://image.freepik.com/free-vector/warning-concept-illustration_114360-1551.jpg"
+                src="https://image.freepik.com/free-vector/admin-concept-illustration_114360-2332.jpg"
                 height="100%"
               />
             </div>
             <div className="card-stacked">
               <div className="card-content">
-                <h4 className="center-align grey-text">Logout</h4>
+                <h4 className="center-align grey-text">Admin Login</h4>
                 <div className="row">
                   <form className="col s12">
                     <div className="row">
                       <div className="input-field col s12">
-                        <input id="Lemail" type="text" className="" value="All the current session Data will be delected" disabled/>
+                        <input id="Lemail" type="email" className="validate"/>
+                        <label htmlFor="Lemail" id="LemailLabel">
+                          Email
+                        </label>
                       </div>
                     </div>
                     <div className="row">
                       <div className="input-field col s12">
-                        <input id="alert2" type="text" className="" value="You will be logged out" disabled/>
+                        <input
+                          id="password"
+                          type="password"
+                          className="validate"
+                        />
+                        <label htmlFor="password" id="pwordLabel">Password</label>
                       </div>
                     </div>
-                    <div className="row">
-                      <div className="input-field col s12">
-                        <input id="alert3" type="text" className="" value="Any existing items fom cart will be lost" disabled/>
-                      </div>
+                    <div className="container center-align grey-text">
+                      <p>
+                        <label>
+                          <input type="checkbox" className="filled-in" />
+                          <span>Remeber Me</span>
+                          <br />
+                          <br />
+                        </label>
+                      </p>
                     </div>
-                    
                     <div className="center-align center">
                       <button
-                        onClick={this.logout}
+                        onClick={this.adminloginF}
                         className="btn center-align grey darken-3"
                         style={{ width: "100%" }}
                       >
-                        Log out
+                        Login
                       </button>
-                    </div><br />
+                    </div>
+                    <br />
                     <div className="center-align center">
-                      <Link to="/">
-                      <p className="teal-text">Cancel and go back</p>
+                      <Link to="/signup">
+                      <p className="teal-text">forget password?</p>
                       </Link>
                     </div>
                   </form>
@@ -93,4 +106,4 @@ class Logout extends Component {
   }
 }
 
-export default Logout;
+export default AdminLogin;

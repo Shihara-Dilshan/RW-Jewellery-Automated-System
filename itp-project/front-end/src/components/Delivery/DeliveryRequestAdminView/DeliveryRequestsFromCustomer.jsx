@@ -50,7 +50,7 @@ class DeliveryRequestsFromCustomer extends Component {
         </Link>
 
         <h4 className="center-align grey-text">
-          <b>DELIVERY REQUESTS FROM CUSTOMER</b>
+          <b style={{marginLeft:"100px"}}>DELIVERY REQUESTS FROM CUSTOMER</b>
         </h4>
         <div className="#eeeeee grey lighten-3">
           <table className="responsive-table">

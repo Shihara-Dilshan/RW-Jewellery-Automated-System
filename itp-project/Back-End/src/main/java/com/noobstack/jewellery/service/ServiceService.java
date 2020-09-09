@@ -34,13 +34,6 @@ public class ServiceService {
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    public ResponseEntity<?> findByCustomer(Customer customer) {
-        Optional<com.noobstack.jewellery.model.Service> service =this.serviceRepository.findByCustomer(customer);
-        return service.map(response ->
-                ResponseEntity.ok().body(response))
-                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
-    }
-
     public ResponseEntity<com.noobstack.jewellery.model.Service> addNewService(com.noobstack.jewellery.model.Service service) throws URISyntaxException {
         com.noobstack.jewellery.model.Service result = this.serviceRepository.save(service);
         return ResponseEntity.created(new URI("/services/addnew" + result.getService_id())).body(result);

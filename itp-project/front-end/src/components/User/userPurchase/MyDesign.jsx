@@ -7,25 +7,6 @@ class MyDesign extends Component {
     super(props);
     this.state = { userPurchuses: undefined};
   }
-  
-  async componentDidMount(){
-        const userID = sessionStorage.getItem('userId'); 
-    	const getCurrentPurchuses = await fetch(`/api/v2/sellable/allSellablebyuser`, {
-    	    headers: {
-          	    Accept: "application/json",
-          	    "Content-Type": "application/json",
-        	},
-        	method: "POST",
-        	body: JSON.stringify({
-        		customer_id: userID,
-	}),
-    	});
-    	
-    	const allPurchuses = await getCurrentPurchuses.json();
-    	this.setState({userPurchuses: allPurchuses});
-    	console.log(allPurchuses);
-    	
-    }
 
   render = () => {
     return (
@@ -34,7 +15,7 @@ class MyDesign extends Component {
                 <i className="material-icons large grey-text">color_lens</i>
                 <h5>My Design</h5>
                 <p>1</p> 
-                <Link to="/purchusetable"><button className="btn grey darken-3" style={{width:"50%"}}>View</button></Link>
+                <Link to="/designtable"><button className="btn grey darken-3" style={{width:"50%"}}>View</button></Link>
               </div>
         </div>
     );

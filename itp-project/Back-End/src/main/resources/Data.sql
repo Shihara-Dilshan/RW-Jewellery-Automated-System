@@ -4,4 +4,4 @@ INSERT INTO supplier(supp_id, address, category, company_name, email, name, stat
 INSERT INTO supplier(supp_id, address, category, company_name, email, name, status, telephone) VALUES('91b3781b-d81d-4ec5-9497-068eb51a31ac', '122/F California US', 'Jewellery', 'KT Brothers pvt limited', 'ktbrother@gmail.com', 'KT Brothers' , 'disabled' , '0724569853');
 INSERT INTO supplier(supp_id, address, category, company_name, email, name, status, telephone) VALUES('c87fb334-c853-4a08-8478-df646f199a97', '90/A kandy Road ', 'Design', 'TUN HUANG pvt limited', 'tunhuang@gmail.com', 'TUN HUANG' , 'registered' , '0789852123');
 
-INSERT INTO jewellery(jewellery_id, category, description, image_url, material, name, supply_price, supplier_supp_id) VALUES('499f822d-41da-4996-9c54-8336972947be', 'Pendant', '');
+

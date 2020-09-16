@@ -8,7 +8,7 @@ public class Admin extends Employee{
     private String active;
     private String password;
     private String roles;
-    private String username;
+    private String uname;
 
     public String getActive() {
         return active;
@@ -34,12 +34,12 @@ public class Admin extends Employee{
         this.roles = roles;
     }
 
-    public String getUser_name() {
-        return username;
+    public String getUname() {
+        return uname;
     }
 
-    public void setUser_name(String username) {
-        this.username = username;
+    public void setUname(String uname) {
+        this.uname = uname;
     }
 
     @Override
@@ -48,7 +48,7 @@ public class Admin extends Employee{
                 "active='" + active + '\'' +
                 ", password='" + password + '\'' +
                 ", roles='" + roles + '\'' +
-                ", user_name='" + username + '\'' +
+                ", uname='" + uname + '\'' +
                 '}';
     }
 }

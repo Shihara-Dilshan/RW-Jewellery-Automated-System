@@ -3,6 +3,7 @@ package com.noobstack.jewellery.service;
 import com.noobstack.jewellery.model.Admin;
 import com.noobstack.jewellery.model.Customer;
 import com.noobstack.jewellery.repository.AdminRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,11 @@ import java.util.UUID;
 public class AdminService {
     private AdminRepository adminRepository;
 
+    @Autowired
+    public AdminService(AdminRepository adminRepository) {
+        this.adminRepository = adminRepository;
+    }
+
     public List<Admin> getAllAdmins() {
         return this.adminRepository.findAll();
     }
@@ -28,8 +34,8 @@ public class AdminService {
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    public ResponseEntity<?> getAdminByUserName(String username) {
-        Optional<Admin> byUsername = this.adminRepository.findByUsername(username);
+    public ResponseEntity<?> getAdminByName(String uname) {
+        Optional<Admin> byUsername = this.adminRepository.findByUname(uname);
         return byUsername.map(response ->
                 ResponseEntity.ok().body(response))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));

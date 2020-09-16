@@ -10,8 +10,8 @@ INSERT INTO employee(emp_id, nic, fname, l_name, position) VALUES('70d60598-94e6
 INSERT INTO employee(emp_id, nic, fname, l_name, position) VALUES('42dfd554-b614-4ec1-9ea9-e1b55b78fded', '454645454V', 'Sagala', 'Rathnayake', 'Stock Manager');
 INSERT INTO employee(emp_id, nic, fname, l_name, position) VALUES('f7c0b263-588b-42cb-bc61-567758bd3136', '767737475V', 'Lalith', 'Samarasinghe', 'Rental Manager');
 
-INSERT INTO admin(emp_id, user_name, password ,roles, active) VALUES('f7c0b263-588b-42cb-bc61-567758bd3136', 'Lalinda_Kumara', 'classified23', 'ROLE_USER', 'active');
-INSERT INTO admin(emp_id, user_name, password ,roles, active) VALUES('42dfd554-b614-4ec1-9ea9-e1b55b78fded', 'Saman_Edirisinghe', 'classified23', 'ROLE_USER', 'active');
-INSERT INTO admin(emp_id, user_name, password ,roles, active) VALUES('70d60598-94e6-42d8-9d8a-5a730e4bf130', 'Nuwan_Sagara', 'classified23', 'ROLE_USER', 'active');
-INSERT INTO admin(emp_id, user_name, password ,roles, active) VALUES('fbe19622-d35c-44e3-8fa9-4e52cb3a1c9e', 'Sagala_Rathnayake', 'classified23', 'ROLE_USER', 'active');
-INSERT INTO admin(emp_id, user_name, password ,roles, active) VALUES('d6246900-55d7-4894-9a2d-5443eb41585c', 'Lalith_Samarasinghe', 'classified23', 'ROLE_USER', 'active');
+INSERT INTO admin(emp_id, uname, password ,roles, active) VALUES('f7c0b263-588b-42cb-bc61-567758bd3136', 'Lalinda_Kumara', 'classified23', 'ROLE_USER', 'active');
+INSERT INTO admin(emp_id, uname, password ,roles, active) VALUES('42dfd554-b614-4ec1-9ea9-e1b55b78fded', 'Saman_Edirisinghe', 'classified23', 'ROLE_USER', 'active');
+INSERT INTO admin(emp_id, uname, password ,roles, active) VALUES('70d60598-94e6-42d8-9d8a-5a730e4bf130', 'Nuwan_Sagara', 'classified23', 'ROLE_USER', 'active');
+INSERT INTO admin(emp_id, uname, password ,roles, active) VALUES('fbe19622-d35c-44e3-8fa9-4e52cb3a1c9e', 'Sagala_Rathnayake', 'classified23', 'ROLE_USER', 'active');
+INSERT INTO admin(emp_id, uname, password ,roles, active) VALUES('d6246900-55d7-4894-9a2d-5443eb41585c', 'Lalith_Samarasinghe', 'classified23', 'ROLE_USER', 'active');

@@ -10,9 +10,19 @@ class AdminLogin extends Component {
   }
 
   adminloginF = async (e) => {
-    //e.preventDefault();
-    sessionStorage.setItem("adminAccount" , "account1");
-    //this.props.history.push("/dashboard");
+    e.preventDefault();
+    let Admin_account = document.getElementById('Lemail').value;
+    let admin_password = document.getElementById('password').value;
+
+    const check_account = await fetch(`/api/v2/admin/specificname/${Admin_account}`);
+    if(check_account.status == 404){
+    	alert("user does not found");
+    }else{
+    	const result = await check_account.json();
+    	sessionStorage.clear();
+    	sessionStorage.setItem("adminAccount" , "account1");	
+    	this.props.history.push("/dashboard");
+    }
     
   };
 

@@ -28,14 +28,14 @@ public class AdminController {
         return this.adminSerivce.getAllAdmins();
     }
 
-    @GetMapping("/specific/{id}")
+    @GetMapping("/specificid/{id}")
     ResponseEntity<?> getAdminById(@PathVariable UUID id){
         return this.adminSerivce.getAdminById(id);
     }
 
-    @GetMapping("/specific/{username}")
-    ResponseEntity<?> getAdminByUserName(@PathVariable String username){
-        return this.adminSerivce.getAdminByUserName(username);
+    @GetMapping("/specificname/{uname}")
+    ResponseEntity<?> getAdminByName(@PathVariable String uname){
+        return this.adminSerivce.getAdminByName(uname);
     }
 
     @PostMapping("/register")

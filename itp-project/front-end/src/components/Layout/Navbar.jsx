@@ -74,6 +74,8 @@ class Navbar extends Component {
         
         DP.classList.remove("hide");
         DP.classList.add("show");
+        let cart = document.getElementById("cartIcon");
+        cart.classList.add("show");
     
         this.setState({
           tab1: "About Us",

@@ -10,9 +10,9 @@ class AdminLogin extends Component {
   }
 
   adminloginF = async (e) => {
-    e.preventDefault();
+    //e.preventDefault();
     sessionStorage.setItem("adminAccount" , "account1");
-    this.props.history.push("/dashboard");
+    //this.props.history.push("/dashboard");
     
   };
 
@@ -51,10 +51,10 @@ class AdminLogin extends Component {
               <div className="card-content">
                 <h4 className="center-align grey-text">Admin Login</h4>
                 <div className="row">
-                  <form className="col s12">
+                  <form className="col s12" method="post" action="/login">
                     <div className="row">
                       <div className="input-field col s12">
-                        <input id="Lemail" type="email" className="validate"/>
+                        <input id="Lemail" name="username" type="text" className="avalidate"/>
                         <label htmlFor="Lemail" id="LemailLabel">
                           Email
                         </label>
@@ -64,6 +64,7 @@ class AdminLogin extends Component {
                       <div className="input-field col s12">
                         <input
                           id="password"
+                          name="password"
                           type="password"
                           className="validate"
                         />

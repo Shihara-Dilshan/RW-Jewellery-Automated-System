@@ -7,7 +7,17 @@ import SocialMedia from "./SocialMedia";
 import Carousel from "./Carousel";
 
 class Home extends Component {
-  state = {};
+ 
+  constructor(props){
+      super(props);
+      this.state = {};
+  }
+  
+  componentDidMount(){
+      if(sessionStorage.getItem('adminAccount') !== null){
+  	    this.props.history.push("/dashboard");
+      }
+  }
 
   render() {
     return (

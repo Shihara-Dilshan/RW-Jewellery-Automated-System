@@ -33,6 +33,7 @@ import DeliveryCancellRequest from './components/Delivery/DeliverCancelRequest/D
 import DeliveryDriver from './components/Delivery/DeliveryDriver/DeliveryDriver';
 import AdminLogin from "./components/Admin/AdminLogin/AdminLogin";
 import DashBoard from "./components/Admin/DashBoard/DashBoard";
+import ManageAdmin from "./components/Admin/ManageAdmin/ManageAdmin";
 
 const App = () => {
   return (
@@ -69,6 +70,7 @@ const App = () => {
           <Route path="/DeliveryDriver" exact component={DeliveryDriver} />
           <Route path="/adminlogin" exact component={AdminLogin} />
           <Route path="/dashboard" exact component={DashBoard} />
+          <Route path="/manageadmin" exact component={ManageAdmin} />
         </Switch>
       </div>
       <Footer />

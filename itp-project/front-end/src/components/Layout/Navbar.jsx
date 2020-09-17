@@ -136,8 +136,14 @@ class Navbar extends Component {
         });
         let cart = document.getElementById("cartIcon");
         let DP = document.getElementById("profileImg");
-        cart.classList.add("hide");
-        DP.classList.add("hide");
+        
+        if(cart === null || DP === null){
+            return;
+        }else{
+            cart.classList.add("hide");
+            DP.classList.add("hide");
+        }
+        
       }
     }, 200);
     const elems = document.querySelectorAll(".sidenav");

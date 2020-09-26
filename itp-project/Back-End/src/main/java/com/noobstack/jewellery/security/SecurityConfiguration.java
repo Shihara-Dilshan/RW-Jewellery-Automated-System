@@ -27,7 +27,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/api/v2/customer/**","/api/v2/sellable","/api/v2/admin/specificname/**").permitAll()
+                .antMatchers("/api/v2/customer/**",
+                                        "/api/v2/sellable/**",
+                                        "/api/v2/admin/specificname/**",
+                                        "/api/v2/services/**",
+                                        "/api/v2/repairs/**",
+                                        "/api/v2/payment/**",
+                                        "/api/v2/order/**",
+                                        "/api/v2/makeservices/**",
+                                        "/api/v2/designs/**",
+                                        "/api/v2/delivery/**",
+                                        "/api/v2/deliveryboy/**").permitAll()
                 .antMatchers("/api/v2/admin/all").hasRole("ROOT")
                 .anyRequest().authenticated()
                 .and().httpBasic();

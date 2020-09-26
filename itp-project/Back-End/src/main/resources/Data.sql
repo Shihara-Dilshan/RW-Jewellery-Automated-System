@@ -18,3 +18,10 @@ INSERT INTO admin(emp_id, uname, password ,roles, active) VALUES('42dfd554-b614-
 INSERT INTO admin(emp_id, uname, password ,roles, active) VALUES('70d60598-94e6-42d8-9d8a-5a730e4bf130', 'Nuwan_Sagara', 'classified23', 'ROLE_USER', 'active');
 INSERT INTO admin(emp_id, uname, password ,roles, active) VALUES('fbe19622-d35c-44e3-8fa9-4e52cb3a1c9e', 'Sagala_Rathnayake', 'classified23', 'ROLE_USER', 'active');
 INSERT INTO admin(emp_id, uname, password ,roles, active) VALUES('d6246900-55d7-4894-9a2d-5443eb41585c', 'Lalith_Samarasinghe', 'classified23', 'ROLE_USER', 'active');
+
+INSERT INTO design(design_id, description, image_url, name, price) VALUES('ef89c72e-5e39-4299-a474-4f055b06435b', 'Materrial design', 'http://www.voguejewellers.lk/wp-content/uploads/2019/09/PNZ23-324x324.jpg', 'Pendant', '12000');
+INSERT INTO design(design_id, description, image_url, name, price) VALUES('13896449-7cb5-49d5-b1e5-5fbe5c6779a5', 'edge designs design X', 'http://www.voguejewellers.lk/wp-content/uploads/2019/07/18-2.jpg', 'Design-X 16mm', '10000');
+INSERT INTO design(design_id, description, image_url, name, price) VALUES('e5bee0e5-aec9-4b6f-8a60-bf7206466604', 'Golden material design class', 'http://www.voguejewellers.lk/wp-content/uploads/2019/07/18-2.jpg', 'Design-X 16mm', '9000');
+INSERT INTO design(design_id, description, image_url, name, price) VALUES('995e727e-4b5b-4bec-809b-e429263c6fad', 'Silver design class', 'http://www.voguejewellers.lk/wp-content/uploads/2019/07/18-2.jpg', 'Design-X 16mm', '15000');
+INSERT INTO design(design_id, description, image_url, name, price) VALUES('c853a59f-70e8-4b3f-8d33-30fad79849dd', 'Diamond most valuable design of all', 'http://www.voguejewellers.lk/wp-content/uploads/2019/07/18-2.jpg', 'Design-X 16mm', '30000');
+

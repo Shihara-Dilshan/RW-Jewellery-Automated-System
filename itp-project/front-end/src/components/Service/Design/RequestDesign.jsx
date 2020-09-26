@@ -85,8 +85,8 @@ class RequestDesign extends Component{
                 <div className="row">
                   <form className="col s12">
                     <div className="row">
-			<div className="col s6"> <input type="text" disabled value="Type"/></div>
-			<div className="col s6">
+			
+			<div className="col s12">
 			 <select onChange={this.selectDesign}>
 			 <option value="1" selected disabled>Choose A design</option>
 			{this.state.allDesigns.map( (design) => {
@@ -153,7 +153,7 @@ class RequestDesign extends Component{
               <img
                 id="DesignImage"
                 alt=""
-                src="https://image.freepik.com/free-vector/man-gives-woman-wedding-ring-romantic-dating_82574-13085.jpg"
+                src="https://image.freepik.com/free-vector/wishes-illustration-concept_114360-882.jpg"
                 height="100%"
               />
             </div>

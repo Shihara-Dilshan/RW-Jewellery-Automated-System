@@ -10,7 +10,7 @@ class DesignTable extends Component {
   }
   
   async componentDidMount(){
-    	const getCurrentPurchuses = await fetch(`/api/v2/makeservices`);
+    	const getCurrentPurchuses = await fetch(`/api/v2/services`);
     	
     	const allPurchuses = await getCurrentPurchuses.json();
     	this.setState({userPurchuses: allPurchuses});
@@ -33,7 +33,7 @@ class DesignTable extends Component {
     };
   };
   
-  removeService = async (e) => {
+  /*removeService = async (e) => {
   	const removeId = e.target.parentElement.parentElement.firstChild.innerHTML;
   	console.log(removeId);
   	// eslint-disable-next-line
@@ -44,6 +44,8 @@ class DesignTable extends Component {
     	window.location.reload();
   	M.toast({ html: "Request has been cancelled" });
   }
+  
+  */
 
   render = () => {
     return (
@@ -85,10 +87,10 @@ class DesignTable extends Component {
           {this.state.userPurchuses.map( (Design) => {
           	return(
           		<tr>
-			    <td>{Design.service_id}</td>
-			    <td>{Design.design.name}</td>
-			    <td>{Design.price}</td>
-			    <td><button className="btn red" onClick={this.removeService}>Delete</button></td>
+			    <td>hj</td>
+			    <td>jk</td>
+			    <td>k</td>
+			    <td><button className="btn red">Delete</button></td>
 			  </tr>  
           	);
           })}

@@ -39,7 +39,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                                         "/api/v2/delivery/**",
                                         "/api/v2/deliveryboy/**").permitAll()
                 .antMatchers("/api/v2/admin/all").hasRole("ROOT")
-                .anyRequest().authenticated()
+                //.anyRequest().authenticated()
                 .and().httpBasic();
     }
 

@@ -74,6 +74,8 @@ class Navbar extends Component {
         
         DP.classList.remove("hide");
         DP.classList.add("show");
+        let cart = document.getElementById("cartIcon");
+        cart.classList.add("show");
     
         this.setState({
           tab1: "About Us",
@@ -134,8 +136,14 @@ class Navbar extends Component {
         });
         let cart = document.getElementById("cartIcon");
         let DP = document.getElementById("profileImg");
-        cart.classList.add("hide");
-        DP.classList.add("hide");
+        
+        if(cart === null || DP === null){
+            return;
+        }else{
+            cart.classList.add("hide");
+            DP.classList.add("hide");
+        }
+        
       }
     }, 200);
     const elems = document.querySelectorAll(".sidenav");

@@ -15,6 +15,7 @@ class PaymentInfo extends Component {
   componentDidMount(){
   	const discount = JSON.parse(sessionStorage.getItem('designRequestDet')).discount;
 	const designId = JSON.parse(sessionStorage.getItem('designRequestDet')).selectedDesign;
+	const deadline = JSON.parse(sessionStorage.getItem('designRequestDet')).deadline;
 	
 	fetch(`/api/v2/designs/${designId}`)
 		.then(res => res.json())
@@ -22,6 +23,7 @@ class PaymentInfo extends Component {
 			this.setState({
 				design:data, 
 				Discount: discount,
+				deadline: deadline,
 				finalPrice : Number.parseInt(data.price) - discount,
 				})
 				//alert(this.state.finalPrice);
@@ -45,6 +47,8 @@ class PaymentInfo extends Component {
         	body: JSON.stringify({
           	imageUrl: "http://www.voguejewellers.lk/wp-content/uploads/2019/07/34-2.jpg",
           	jewellerytype: "normal",
+          	is_editable: "yes",
+          	localDateTime: this.state.deadline,
           	customer: { customer_id: sessionStorage.getItem('userId')},
         }),
   	});

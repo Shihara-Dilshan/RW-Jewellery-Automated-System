@@ -21,9 +21,11 @@ class IButton extends Component {
   render() {
     window.onscroll = function () {
       let Ibutton = this.document.querySelector(".fixed-action-btn");
-
-      Ibutton.classList.remove("hide");
-      Ibutton.classList.add("show");
+      if(Ibutton !== null){
+      	Ibutton.classList.remove("hide");
+        Ibutton.classList.add("show");
+      }
+      
     };
     return (
       <div className="fixed-action-btn hide">

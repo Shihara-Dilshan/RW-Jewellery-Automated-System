@@ -1,6 +1,7 @@
 package com.noobstack.jewellery.model;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
@@ -12,6 +13,8 @@ public class Service {
     private UUID service_id;
     private String jewellerytype;
     private String imageUrl;
+    private String localDateTime;
+    private String isEditable;
 
     @ManyToOne
     private Customer customer;
@@ -19,10 +22,12 @@ public class Service {
     public Service() {
     }
 
-    public Service(UUID service_id, String jewellerytype, String imageUrl, Customer customer) {
+    public Service(UUID service_id, String jewellerytype, String imageUrl, String localDateTime, String isEditable, Customer customer) {
         this.service_id = service_id;
         this.jewellerytype = jewellerytype;
         this.imageUrl = imageUrl;
+        this.localDateTime = localDateTime;
+        this.isEditable = isEditable;
         this.customer = customer;
     }
 
@@ -58,12 +63,30 @@ public class Service {
         this.customer = customer;
     }
 
+    public String getLocalDateTime() {
+        return localDateTime;
+    }
+
+    public void setLocalDateTime(String localDateTime) {
+        this.localDateTime = localDateTime;
+    }
+
+    public String getIsEditable() {
+        return isEditable;
+    }
+
+    public void setIsEditable(String isEditable) {
+        this.isEditable = isEditable;
+    }
+
     @Override
     public String toString() {
         return "Service{" +
                 "service_id=" + service_id +
                 ", jewellerytype='" + jewellerytype + '\'' +
                 ", imageUrl='" + imageUrl + '\'' +
+                ", localDateTime='" + localDateTime + '\'' +
+                ", isEditable='" + isEditable + '\'' +
                 ", customer=" + customer +
                 '}';
     }

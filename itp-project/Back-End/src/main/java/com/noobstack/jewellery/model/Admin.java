@@ -5,9 +5,18 @@ import javax.persistence.*;
 @Entity
 public class Admin extends Employee{
 
+    private String active;
     private String password;
-    private String username;
-    private String role;
+    private String roles;
+    private String uname;
+
+    public String getActive() {
+        return active;
+    }
+
+    public void setActive(String active) {
+        this.active = active;
+    }
 
     public String getPassword() {
         return password;
@@ -17,28 +26,29 @@ public class Admin extends Employee{
         this.password = password;
     }
 
-    public String getUsername() {
-        return username;
+    public String getRoles() {
+        return roles;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setRoles(String roles) {
+        this.roles = roles;
     }
 
-    public String getRole() {
-        return role;
+    public String getUname() {
+        return uname;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setUname(String uname) {
+        this.uname = uname;
     }
 
     @Override
     public String toString() {
         return "Admin{" +
-                "password='" + password + '\'' +
-                ", username='" + username + '\'' +
-                ", role='" + role + '\'' +
+                "active='" + active + '\'' +
+                ", password='" + password + '\'' +
+                ", roles='" + roles + '\'' +
+                ", uname='" + uname + '\'' +
                 '}';
     }
 }

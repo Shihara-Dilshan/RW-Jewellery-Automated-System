@@ -1,39 +1,37 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-
-class DeliveryDriver extends Component {
-  constructor() {
-    super();
+class Report extends Component {
+  constructor(props) {
+    super(props);
     this.state = {
-      DeliveryPendingRequest: [],
-      temp: "",
-      TempDel: {},
+      DriverRep: [],
     };
   }
   getData = (e) => {
-    let deliverID = document.getElementById("DID").value;
+    let deliverID = document.getElementById("Deliveryid").value;
     console.log(deliverID);
-    sessionStorage.setItem("UpdateDelivery", deliverID);
+    sessionStorage.setItem("ReDid", deliverID);
   };
   async componentDidMount() {
-    let DriverID = "2ade299f-f48c-4109-b863-ff96659d57d1";
-    sessionStorage.setItem("DriverID", DriverID);
+    const DriverID = sessionStorage.getItem("EmpID");
     const APICall = await fetch(`/api/delivery/deliveryBoy/${DriverID}`);
     const Result = await APICall.json();
-    this.setState({ DeliveryPendingRequest: Result });
+    console.log(Result);
+
+    this.setState({ DriverRep: Result });
   }
   render() {
     return (
       <div>
         <div className="container">
           <h4 className="center-align grey-text">
-            <b>Delivery History of the driver</b>
+            <b>Driver Delivery Details</b>
           </h4>
           <table className="striped">
             <thead>
               <tr>
                 <th>Item Category</th>
-                <th>Address To Deliver</th>
+                <th>Delivered Address</th>
                 <th>City</th>
                 <th>Cusomer Name</th>
                 <th>Phone Number</th>
@@ -42,15 +40,15 @@ class DeliveryDriver extends Component {
             </thead>
 
             <tbody>
-              {this.state.DeliveryPendingRequest.map((DelivereyPending) => {
+              {this.state.DriverRep.map((del) => {
                 return (
                   <tr>
                     <td>Ring</td>
-                    <td>{DelivereyPending.deliveryAddress}</td>
-                    <td>{DelivereyPending.deliveryCity}</td>
+                    <td>{del.deliveryAddress}</td>
+                    <td>{del.deliveryCity}</td>
                     <input
-                      value={DelivereyPending.delivery_id}
-                      id="DID"
+                      value={del.delivery_id}
+                      id="Deliveryid"
                       type="text"
                       class="validate"
                       hidden
@@ -58,12 +56,12 @@ class DeliveryDriver extends Component {
                     <td>Alvin</td>
                     <td>0771922433</td>
                     <td>
-                      <Link to="/UpdateDelivery">
+                      <Link to="/More">
                         <button
                           className="btn center-align grey darken-3"
                           onClick={this.getData}
                         >
-                          More Details about delivery
+                          Details
                         </button>
                       </Link>
                     </td>
@@ -78,4 +76,4 @@ class DeliveryDriver extends Component {
   }
 }
 
-export default DeliveryDriver;
+export default Report;

@@ -34,6 +34,13 @@ import DeliveryDriver from "./components/Delivery/DeliveryDriver/DeliveryDriver"
 import AdminLogin from "./components/Admin/AdminLogin/AdminLogin";
 import DashBoard from "./components/Admin/DashBoard/DashBoard";
 import ManageAdmin from "./components/Admin/ManageAdmin/ManageAdmin";
+import ConfirmDelivery from "./components/Delivery/ConfirmDelivery/ConfirmDelivery";
+import UpdateDelivery from "./components/Delivery/DeliveryDriver/UpdateDelivery";
+import DeliveryDriverReport from "./components/Delivery/DeliveryDriverReport/DeliveryDriverReport";
+import ConfirmDriver from "./components/Delivery/DeliveryDriverReport/ConfirmDriver";
+import Report from "./components/Delivery/DeliveryDriverReport/Report";
+import Moredetails from "./components/Delivery/DeliveryDriverReport/Moredetails";
+import CancelPage from "./components/Delivery/DeliverCancelRequest/CancelPage";
 
 const App = () => {
   return (
@@ -71,10 +78,21 @@ const App = () => {
             exact
             component={DeliveryCancellRequest}
           />
+          <Route
+            path="/DeliveryDriverReport"
+            exact
+            component={DeliveryDriverReport}
+          />
           <Route path="/DeliveryDriver" exact component={DeliveryDriver} />
           <Route path="/adminlogin" exact component={AdminLogin} />
           <Route path="/dashboard" exact component={DashBoard} />
           <Route path="/manageadmin" exact component={ManageAdmin} />
+          <Route path="/ConfirmDelivery" exact component={ConfirmDelivery} />
+          <Route path="/UpdateDelivery" exact component={UpdateDelivery} />
+          <Route path="/ConfirmDriver" exact component={ConfirmDriver} />
+          <Route path="/Report" exact component={Report} />
+          <Route path="/More" exact component={Moredetails} />
+          <Route path="/cancel" exact component={CancelPage} />
         </Switch>
       </div>
       <Footer />

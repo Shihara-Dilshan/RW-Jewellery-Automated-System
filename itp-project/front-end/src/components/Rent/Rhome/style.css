@@ -1,0 +1,52 @@
+.navbar{
+    background-color: purple;
+}
+h1{
+    text-align: center;
+}
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style-image: none;
+    text-decoration: none;
+    font-family: 'Josefin Sans',sans-serif;
+}
+
+body{
+    background: #f7f6e6;
+}
+#sidenav{
+    position: absolute;
+    left:-200px;
+    background: #262626;
+    height: 75%;
+    widows: 200px;
+    transition: all 500ms linear;
+}
+#sidenav.active{
+    left:0;
+}
+#sidenav ul li{
+    color:#fff;
+    list-style: none;
+    padding:20px 30px;
+    border-bottom: 1px solid #ddd;
+    font-family: sans-serif;
+}
+#sidenav .btn_area{
+    position: absolute;
+    left:230px;
+    top:3px;
+    font-size:35px;
+}
+#sidenav .btn_area span{
+    display:block;
+    height: 5px;
+    width:30px;
+    background:#151719;
+    margin:5px 0px;
+}
+#sidenav .btn_area:hover{
+    cursor: pointer;
+}

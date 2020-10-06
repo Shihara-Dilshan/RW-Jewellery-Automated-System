@@ -33,6 +33,15 @@ import DeliveryCancellRequest from './components/Delivery/DeliverCancelRequest/D
 import DeliveryDriver from './components/Delivery/DeliveryDriver/DeliveryDriver';
 import AdminLogin from "./components/Admin/AdminLogin/AdminLogin";
 import DashBoard from "./components/Admin/DashBoard/DashBoard";
+import Rentjewelries from "./components/Rent/Rhome/Rentcollection";
+import Rentpay from "./components/Rent/RentPayment/RentPayForm";
+import rentStauts from "./components/Rent/UpdateR-Status/updateRentStatus";
+import mainfirstPage from "./components/Rent/rentHome/mainfirstPage";
+import earstuds from "./components/Rent/rentHome2/mainEarrings";
+import totPayone from "./components/Rent/TotalPay/totalpayment1";
+import myrentals from "./components/Rent/Myrentals/userRentals";
+import updatetable from "./components/Rent/updateTable/u_table";
+
 
 const App = () => {
   return (
@@ -69,6 +78,14 @@ const App = () => {
           <Route path="/DeliveryDriver" exact component={DeliveryDriver} />
           <Route path="/adminlogin" exact component={AdminLogin} />
           <Route path="/dashboard" exact component={DashBoard} />
+	  <Route path="/Rhome" exact component={Rentjewelries} />
+          <Route path="/RentPayment" exact component = {Rentpay} />
+          <Route path="/updateR-Status" exact component = {rentStauts} />
+          <Route path="/rentHome" exact component = {mainfirstPage} />
+          <Route path="/rentHome2" exact component = {earstuds} />
+          <Route path="/TotalPay" exact component = {totPayone} />
+          <Route path="/Myrentals" exact component = {myrentals} />
+          <Route path="/updateTable" exact component = {updatetable} />
         </Switch>
       </div>
       <Footer />

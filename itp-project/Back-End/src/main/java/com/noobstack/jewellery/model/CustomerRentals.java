@@ -22,6 +22,16 @@ public class CustomerRentals {
 
     private String status;
 
+    public float getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setTotalAmount(float totalAmount) {
+        this.totalAmount = totalAmount;
+    }
+
+    private float totalAmount;
+
     public CustomerRentals() {
     }
 
@@ -90,6 +100,7 @@ public class CustomerRentals {
                 ", rentalDate=" + rentalDate +
                 ", returnDate=" + returnDate +
                 ", status='" + status + '\'' +
+                ", TotalAmount='"+ totalAmount +
                 '}';
     }
 }

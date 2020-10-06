@@ -1,0 +1,13 @@
+*{
+    margin:0;
+    padding:0;
+
+}
+
+#mrentals{
+    margin-left: 500px;
+}
+.cart{
+    background-image: url('https://www.cyrusthegreatcosmetics.com/wp-content/uploads/2014/09/Cryogenic-Diamond-Shave-wall-paper.jpg');
+    /* background-repeat: no-repeat; */
+}

@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.UUID;
@@ -31,6 +32,20 @@ public class PaymentController {
     @PostMapping("/sendPayment")
     ResponseEntity<Payment> addNewPayment(@Validated @RequestBody Payment payment) throws URISyntaxException{
         return this.paymentService.addNewPayment(payment);
+    }
+
+    @DeleteMapping("/deletePayment/{id}")
+    ResponseEntity<?> deletePayment(@PathVariable UUID id) {return this.paymentService.deletePayment(id);
+    }
+
+    @RequestMapping("/paymentStatus/{paymentstatus}")
+    List<Payment>getPaymentByPaymentStatus(@PathVariable String paymentstatus){
+        return this.paymentService.getPaymentByPaymentStatus(paymentstatus);
+    }
+
+    @PutMapping("/updatePayment/{id}")
+    ResponseEntity<Payment> updatePayment(@Validated @RequestBody Payment Payment){
+        return this.paymentService.updatePayment(Payment);
     }
 
 }

@@ -17,7 +17,8 @@ class OnlineStore extends Component {
         {
           jew_id: "89296cc2-eb5c-4458-a49f-a19ef9ee9822",
           category: "Ring",
-          description: "Bangles for every wrist in a range of designs that are contemporary and sophisticated yet timelessly sublime.",
+          description:
+            "Bangles for every wrist in a range of designs that are contemporary and sophisticated yet timelessly sublime.",
           imageSrc:
             "https://raw.githubusercontent.com/Shihara-Dilshan/img/master/ITP/categories/nick-karvounis-RjeVqc8eC3s-unsplash.jpg",
           Meterial: "Gold",
@@ -26,9 +27,10 @@ class OnlineStore extends Component {
           supplyer_Id: "SUP-1236",
         },
         {
-          jew_id: "89296cc2-eb5c-4458-a49f-a19ef9ee9822",
+          jew_id: "ea500811-8666-4dce-9ca5-c56ba7547836",
           category: "Ring",
-          description: "Pendants that are modern art or spiritual symbols, includes a range of Dhammachackras and Crosses.",
+          description:
+            "Pendants that are modern art or spiritual symbols, includes a range of Dhammachackras and Crosses.",
           imageSrc:
             "https://raw.githubusercontent.com/Shihara-Dilshan/img/master/ITP/categories/fallon-michael-orVNEDAylaU-unsplash.jpg",
           Meterial: "White Gold",
@@ -37,7 +39,7 @@ class OnlineStore extends Component {
           supplyer_Id: "SUP-1236",
         },
         {
-          jew_id: "89296cc2-eb5c-4458-a49f-a19ef9ee9822",
+          jew_id: "ae15ae70-b739-48a9-9702-4462d8afdfb6",
           category: "Ring",
           description: "Stylish bracelets that put you in a class of your own",
           imageSrc:

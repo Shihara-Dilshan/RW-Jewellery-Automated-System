@@ -25,7 +25,7 @@ class DeliveredItems extends Component {
     };
   };
   async componentDidMount() {
-    let Status = "Dilivered";
+    let Status = "Delivered";
     const APICall = await fetch(`/api/delivery/deliveryStatus/${Status}`);
     const Result = await APICall.json();
     this.setState({ DeliveredItems: Result });
@@ -40,7 +40,7 @@ class DeliveredItems extends Component {
         <h4 className="center-align grey-text">
           <b>DELIVERED ITEMS</b>
         </h4>
-        <table class="responsive-table">
+        <table class="container">
           <thead>
             <tr>
               <th>Delivery Number</th>
@@ -61,7 +61,7 @@ class DeliveredItems extends Component {
                   <td>{Delivered.deliveryAddress}</td>
                   <td>9:55 PM</td>
                   <td>{Delivered.status}</td>
-                  <td>Ramesh Bandara</td>
+                  <td></td>
                 </tr>
               );
             })}

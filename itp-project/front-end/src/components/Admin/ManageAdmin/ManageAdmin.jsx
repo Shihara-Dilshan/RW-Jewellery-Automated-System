@@ -3,18 +3,24 @@ import "./../../../App.css";
 import M from "materialize-css";
 
 
-class DesignTable extends Component {
+class ManageAdmin extends Component {
   constructor(props) {
     super(props);
-    this.state = { userPurchuses: []};
+    this.state = { userPurchuses: [],  isLoading : true};
   }
   
   async componentDidMount(){
-    	const getCurrentPurchuses = await fetch(`/api/v2/services`);
+    	const getCurrentPurchuses = await fetch(`/api/v2/admin/all`);
     	
     	const allPurchuses = await getCurrentPurchuses.json();
-    	this.setState({userPurchuses: allPurchuses});
-    	console.log(this.state.userPurchuses);
+    	console.log(allPurchuses.status);
+    	if(allPurchuses.status === 403){
+    	    alert("You dont have permission")
+    	}else{
+    	    let removeRoot = allPurchuses.filter( admin => admin.uname !== "root");
+    	    this.setState({userPurchuses: removeRoot, isLoading : false});
+    	}
+    	
     	
     }
     
@@ -33,19 +39,7 @@ class DesignTable extends Component {
     };
   };
   
-  /*removeService = async (e) => {
-  	const removeId = e.target.parentElement.parentElement.firstChild.innerHTML;
-  	console.log(removeId);
-  	// eslint-disable-next-line
-  	const delete1 = await fetch(`/api/v2/makeservice/delete/${removeId}`, {
-        	method: "DELETE",
-    	});
-    	
-    	window.location.reload();
-  	M.toast({ html: "Request has been cancelled" });
-  }
   
-  */
 
   render = () => {
     return (
@@ -58,13 +52,13 @@ class DesignTable extends Component {
               <img
                 id="signUpImage"
                 alt=""
-                src="https://image.freepik.com/free-vector/successful-purchase-concept-illustration_114360-2652.jpg"
+                src="https://image.freepik.com/free-vector/site-stats-concept-illustration_114360-1434.jpg"
                 height="100%"
               />
             </div>
             <div className="card-stacked">
               <div className="card-content">
-                <h4 className="center-align grey-text">Requested Designs</h4>
+                <h5 className="center-align grey-text">Current Admins</h5>
                 <div className="row">
                   <div className="center-align center">
                   </div>
@@ -76,24 +70,24 @@ class DesignTable extends Component {
          <table className="striped">
         <thead>
           <tr>
-              <th>Jewellery ID</th>
-              <th>Jewellery Name</th>
-              <th>Jewellery Price</th>
+              <th className="hide">Admin ID</th>
+              <th>Name</th>
+              <th>Account Name</th>
+               <th>Password</th>
+              <th>Role</th>
               <th>Edit</th>
           </tr>
         </thead>
 
         <tbody>
-          {this.state.userPurchuses.map( (Design) => {
-          	return(
-          		<tr>
-			    <td>hj</td>
-			    <td>jk</td>
-			    <td>k</td>
+          {this.state.isLoading ? null : this.state.userPurchuses.map((admin) => {return (<tr>
+			    <td className="hide">{admin.emp_id}</td>
+			    <td>{admin.fname+ " " +admin.lName}</td>
+			    <td>{admin.uname}</td>
+			    <td>{admin.password}</td>
+			    <td>{admin.roles}</td>
 			    <td><button className="btn red">Delete</button></td>
-			  </tr>  
-          	);
-          })}
+			  </tr>  )})}
                   
         </tbody>
       </table>
@@ -116,4 +110,4 @@ class DesignTable extends Component {
   };
 }
 
-export default DesignTable;
+export default ManageAdmin;

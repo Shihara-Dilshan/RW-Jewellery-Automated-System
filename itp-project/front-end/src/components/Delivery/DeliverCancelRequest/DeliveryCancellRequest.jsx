@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 class DeliveryCancellRequest extends Component {
   constructor() {
@@ -9,11 +10,16 @@ class DeliveryCancellRequest extends Component {
     };
   }
   async componentDidMount() {
-    let Status = "Pending";
+    let Status = "Driver Assigned";
     const APICall = await fetch(`/api/delivery/deliveryStatus/${Status}`);
     const Result = await APICall.json();
     this.setState({ DeliveryCancellRequest: Result });
   }
+  getDeliveryID = (e) => {
+    let Deliveryid = document.getElementById("Deliveryid").value;
+    sessionStorage.setItem("DDid", Deliveryid);
+    console.log(Deliveryid);
+  };
   render() {
     return (
       <div>
@@ -38,13 +44,24 @@ class DeliveryCancellRequest extends Component {
                   <tr>
                     <td>R1234</td>
                     <td>CUS1234</td>
-                    <td>{DelivereyCancel.delivery_id}</td>
+                    <input
+                      value={DelivereyCancel.delivery_id}
+                      id="Deliveryid"
+                      type="text"
+                      class="validate"
+                      hidden
+                    ></input>
                     <td>Ruvin WIjesinghe</td>
                     <td>2020-08-06</td>
                     <td>
-                      <button className="btn center-align grey darken-3">
-                        Delete
-                      </button>
+                      <Link to="/cancel">
+                        <button
+                          className="btn center-align grey darken-3"
+                          onClick={this.getDeliveryID}
+                        >
+                          Delete
+                        </button>
+                      </Link>
                     </td>
                   </tr>
                 );

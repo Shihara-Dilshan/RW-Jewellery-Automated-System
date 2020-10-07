@@ -22,12 +22,15 @@ class DashBoard extends Component {
         <div className="container">
         <h4 className="grey-text">Dash Board</h4>
           <div className="row">
-  		<StaticCards title="Jewelry Management" icon="style" />
-  		<StaticCards title="Rental Management" icon="directions_walk" />
-  		<StaticCards title="Employee Management" icon="assignment_ind" />
-  		<StaticCards title="Orders & Delivery" icon="directions_bike" />
-  		<StaticCards title="Service Management" icon="beach_access" />
-  		<StaticCards title="Supplier Management" icon="store" />
+  		<StaticCards title="Jewelry Management" icon="style" to="JM"/>
+  		<StaticCards title="Rental Management" icon="directions_walk" to="RM"/>
+  		<StaticCards title="Employee Management" icon="assignment_ind" to="EM"/>
+  		<StaticCards title="Orders & Delivery" icon="local_shipping" to="OM"/>
+  		<StaticCards title="Service Management" icon="beach_access" to="SM"/>
+  		<StaticCards title="Supplier Management" icon="store" to="SupM"/>
+  		<StaticCards title="View Log" icon="recent_actors" to="VL"/>
+  		<StaticCards title="Add Admin" icon="add" to="AD"/>
+  		<StaticCards title="Manage Admins" icon="people" to="manageadmin"/>
   	 </div>
   	</div>
       </section>

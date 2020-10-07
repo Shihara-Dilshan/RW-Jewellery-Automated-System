@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import M from "materialize-css";
 import "./../../../App.css";
-
 class RequestDelivery extends Component {
   constructor() {
     super();
@@ -56,6 +55,13 @@ class RequestDelivery extends Component {
       distance: event.target.value,
     });
   };
+  handletoast = (event) => {
+    setTimeout(() => {
+      M.toast({ html: "Your request has been recorded" });
+      this.props.history.push("/");
+    }, 1000);
+  };
+
   exe = (event) => {
     const indicator = document.getElementById("indigator");
     indicator.classList.remove("hide");
@@ -65,10 +71,10 @@ class RequestDelivery extends Component {
     });
     this.SubmitDelivery(event);
 
-    setTimeout(() => {
+    /*setTimeout(() => {
       M.toast({ html: "Your request has been recorded" });
       this.props.history.push("/");
-    }, 1000);
+    }, 1000);*/
   };
   render() {
     document.addEventListener("DOMContentLoaded", function () {
@@ -133,6 +139,7 @@ class RequestDelivery extends Component {
                       <div className="input-field col s6">
                         <input
                           id="PhoneNumber"
+                          type="text"
                           className="validate"
                           value={this.state.customerDetails.telephone}
                         />
@@ -201,12 +208,14 @@ class RequestDelivery extends Component {
               <h4>Your Delivery Chargers - {this.state.DeliveryCharge} /=</h4>
             </div>
             <div class="modal-footer">
-              <a
-                href="#!"
-                class="modal-close waves-effect waves-green btn-flat"
+              <button
+                data-target="modal1"
+                type="submit"
+                class="btn modal-trigger"
+                onClick={this.handletoast}
               >
                 OK
-              </a>
+              </button>
             </div>
           </div>
         </div>

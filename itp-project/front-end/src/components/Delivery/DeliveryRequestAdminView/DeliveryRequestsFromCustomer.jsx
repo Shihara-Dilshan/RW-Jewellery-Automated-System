@@ -50,13 +50,12 @@ class DeliveryRequestsFromCustomer extends Component {
         </Link>
 
         <h4 className="center-align grey-text">
-          <b style={{marginLeft:"100px"}}>DELIVERY REQUESTS FROM CUSTOMER</b>
+          <b style={{ marginLeft: "100px" }}>DELIVERY REQUESTS FROM CUSTOMER</b>
         </h4>
         <div className="#eeeeee grey lighten-3">
           <table className="responsive-table">
             <thead>
               <tr>
-                <th>Delivery Number</th>
                 <th>Customer ID</th>
                 <th>Item Code</th>
                 <th>Address For Deliver</th>
@@ -73,7 +72,10 @@ class DeliveryRequestsFromCustomer extends Component {
               {this.state.Deliveries.map((Delivery) => {
                 return (
                   <tr className="center-align grey-text">
-                    <td>{Delivery.delivery_id}</td>
+                    <td id="delID" hidden>
+                      {Delivery.delivery_id}
+                    </td>
+
                     <td>CUS1234</td>
                     <td>B123</td>
                     <td>{Delivery.deliveryAddress}</td>
@@ -92,9 +94,14 @@ class DeliveryRequestsFromCustomer extends Component {
                     </td>
                     <td>{Delivery.status}</td>
                     <td>
-                      <button className="btn center-align grey darken-3">
-                        Confirm
-                      </button>
+                      <Link to="/ConfirmDelivery">
+                        <button
+                          className="btn center-align grey darken-3"
+                          onClick={this.getData}
+                        >
+                          Confirm
+                        </button>
+                      </Link>
                     </td>
                   </tr>
                 );

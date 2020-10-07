@@ -24,14 +24,13 @@ class AssignDriver extends Component {
     console.log(e.target.value);
   };
   async componentDidMount() {
-    console.log(this.state.Daddress);
     // eslint-disable-next-line
     const APICall = await fetch("/api/alldrivers");
     const Result = await APICall.json();
     this.setState({ DeliveryDrivers: Result });
 
     const DeliverID = sessionStorage.getItem("assignItemDriver");
-
+    console.log(DeliverID);
     const apitemp = await fetch(`api/deliverybyid/${DeliverID}`);
     const tempResult = await apitemp.json();
     this.setState({ TempDel: tempResult });
@@ -39,7 +38,7 @@ class AssignDriver extends Component {
     const elems = document.querySelectorAll("select");
     M.FormSelect.init(elems);
   }
-   AssignDriver = async (event) => {
+  AssignDriver = async (event) => {
     event.preventDefault();
     const DeliverID = sessionStorage.getItem("assignItemDriver");
     const DriverID = document.getElementById("DriverID").value;
@@ -70,12 +69,11 @@ class AssignDriver extends Component {
         deliverBoy: { emp_id: DriverID },
       }),
     });
-    
-    setTimeout( () => {
-    	this.props.history.push("/del");
-    },1000)
-    
-  }
+
+    setTimeout(() => {
+      this.props.history.push("/del");
+    }, 1000);
+  };
   render() {
     document.addEventListener("DOMContentLoaded", function () {
       const elems = document.querySelectorAll(".modal");

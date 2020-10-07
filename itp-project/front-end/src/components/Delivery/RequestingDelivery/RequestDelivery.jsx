@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import M from "materialize-css";
 import "./../../../App.css";
-
 class RequestDelivery extends Component {
   constructor() {
     super();
@@ -46,7 +45,6 @@ class RequestDelivery extends Component {
     });
   }
   async componentDidMount() {
-
     const CusIDS = sessionStorage.getItem("userId");
     const APICall = await fetch(`/api/v2/customer/${CusIDS}`);
     const result = await APICall.json();
@@ -57,20 +55,26 @@ class RequestDelivery extends Component {
       distance: event.target.value,
     });
   };
+  handletoast = (event) => {
+    setTimeout(() => {
+      M.toast({ html: "Your request has been recorded" });
+      this.props.history.push("/");
+    }, 1000);
+  };
+
   exe = (event) => {
-  
-    const indicator = document.getElementById('indigator');
-    indicator.classList.remove('hide');
-    indicator.classList.add('show');
+    const indicator = document.getElementById("indigator");
+    indicator.classList.remove("hide");
+    indicator.classList.add("show");
     this.setState({
       DeliveryCharge: parseInt(this.state.distance) * parseInt(this.state.cal),
     });
     this.SubmitDelivery(event);
-    
-    setTimeout( () => {
-        M.toast({ html: "Your request has been recorded" });
-    	this.props.history.push("/");
-    },1000);
+
+    /*setTimeout(() => {
+      M.toast({ html: "Your request has been recorded" });
+      this.props.history.push("/");
+    }, 1000);*/
   };
   render() {
     document.addEventListener("DOMContentLoaded", function () {
@@ -204,12 +208,14 @@ class RequestDelivery extends Component {
               <h4>Your Delivery Chargers - {this.state.DeliveryCharge} /=</h4>
             </div>
             <div class="modal-footer">
-              <a
-                href="#!"
-                class="modal-close waves-effect waves-green btn-flat"
+              <button
+                data-target="modal1"
+                type="submit"
+                class="btn modal-trigger"
+                onClick={this.handletoast}
               >
                 OK
-              </a>
+              </button>
             </div>
           </div>
         </div>

@@ -7,6 +7,7 @@ class RequestDelivery extends Component {
     this.state = {
       distance: " ",
       customerDetails: {},
+      OrderDetails: {},
       cal: "40",
       DeliveryCharge: " ",
     };
@@ -19,6 +20,7 @@ class RequestDelivery extends Component {
       marginBottom: "-15px",
     };
   };
+
   async SubmitDelivery(event) {
     event.preventDefault();
     const city = document.getElementById("City").value;
@@ -27,7 +29,7 @@ class RequestDelivery extends Component {
     const Province = document.getElementById("Province").value;
     const PhoneNumber = document.getElementById("PhoneNumber").value;
     const District = document.getElementById("District").value;
-    await fetch("/api/RequestDelivery", {
+    const postDelivery_Request = await fetch("/api/RequestDelivery", {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -43,12 +45,34 @@ class RequestDelivery extends Component {
         status: "Pending",
       }),
     });
+    const responsDelivery = await postDelivery_Request.json();
+    const DeliveryID = responsDelivery.delivery_id;
+    const payid = document.getElementById("PaymentID").value;
+    const sellableid = document.getElementById("sellableID").value;
+    let OOrderID = sessionStorage.getItem("ORID");
+    const updateOrder = await fetch(`/api/v2/order/updateOrder/${OOrderID}`, {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      method: "PUT",
+      body: JSON.stringify(this.state.OrderDetails),
+    });
   }
+
   async componentDidMount() {
     const CusIDS = sessionStorage.getItem("userId");
     const APICall = await fetch(`/api/v2/customer/${CusIDS}`);
     const result = await APICall.json();
     this.setState({ customerDetails: result });
+
+    let OrderID = sessionStorage.getItem("ORID");
+    const APICall1 = await fetch(`/api/v2/order/${OrderID}`);
+    const result1 = await APICall1.json();
+
+    console.log(result1.delivery);
+    result1.recipe = "not";
+    this.setState({ OrderDetails: result1 });
   }
   handldistance = (event) => {
     this.setState({
@@ -201,11 +225,23 @@ class RequestDelivery extends Component {
                   </form>
                 </div>
               </div>
+              <input
+                id="sellableID"
+                type="text"
+                className="validate"
+                value={this.state.OrderDetails.jewellery_id}
+              />
+              <input
+                id="PaymentID"
+                type="text"
+                className="validate"
+                value={this.state.OrderDetails.payment_id}
+              />
             </div>
           </div>
           <div id="modal1" class="modal">
             <div class="modal-content">
-              <h4>Your Delivery Chargers - {this.state.DeliveryCharge} /=</h4>
+              <h4>Your Delivery Chargers -{this.state.DeliveryCharge} /=</h4>
             </div>
             <div class="modal-footer">
               <button

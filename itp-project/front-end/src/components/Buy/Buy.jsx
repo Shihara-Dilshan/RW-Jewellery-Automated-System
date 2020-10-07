@@ -75,8 +75,26 @@ class Buy extends Component {
     let paymentstatus = document.getElementById("check1").value;
     // eslint-disable-next-line
     let userId = sessionStorage.getItem("userId");
-
     const putPayment = await fetch("/api/v2/payment/sendPayment", {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify({
+        amount: amount,
+        paymentstatus: paymentstatus,
+      }),
+    });
+    const response = await putPayment.json();
+    const paymentId = response.payment_id;
+
+    let itemId = JSON.parse(sessionStorage.getItem("cart"))[0].id;
+
+    console.log(response);
+
+    // eslint-disable-next-line
+    const postOrder = await fetch(`/api/v2/order/sendorder`, {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -84,55 +102,32 @@ class Buy extends Component {
 
       method: "POST",
       body: JSON.stringify({
-        amount: amount,
-        paymentstatus: paymentstatus,
+        recipe: "requested",
+        payment: { payment_id: paymentId },
+        sellable: { jewellery_id: itemId },
       }),
     });
-    
-    const response = await putPayment.json();
-    const paymentId = response.payment_id;
-    
+    const responseorder = await postOrder.json();
+    const OrderID = responseorder.o_id;
+    sessionStorage.setItem("ORID", OrderID);
 
-
-    let itemId = JSON.parse(sessionStorage.getItem('cart'))[0].id;
-
-    console.log(response);
-	
     // eslint-disable-next-line
-    const postOrder = await fetch(`/api/v2/order/sendorder`,{
-    	headers: {
-           Accept: "application/json",
-           "Content-Type": "application/json",
-        },
-
-      method: "POST",
-      body: JSON.stringify(
-      	{
-      	   recipe: "requested",
-      	   payment:{ payment_id: paymentId},
-      	   sellable: {jewellery_id: itemId},
-	}
-      ),
-    });
-    // eslint-disable-next-line
-    const updateSellableItem = await fetch(`/api/v2/sellable/update/${itemId}`,{
-    	headers: {
-           Accept: "application/json",
-           "Content-Type": "application/json",
+    const updateSellableItem = await fetch(
+      `/api/v2/sellable/update/${itemId}`,
+      {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
         },
 
         method: "PUT",
-        body: JSON.stringify(
-      	{
-      	   sellprice: amount,
-      	   amount: itemId,
-      	   customer: {customer_id: userId},
-	}
-      ),
-    
-    
-    });
-    
+        body: JSON.stringify({
+          sellprice: amount,
+          amount: itemId,
+          customer: { customer_id: userId },
+        }),
+      }
+    );
 
     this.props.history.push("/RequestDelivery");
   };

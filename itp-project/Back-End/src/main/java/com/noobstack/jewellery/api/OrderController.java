@@ -1,5 +1,6 @@
 package com.noobstack.jewellery.api;
 
+import com.noobstack.jewellery.model.Delivery;
 import com.noobstack.jewellery.model.Orders;
 import com.noobstack.jewellery.service.OrderService;
 import org.hibernate.criterion.Order;
@@ -25,10 +26,14 @@ public class OrderController {
     List<Orders> getAllOrders() {return this.orderService.getAllOrders();}
 
     @GetMapping("/{orderid}")
-    ResponseEntity<?> getOrderById(@PathVariable UUID id) {return  this.orderService.getOrderById(id);}
+    ResponseEntity<?> getOrderById(@PathVariable UUID orderid) {return  this.orderService.getOrderById(orderid);}
 
     @PostMapping("/sendorder")
     ResponseEntity<Orders> addNewOrder(@Validated @RequestBody Orders orders) throws URISyntaxException{
         return this.orderService.addNewOrder(orders);
+    }
+    @PutMapping("updateOrder/{o_id}")
+    public Orders updateOrder(@PathVariable("o_id") UUID id, @RequestBody Orders orders) {
+        return orderService.updateOrder(id,orders);
     }
 }

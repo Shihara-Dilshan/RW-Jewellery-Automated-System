@@ -1,5 +1,6 @@
 package com.noobstack.jewellery.service;
 
+import com.noobstack.jewellery.model.Delivery;
 import com.noobstack.jewellery.model.Orders;
 import com.noobstack.jewellery.model.Payment;
 import com.noobstack.jewellery.repository.OrdersRepository;
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 
+import javax.persistence.criteria.Order;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -35,6 +37,9 @@ public class OrderService {
         return order.map(response ->
                 ResponseEntity.ok().body(response))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
-
+    }
+    public Orders updateOrder(UUID id, Orders orders) {
+        orders.setO_id(id);
+        return ordersRepository.save(orders);
     }
 }

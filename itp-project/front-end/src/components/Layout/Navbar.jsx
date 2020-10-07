@@ -27,7 +27,6 @@ class Navbar extends Component {
       tab8Route: "",
       cart: [],
       cartUpated: false,
-      total: 0,
     };
   }
 
@@ -74,6 +73,8 @@ class Navbar extends Component {
         if (sessionStorage.getItem("email") !== null) {
           DP.classList.remove("hide");
           DP.classList.add("show");
+          let cart = document.getElementById("cartIcon");
+          cart.classList.add("show");
 
           this.setState({
             tab1: "About Us",
@@ -134,25 +135,18 @@ class Navbar extends Component {
         });
         let cart = document.getElementById("cartIcon");
         let DP = document.getElementById("profileImg");
-        cart.classList.add("hide");
-        DP.classList.add("hide");
+
+        if (cart === null || DP === null) {
+          return;
+        } else {
+          cart.classList.add("hide");
+          DP.classList.add("hide");
+        }
       }
     }, 200);
     const elems = document.querySelectorAll(".sidenav");
     M.Sidenav.init(elems, {
       edge: "right",
-    });
-
-    if (sessionStorage.getItem("cart") === null) {
-      sessionStorage.setItem("cart", JSON.stringify([]));
-    }
-    let totalCart = 0;
-    let cart = JSON.parse(sessionStorage.getItem("cart"));
-    cart.forEach((item) => {
-      totalCart += Number.parseInt(item.price);
-    });
-    this.setState({
-      total: totalCart,
     });
   }
 
@@ -175,7 +169,7 @@ class Navbar extends Component {
               <div className="row">
                 <div className="col s12 m6">
                   <button style={{ width: "100%" }} className="btn" disabled>
-                    Total Price : {this.state.total}
+                    Total Price : Rs 12000.00
                   </button>
                 </div>
                 <div className="col s12 m6">
@@ -289,7 +283,9 @@ class Navbar extends Component {
                 <span
                   class="new badge"
                   style={{ position: "relative", top: "20px", right: "35px" }}
-                ></span>
+                >
+                  4
+                </span>
               </li>
             </ul>
           </div>

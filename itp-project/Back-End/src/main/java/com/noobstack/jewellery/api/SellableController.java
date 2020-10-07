@@ -35,10 +35,14 @@ public class SellableController {
     ResponseEntity<Sellable> addNewSellable(@Validated @RequestBody Sellable sellable) throws URISyntaxException{
         return this.sellableService.addNewSellable(sellable);
     }
-    
+
     @PutMapping("/update/{id}")
     ResponseEntity<Sellable> updateSellable(@Validated @RequestBody Sellable Sellable){
         return this.sellableService.updateSellable(Sellable);
+    }
+
+    @DeleteMapping("/deleteSellable/{id}")
+    ResponseEntity<?> deleteSellable(@PathVariable UUID id) {return this.sellableService.deleteSellable(id);
     }
 
 }

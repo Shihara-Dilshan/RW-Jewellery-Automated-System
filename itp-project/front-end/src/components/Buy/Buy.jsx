@@ -88,51 +88,44 @@ class Buy extends Component {
         paymentstatus: paymentstatus,
       }),
     });
-    
+
     const response = await putPayment.json();
     const paymentId = response.payment_id;
-    
 
+    let itemId = JSON.parse(sessionStorage.getItem("cart"))[0].id;
 
-    let itemId = JSON.parse(sessionStorage.getItem('cart'))[0].id;
-
-    console.log(response);
-	
     // eslint-disable-next-line
-    const postOrder = await fetch(`/api/v2/order/sendorder`,{
-    	headers: {
-           Accept: "application/json",
-           "Content-Type": "application/json",
-        },
+    const postOrder = await fetch(`/api/v2/orders/sendorder`, {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
 
       method: "POST",
-      body: JSON.stringify(
-      	{
-      	   recipe: "requested",
-      	   payment:{ payment_id: paymentId},
-      	   sellable: {jewellery_id: itemId},
-	}
-      ),
+      body: JSON.stringify({
+        recipe: "requested",
+        payment: { payment_id: paymentId },
+
+        sellable: { jewellery_id: itemId },
+      }),
     });
     // eslint-disable-next-line
-    const updateSellableItem = await fetch(`/api/v2/sellable/update/${itemId}`,{
-    	headers: {
-           Accept: "application/json",
-           "Content-Type": "application/json",
+    const updateSellableItem = await fetch(
+      `/api/v2/sellable/update/${itemId}`,
+      {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
         },
 
         method: "PUT",
-        body: JSON.stringify(
-      	{
-      	   sellprice: amount,
-      	   amount: itemId,
-      	   customer: {customer_id: userId},
-	}
-      ),
-    
-    
-    });
-    
+        body: JSON.stringify({
+          sellprice: amount,
+          amount: itemId,
+          customer: { customer_id: userId },
+        }),
+      }
+    );
 
     this.props.history.push("/RequestDelivery");
   };
@@ -181,6 +174,16 @@ class Buy extends Component {
                     name="address"
                     disabled={true}
                     value="2020-08-30"
+                  ></input>
+                  <br></br>
+                  <br></br>
+                  <label htmlFor="address">Phone Number</label>
+                  <input
+                    type="number"
+                    id="tp"
+                    length="10"
+                    //disabled={true}
+                    //value={this.state.curTime}
                   ></input>
                   <br></br>
                   <h6>Payement Method</h6>

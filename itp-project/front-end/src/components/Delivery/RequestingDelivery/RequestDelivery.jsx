@@ -46,7 +46,6 @@ class RequestDelivery extends Component {
     });
   }
   async componentDidMount() {
-
     const CusIDS = sessionStorage.getItem("userId");
     const APICall = await fetch(`/api/v2/customer/${CusIDS}`);
     const result = await APICall.json();
@@ -58,19 +57,18 @@ class RequestDelivery extends Component {
     });
   };
   exe = (event) => {
-  
-    const indicator = document.getElementById('indigator');
-    indicator.classList.remove('hide');
-    indicator.classList.add('show');
+    const indicator = document.getElementById("indigator");
+    indicator.classList.remove("hide");
+    indicator.classList.add("show");
     this.setState({
       DeliveryCharge: parseInt(this.state.distance) * parseInt(this.state.cal),
     });
     this.SubmitDelivery(event);
-    
-    setTimeout( () => {
-        M.toast({ html: "Your request has been recorded" });
-    	this.props.history.push("/");
-    },1000);
+
+    setTimeout(() => {
+      M.toast({ html: "Your request has been recorded" });
+      this.props.history.push("/");
+    }, 1000);
   };
   render() {
     document.addEventListener("DOMContentLoaded", function () {
@@ -135,7 +133,6 @@ class RequestDelivery extends Component {
                       <div className="input-field col s6">
                         <input
                           id="PhoneNumber"
-                          type="text"
                           className="validate"
                           value={this.state.customerDetails.telephone}
                         />

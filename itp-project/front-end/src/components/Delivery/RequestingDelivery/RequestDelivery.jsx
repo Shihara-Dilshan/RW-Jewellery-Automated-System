@@ -10,6 +10,8 @@ class RequestDelivery extends Component {
       OrderDetails: {},
       cal: "40",
       DeliveryCharge: " ",
+      deliveryiid: " ",
+      bbb: "",
     };
   }
   style = () => {
@@ -46,11 +48,10 @@ class RequestDelivery extends Component {
       }),
     });
     const responsDelivery = await postDelivery_Request.json();
-    const DeliveryID = responsDelivery.delivery_id;
-    const payid = document.getElementById("PaymentID").value;
-    const sellableid = document.getElementById("sellableID").value;
+    const DeliveryIDD = responsDelivery.delivery_id;
+    this.state.OrderDetails.delivery = { delivery_id: DeliveryIDD };
     let OOrderID = sessionStorage.getItem("ORID");
-    const updateOrder = await fetch(`/api/v2/order/updateOrder/${OOrderID}`, {
+    fetch(`/api/v2/order/updateOrder/${OOrderID}`, {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -59,19 +60,14 @@ class RequestDelivery extends Component {
       body: JSON.stringify(this.state.OrderDetails),
     });
   }
-
   async componentDidMount() {
     const CusIDS = sessionStorage.getItem("userId");
     const APICall = await fetch(`/api/v2/customer/${CusIDS}`);
     const result = await APICall.json();
     this.setState({ customerDetails: result });
-
     let OrderID = sessionStorage.getItem("ORID");
     const APICall1 = await fetch(`/api/v2/order/${OrderID}`);
     const result1 = await APICall1.json();
-
-    console.log(result1.delivery);
-    result1.recipe = "not";
     this.setState({ OrderDetails: result1 });
   }
   handldistance = (event) => {
@@ -94,11 +90,6 @@ class RequestDelivery extends Component {
       DeliveryCharge: parseInt(this.state.distance) * parseInt(this.state.cal),
     });
     this.SubmitDelivery(event);
-
-    /*setTimeout(() => {
-      M.toast({ html: "Your request has been recorded" });
-      this.props.history.push("/");
-    }, 1000);*/
   };
   render() {
     document.addEventListener("DOMContentLoaded", function () {
@@ -225,18 +216,6 @@ class RequestDelivery extends Component {
                   </form>
                 </div>
               </div>
-              <input
-                id="sellableID"
-                type="text"
-                className="validate"
-                value={this.state.OrderDetails.jewellery_id}
-              />
-              <input
-                id="PaymentID"
-                type="text"
-                className="validate"
-                value={this.state.OrderDetails.payment_id}
-              />
             </div>
           </div>
           <div id="modal1" class="modal">

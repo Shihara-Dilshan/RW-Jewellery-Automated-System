@@ -2,37 +2,13 @@ import React, { Component } from "react";
 
 import "./../../App.css";
 
-class Buy extends Component {
+class DirectBuy extends Component {
   constructor(props) {
     super(props);
     this.state = {
       total: 0,
     };
   }
-
-  componentDidMount() {
-    let totalCart = 0;
-    let cart = JSON.parse(sessionStorage.getItem("cart"));
-    cart.forEach((item) => {
-      totalCart += Number.parseInt(item.price);
-    });
-    this.setState({
-      total: totalCart,
-    });
-  }
-
-  detail = () => {
-    // if (
-    //   sessionStorage.getItem("cart")[0] === undefined ||
-    //   sessionStorage.getItem("cart") === null
-    // ) {
-    //   return;
-    // }
-    // sessionStorage.getItem("cart");
-    // this.setState({
-    //   cart: JSON.parse(sessionStorage.getItem("cart"))[0],
-    // });
-  };
 
   change(e) {
     e.preventDefault();
@@ -92,44 +68,41 @@ class Buy extends Component {
     const response = await putPayment.json();
     const paymentId = response.payment_id;
 
-    let itemId = JSON.parse(sessionStorage.getItem("cart"));
+    let itemId = JSON.parse(sessionStorage.getItem("buy"))[0].id;
 
-    itemId.forEach((cartItem) => {
-      // eslint-disable-next-line
+    console.log(response);
 
-      fetch(`/api/v2/orders/sendorder`, {
+    // eslint-disable-next-line
+    const postOrder = await fetch(`/api/v2/orders/sendorder`, {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+
+      method: "POST",
+      body: JSON.stringify({
+        recipe: "requested",
+        payment: { payment_id: paymentId },
+        sellable: { jewellery_id: itemId },
+      }),
+    });
+
+    const updateSellableItem = await fetch(
+      `/api/v2/sellable/update/${itemId}`,
+      {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
 
-        method: "POST",
+        method: "PUT",
         body: JSON.stringify({
-          recipe: "requested",
-          payment: { payment_id: paymentId },
-
-          sellable: { jewellery_id: cartItem.id },
+          sellprice: amount,
+          amount: itemId,
+          customer: { customer_id: userId },
         }),
-      })
-        .then(() => {
-          fetch(`/api/v2/sellable/update/${cartItem.id}`, {
-            headers: {
-              Accept: "application/json",
-              "Content-Type": "application/json",
-            },
-
-            method: "PUT",
-            body: JSON.stringify({
-              sellprice: amount,
-              amount: itemId,
-              customer: { customer_id: userId },
-            }),
-          });
-        })
-        .catch((err) => console.log("there is an error"));
-
-      // eslint-disable-next-line
-    });
+      }
+    );
 
     this.props.history.push("/RequestDelivery");
   };
@@ -178,16 +151,6 @@ class Buy extends Component {
                     name="address"
                     disabled={true}
                     value="2020-08-30"
-                  ></input>
-                  <br></br>
-                  <br></br>
-                  <label htmlFor="address">Phone Number</label>
-                  <input
-                    type="number"
-                    id="tp"
-                    length="10"
-                    //disabled={true}
-                    //value={this.state.curTime}
                   ></input>
                   <br></br>
                   <h6>Payement Method</h6>
@@ -244,7 +207,7 @@ class Buy extends Component {
                   <input
                     type="number"
                     id="amount"
-                    value={this.state.total}
+                    value={JSON.parse(sessionStorage.getItem("buy"))[0].price}
                     disabled={true}
                   ></input>
                 </form>
@@ -278,4 +241,4 @@ class Buy extends Component {
   }
 }
 
-export default Buy;
+export default DirectBuy;

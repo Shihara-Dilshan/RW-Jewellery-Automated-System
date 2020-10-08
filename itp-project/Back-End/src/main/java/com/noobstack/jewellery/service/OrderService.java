@@ -37,4 +37,14 @@ public class OrderService {
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
 
     }
+
+    public ResponseEntity<?> deleteOrder(UUID id) {
+        ordersRepository.deleteById(id);
+        return ResponseEntity.ok().build();
+    }
+
+
+    public List<Orders> getRecipeByStatus(String recipe) {
+        return ordersRepository.findByRecipe(recipe);
+    }
 }

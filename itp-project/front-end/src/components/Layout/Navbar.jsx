@@ -65,59 +65,58 @@ class Navbar extends Component {
 
   componentDidMount() {
     setInterval(() => {
-      if(sessionStorage.getItem('adminAccount') === null){
+      if (sessionStorage.getItem("adminAccount") === null) {
         let cart = document.getElementById("cartIcon");
         let DP = document.getElementById("profileImg");
         cart.classList.add("show");
         DP.classList.add("hide");
         if (sessionStorage.getItem("email") !== null) {
-        
-        DP.classList.remove("hide");
-        DP.classList.add("show");
-        let cart = document.getElementById("cartIcon");
-        cart.classList.add("show");
-    
+          DP.classList.remove("hide");
+          DP.classList.add("show");
+          let cart = document.getElementById("cartIcon");
+          cart.classList.add("show");
+
+          this.setState({
+            tab1: "About Us",
+            tab1Route: "/about",
+            tab2: "Jewelry",
+            tab2Route: "/about",
+            tab3: "Collections",
+            tab3Route: "/about",
+            tab4: "Online Store",
+            tab4Route: "/onlinestore",
+            tab5: "Services",
+            tab5Route: "/services",
+            tab6: "Contact",
+            tab6Route: "/contact",
+            tab7: "Account",
+            tab7Route: "/profile",
+            tab8: "Logout",
+            tab8Route: "/logout",
+          });
+        } else {
+          this.setState({
+            tab1: "About Us",
+            tab1Route: "/about",
+            tab2: "Jewelry",
+            tab2Route: "/about",
+            tab3: "Collections",
+            tab3Route: "/about",
+            tab4: "Online Store",
+            tab4Route: "/onlinestore",
+            tab5: "Services",
+            tab5Route: "/services",
+            tab6: "Contact",
+            tab6Route: "/contact",
+            tab7: "Login",
+            tab7Route: "/login",
+            tab8: "Sign Up",
+            tab8Route: "/signup",
+          });
+        }
+      } else {
         this.setState({
-          tab1: "About Us",
-          tab1Route: "/about",
-          tab2: "Jewelry",
-          tab2Route: "/about",
-          tab3: "Collections",
-          tab3Route: "/about",
-          tab4: "Online Store",
-          tab4Route: "/onlinestore",
-          tab5: "Services",
-          tab5Route: "/services",
-          tab6: "Contact",
-          tab6Route: "/contact",
-          tab7: "Account",
-          tab7Route: "/profile",
-          tab8: "Logout",
-          tab8Route: "/logout",
-        });
-      }else{
-      	  this.setState({
-      	  tab1: "About Us",
-          tab1Route: "/about",
-          tab2: "Jewelry",
-          tab2Route: "/about",
-          tab3: "Collections",
-          tab3Route: "/about",
-          tab4: "Online Store",
-          tab4Route: "/onlinestore",
-          tab5: "Services",
-          tab5Route: "/services",
-          tab6: "Contact",
-          tab6Route: "/contact",
-          tab7: "Login",
-          tab7Route: "/login",
-          tab8: "Sign Up",
-          tab8Route: "/signup",
-        });
-      }
-      }else{
-      	this.setState({
-      	  tab1: "Manage Jewelry",
+          tab1: "Manage Jewelry",
           tab1Route: "",
           tab2: "Manage Rental",
           tab2Route: "/rental",
@@ -136,14 +135,13 @@ class Navbar extends Component {
         });
         let cart = document.getElementById("cartIcon");
         let DP = document.getElementById("profileImg");
-        
-        if(cart === null || DP === null){
-            return;
-        }else{
-            cart.classList.add("hide");
-            DP.classList.add("hide");
+
+        if (cart === null || DP === null) {
+          return;
+        } else {
+          cart.classList.add("hide");
+          DP.classList.add("hide");
         }
-        
       }
     }, 200);
     const elems = document.querySelectorAll(".sidenav");
@@ -156,7 +154,11 @@ class Navbar extends Component {
     return (
       <React.Fragment>
         <nav id="scroll" className="scrollspy">
-          <ul id="slide-out" className="sidenav sidenav-close" style={{ width: "50%" }}>
+          <ul
+            id="slide-out"
+            className="sidenav sidenav-close"
+            style={{ width: "50%" }}
+          >
             <li>
               <a href="#!">
                 <i className="material-icons">add_shopping_cart</i>My{" "}
@@ -230,10 +232,10 @@ class Navbar extends Component {
             </a>
             <ul className="right hide-on-med-and-down">
               <li>
-              	<Link to={this.state.tab1Route}>{this.state.tab1}</Link>
+                <Link to={this.state.tab1Route}>{this.state.tab1}</Link>
               </li>
               <li>
-              	<Link to={this.state.tab2Route}>{this.state.tab2}</Link>
+                <Link to={this.state.tab2Route}>{this.state.tab2}</Link>
               </li>
               <li>
                 <Link to={this.state.tab3Route}>{this.state.tab3}</Link>

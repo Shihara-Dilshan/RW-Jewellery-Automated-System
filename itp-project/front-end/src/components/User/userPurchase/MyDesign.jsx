@@ -5,7 +5,14 @@ import { Link } from 'react-router-dom';
 class MyDesign extends Component {
   constructor(props) {
     super(props);
-    this.state = { userPurchuses: undefined};
+    this.state = { userPurchuses: undefined, designCount: '---' };
+  }
+  
+  async componentDidMount(){
+  	const apiCall = await fetch('/api/v2/makeservices');
+  	const result = await apiCall.json();
+  	const desinUserData = result.filter((data) => data.customer.customer_id == sessionStorage.getItem("userId"));
+  	this.setState({designCount: desinUserData.length });
   }
 
   render = () => {
@@ -14,7 +21,7 @@ class MyDesign extends Component {
           <div className="card-panel">
                 <i className="material-icons large grey-text">color_lens</i>
                 <h5>My Design</h5>
-                <p>1</p> 
+                <p>{this.state.designCount}</p> 
                 <Link to="/designtable"><button className="btn grey darken-3" style={{width:"50%"}}>View</button></Link>
               </div>
         </div>

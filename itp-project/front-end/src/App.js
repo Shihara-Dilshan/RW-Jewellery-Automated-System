@@ -47,6 +47,10 @@ import ApplyLeave from "./components/LeaveManagement/ApplyLeave";
 import EditLeave from "./components/LeaveManagement/EditLeave";
 import EmployeeLeave from "./components/LeaveManagement/EmployeeLeave";
 import LeaveReports from "./components/LeaveManagement/LeaveReports";
+import ServiceDashBoard from './components/Admin/ManageService/ServiceDashBoard';
+import NewDesign from './components/Admin/ManageService/NewDesign';
+import OngoingDesign from './components/Admin/ManageService/OngoingDesign';
+import CompletedOrders from './components/Admin/ManageService/CompletedOrders';
 
 const App = () => {
   return (
@@ -105,6 +109,10 @@ const App = () => {
           <Route path="/editLeave" exact component={EditLeave}/>
           <Route path="/employeeLeave" exact component={EmployeeLeave}/>
           <Route path="/LeaveReports" exact component={LeaveReports}/>
+          <Route path="/servicedashBoard" exact component={ServiceDashBoard}/>
+          <Route path="/newdesign" exact component={NewDesign}/>
+          <Route path="/ongoingdesign" exact component={OngoingDesign}/>
+          <Route path="/completedorders" exact component={CompletedOrders}/>
         </Switch>
       </div>
       <Footer />

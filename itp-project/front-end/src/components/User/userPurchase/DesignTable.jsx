@@ -11,11 +11,16 @@ class DesignTable extends Component {
   }
   
   async componentDidMount(){
-    	const getCurrentPurchuses = await fetch(`/api/v2/services`);
+    	//const getCurrentPurchuses = await fetch(`/api/v2/services`);
+    	//const allPurchuses = await getCurrentPurchuses.json();
+    	//this.setState({userPurchuses: allPurchuses.filter((data) => data.customer.customer_id == sessionStorage.getItem("userId"))});
+    
+    	const tempAPICall = await fetch(`/api/v2/makeservices`);
+    	const tempResult = await tempAPICall.json();
     	
-    	const allPurchuses = await getCurrentPurchuses.json();
-    	this.setState({userPurchuses: allPurchuses.filter((data) => data.customer.customer_id == sessionStorage.getItem("userId"))});
-    	console.log(this.state.userPurchuses);
+    	this.setState({userPurchuses: tempResult.filter((data) => data.customer.customer_id == sessionStorage.getItem("userId"))});
+    	
+    	console.log(tempResult);
     	
     }
     
@@ -58,12 +63,13 @@ class DesignTable extends Component {
         {this.state.userPurchuses.map((design) => {
         	return(
         	<DesignPurchuseCard
-            imageSrc={design.imageUrl}
-            title={design.design.name}
-            description={design.design.description}
-            price={design.price}
-            madeDate={design.localDateTime}
-            serviceId={design.service_id}
+            	imageSrc={design.imageUrl}
+            	title={design.design.name}
+            	description={design.design.description}
+            	price={design.price}
+            	madeDate={design.localDateTime}
+            	serviceId={design.service_id}
+            	editable={design.isEditable}
           />);
         })}
           

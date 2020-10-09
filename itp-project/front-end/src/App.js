@@ -41,6 +41,12 @@ import ConfirmDriver from "./components/Delivery/DeliveryDriverReport/ConfirmDri
 import Report from "./components/Delivery/DeliveryDriverReport/Report";
 import Moredetails from "./components/Delivery/DeliveryDriverReport/Moredetails";
 import CancelPage from "./components/Delivery/DeliverCancelRequest/CancelPage";
+import ManageLeaveDashboard from "./components/LeaveManagement/ManageLeaveDashboard";
+import RecentLeave from "./components/LeaveManagement/RecentLeave";
+import ApplyLeave from "./components/LeaveManagement/ApplyLeave";
+import EditLeave from "./components/LeaveManagement/EditLeave";
+import EmployeeLeave from "./components/LeaveManagement/EmployeeLeave";
+import LeaveReports from "./components/LeaveManagement/LeaveReports";
 
 const App = () => {
   return (
@@ -93,6 +99,12 @@ const App = () => {
           <Route path="/Report" exact component={Report} />
           <Route path="/More" exact component={Moredetails} />
           <Route path="/cancel" exact component={CancelPage} />
+          <Route path="/manageLeaveDashboard" exact component={ManageLeaveDashboard}/>
+          <Route path="/recentLeave" exact component={RecentLeave}/>
+          <Route path="/applyLeave" exact component={ApplyLeave}/>
+          <Route path="/editLeave" exact component={EditLeave}/>
+          <Route path="/employeeLeave" exact component={EmployeeLeave}/>
+          <Route path="/LeaveReports" exact component={LeaveReports}/>
         </Switch>
       </div>
       <Footer />

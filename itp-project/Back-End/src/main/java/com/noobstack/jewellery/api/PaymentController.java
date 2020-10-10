@@ -1,5 +1,6 @@
 package com.noobstack.jewellery.api;
 
+
 import com.noobstack.jewellery.model.Payment;
 import com.noobstack.jewellery.service.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +27,8 @@ public class PaymentController {
     @GetMapping("/allPay")
     List<Payment> getAllPayments() {return this.paymentService.getAllPayments();}
 
-    @GetMapping("/{jewid}")
-    ResponseEntity<?> getPaymentById(@PathVariable UUID id) {return this.paymentService.getPaymentById(id);}
+    @GetMapping("/{payment_id}")
+    ResponseEntity<?> getPaymentById(@PathVariable UUID payment_id) {return this.paymentService.getPaymentById(payment_id);}
 
     @PostMapping("/sendPayment")
     ResponseEntity<Payment> addNewPayment(@Validated @RequestBody Payment payment) throws URISyntaxException{
@@ -47,5 +48,6 @@ public class PaymentController {
     ResponseEntity<Payment> updatePayment(@Validated @RequestBody Payment Payment){
         return this.paymentService.updatePayment(Payment);
     }
+
 
 }

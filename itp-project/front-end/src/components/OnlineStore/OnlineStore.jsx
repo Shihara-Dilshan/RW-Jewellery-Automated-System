@@ -15,7 +15,7 @@ class OnlineStore extends Component {
     this.setState({
       jewelry: [
         {
-          jew_id: "89296cc2-eb5c-4458-a49f-a19ef9ee9822",
+          jew_id: "71e632a3-d785-4930-9293-3fbab218b0a1",
           category: "Ring",
           description:
             "Bangles for every wrist in a range of designs that are contemporary and sophisticated yet timelessly sublime.",

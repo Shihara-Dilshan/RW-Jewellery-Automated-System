@@ -1,5 +1,6 @@
 package com.noobstack.jewellery.service;
 
+import com.noobstack.jewellery.model.Delivery;
 import com.noobstack.jewellery.model.Orders;
 import com.noobstack.jewellery.model.Payment;
 import com.noobstack.jewellery.repository.OrdersRepository;
@@ -46,5 +47,14 @@ public class OrderService {
 
     public List<Orders> getRecipeByStatus(String recipe) {
         return ordersRepository.findByRecipe(recipe);
+    }
+
+    public Orders updateOrder(UUID id, Orders orders) {
+        orders.setO_id(id);
+        return ordersRepository.save(orders);
+    }
+
+    public List<Orders> getorderyBydelivery(Delivery delivery) {
+        return ordersRepository.findBydelivery(delivery);
     }
 }

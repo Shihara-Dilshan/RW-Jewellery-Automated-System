@@ -51,6 +51,9 @@ import ServiceDashBoard from './components/Admin/ManageService/ServiceDashBoard'
 import NewDesign from './components/Admin/ManageService/NewDesign';
 import OngoingDesign from './components/Admin/ManageService/OngoingDesign';
 import CompletedOrders from './components/Admin/ManageService/CompletedOrders';
+import PendingPayment from "./components/Admin/AdminPayment/PendingPayment";
+import VerifyPayment from "./components/Admin/AdminPayment/VerifyPayment";
+import VerifyOrder from "./components/User/userPurchase/VerifyOrder";
 
 const App = () => {
   return (
@@ -113,6 +116,10 @@ const App = () => {
           <Route path="/newdesign" exact component={NewDesign}/>
           <Route path="/ongoingdesign" exact component={OngoingDesign}/>
           <Route path="/completedorders" exact component={CompletedOrders}/>
+	  <Route path="/pendingpayment" exact component={PendingPayment} />
+          <Route path="/verifypayment" exact component={VerifyPayment} />
+          <Route path="/verifyorder" exact component={VerifyOrder} />
+	  
         </Switch>
       </div>
       <Footer />

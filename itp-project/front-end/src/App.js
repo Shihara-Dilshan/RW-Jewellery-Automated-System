@@ -54,6 +54,8 @@ import CompletedOrders from './components/Admin/ManageService/CompletedOrders';
 import PendingPayment from "./components/Admin/AdminPayment/PendingPayment";
 import VerifyPayment from "./components/Admin/AdminPayment/VerifyPayment";
 import VerifyOrder from "./components/User/userPurchase/VerifyOrder";
+import RecordDashBoard from "./components/Admin/Record/RecordDashBoard";
+import AdminLogs from "./components/Admin/Record/AdminLogs/AdminLogs"
 
 const App = () => {
   return (
@@ -116,10 +118,11 @@ const App = () => {
           <Route path="/newdesign" exact component={NewDesign}/>
           <Route path="/ongoingdesign" exact component={OngoingDesign}/>
           <Route path="/completedorders" exact component={CompletedOrders}/>
-	      <Route path="/pendingpayment" exact component={PendingPayment} />
+	  <Route path="/pendingpayment" exact component={PendingPayment} />
           <Route path="/verifypayment" exact component={VerifyPayment} />
           <Route path="/verifyorder" exact component={VerifyOrder} />
-	  
+	  <Route path="/recorddashboard" exact component={RecordDashBoard} />
+	  <Route path="/adminlogs" exact component={AdminLogs} />
         </Switch>
       </div>
       <Footer />

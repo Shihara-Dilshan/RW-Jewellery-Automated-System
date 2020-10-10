@@ -37,7 +37,19 @@ class AdminLogin extends Component {
     	const result = await check_account.json();
     	if(admin_password === result.password){
     	    sessionStorage.clear();
-    	    sessionStorage.setItem("adminAccount" , "account1");	
+    	    let x = new Date().toString();
+
+	    let y = x.split(" ");
+	    let finalString ="";
+
+	    for(let i=0; i<= y.length-4; i++ ){
+            	finalString = finalString + " " + y[i];
+            }
+
+
+    	    sessionStorage.setItem("adminAccount" , "account1");
+    	    sessionStorage.setItem("loginTime",finalString.trim());	
+    	    sessionStorage.setItem("adminId",result.emp_id);	
     	    this.props.history.push("/dashboard");
     	}else{
     	    admin_pword_lable.classList.add('red-text');

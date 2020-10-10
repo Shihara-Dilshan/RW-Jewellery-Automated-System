@@ -24,9 +24,9 @@ class DashBoard extends Component {
           <div className="row">
   		<StaticCards title="Jewelry Management" icon="style" to="JM"/>
   		<StaticCards title="Rental Management" icon="directions_walk" to="RM"/>
-  		<StaticCards title="Employee Management" icon="assignment_ind" to="EM"/>
+  		<StaticCards title="Employee Management" icon="assignment_ind" to="manageLeaveDashboard"/>
   		<StaticCards title="Orders & Delivery" icon="local_shipping" to="OM"/>
-  		<StaticCards title="Service Management" icon="beach_access" to="SM"/>
+  		<StaticCards title="Service Management" icon="beach_access" to="servicedashBoard"/>
   		<StaticCards title="Supplier Management" icon="store" to="SupM"/>
   		<StaticCards title="View Log" icon="recent_actors" to="VL"/>
   		<StaticCards title="Add Admin" icon="add" to="AD"/>

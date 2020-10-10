@@ -37,7 +37,7 @@ class PaymentInfo extends Component {
   	indicator.classList.remove('hide');
   	indicator.classList.add('show');
   	const designId = JSON.parse(sessionStorage.getItem('designRequestDet')).selectedDesign;
-  	
+  	/*
   	const insertService = await fetch(`/api/v2/services/addnew`,{
   		headers: {
           	Accept: "application/json",
@@ -54,7 +54,7 @@ class PaymentInfo extends Component {
   	});
   	const result = await insertService.json();
   	const ServiceID = result.service_id;
-  	
+  	*/
   	const insertRequestDesign = await fetch(`/api/v2/makeservice`,{
   		headers: {
           	Accept: "application/json",
@@ -62,11 +62,16 @@ class PaymentInfo extends Component {
         	},
         	method: "POST",
         	body: JSON.stringify({
-          	service_id: ServiceID,
+          	//service_id: ServiceID,
           	price: this.state.finalPrice,
-          	status: "Start",
-          	weight: 12,
+          	status: "new",
+          	weight: JSON.parse(sessionStorage.getItem('designRequestDet')).weight,
           	design: { design_id: designId},
+          	imageUrl: JSON.parse(sessionStorage.getItem('designRequestDet')).imageUrl,
+          	jewellerytype: "normal",
+          	isEditable: "yes",
+          	localDateTime: JSON.parse(sessionStorage.getItem('designRequestDet')).dueDate,
+          	customer: { customer_id: sessionStorage.getItem('userId')},
         }),
   	});
   	// eslint-disable-next-line

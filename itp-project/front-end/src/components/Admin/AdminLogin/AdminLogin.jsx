@@ -23,6 +23,7 @@ class AdminLogin extends Component {
     let admin_pword_lable = document.getElementById('pwordLabel');
 
     const check_account = await fetch(`/api/v2/admin/specificname/${Admin_account}`);
+    console.log(check_account)
     if(check_account.status === 404){
     	admin_email_lable.classList.add('red-text');
     	admin_email_lable.innerHTML = "Acount does not exist";

@@ -41,6 +41,16 @@ import ConfirmDriver from "./components/Delivery/DeliveryDriverReport/ConfirmDri
 import Report from "./components/Delivery/DeliveryDriverReport/Report";
 import Moredetails from "./components/Delivery/DeliveryDriverReport/Moredetails";
 import CancelPage from "./components/Delivery/DeliverCancelRequest/CancelPage";
+import ManageLeaveDashboard from "./components/LeaveManagement/ManageLeaveDashboard";
+import RecentLeave from "./components/LeaveManagement/RecentLeave";
+import ApplyLeave from "./components/LeaveManagement/ApplyLeave";
+import EditLeave from "./components/LeaveManagement/EditLeave";
+import EmployeeLeave from "./components/LeaveManagement/EmployeeLeave";
+import LeaveReports from "./components/LeaveManagement/LeaveReports";
+import ServiceDashBoard from './components/Admin/ManageService/ServiceDashBoard';
+import NewDesign from './components/Admin/ManageService/NewDesign';
+import OngoingDesign from './components/Admin/ManageService/OngoingDesign';
+import CompletedOrders from './components/Admin/ManageService/CompletedOrders';
 import PendingPayment from "./components/Admin/AdminPayment/PendingPayment";
 import VerifyPayment from "./components/Admin/AdminPayment/VerifyPayment";
 import VerifyOrder from "./components/User/userPurchase/VerifyOrder";
@@ -96,9 +106,20 @@ const App = () => {
           <Route path="/Report" exact component={Report} />
           <Route path="/More" exact component={Moredetails} />
           <Route path="/cancel" exact component={CancelPage} />
-          <Route path="/pendingpayment" exact component={PendingPayment} />
+          <Route path="/manageLeaveDashboard" exact component={ManageLeaveDashboard}/>
+          <Route path="/recentLeave" exact component={RecentLeave}/>
+          <Route path="/applyLeave" exact component={ApplyLeave}/>
+          <Route path="/editLeave" exact component={EditLeave}/>
+          <Route path="/employeeLeave" exact component={EmployeeLeave}/>
+          <Route path="/LeaveReports" exact component={LeaveReports}/>
+          <Route path="/servicedashBoard" exact component={ServiceDashBoard}/>
+          <Route path="/newdesign" exact component={NewDesign}/>
+          <Route path="/ongoingdesign" exact component={OngoingDesign}/>
+          <Route path="/completedorders" exact component={CompletedOrders}/>
+	  <Route path="/pendingpayment" exact component={PendingPayment} />
           <Route path="/verifypayment" exact component={VerifyPayment} />
           <Route path="/verifyorder" exact component={VerifyOrder} />
+	  
         </Switch>
       </div>
       <Footer />

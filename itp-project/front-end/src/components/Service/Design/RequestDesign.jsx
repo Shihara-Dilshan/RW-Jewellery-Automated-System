@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import DesignCard from "./DesignCard";
 import M from "materialize-css";
+import '../../../App.css';
 
 import { storageRef } from "../../../firebase";
 
@@ -38,6 +39,17 @@ class RequestDesign extends Component {
 
   requestDesign = (e) => {
     e.preventDefault();
+   
+     const indicator = document.getElementById('indicate');
+  	indicator.classList.remove('hide');
+  	indicator.classList.add('show');
+  
+    if(this.state.image === undefined){
+    	alert("please choose an image");
+    	indicator.classList.remove('show');
+  	indicator.classList.add('hide');
+    	return
+    }
 
     const upload = storageRef.ref(`images/${this.state.image.name}`).put(this.state.image);
     upload.on(
@@ -53,21 +65,23 @@ class RequestDesign extends Component {
           .getDownloadURL()
           .then((url) => {
             console.log(url);
-          });
-      }
-    );
-
+            
+            
     const weight = document.getElementById("weight").value;
     const dealine = document.getElementById("deadline").value;
     if (weight <= 0) {
       alert("Invalid weight");
     } else {
+      const dueDate = document.getElementById('deadline');
       const discount = Number.parseInt(weight) * 20;
       const designId = this.state.selectedDesign;
       const requestDetails = {
         discount: discount,
         selectedDesign: designId,
         deadline: dealine,
+        imageUrl: url.toString(),
+        dueDate: dueDate.value,
+        weight: weight,
       };
       sessionStorage.setItem(
         "designRequestDet",
@@ -75,6 +89,11 @@ class RequestDesign extends Component {
       );
       this.props.history.push("/paymnentinfo");
     }
+          });
+      }
+    );
+
+    
   };
 
   style = () => {
@@ -162,13 +181,13 @@ class RequestDesign extends Component {
                           <h6>Which one to choose</h6>
                           <p>
                             <label>
-                              <input name="group1" type="radio" checked />
+                              <input className="checkerMine" name="group1" type="radio" checked />
                               <span>Start making</span>
                             </label>
                           </p>
                           <p>
                             <label>
-                              <input name="group1" type="radio" />
+                              <input className="checkerMine" name="group1" type="radio" />
                               <span>Wait untill I hand-over the gold</span>
                             </label>
                           </p>
@@ -209,6 +228,9 @@ class RequestDesign extends Component {
                           <br />
                         </div>
                       </div>
+                      <div className="progress hide test" id="indicate">
+                      <div className="indeterminate"></div>
+                    </div>
                       <div className="row">
                         <div className="col s12">
                           <button
@@ -218,12 +240,15 @@ class RequestDesign extends Component {
                           >
                             Proceed
                           </button>
+                           
                         </div>
                       </div>
                     </form>
                   </div>
                 </div>
               </div>
+              
+              
 
               <div className="card-image hide-on-small-only">
                 <img

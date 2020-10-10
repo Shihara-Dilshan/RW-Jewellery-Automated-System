@@ -44,7 +44,33 @@ class NewDesign extends Component {
       });
       	
       	target.classList.add('hide');
-    	   
+      	
+      	let x = new Date().toString();
+
+	    let y = x.split(" ");
+	    let finalString ="";
+
+	    for(let i=0; i<= y.length-4; i++ ){
+            	finalString = finalString + " " + y[i];
+            }
+    	
+    	const updateRecord = await fetch(`api/v2/record/add`, {
+    	    headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify({
+
+    "loginTime": sessionStorage.getItem("loginTime"),
+    "activityTime": finalString.trim(),
+    "activity": "New requested design order assigned as a ongoing order",
+    "admin": {
+      "emp_id": sessionStorage.getItem("adminId"),
+    }
+  }),
+    	
+    	});
     	   
   	}
   	

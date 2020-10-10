@@ -2,9 +2,8 @@ INSERT INTO supplier(supp_id, address, category, company_name, email, name, stat
 INSERT INTO supplier(supp_id, address, category, company_name, email, name, status, telephone) VALUES('f3c4f9da-6acd-4783-8c33-cedb1137dbd0', '55/F Kandy road', 'diamond', 'Diamond way pvt limited', 'Diamondway@gmail.com', 'Diamond way' , 'disabled' , '0813848908');
 INSERT INTO supplier(supp_id, address, category, company_name, email, name, status, telephone) VALUES('6a3e845d-35a7-4adb-919f-e7b1f32034a3', '24/A Colombo', 'material', 'Designers X company', 'designersx@gmail.com', 'Designers X' , 'registered' , '0750895589');
 INSERT INTO supplier(supp_id, address, category, company_name, email, name, status, telephone) VALUES('91b3781b-d81d-4ec5-9497-068eb51a31ac', '122/F California US', 'Jewellery', 'KT Brothers pvt limited', 'ktbrother@gmail.com', 'KT Brothers' , 'disabled' , '0724569853');
-INSERT INTO supplier(supp_id, address, category, company_name, email, name, status, telephone) VALUES('c87fb334-c853-4a08-8478-df646f199a97', '90/A kandy Road ', 'Design', 'TUN HUANG pvt limited', 'tunhuang@gmail.com', 'TUN HUANG' , 'registered' , '0789852123')
+INSERT INTO supplier(supp_id, address, category, company_name, email, name, status, telephone) VALUES('c87fb334-c853-4a08-8478-df646f199a97', '90/A kandy Road ', 'Design', 'TUN HUANG pvt limited', 'tunhuang@gmail.com', 'TUN HUANG' , 'registered' , '0789852123');
 
-INSERT INTO jewellery(jewellery_id, category, description, image_url, material, name, supply_price, supplier_supp_id) VALUES('499f822d-41da-4996-9c54-8336972947be', 'Pendant', '');
 
 INSERT INTO employee
 (emp_id, nic, fname, l_name, "position")
@@ -41,16 +40,32 @@ INSERT INTO design(design_id, description, image_url, name, price) VALUES('995e7
 INSERT INTO design(design_id, description, image_url, name, price) VALUES('c853a59f-70e8-4b3f-8d33-30fad79849dd', 'Diamond most valuable design of all', 'http://www.voguejewellers.lk/wp-content/uploads/2019/07/18-2.jpg', 'Design-X 16mm', '30000');
 
 
-INSERT INTO jewellery(jewellery_id, category, description, image_url, material, name, supply_price, supplier_supp_id)
-VALUES('89296cc2-eb5c-4458-a49f-a19ef9ee9822','Ring','Bangles for every wrist in a range of designs that are contemporary and sophisticated yet timelessly sublime.','https://raw.githubusercontent.com/Shihara-Dilshan/img/master/ITP/categories/nick-karvounis-RjeVqc8eC3s-unsplash.jpg', 'Gold','Bangles','12000','dd38fa97-acb2-4338-ac32-63b3d3312113')
-
-INSERT INTO jewellery(jewellery_id, category, description, image_url, material, name, supply_price, supplier_supp_id)
-VALUES('ea500811-8666-4dce-9ca5-c56ba7547836','Ring','Pendants that are modern art or spiritual symbols, includes a range of Dhammachackras and Crosses.','https://raw.githubusercontent.com/Shihara-Dilshan/img/master/ITP/categories/fallon-michael-orVNEDAylaU-unsplash.jpg', 'White Gold','Pendents','32000','f3c4f9da-6acd-4783-8c33-cedb1137dbd0')
-
-INSERT INTO jewellery(jewellery_id, category, description, image_url, material, name, supply_price, supplier_supp_id)
-VALUES('ae15ae70-b739-48a9-9702-4462d8afdfb6','Ring','Stylish bracelets that put you in a class of your own','https://raw.githubusercontent.com/Shihara-Dilshan/img/master/ITP/categories/nick-karvounis-RjeVqc8eC3s-unsplash.jpg', 'Silver','Bracelets','9000','6a3e845d-35a7-4adb-919f-e7b1f32034a3')
+INSERT INTO category(category_id, category_desc, category_name) VALUES('995e727e-4b5b-4bec-809b-e429263c6fad', 'Bangles for every wrist in a range of designs that are contemporary and sophisticated yet timelessly sublime.', 'Ring');
+INSERT INTO category(category_id, category_desc, category_name) VALUES('c853a59f-70e8-4b3f-8d33-30fad79849dd', 'Pendants that are modern art or spiritual symbols, includes a range of Dhammachackras and Crosses.', 'Pendant');
 
 
-INSERT INTO public.sellable(
-	sellprice, jewellery_id, customer_customer_id)
-	VALUES (?, ?, ?);
+INSERT INTO jewellery(jewellery_id, image_url, material, name, supply_price, category_id, supplier_supp_id)
+VALUES('89296cc2-eb5c-4458-a49f-a19ef9ee9822','https://raw.githubusercontent.com/Shihara-Dilshan/img/master/ITP/categories/nick-karvounis-RjeVqc8eC3s-unsplash.jpg', 'Gold','Bangles','12000','995e727e-4b5b-4bec-809b-e429263c6fad' , 'dd38fa97-acb2-4338-ac32-63b3d3312113');
+
+INSERT INTO jewellery(jewellery_id, image_url, material, name, supply_price, category_id, supplier_supp_id)
+VALUES('ea500811-8666-4dce-9ca5-c56ba7547836','https://raw.githubusercontent.com/Shihara-Dilshan/img/master/ITP/categories/fallon-michael-orVNEDAylaU-unsplash.jpg', 'White Gold','Pendents','32000', 'c853a59f-70e8-4b3f-8d33-30fad79849dd','f3c4f9da-6acd-4783-8c33-cedb1137dbd0');
+
+INSERT INTO jewellery(jewellery_id, image_url, material, name, supply_price, category_id, supplier_supp_id)
+VALUES('ae15ae70-b739-48a9-9702-4462d8afdfb6','https://raw.githubusercontent.com/Shihara-Dilshan/img/master/ITP/categories/nick-karvounis-RjeVqc8eC3s-unsplash.jpg', 'Silver','Bracelets','9000','c853a59f-70e8-4b3f-8d33-30fad79849dd','6a3e845d-35a7-4adb-919f-e7b1f32034a3');
+
+
+INSERT INTO sellable(
+	sellprice, jewellery_id)
+	VALUES (12000, '89296cc2-eb5c-4458-a49f-a19ef9ee9822');
+INSERT INTO sellable(
+	sellprice, jewellery_id)
+	VALUES (9000, 'ea500811-8666-4dce-9ca5-c56ba7547836');
+INSERT INTO sellable(
+	sellprice, jewellery_id)
+	VALUES (19000, 'ae15ae70-b739-48a9-9702-4462d8afdfb6');
+
+
+INSERT INTO record(leave_id, activity, activity_time, login_time, admin_emp_id)
+    VALUES('866d9257-28b8-489c-8c62-b3fb6c981155', 'New requested design order assigned as a ongoing order', 'Sat Oct 10 2020 16:36:29', 'Sat Oct 10 2020 15:00:00', '532818b4-6123-44f8-ada7-2bd1289ca4f1');
+INSERT INTO record(leave_id, activity, activity_time, login_time, admin_emp_id)
+    VALUES('a8d973d2-f19f-49f8-bbd7-75f079b1c185', 'Ongoing design order assigned as a completed order', 'Sun Oct 11 2020 11:34:10', 'Sun Oct 11 2020 10:12:34', '532818b4-6123-44f8-ada7-2bd1289ca4f1');

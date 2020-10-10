@@ -25,7 +25,6 @@ class RequestDelivery extends Component {
 
   async SubmitDelivery(event) {
     event.preventDefault();
-
     const CusIDS = sessionStorage.getItem("userId");
     const city = document.getElementById("City").value;
     const location = document.getElementById("Location").value;
@@ -33,12 +32,6 @@ class RequestDelivery extends Component {
     const Province = document.getElementById("Province").value;
     const PhoneNumber = document.getElementById("PhoneNumber").value;
     const District = document.getElementById("District").value;
-    var today = new Date();
-    var dd = String(today.getDate()).padStart(2, "0");
-    var mm = String(today.getMonth() + 1).padStart(2, "0");
-    var yyyy = today.getFullYear();
-    today = mm + "/" + dd + "/" + yyyy;
-    console.log(today);
     const postDelivery_Request = await fetch("/api/RequestDelivery", {
       headers: {
         Accept: "application/json",
@@ -54,14 +47,13 @@ class RequestDelivery extends Component {
         district: District,
         status: "Pending",
         customerid: CusIDS,
-        requestedTime: today,
       }),
     });
     const responsDelivery = await postDelivery_Request.json();
     const DeliveryIDD = responsDelivery.delivery_id;
     this.state.OrderDetails.delivery = { delivery_id: DeliveryIDD };
     let OOrderID = sessionStorage.getItem("ORID");
-    fetch(`/api/v2/order/updateOrder/${OOrderID}`, {
+    fetch(`/api/v2/orders/updateOrder/${OOrderID}`, {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -74,12 +66,13 @@ class RequestDelivery extends Component {
     const CusIDS = sessionStorage.getItem("userId");
     const APICall = await fetch(`/api/v2/customer/${CusIDS}`);
     const result = await APICall.json();
-
     this.setState({ customerDetails: result });
     let OrderID = sessionStorage.getItem("ORID");
-    const APICall1 = await fetch(`/api/v2/order/${OrderID}`);
+    console.log(OrderID);
+    const APICall1 = await fetch(`/api/v2/orders/${OrderID}`);
     const result1 = await APICall1.json();
     this.setState({ OrderDetails: result1 });
+    console.log(this.state.OrderDetails)
   }
   handldistance = (event) => {
     this.setState({

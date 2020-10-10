@@ -10,8 +10,8 @@ public class Record {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID leave_id;
-    private LocalDate loginTime;
-    private LocalDate logoutTime;
+    private String loginTime;
+    private String activityTime;
     private String activity;
 
     @ManyToOne
@@ -20,9 +20,10 @@ public class Record {
     public Record() {
     }
 
-    public Record(LocalDate loginTime, LocalDate logoutTime, String activity, Admin admin) {
+    public Record(UUID leave_id, String loginTime, String activityTime, String activity, Admin admin) {
+        this.leave_id = leave_id;
         this.loginTime = loginTime;
-        this.logoutTime = logoutTime;
+        this.activityTime = activityTime;
         this.activity = activity;
         this.admin = admin;
     }
@@ -35,20 +36,20 @@ public class Record {
         this.leave_id = leave_id;
     }
 
-    public LocalDate getLoginTime() {
+    public String getLoginTime() {
         return loginTime;
     }
 
-    public void setLoginTime(LocalDate loginTime) {
+    public void setLoginTime(String loginTime) {
         this.loginTime = loginTime;
     }
 
-    public LocalDate getLogoutTime() {
-        return logoutTime;
+    public String getActivityTime() {
+        return activityTime;
     }
 
-    public void setLogoutTime(LocalDate logoutTime) {
-        this.logoutTime = logoutTime;
+    public void setActivityTime(String activityTime) {
+        this.activityTime = activityTime;
     }
 
     public String getActivity() {
@@ -71,8 +72,8 @@ public class Record {
     public String toString() {
         return "Record{" +
                 "leave_id=" + leave_id +
-                ", loginTime=" + loginTime +
-                ", logoutTime=" + logoutTime +
+                ", loginTime='" + loginTime + '\'' +
+                ", activityTime='" + activityTime + '\'' +
                 ", activity='" + activity + '\'' +
                 ", admin=" + admin +
                 '}';

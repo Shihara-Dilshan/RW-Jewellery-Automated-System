@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import axios from "axios";
 import "./../../App.css";
 
 class Buy extends Component {
@@ -96,56 +96,29 @@ class Buy extends Component {
 
     itemId.forEach((cartItem) => {
       // eslint-disable-next-line
-
-      fetch(`/api/v2/orders/sendorder`, {
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-
-        method: "POST",
-        body: JSON.stringify({
-          recipe: "requested",
+      
+      axios.post('/api/v2/orders/sendorder', {
+      	  recipe: "requested",
           payment: { payment_id: paymentId },
-          sellable: { jewellery_id: cartItem.id },
-        }),
-      })
-        .then((data) => {
-          setTimeout(() => {
-            console.dir(data.json());
-            //sessionStorage.setItem("ORID", data.json().o_id);
-          }, 40);
-          fetch(`/api/v2/sellable/update/${cartItem.id}`, {
-            headers: {
-              Accept: "application/json",
-              "Content-Type": "application/json",
-            },
-
-            method: "PUT",
-            body: JSON.stringify({
-              sellprice: amount,
-              amount: itemId,
-              customer: { customer_id: userId },
-            }),
-          });
-        })
-
-        .catch((err) => console.log("there is an error"));
-
-      // eslint-disable-next-line
-
-      // fetch(`/api/v2/order/updateOrder${OrderID}`, {
-      //   headers: {
-      //     Accept: "application/json",
-      //     "Content-Type": "application/json",
-      //   },
-
-      //   method: "PUT",
-      //   body: JSON.stringify({
-      //     customer: { customer_id: userId },
-      //   }),
-      // });
+          sellable: { jewellery_id: cartItem.id },})
+          .then(res => sessionStorage.setItem("ORID", res.data.o_id))
+          .catch(err => console.log(err))
+       
     });
+    
+    itemId.forEach((cartItem) => {
+      // eslint-disable-next-line
+      
+     axios.put(`/api/v2/sellable/update/${cartItem.id}`, {
+      	      sellprice: amount,
+              amount: itemId,
+              customer: { customer_id: userId },})
+          .then(res => console.log(res.data))
+          .catch(err => console.log(err))   
+       
+    });
+    
+     
 
     this.props.history.push("/RequestDelivery");
   };

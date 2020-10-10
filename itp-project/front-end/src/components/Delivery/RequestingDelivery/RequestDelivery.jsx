@@ -7,8 +7,11 @@ class RequestDelivery extends Component {
     this.state = {
       distance: " ",
       customerDetails: {},
+      OrderDetails: {},
       cal: "40",
       DeliveryCharge: " ",
+      deliveryiid: " ",
+      bbb: "",
     };
   }
   style = () => {
@@ -19,15 +22,17 @@ class RequestDelivery extends Component {
       marginBottom: "-15px",
     };
   };
+
   async SubmitDelivery(event) {
     event.preventDefault();
+    const CusIDS = sessionStorage.getItem("userId");
     const city = document.getElementById("City").value;
     const location = document.getElementById("Location").value;
     const Distance = document.getElementById("Distance").value;
     const Province = document.getElementById("Province").value;
     const PhoneNumber = document.getElementById("PhoneNumber").value;
     const District = document.getElementById("District").value;
-    await fetch("/api/RequestDelivery", {
+    const postDelivery_Request = await fetch("/api/RequestDelivery", {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -41,7 +46,20 @@ class RequestDelivery extends Component {
         phoneNumber: PhoneNumber,
         district: District,
         status: "Pending",
+        customerid: CusIDS,
       }),
+    });
+    const responsDelivery = await postDelivery_Request.json();
+    const DeliveryIDD = responsDelivery.delivery_id;
+    this.state.OrderDetails.delivery = { delivery_id: DeliveryIDD };
+    let OOrderID = sessionStorage.getItem("ORID");
+    fetch(`/api/v2/order/updateOrder/${OOrderID}`, {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      method: "PUT",
+      body: JSON.stringify(this.state.OrderDetails),
     });
   }
   async componentDidMount() {
@@ -49,6 +67,10 @@ class RequestDelivery extends Component {
     const APICall = await fetch(`/api/v2/customer/${CusIDS}`);
     const result = await APICall.json();
     this.setState({ customerDetails: result });
+    let OrderID = sessionStorage.getItem("ORID");
+    const APICall1 = await fetch(`/api/v2/order/${OrderID}`);
+    const result1 = await APICall1.json();
+    this.setState({ OrderDetails: result1 });
   }
   handldistance = (event) => {
     this.setState({
@@ -70,11 +92,6 @@ class RequestDelivery extends Component {
       DeliveryCharge: parseInt(this.state.distance) * parseInt(this.state.cal),
     });
     this.SubmitDelivery(event);
-
-    /*setTimeout(() => {
-      M.toast({ html: "Your request has been recorded" });
-      this.props.history.push("/");
-    }, 1000);*/
   };
   render() {
     document.addEventListener("DOMContentLoaded", function () {
@@ -205,7 +222,7 @@ class RequestDelivery extends Component {
           </div>
           <div id="modal1" class="modal">
             <div class="modal-content">
-              <h4>Your Delivery Chargers - {this.state.DeliveryCharge} /=</h4>
+              <h4>Your Delivery Chargers -{this.state.DeliveryCharge} /=</h4>
             </div>
             <div class="modal-footer">
               <button

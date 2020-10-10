@@ -19,6 +19,7 @@ public class Delivery {
     private String deliveryProvince;
     private String phoneNumber;
     private String district;
+    private String customerid;
 
     @ManyToOne
     private DeliverBoy deliverBoy;
@@ -26,7 +27,7 @@ public class Delivery {
     public Delivery() {
     }
 
-    public Delivery(String deliveryAddress, String deliveryCity, LocalDate requestedTime, LocalDate deliveredTime, String status, DeliverBoy deliverBoy , String distance, String deliveryProvince, String phoneNumber, String district) {
+    public Delivery(String deliveryAddress, String deliveryCity, LocalDate requestedTime, LocalDate deliveredTime, String status, DeliverBoy deliverBoy , String distance, String deliveryProvince, String phoneNumber, String district ,String customerid) {
         this.deliveryAddress = deliveryAddress;
         this.deliveryCity = deliveryCity;
         this.requestedTime = requestedTime;
@@ -37,6 +38,7 @@ public class Delivery {
         this.deliveryProvince = deliveryProvince;
         this.phoneNumber= phoneNumber;
         this.district=district;
+        this.customerid=customerid;
 
     }
 
@@ -120,6 +122,14 @@ public class Delivery {
         this.phoneNumber = phoneNumber;
     }
 
+    public String getCustomerid() {
+        return customerid;
+    }
+
+    public void setCustomerid(String customerid) {
+        this.customerid = customerid;
+    }
+
     public String getDistrict() {
         return district;
     }
@@ -141,8 +151,8 @@ public class Delivery {
                 ", deliveryProvince='" + deliveryProvince + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", district='" + district + '\'' +
+                ", customerid='" + customerid + '\'' +
                 ", deliverBoy=" + deliverBoy +
                 '}';
     }
-
 }

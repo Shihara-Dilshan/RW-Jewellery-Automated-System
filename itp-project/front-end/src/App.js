@@ -116,7 +116,7 @@ const App = () => {
           <Route path="/newdesign" exact component={NewDesign}/>
           <Route path="/ongoingdesign" exact component={OngoingDesign}/>
           <Route path="/completedorders" exact component={CompletedOrders}/>
-	  <Route path="/pendingpayment" exact component={PendingPayment} />
+	      <Route path="/pendingpayment" exact component={PendingPayment} />
           <Route path="/verifypayment" exact component={VerifyPayment} />
           <Route path="/verifyorder" exact component={VerifyOrder} />
 	  
@@ -127,4 +127,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default App;    

@@ -30,6 +30,7 @@ class UpdateDelivery extends Component {
     const DProvince = document.getElementById("province").value;
     const DphoneNumber = document.getElementById("phoneNumber").value;
     const Ddistrict = document.getElementById("district").value;
+    const Cusid = document.getElementById("cusid").value;
     await fetch(`/api/updatestatus/${DeliverID}`, {
       headers: {
         Accept: "application/json",
@@ -48,6 +49,7 @@ class UpdateDelivery extends Component {
         phoneNumber: DphoneNumber,
         district: Ddistrict,
         deliverBoy: { emp_id: DriverID },
+        customerid: Cusid,
       }),
     });
   };
@@ -136,6 +138,13 @@ class UpdateDelivery extends Component {
           type="text"
           className="validate"
           value={this.state.TempDel.district}
+          hidden
+        />
+        <input
+          id="cusid"
+          type="text"
+          className="validate"
+          value={this.state.TempDel.customerid}
           hidden
         />
       </div>

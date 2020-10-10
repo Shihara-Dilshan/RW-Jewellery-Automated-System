@@ -42,6 +42,9 @@ public class DeliveryService {
     public List<Delivery> getdeliveryByStatus(String status) {
         return deliverRepository.findByStatus(status);
     }
+    public List<Delivery> getdeliveryBycustomerid(String customerid,String status) {
+        return deliverRepository.findBycustomerid(customerid,status);
+    }
     public ResponseEntity<?> deletedelivery(UUID id){
         deliverRepository.deleteById(id);
         return ResponseEntity.ok().build();

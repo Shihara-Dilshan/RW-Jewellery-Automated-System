@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import M from "materialize-css";
+import DeliveryCancellRequest from "./DeliveryCancellRequest";
 class CancelPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       Delcancel: {},
+      Delcancel2: [],
     };
   }
   async componentDidMount() {
@@ -13,14 +15,26 @@ class CancelPage extends Component {
     const Result = await APICall.json();
     console.log(Result);
     this.setState({ Delcancel: Result });
+    const APICall2 = await fetch(`api/v2/order/OrderbyDelivery/${DeliveryID}`);
+    const Result2 = await APICall2.json();
+    console.log(Result2);
+    this.setState({ Delcancel2: Result2 });
+    console.log(this.state.Delcancel2);
   }
-  remove(id) {
-    fetch(`/api/deletedelivery/${id}`, {
-      method: "DELETE",
+  async remove(id, id2) {
+    fetch(`/api/v2/order/deleteOrder/${id}`, {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
+      method: "DELETE",
+    });
+    fetch(`/api/deletedelivery/${id2}`, {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      method: "DELETE",
     })
       .then(() => {
         console.log("removed");
@@ -56,17 +70,24 @@ class CancelPage extends Component {
                   <h6>Delivery distance -{this.state.Delcancel.distance}</h6>
                 </p>
               </div>
-              <div class="card-action">
-                <button
-                  data-target="modal1"
-                  type="submit"
-                  class="btn modal-trigger"
-                  style={{ width: "100%" }}
-                  onClick={this.remove(this.state.Delcancel.delivery_id)}
-                >
-                  Cancel Delivery
-                </button>
-              </div>
+              {this.state.Delcancel2.map((DelivereyCancel) => {
+                return (
+                  <div class="card-action">
+                    <button
+                      data-target="modal1"
+                      type="submit"
+                      class="btn modal-trigger"
+                      style={{ width: "100%" }}
+                      onClick={this.remove(
+                        DelivereyCancel.o_id,
+                        this.state.Delcancel.delivery_id
+                      )}
+                    >
+                      Remove from Delivery orders
+                    </button>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>

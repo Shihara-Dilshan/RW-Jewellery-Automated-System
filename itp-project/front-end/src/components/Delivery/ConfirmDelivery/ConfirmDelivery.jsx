@@ -24,7 +24,8 @@ class ConfirmDelivery extends Component {
     const DeliverID = sessionStorage.getItem("assignItemDriver");
     const Daddress = document.getElementById("address").value;
     const DCity = document.getElementById("city").value;
-    //const DboyID = document.getElementById("deliverBoy").value;
+    const DboyID = document.getElementById("deliverBoy").value;
+    const Cusid = document.getElementById("cusid").value;
     const Ddistance = document.getElementById("distance").value;
     const DProvince = document.getElementById("province").value;
     const DphoneNumber = document.getElementById("phoneNumber").value;
@@ -46,7 +47,8 @@ class ConfirmDelivery extends Component {
         deliveryProvince: DProvince,
         phoneNumber: DphoneNumber,
         district: Ddistrict,
-        //deliverBoy: DboyID,
+        customerid: Cusid,
+        deliverBoy: { emp_id: DboyID },
       }),
     });
   };
@@ -137,6 +139,13 @@ class ConfirmDelivery extends Component {
           type="text"
           className="validate"
           value={this.state.TempDel.district}
+          hidden
+        />
+        <input
+          id="cusid"
+          type="text"
+          className="validate"
+          value={this.state.TempDel.customerid}
           hidden
         />
       </div>

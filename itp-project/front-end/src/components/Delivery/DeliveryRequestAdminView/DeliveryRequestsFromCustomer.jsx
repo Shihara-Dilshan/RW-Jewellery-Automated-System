@@ -22,6 +22,8 @@ class DeliveryRequestsFromCustomer extends Component {
     let deliverID =
       e.target.parentElement.parentElement.parentElement.firstChild.innerHTML;
     sessionStorage.setItem("assignItemDriver", deliverID);
+    const cusid = document.getElementById("cusid").value;
+    sessionStorage.setItem("cusid", cusid);
   };
   async componentDidMount() {
     const APICall = await fetch("/api/alldelivery");
@@ -76,7 +78,7 @@ class DeliveryRequestsFromCustomer extends Component {
                       {Delivery.delivery_id}
                     </td>
 
-                    <td>CUS1234</td>
+                    <input id="cusid" value={Delivery.customerid}></input>
                     <td>B123</td>
                     <td>{Delivery.deliveryAddress}</td>
                     <td>Bangles</td>

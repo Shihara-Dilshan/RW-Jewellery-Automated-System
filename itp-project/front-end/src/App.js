@@ -56,7 +56,8 @@ import VerifyPayment from "./components/Admin/AdminPayment/VerifyPayment";
 import VerifyOrder from "./components/User/userPurchase/VerifyOrder";
 import UserCancel from "./components/Delivery/DeliverCancelRequest/UserCancel";
 import UserDelivercancel from "./components/Delivery/DeliverCancelRequest/UserDelivercancel";
-
+import Ongoingdeliveries from "./components/Delivery/OngoingDeliveries/Ongoingdeliveries";
+import More from "./components/Delivery/OngoingDeliveries/More";
 const App = () => {
   return (
     <Router>
@@ -93,6 +94,8 @@ const App = () => {
             exact
             component={DeliveryCancellRequest}
           />
+          <Route path="/more" exact component={More} />
+          <Route path="/ongoingdelivery" exact component={Ongoingdeliveries} />
           <Route
             path="/DeliveryDriverReport"
             exact

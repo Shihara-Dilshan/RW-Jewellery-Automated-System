@@ -44,7 +44,7 @@ class AssignDriver extends Component {
     const DriverID = document.getElementById("DriverID").value;
     const Daddress = document.getElementById("address").value;
     const DCity = document.getElementById("city").value;
-
+    const Cusid = document.getElementById("cusid").value;
     const Ddistance = document.getElementById("distance").value;
     const DProvince = document.getElementById("province").value;
     const DphoneNumber = document.getElementById("phoneNumber").value;
@@ -67,6 +67,7 @@ class AssignDriver extends Component {
         phoneNumber: DphoneNumber,
         district: Ddistrict,
         deliverBoy: { emp_id: DriverID },
+        customerid: Cusid,
       }),
     });
 
@@ -152,6 +153,13 @@ class AssignDriver extends Component {
                     type="text"
                     className="validate"
                     value={this.state.TempDel.district}
+                    hidden
+                  />
+                  <input
+                    id="cusid"
+                    type="text"
+                    className="validate"
+                    value={this.state.TempDel.customerid}
                     hidden
                   />
                 </div>

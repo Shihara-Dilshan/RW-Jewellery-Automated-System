@@ -25,6 +25,7 @@ class RequestDelivery extends Component {
 
   async SubmitDelivery(event) {
     event.preventDefault();
+    const CusIDS = sessionStorage.getItem("userId");
     const city = document.getElementById("City").value;
     const location = document.getElementById("Location").value;
     const Distance = document.getElementById("Distance").value;
@@ -45,6 +46,7 @@ class RequestDelivery extends Component {
         phoneNumber: PhoneNumber,
         district: District,
         status: "Pending",
+        customerid: CusIDS,
       }),
     });
     const responsDelivery = await postDelivery_Request.json();

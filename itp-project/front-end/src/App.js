@@ -41,6 +41,8 @@ import ConfirmDriver from "./components/Delivery/DeliveryDriverReport/ConfirmDri
 import Report from "./components/Delivery/DeliveryDriverReport/Report";
 import Moredetails from "./components/Delivery/DeliveryDriverReport/Moredetails";
 import CancelPage from "./components/Delivery/DeliverCancelRequest/CancelPage";
+import UserCancel from "./components/Delivery/DeliverCancelRequest/UserCancel";
+import UserDelivercancel from "./components/Delivery/DeliverCancelRequest/UserDelivercancel";
 
 const App = () => {
   return (
@@ -82,6 +84,12 @@ const App = () => {
             path="/DeliveryDriverReport"
             exact
             component={DeliveryDriverReport}
+          />
+          <Route path="/UserCancel" exact component={UserCancel} />
+          <Route
+            path="/UserDelivercancel"
+            exact
+            component={UserDelivercancel}
           />
           <Route path="/DeliveryDriver" exact component={DeliveryDriver} />
           <Route path="/adminlogin" exact component={AdminLogin} />

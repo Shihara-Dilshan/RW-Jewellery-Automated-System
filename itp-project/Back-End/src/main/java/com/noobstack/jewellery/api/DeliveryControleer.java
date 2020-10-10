@@ -30,6 +30,9 @@ public class DeliveryControleer {
     @RequestMapping("/delivery/deliveryStatus/{status}")
     List<Delivery> getDeliveryByStatus(@PathVariable String status){
         return this.deliveryService.getdeliveryByStatus(status); }
+    @RequestMapping("/delivery/deliverycustomer/{customerid}/{status}")
+    List<Delivery> getDeliveryBycustomerid(@PathVariable("customerid")String customerid,@PathVariable("status")String status){
+        return this.deliveryService.getdeliveryBycustomerid(customerid,status);}
 
     @GetMapping("/alldelivery")
     List<Delivery> getAlldeliveries(){

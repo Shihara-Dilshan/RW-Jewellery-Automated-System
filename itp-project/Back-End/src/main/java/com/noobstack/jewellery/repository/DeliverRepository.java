@@ -14,5 +14,10 @@ public interface DeliverRepository extends JpaRepository<Delivery, UUID> {
 
     List<Delivery> findByDeliverBoy(DeliverBoy deliverBoy);
     List<Delivery> findByStatus(String status);
+    @Query("select d "+
+            "from Delivery d "+
+            "where d.customerid=?1 and d.status=?2")
+
+    List<Delivery> findBycustomerid(String customerid,String status);
 
 }

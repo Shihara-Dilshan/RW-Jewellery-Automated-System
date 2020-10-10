@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 
-import javax.persistence.criteria.Order;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -37,9 +36,25 @@ public class OrderService {
         return order.map(response ->
                 ResponseEntity.ok().body(response))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+
     }
+
+    public ResponseEntity<?> deleteOrder(UUID id) {
+        ordersRepository.deleteById(id);
+        return ResponseEntity.ok().build();
+    }
+
+
+    public List<Orders> getRecipeByStatus(String recipe) {
+        return ordersRepository.findByRecipe(recipe);
+    }
+
     public Orders updateOrder(UUID id, Orders orders) {
         orders.setO_id(id);
         return ordersRepository.save(orders);
+    }
+
+    public List<Orders> getorderyBydelivery(Delivery delivery) {
+        return ordersRepository.findBydelivery(delivery);
     }
 }

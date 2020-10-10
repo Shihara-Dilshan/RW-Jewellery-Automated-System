@@ -75,59 +75,77 @@ class Buy extends Component {
     let paymentstatus = document.getElementById("check1").value;
     // eslint-disable-next-line
     let userId = sessionStorage.getItem("userId");
+
     const putPayment = await fetch("/api/v2/payment/sendPayment", {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
+
       method: "POST",
       body: JSON.stringify({
         amount: amount,
         paymentstatus: paymentstatus,
       }),
     });
+
     const response = await putPayment.json();
     const paymentId = response.payment_id;
 
-    let itemId = JSON.parse(sessionStorage.getItem("cart"))[0].id;
+    let itemId = JSON.parse(sessionStorage.getItem("cart"));
 
-    console.log(response);
+    itemId.forEach((cartItem) => {
+      // eslint-disable-next-line
 
-    // eslint-disable-next-line
-    const postOrder = await fetch(`/api/v2/order/sendorder`, {
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-
-      method: "POST",
-      body: JSON.stringify({
-        recipe: "requested",
-        payment: { payment_id: paymentId },
-        sellable: { jewellery_id: itemId },
-      }),
-    });
-    const responseorder = await postOrder.json();
-    const OrderID = responseorder.o_id;
-    sessionStorage.setItem("ORID", OrderID);
-
-    // eslint-disable-next-line
-    const updateSellableItem = await fetch(
-      `/api/v2/sellable/update/${itemId}`,
-      {
+      fetch(`/api/v2/orders/sendorder`, {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
 
-        method: "PUT",
+        method: "POST",
         body: JSON.stringify({
-          sellprice: amount,
-          amount: itemId,
-          customer: { customer_id: userId },
+          recipe: "requested",
+          payment: { payment_id: paymentId },
+          sellable: { jewellery_id: cartItem.id },
         }),
-      }
-    );
+      })
+        .then((data) => {
+          setTimeout(() => {
+            console.dir(data.json());
+            //sessionStorage.setItem("ORID", data.json().o_id);
+          }, 40);
+          fetch(`/api/v2/sellable/update/${cartItem.id}`, {
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+
+            method: "PUT",
+            body: JSON.stringify({
+              sellprice: amount,
+              amount: itemId,
+              customer: { customer_id: userId },
+            }),
+          });
+        })
+
+        .catch((err) => console.log("there is an error"));
+
+      // eslint-disable-next-line
+
+      // fetch(`/api/v2/order/updateOrder${OrderID}`, {
+      //   headers: {
+      //     Accept: "application/json",
+      //     "Content-Type": "application/json",
+      //   },
+
+      //   method: "PUT",
+      //   body: JSON.stringify({
+      //     customer: { customer_id: userId },
+      //   }),
+      // });
+    });
 
     this.props.history.push("/RequestDelivery");
   };
@@ -176,6 +194,16 @@ class Buy extends Component {
                     name="address"
                     disabled={true}
                     value="2020-08-30"
+                  ></input>
+                  <br></br>
+                  <br></br>
+                  <label htmlFor="address">Phone Number</label>
+                  <input
+                    type="number"
+                    id="tp"
+                    length="10"
+                    //disabled={true}
+                    //value={this.state.curTime}
                   ></input>
                   <br></br>
                   <h6>Payement Method</h6>

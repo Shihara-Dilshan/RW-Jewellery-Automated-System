@@ -1,27 +1,37 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import "./../../../App.css";
+import { Link } from "react-router-dom";
 
-class PurchuseTable extends Component {
+class PendingPayment extends Component {
   constructor(props) {
     super(props);
     this.state = {
       userPurchuses: "",
-      orders: [],
+      payment: [],
       first: "",
     };
   }
 
   async componentDidMount() {
-    let recipe = "requested";
-    const APICall = await fetch(`/api/v2/orders/recipe/${recipe}`);
+    let paymentstatus = "Paid";
+    const APICall = await fetch(
+      `/api/v2/payment/paymentStatus/${paymentstatus}`
+    );
+    // .then((res) => res.json())
+    // .then((data) => {
+    //   this.setState({
+    //     orders: data,
+    //     first: data.orders.payment.payment_id,
+    //   });
+    //   console.log(data.orders.payment.payment_id);
+    // })
+    // .catch((err) => console.log(err));
     const Result = await APICall.json();
-    this.setState({ orders: Result });
+    this.setState({ payment: Result });
   }
-
-  getorderid = (e) => {
-    let orderid = document.getElementById("oID").value;
-    sessionStorage.setItem("orderID", orderid);
+  getpaymentid = (e) => {
+    let paymentid = document.getElementById("payID").value;
+    sessionStorage.setItem("paymentid", paymentid);
   };
 
   style = () => {
@@ -49,13 +59,13 @@ class PurchuseTable extends Component {
                 <img
                   id="signUpImage"
                   alt=""
-                  src="https://image.freepik.com/free-vector/successful-purchase-concept-illustration_114360-2652.jpg"
+                  src="https://image.freepik.com/free-vector/payment-information-concept-illustration_114360-2886.jpg"
                   height="100%"
                 />
               </div>
               <div className="card-stacked">
                 <div className="card-content">
-                  <h4 className="center-align grey-text">My Jewellery</h4>
+                  <h4 className="center-align grey-text">Pending Payments</h4>
                   <div className="row">
                     <div className="center-align center"></div>
                     <br />
@@ -66,37 +76,37 @@ class PurchuseTable extends Component {
                             <table className="striped">
                               <thead>
                                 <tr>
-                                  <th>Order ID</th>
-                                  <th>Jewelry Name</th>
+                                  <th>Payment ID</th>
+                                  <th>Payment Date</th>
                                   <th>Amount</th>
-                                  <th>Date</th>
-                                  <th>Cancel Order</th>
+                                  <th>Payment Status</th>
+                                  <th>Change Status</th>
                                 </tr>
                               </thead>
 
                               <tbody>
-                                {this.state.orders.map((Requested) => {
+                                {this.state.payment.map((Paid) => {
                                   return (
                                     <tr>
                                       <td>
                                         <input
-                                          id="oID"
+                                          id="payID"
                                           disabled={true}
-                                          value={Requested.o_id}
+                                          value={Paid.payment_id}
                                         ></input>
                                       </td>
-                                      <td>{Requested.sellable.name}</td>
-                                      <td>{Requested.sellable.sellprice}</td>
-                                      <td>{Requested.sellable.paymentDate}</td>
+                                      <td>{Paid.payment_date}</td>
+                                      <td>{Paid.amount}</td>
+                                      <td>{Paid.paymentstatus}</td>
                                       <td>
-                                        <Link to="/verifyorder">
+                                        <Link to="/verifypayment">
                                           <button className="btn white black-text">
                                             <i
                                               className="material-icons"
                                               style={{ lineHeight: "30px" }}
-                                              onClick={this.getorderid}
+                                              onClick={this.getpaymentid}
                                             >
-                                              cancel
+                                              offline_pin
                                             </i>
                                           </button>
                                         </Link>
@@ -121,4 +131,4 @@ class PurchuseTable extends Component {
   };
 }
 
-export default PurchuseTable;
+export default PendingPayment;

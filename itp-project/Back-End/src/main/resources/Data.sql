@@ -41,3 +41,16 @@ INSERT INTO design(design_id, description, image_url, name, price) VALUES('995e7
 INSERT INTO design(design_id, description, image_url, name, price) VALUES('c853a59f-70e8-4b3f-8d33-30fad79849dd', 'Diamond most valuable design of all', 'http://www.voguejewellers.lk/wp-content/uploads/2019/07/18-2.jpg', 'Design-X 16mm', '30000');
 
 
+INSERT INTO jewellery(jewellery_id, category, description, image_url, material, name, supply_price, supplier_supp_id)
+VALUES('89296cc2-eb5c-4458-a49f-a19ef9ee9822','Ring','Bangles for every wrist in a range of designs that are contemporary and sophisticated yet timelessly sublime.','https://raw.githubusercontent.com/Shihara-Dilshan/img/master/ITP/categories/nick-karvounis-RjeVqc8eC3s-unsplash.jpg', 'Gold','Bangles','12000','dd38fa97-acb2-4338-ac32-63b3d3312113')
+
+INSERT INTO jewellery(jewellery_id, category, description, image_url, material, name, supply_price, supplier_supp_id)
+VALUES('ea500811-8666-4dce-9ca5-c56ba7547836','Ring','Pendants that are modern art or spiritual symbols, includes a range of Dhammachackras and Crosses.','https://raw.githubusercontent.com/Shihara-Dilshan/img/master/ITP/categories/fallon-michael-orVNEDAylaU-unsplash.jpg', 'White Gold','Pendents','32000','f3c4f9da-6acd-4783-8c33-cedb1137dbd0')
+
+INSERT INTO jewellery(jewellery_id, category, description, image_url, material, name, supply_price, supplier_supp_id)
+VALUES('ae15ae70-b739-48a9-9702-4462d8afdfb6','Ring','Stylish bracelets that put you in a class of your own','https://raw.githubusercontent.com/Shihara-Dilshan/img/master/ITP/categories/nick-karvounis-RjeVqc8eC3s-unsplash.jpg', 'Silver','Bracelets','9000','6a3e845d-35a7-4adb-919f-e7b1f32034a3')
+
+
+INSERT INTO public.sellable(
+	sellprice, jewellery_id, customer_customer_id)
+	VALUES (?, ?, ?);

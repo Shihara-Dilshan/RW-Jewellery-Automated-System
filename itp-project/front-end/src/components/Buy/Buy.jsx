@@ -107,11 +107,14 @@ class Buy extends Component {
         body: JSON.stringify({
           recipe: "requested",
           payment: { payment_id: paymentId },
-
           sellable: { jewellery_id: cartItem.id },
         }),
       })
-        .then(() => {
+        .then((data) => {
+          setTimeout(() => {
+            console.dir(data.json());
+            //sessionStorage.setItem("ORID", data.json().o_id);
+          }, 40);
           fetch(`/api/v2/sellable/update/${cartItem.id}`, {
             headers: {
               Accept: "application/json",
@@ -126,9 +129,22 @@ class Buy extends Component {
             }),
           });
         })
+
         .catch((err) => console.log("there is an error"));
 
       // eslint-disable-next-line
+
+      // fetch(`/api/v2/order/updateOrder${OrderID}`, {
+      //   headers: {
+      //     Accept: "application/json",
+      //     "Content-Type": "application/json",
+      //   },
+
+      //   method: "PUT",
+      //   body: JSON.stringify({
+      //     customer: { customer_id: userId },
+      //   }),
+      // });
     });
 
     this.props.history.push("/RequestDelivery");

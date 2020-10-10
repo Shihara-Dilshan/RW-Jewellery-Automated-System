@@ -41,6 +41,9 @@ import ConfirmDriver from "./components/Delivery/DeliveryDriverReport/ConfirmDri
 import Report from "./components/Delivery/DeliveryDriverReport/Report";
 import Moredetails from "./components/Delivery/DeliveryDriverReport/Moredetails";
 import CancelPage from "./components/Delivery/DeliverCancelRequest/CancelPage";
+import PendingPayment from "./components/Admin/AdminPayment/PendingPayment";
+import VerifyPayment from "./components/Admin/AdminPayment/VerifyPayment";
+import VerifyOrder from "./components/User/userPurchase/VerifyOrder";
 
 const App = () => {
   return (
@@ -93,6 +96,9 @@ const App = () => {
           <Route path="/Report" exact component={Report} />
           <Route path="/More" exact component={Moredetails} />
           <Route path="/cancel" exact component={CancelPage} />
+          <Route path="/pendingpayment" exact component={PendingPayment} />
+          <Route path="/verifypayment" exact component={VerifyPayment} />
+          <Route path="/verifyorder" exact component={VerifyOrder} />
         </Switch>
       </div>
       <Footer />

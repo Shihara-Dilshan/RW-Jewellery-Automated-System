@@ -1,8 +1,8 @@
 package com.noobstack.jewellery.api;
 
+import com.noobstack.jewellery.model.Delivery;
 import com.noobstack.jewellery.model.Orders;
 import com.noobstack.jewellery.service.OrderService;
-import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -30,8 +30,8 @@ public class OrderController {
         return this.orderService.getAllOrders();
     }
 
-    @GetMapping("/{id}")
-    ResponseEntity<?> getOrderById(@PathVariable UUID id) {return  this.orderService.getOrderById(id);}
+    @GetMapping("/{orderid}")
+    ResponseEntity<?> getOrderById(@PathVariable UUID orderid) {return  this.orderService.getOrderById(orderid);}
 
     @PostMapping("/sendorder")
     ResponseEntity<Orders> addNewOrder(@Validated @RequestBody Orders orders) throws URISyntaxException {
@@ -46,4 +46,15 @@ public class OrderController {
     List<Orders> getRecipeByStatus(@PathVariable String recipe){
         return this.orderService.getRecipeByStatus(recipe);
     }
+
+    @PutMapping("updateOrder/{o_id}")
+    public Orders updateOrder(@PathVariable("o_id") UUID id, @RequestBody Orders orders) {
+        return orderService.updateOrder(id,orders);
+    }
+
+    @RequestMapping("/OrderbyDelivery/{delivery}")
+    List<Orders> getDeliveryByStatus(@PathVariable Delivery delivery){
+        return this.orderService.getorderyBydelivery(delivery); }
+
+
 }

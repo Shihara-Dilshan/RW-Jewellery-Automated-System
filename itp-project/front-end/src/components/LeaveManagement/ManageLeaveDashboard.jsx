@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 class ManageLeaveDashboard extends Component{
     style = () => {
         return {
@@ -15,17 +16,23 @@ class ManageLeaveDashboard extends Component{
                 
                 <div class="row">
                 <div class="col s12 offset-s2" >
-                <a href="/EmployeeLeave" class="waves-effect grey darken-1 btn-large col s8">View Employees and Apply Leave</a>
+                <Link to ='/EmployeeLeave'>
+                <a class="waves-effect grey darken-1 btn-large col s8">View Employees and Apply Leave</a>
+                </Link>
                 </div>
                 </div>
                 <div class="row">
                 <div class="col s12 offset-s2" >
-                <a href="/RecentLeave" class="waves-effect grey darken-1 btn-large col s8">View Recently Applied Leave And Make Changes</a>
+                <Link to ='/RecentLeave'>
+                <a class="waves-effect grey darken-1 btn-large col s8">View Recently Applied Leave And Make Changes</a>
+                </Link>
                 </div>
                 </div>
                 <div class="row">
                 <div class="col s12 offset-s2" >
-                <a href="/LeaveReports" class="waves-effect grey darken-1 btn-large col s8">Leave Reports</a>
+                <Link to='LeaveReports'>
+                <a class="waves-effect grey darken-1 btn-large col s8">Leave Reports</a>
+                </Link>
                 </div>
                 </div>
                 </div>

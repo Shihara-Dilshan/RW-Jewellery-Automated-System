@@ -6,7 +6,7 @@ class DeliveryDriverReport extends Component {
   getName = (e) => {
     let DriverName = document.getElementById("DriverName").value;
     console.log(DriverName);
-    sessionStorage.setItem("DriverName", DriverName);
+    sessionStorage.setItem("DriverName",DriverName);
   };
   render() {
     return (
@@ -24,7 +24,7 @@ class DeliveryDriverReport extends Component {
                 <div class="row">
                   <div class="input-field col s6">
                     <input id="DriverName" type="text" class="validate" />
-                    <br />
+                    <br/>
                     <Link to="/ConfirmDriver">
                       <button
                         data-target="modal1"

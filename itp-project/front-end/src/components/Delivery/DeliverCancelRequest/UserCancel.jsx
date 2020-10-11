@@ -11,11 +11,10 @@ class UserCancel extends Component {
   async componentDidMount() {
     const CusIDS = sessionStorage.getItem("userId");
     let Status = "Pending";
-    const APICall = await fetch(
-      `/api/delivery/deliverycustomer/${CusIDS}/${Status}`
-    );
+    const APICall = await fetch(`/api/delivery/deliverycustomer/${CusIDS}/${Status}`);
     const Result = await APICall.json();
     this.setState({ Userdelivery: Result });
+    
   }
   canceldata = (e) => {
     let deliverID = document.getElementById("deliveryid").value;
@@ -31,7 +30,7 @@ class UserCancel extends Component {
             <div className="card-image">
               <img
                 alt="camcelimage"
-                src="https://image.freepik.com/free-vector/happy-man-online-dating-via-laptop_74855-7495.jpg"
+                src="https://image.freepik.com/free-vector/delivery-service-with-masks-concept_23-2148499097.jpg"
               />
             </div>
             <div className="card-stacked">
@@ -40,7 +39,6 @@ class UserCancel extends Component {
                   <thead>
                     <tr>
                       <th>Delivery Status</th>
-                      <th>Item Name</th>
                       <th>Delivery Code</th>
                       <th>Cancel</th>
                     </tr>
@@ -51,7 +49,7 @@ class UserCancel extends Component {
                       return (
                         <tr>
                           <td>{cancel.status}</td>
-                          <td>Bangales</td>
+                         
 
                           <td>
                             <input

@@ -58,6 +58,10 @@ import RecordDashBoard from "./components/Admin/Record/RecordDashBoard";
 import AdminLogs from "./components/Admin/Record/AdminLogs/AdminLogs"
 import UserCancel from "./components/Delivery/DeliverCancelRequest/UserCancel";
 import UserDelivercancel from "./components/Delivery/DeliverCancelRequest/UserDelivercancel";
+import Search from "./components/Delivery/DeliveryDriverReport/Search";
+import DeliveredMoreDetails from "./components/Delivery/DeliveredItems/DeliveredMoreDetails";
+import Ongoingdeliveries from "./components/Delivery/OngoingDeliveries/Ongoingdeliveries";
+import More from "./components/Delivery/OngoingDeliveries/More";
 const App = () => {
   return (
     <Router>
@@ -95,6 +99,11 @@ const App = () => {
             component={DeliveryCancellRequest}
           />
           <Route
+            path="/DeliveredMore"
+            exact
+            component={DeliveredMoreDetails}
+          />
+          <Route
             path="/DeliveryDriverReport"
             exact
             component={DeliveryDriverReport}
@@ -130,6 +139,10 @@ const App = () => {
           <Route path="/verifyorder" exact component={VerifyOrder} />
 	  <Route path="/recorddashboard" exact component={RecordDashBoard} />
 	  <Route path="/adminlogs" exact component={AdminLogs} />
+    <Route path="/search" exact component={Search}/>
+    <Route path="/OngoingDelivery" exact component={Ongoingdeliveries}/>
+    <Route path="/OngoingMore" exact component={More}/>
+
         </Switch>
       </div>
       <Footer />

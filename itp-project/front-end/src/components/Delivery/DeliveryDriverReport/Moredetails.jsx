@@ -7,18 +7,33 @@ class Moredetails extends Component {
     super(props);
     this.state = {
       DriverRep: {},
+      Riporderdetails:[],
+      RipJewel:{},
+
     };
   }
+  back = (e) => {
+    setTimeout(() => {
+      sessionStorage.removeItem("ReDid");
+      this.props.history.push("/Report");
+    }, 1000);
+  };
   async componentDidMount() {
     const DeliverID = sessionStorage.getItem("ReDid");
     console.log(DeliverID);
     const apitemp = await fetch(`api/deliverybyid/${DeliverID}`);
     const tempResult = await apitemp.json();
     this.setState({ DriverRep: tempResult });
-
+    const APICall = await fetch(`/api/v2/orders/OrderbyDelivery/${DeliverID}`);
+    const result = await APICall.json();
+    console.log(result);
+    this.setState({Riporderdetails: result });
+    
+    this.setState({RipJewel:this.state.Riporderdetails[0].sellable});
+    console.log(this.state.RipJewel);
     const elems = document.querySelectorAll("select");
-    M.FormSelect.init(elems);
   }
+  back
   render() {
     return (
       <div>
@@ -56,19 +71,26 @@ class Moredetails extends Component {
                 </h6>
                 <br />
                 <h6 className="center-align grey-text">
-                  Delivered Time- {this.state.deliveredTime}
+                  Delivered Time- {this.state.DriverRep.deliveredTime}
                 </h6>
                 <br />
-                <Link to="/del">
+                <h6 className="center-align grey-text">
+                 Delivered Jewellery ID- {this.state.RipJewel.jewellery_id}
+                </h6>
+                <h6 className="center-align grey-text">
+                 Delivered Jewellery Name- {this.state.RipJewel.name}
+                </h6>
+                
                   <button
                     data-target="modal1"
                     type="submit"
                     class="btn modal-trigger"
                     style={{ width: "100%" }}
+                    onClick={this.back}
                   >
-                    Delivery Home
+                    Back
                   </button>
-                </Link>
+                
               </div>
               <div className="card-action"></div>
             </div>

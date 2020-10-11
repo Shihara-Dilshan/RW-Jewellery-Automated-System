@@ -12,8 +12,8 @@ public class Delivery {
     private UUID delivery_id;
     private String deliveryAddress;
     private String deliveryCity;
-    private LocalDate requestedTime;
-    private LocalDate deliveredTime;
+    private String requestedTime;
+    private String deliveredTime;
     private String status;
     private String distance;
     private String deliveryProvince;
@@ -27,7 +27,7 @@ public class Delivery {
     public Delivery() {
     }
 
-    public Delivery(String deliveryAddress, String deliveryCity, LocalDate requestedTime, LocalDate deliveredTime, String status, DeliverBoy deliverBoy , String distance, String deliveryProvince, String phoneNumber, String district ,String customerid) {
+    public Delivery(String deliveryAddress, String deliveryCity, String requestedTime, String deliveredTime, String status, DeliverBoy deliverBoy , String distance, String deliveryProvince, String phoneNumber, String district ,String customerid) {
         this.deliveryAddress = deliveryAddress;
         this.deliveryCity = deliveryCity;
         this.requestedTime = requestedTime;
@@ -66,19 +66,19 @@ public class Delivery {
         this.deliveryCity = deliveryCity;
     }
 
-    public LocalDate getRequestedTime() {
+    public String getRequestedTime() {
         return requestedTime;
     }
 
-    public void setRequestedTime(LocalDate requestedTime) {
+    public void setRequestedTime(String requestedTime) {
         this.requestedTime = requestedTime;
     }
 
-    public LocalDate getDeliveredTime() {
+    public String getDeliveredTime() {
         return deliveredTime;
     }
 
-    public void setDeliveredTime(LocalDate deliveredTime) {
+    public void setDeliveredTime(String deliveredTime) {
         this.deliveredTime = deliveredTime;
     }
 
@@ -144,8 +144,8 @@ public class Delivery {
                 "delivery_id=" + delivery_id +
                 ", deliveryAddress='" + deliveryAddress + '\'' +
                 ", deliveryCity='" + deliveryCity + '\'' +
-                ", requestedTime=" + requestedTime +
-                ", deliveredTime=" + deliveredTime +
+                ", requestedTime='" + requestedTime + '\'' +
+                ", deliveredTime='" + deliveredTime + '\'' +
                 ", status='" + status + '\'' +
                 ", distance='" + distance + '\'' +
                 ", deliveryProvince='" + deliveryProvince + '\'' +

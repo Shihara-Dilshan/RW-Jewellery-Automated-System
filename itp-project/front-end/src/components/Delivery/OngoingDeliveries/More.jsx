@@ -1,14 +1,23 @@
 import React, { Component } from "react";
-
+import M from "materialize-css";
+import { Link } from "react-router-dom";
 class More extends Component {
   constructor(props) {
     super(props);
     this.state = {
       temp: "",
       TempDel: {},
+      Ongoingorderdetails:[],
+      Ongoingjewellery:{},
       customerDetails: {},
     };
   }
+  OnSubmit = (e) => {
+    sessionStorage.removeItem("delid");
+    setTimeout(() => {
+      this.props.history.push("/del");
+    }, 1000);
+  };
   async componentDidMount() {
     const DeliverID = sessionStorage.getItem("delid");
     console.log(DeliverID);
@@ -20,7 +29,16 @@ class More extends Component {
     const APICall = await fetch(`/api/v2/customer/${cusid}`);
     const result = await APICall.json();
     this.setState({ customerDetails: result });
+    const APICall2 = await fetch(`/api/v2/orders/OrderbyDelivery/${DeliverID}`);
+    const result2 = await APICall2.json();
+    console.log(result2);
+    this.setState({ Ongoingorderdetails: result2 });
+    const elems = document.querySelectorAll("select");
+    M.FormSelect.init(elems);
+    this.setState({Ongoingjewellery:this.state.Ongoingorderdetails[0].sellable});
+    console.log(this.state.Ongoingjewellery);
   }
+
   render() {
     return (
       <div>
@@ -56,14 +74,23 @@ class More extends Component {
                 <h6 className="center-align grey-text">
                   Customer Name - {this.state.customerDetails.name}
                 </h6>
+                <h6 className="center-align grey-text">
+                  Jewellery ID - {this.state.Ongoingjewellery.jewellery_id}
+                </h6>
+                <h6 className="center-align grey-text">
+                  Jewellery Name - {this.state.Ongoingjewellery.name}
+                </h6>
+                
                 <button
                   data-target="modal1"
                   type="submit"
+                  onClick={this.OnSubmit}
                   class="btn modal-trigger"
                   style={{ width: "100%" }}
                 >
                   Delivery home
                 </button>
+                
               </div>
               <div className="card-action"></div>
             </div>

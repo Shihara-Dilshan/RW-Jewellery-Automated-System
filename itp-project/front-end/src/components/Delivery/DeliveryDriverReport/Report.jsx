@@ -12,9 +12,15 @@ class Report extends Component {
     console.log(deliverID);
     sessionStorage.setItem("ReDid", deliverID);
   };
+  getdate = (e) => {
+    let Date = document.getElementById("date").value;
+    sessionStorage.setItem("ddate", Date);
+  };
+
   async componentDidMount() {
     const DriverID = sessionStorage.getItem("EmpID");
-    const APICall = await fetch(`/api/delivery/deliveryBoy/${DriverID}`);
+    const status="Delivered";
+    const APICall = await fetch(`/api/delivery/${status}/${DriverID}`);
     const Result = await APICall.json();
     console.log(Result);
 
@@ -25,12 +31,20 @@ class Report extends Component {
       <div>
         <div className="container">
           <h4 className="center-align grey-text">
-            <b>Driver Delivery Details</b>
+            <b>Delivery History of Driver</b>
           </h4>
+          <input id="date" type="text" class="validate" />
+          <Link to="/search">
+          <button
+            className="btn center-align grey darken-3"
+           onClick={this.getdate}
+          >
+           search by date
+          </button>
+        </Link>
           <table className="striped">
             <thead>
               <tr>
-                <th>Item Category</th>
                 <th>Delivered Address</th>
                 <th>City</th>
                 <th>Cusomer Name</th>
@@ -43,7 +57,6 @@ class Report extends Component {
               {this.state.DriverRep.map((del) => {
                 return (
                   <tr>
-                    <td>Ring</td>
                     <td>{del.deliveryAddress}</td>
                     <td>{del.deliveryCity}</td>
                     <input
@@ -53,8 +66,8 @@ class Report extends Component {
                       class="validate"
                       hidden
                     ></input>
-                    <td>Alvin</td>
-                    <td>0771922433</td>
+                    <td>{del.customerid}</td>
+                <td>{del.phoneNumber}</td>
                     <td>
                       <Link to="/More">
                         <button

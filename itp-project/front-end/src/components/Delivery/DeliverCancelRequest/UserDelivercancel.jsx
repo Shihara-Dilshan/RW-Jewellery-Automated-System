@@ -1,11 +1,13 @@
 import React, { Component } from "react";
-
+import M from "materialize-css";
 class UserDelivercancel extends Component {
   constructor() {
     super();
     this.state = {
       canceldetails: {},
       temp: "",
+      Canorderdetails:[],
+      Cancelor:{},
     };
   }
   async componentDidMount() {
@@ -14,6 +16,14 @@ class UserDelivercancel extends Component {
     const apitemp = await fetch(`api/deliverybyid/${DeliverID}`);
     const tempResult = await apitemp.json();
     this.setState({ canceldetails: tempResult });
+    const APICall = await fetch(`/api/v2/orders/OrderbyDelivery/${DeliverID}`);
+    const result = await APICall.json();
+    console.log(result);
+    this.setState({Canorderdetails: result});
+    const elems = document.querySelectorAll("select");
+    M.FormSelect.init(elems);
+    this.setState({Cancelor:this.state.Canorderdetails[0].sellable});
+    console.log(this.state.Cancelor);
   }
 
   CancelDelivery = async (event) => {
@@ -46,6 +56,11 @@ class UserDelivercancel extends Component {
         customerid: Cusid,
       }),
     });
+    sessionStorage.clear();
+    setTimeout(() => {
+      this.props.history.push("/");
+    }, 1000);
+    M.toast({ html: "Your request has been recorded" });
   };
   render() {
     return (
@@ -82,6 +97,12 @@ class UserDelivercancel extends Component {
                   </h6>
                   <h6 className="center-align grey-text">
                     Deliver Code :{this.state.canceldetails.delivery_id}
+                  </h6>
+                  <h6 className="center-align grey-text">
+                    Jewellery ID :{this.state.Cancelor.jewellery_id}
+                  </h6>
+                  <h6 className="center-align grey-text">
+                    Jewellery name :{this.state.Cancelor.name}
                   </h6>
                 </p>
                 <button

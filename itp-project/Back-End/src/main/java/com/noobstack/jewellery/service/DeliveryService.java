@@ -42,8 +42,17 @@ public class DeliveryService {
     public List<Delivery> getdeliveryByStatus(String status) {
         return deliverRepository.findByStatus(status);
     }
+    public List<Delivery> getdeliveryByTwoStatus(String status,String status2) {
+        return deliverRepository.findbyDeliveryBoyTwoStatus(status,status2);
+    }
+    public List<Delivery> getDeliverBoyAndStatus(String status,DeliverBoy deliverBoy) {
+        return deliverRepository.findbyDeliveryBoyAndStatus(status,deliverBoy);
+    }
     public List<Delivery> getdeliveryBycustomerid(String customerid,String status) {
         return deliverRepository.findBycustomerid(customerid,status);
+    }
+    public List<Delivery> getdeliveryBydate(DeliverBoy deliverBoy,String status,String deliveredTime) {
+        return deliverRepository.findBydeliveredTime(deliverBoy,status,deliveredTime);
     }
     public ResponseEntity<?> deletedelivery(UUID id){
         deliverRepository.deleteById(id);

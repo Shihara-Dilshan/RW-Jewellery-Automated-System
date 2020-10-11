@@ -23,7 +23,7 @@ class EmployeeLeave extends Component{
       date: date,
       currentMonth: month,
       currentYear: year,
-      firstDate: year+'-'+month+'-'+'01',
+      firstDate: year+'-'+month+'-01',
       lastDate: year+'-'+month+'-'+last,
       Leave : {},
       EmployeeList: [],

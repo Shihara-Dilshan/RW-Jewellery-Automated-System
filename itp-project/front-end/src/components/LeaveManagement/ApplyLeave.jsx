@@ -41,8 +41,9 @@ class ApplyLeave extends Component{
       
         // GET request using fetch with async/await
         const response = await fetch(`/apiEmpolyee/employee/${id}`);
-        const data = await response.json()
-        .then(data => this.setState({ Employee:data }));
+        const data = await response.json();
+        //.then(data => this.setState({ Employee:data }));
+        this.setState({ Employee:data });
         M.updateTextFields();
     }
     async ApplyNewLeave(event) {

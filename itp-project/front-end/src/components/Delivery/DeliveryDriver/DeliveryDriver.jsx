@@ -16,9 +16,10 @@ class DeliveryDriver extends Component {
     sessionStorage.setItem("UpdateDelivery", deliverID);
   };
   async componentDidMount() {
-    let DriverID = "2ade299f-f48c-4109-b863-ff96659d57d1";
+    let DriverID = "f2158718-76d7-4770-a90f-874cfb7d9611";
     sessionStorage.setItem("DriverID", DriverID);
-    const APICall = await fetch(`/api/delivery/deliveryBoy/${DriverID}`);
+    let Drivstatus="Driver Assigned";
+    const APICall = await fetch(`/api/delivery/${Drivstatus}/${DriverID}`);
     const Result = await APICall.json();
     this.setState({ DeliveryPendingRequest: Result });
   }
@@ -27,15 +28,14 @@ class DeliveryDriver extends Component {
       <div>
         <div className="container">
           <h4 className="center-align grey-text">
-            <b>Delivery History of the driver</b>
+            <b>Items to Deliver</b>
           </h4>
           <table className="striped">
             <thead>
               <tr>
-                <th>Item Category</th>
+                <th>Delivery District</th>
                 <th>Address To Deliver</th>
                 <th>City</th>
-                <th>Cusomer Name</th>
                 <th>Phone Number</th>
                 <th>Details</th>
               </tr>
@@ -45,7 +45,7 @@ class DeliveryDriver extends Component {
               {this.state.DeliveryPendingRequest.map((DelivereyPending) => {
                 return (
                   <tr>
-                    <td>Ring</td>
+                    <td>{DelivereyPending.district}</td>
                     <td>{DelivereyPending.deliveryAddress}</td>
                     <td>{DelivereyPending.deliveryCity}</td>
                     <input
@@ -55,8 +55,7 @@ class DeliveryDriver extends Component {
                       class="validate"
                       hidden
                     ></input>
-                    <td>Alvin</td>
-                    <td>0771922433</td>
+                <td>{DelivereyPending.phoneNumber}</td>
                     <td>
                       <Link to="/UpdateDelivery">
                         <button

@@ -17,6 +17,14 @@ class DeliveryRequestsFromCustomer extends Component {
       marginLeft: "15px",
     };
   };
+  style2 = () => {
+    return {
+      backgroundColor: "#f5f5f5",
+      borderRadius: "5px",
+      marginBottom: "-98px",
+      marginLeft: "820px",
+    };
+  };
 
   getData = (e) => {
     let deliverID =
@@ -26,7 +34,9 @@ class DeliveryRequestsFromCustomer extends Component {
     sessionStorage.setItem("cusid", cusid);
   };
   async componentDidMount() {
-    const APICall = await fetch("/api/alldelivery");
+    const status = "Pending"
+    const status2="Confrimed"
+    const APICall = await fetch(`/api/delivery/deliveryByStatus/${status2}/${status}`);
     const Result = await APICall.json();
     this.setState({ Deliveries: Result });
   }
@@ -50,6 +60,14 @@ class DeliveryRequestsFromCustomer extends Component {
             Delivery Cancell Requests
           </button>
         </Link>
+        <Link to="/OngoingDelivery">
+          <button
+            className="btn center-align grey darken-3"
+            style={this.style2()}
+          >
+            Ongoing Delivereis
+          </button>
+        </Link>
 
         <h4 className="center-align grey-text">
           <b style={{ marginLeft: "100px" }}>DELIVERY REQUESTS FROM CUSTOMER</b>
@@ -58,15 +76,13 @@ class DeliveryRequestsFromCustomer extends Component {
           <table className="responsive-table">
             <thead>
               <tr>
-                <th>Customer ID</th>
-                <th>Item Code</th>
                 <th>Address For Deliver</th>
-                <th>Item Category</th>
-                <th>Date</th>
-                <th>Item Price</th>
+                <th>Requested Date</th>
                 <th>Assign Driver</th>
                 <th>Delivery Status</th>
                 <th>Confirm</th>
+                <th>Delivery city</th>
+                <th>Delivery District</th>
               </tr>
             </thead>
 
@@ -78,12 +94,9 @@ class DeliveryRequestsFromCustomer extends Component {
                       {Delivery.delivery_id}
                     </td>
 
-                    <input id="cusid" value={Delivery.customerid}></input>
-                    <td>B123</td>
+                    <input id="cusid" hidden value={Delivery.customerid}></input>
                     <td>{Delivery.deliveryAddress}</td>
-                    <td>Bangles</td>
-                    <td>2020-08-06</td>
-                    <td>12000/=</td>
+                <td>{Delivery.requestedTime}</td>
                     <td>
                       <Link to="/AssignDriver">
                         <button
@@ -104,6 +117,12 @@ class DeliveryRequestsFromCustomer extends Component {
                           Confirm
                         </button>
                       </Link>
+                    </td>
+                    <td>
+                      {Delivery.deliveryCity}
+                    </td>
+                    <td>
+                      {Delivery.district}
                     </td>
                   </tr>
                 );

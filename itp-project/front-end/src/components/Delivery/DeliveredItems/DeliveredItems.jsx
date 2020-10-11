@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import M from "materialize-css";
+import { Link } from "react-router-dom";
 class DeliveredItems extends Component {
   constructor() {
     super();
     this.state = {
       DeliveredItems: [],
       temp: "",
+      DeliverDriverr:{},
     };
   }
   style = () => {
@@ -24,11 +26,20 @@ class DeliveredItems extends Component {
       marginLeft: "53px",
     };
   };
+  getDeliveredid = (e) => {
+    
+    const deliveredid=document.getElementById("Delivereddelid").value;
+    sessionStorage.setItem("delivereddelid",deliveredid);
+    const Deliveredcusid = document.getElementById("Deliveredcusid").value;
+    sessionStorage.setItem("deliveredcusid", Deliveredcusid);
+  };
   async componentDidMount() {
     let Status = "Delivered";
     const APICall = await fetch(`/api/delivery/deliveryStatus/${Status}`);
     const Result = await APICall.json();
     this.setState({ DeliveredItems: Result });
+    this.setState({DeliverDriverr:this.state.DeliveredItems[0].deliverBoy});
+    console.log(this.state.DeliverDriverr)
   }
   render() {
     document.addEventListener("DOMContentLoaded", function () {
@@ -43,10 +54,10 @@ class DeliveredItems extends Component {
         <table class="container">
           <thead>
             <tr>
-              <th>Delivery Number</th>
-              <th>Customer Name</th>
-              <th>Address</th>
-              <th>Delivered Time</th>
+              <th>Delivery Address</th>
+              <th>Delivery City</th>
+              <th>Delivered Date</th>
+              <th>Status</th>
               <th>Item Code</th>
               <th>Driver Name</th>
             </tr>
@@ -56,12 +67,22 @@ class DeliveredItems extends Component {
             {this.state.DeliveredItems.map((Delivered) => {
               return (
                 <tr>
-                  <td>{Delivered.delivery_id}</td>
-                  <td>Ruvin Wijesinghe</td>
+                  <input type="txt" id="Delivereddelid" value={Delivered.delivery_id} hidden></input>
                   <td>{Delivered.deliveryAddress}</td>
-                  <td>9:55 PM</td>
-                  <td>{Delivered.status}</td>
-                  <td></td>
+              <td>{Delivered.deliveryCity}</td>
+                <td>{Delivered.deliveredTime}</td>
+                <td>{Delivered.status}</td>
+                <input type="txt" id="Deliveredcusid" value={Delivered.customerid} hidden></input>
+                  <td><Link to="/DeliveredMore">
+                        <button
+                          onClick={this.getDeliveredid}
+                          className="btn center-align grey darken-3"
+                        >
+                          More Details
+                        </button>
+              
+                      </Link></td>
+                      <td>{this.state.DeliverDriverr.username}</td>
                 </tr>
               );
             })}

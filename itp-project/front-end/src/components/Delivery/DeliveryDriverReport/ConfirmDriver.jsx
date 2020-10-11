@@ -17,9 +17,7 @@ class Report extends Component {
   async componentDidMount() {
     const DriverName = sessionStorage.getItem("DriverName");
 
-    const APICall = await fetch(
-      `/api/deliveryBoy/deliveryBoyUsername/${DriverName}`
-    );
+    const APICall = await fetch(`/api/deliveryBoy/deliveryBoyUsername/${DriverName}`);
     const Result = await APICall.json();
     console.log(Result);
     this.setState({ DeliveryDriver: Result });

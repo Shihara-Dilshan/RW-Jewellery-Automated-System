@@ -31,7 +31,7 @@ class RecordDashBoard extends Component {
               icon="assignment_ind"
               to="manageLeaveDashboard"
             />
-            <StaticCards title="Delivery logs" icon="directions_bike" to="OM" />
+            <StaticCards title="Delivery logs" icon="directions_bike" to="DeliveryDriverReport" />
             <StaticCards
               title="Service logs"
               icon="contact_phone"

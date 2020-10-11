@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import M from "materialize-css";
 import "./../../../App.css";
+import { Link } from "react-router-dom";
 class ConfirmDelivery extends Component {
   constructor(props) {
     super(props);
@@ -8,6 +9,8 @@ class ConfirmDelivery extends Component {
       temp: "",
       TempDel: {},
       customerDetails: {},
+      orderdetails:[],
+      or:{},
     };
   }
   async componentDidMount() {
@@ -20,9 +23,15 @@ class ConfirmDelivery extends Component {
     const APICall = await fetch(`/api/v2/customer/${cusid}`);
     const result = await APICall.json();
     this.setState({ customerDetails: result });
-
+    const APICall2 = await fetch(`/api/v2/orders/OrderbyDelivery/${DeliverID}`);
+    const result2 = await APICall2.json();
+    console.log(result2);
+    this.setState({ orderdetails: result2 });
     const elems = document.querySelectorAll("select");
     M.FormSelect.init(elems);
+    this.setState({or:this.state.orderdetails[0].sellable});
+    console.log(this.state.or);
+
   }
   ConfirmDelivery = async (event) => {
     event.preventDefault();
@@ -33,6 +42,7 @@ class ConfirmDelivery extends Component {
     const Cusid = document.getElementById("cusid").value;
     console.log(Cusid);
     const Ddistance = document.getElementById("distance").value;
+    const requestTime= document.getElementById("reqtime").value;
     const DProvince = document.getElementById("province").value;
     const DphoneNumber = document.getElementById("phoneNumber").value;
     const Ddistrict = document.getElementById("district").value;
@@ -46,7 +56,7 @@ class ConfirmDelivery extends Component {
         delivery_id: DeliverID,
         deliveryAddress: Daddress,
         deliveryCity: DCity,
-        requestedTime: null,
+        requestedTime: requestTime,
         deliveredTime: null,
         status: "Confrimed",
         distance: Ddistance,
@@ -57,6 +67,9 @@ class ConfirmDelivery extends Component {
         //deliverBoy: { emp_id: DboyID },
       }),
     });
+    setTimeout(() => {
+      this.props.history.push("/del");
+    }, 1000);
   };
   render() {
     return (
@@ -65,10 +78,11 @@ class ConfirmDelivery extends Component {
           <h2 className="center-align grey-text">Delivery Details</h2>
           <div className="card horizontal">
             <div className="card-image">
-              <img src="https://image.freepik.com/free-vector/delivery-concept-illustration_114360-140.jpg" />
+           <img src="https://image.freepik.com/free-vector/express-courier-scooter-shipping-order_74855-6447.jpg"/> 
             </div>
             <div className="card-stacked">
               <div className="card-content">
+              
                 <h6 className="center-align grey-text">
                   Address - {this.state.TempDel.deliveryAddress}
                 </h6>
@@ -88,11 +102,14 @@ class ConfirmDelivery extends Component {
                   District - {this.state.TempDel.district}
                 </h6>
                 <h6 className="center-align grey-text">
-                  Distance - {this.state.TempDel.distance}Km
+                  Distance - {this.state.TempDel.distance}
                 </h6>
                 <h6 className="center-align grey-text">
                   Customer Name - {this.state.customerDetails.name}
-                </h6>
+                </h6 >
+                  <h6 className="center-align grey-text">Jewellery ID -{this.state.or.jewellery_id}</h6>
+                  <h6 className="center-align grey-text">Jewellery Category -{this.state.or.name}</h6>
+                  <h6 className="center-align grey-text">Jewellery Price -Rs:{this.state.or.supplyPrice}/=</h6>
                 <button
                   data-target="modal1"
                   type="submit"
@@ -102,7 +119,9 @@ class ConfirmDelivery extends Component {
                 >
                   Confirm Delivery
                 </button>
+                 
               </div>
+              
               <div className="card-action"></div>
             </div>
           </div>
@@ -152,9 +171,17 @@ class ConfirmDelivery extends Component {
         />
         <input
           id="cusid"
+          hidden
           type="text"
           className="validate"
           value={this.state.TempDel.customerid}
+        />
+        <input
+          id="reqtime"
+          hidden
+          type="text"
+          className="validate"
+          value={this.state.TempDel.requestedTime}
         />
       </div>
     );

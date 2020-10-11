@@ -1,4 +1,4 @@
-package com.noobstack.jewellery.security;
+/*package com.noobstack.jewellery.security;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -18,3 +18,5 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
    registry.addMapping("/**").allowedMethods("PUT", "GET", "DELETE", "OPTIONS", "PATCH", "POST");
     }
 }
+
+*/

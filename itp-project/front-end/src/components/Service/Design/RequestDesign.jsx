@@ -4,7 +4,7 @@ import DesignCard from "./DesignCard";
 import M from "materialize-css";
 import "../../../App.css";
 
-import { storageRef } from "../../../firebase";
+import { storageRef2 } from "../../../firebase";
 
 class RequestDesign extends Component {
   constructor(props) {
@@ -51,7 +51,7 @@ class RequestDesign extends Component {
       return;
     }
 
-    const upload = storageRef
+    const upload = storageRef2
       .ref(`images/${this.state.image.name}`)
       .put(this.state.image);
     upload.on(
@@ -61,7 +61,7 @@ class RequestDesign extends Component {
         console.log(error);
       },
       () => {
-        storageRef
+        storageRef2
           .ref("images")
           .child(this.state.image.name)
           .getDownloadURL()

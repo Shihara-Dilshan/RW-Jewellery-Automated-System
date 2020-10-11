@@ -16,6 +16,7 @@ public class JewelleryShop {
 
 	}
 
+	/*
 	@Bean
      public CorsFilter corsFilter() {
          final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
@@ -33,6 +34,8 @@ public class JewelleryShop {
          source.registerCorsConfiguration("/**", config);
          return new CorsFilter(source);
      }
+     */
+     
 
 
 }

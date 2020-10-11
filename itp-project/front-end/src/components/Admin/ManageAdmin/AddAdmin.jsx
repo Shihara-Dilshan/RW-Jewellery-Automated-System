@@ -6,7 +6,7 @@ import "./../../../App.css";
 import { storageRef } from "../../../firebase";
 import M from "materialize-css";
 
-class SignUp extends Component {
+class AddAdmin extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,43 +14,6 @@ class SignUp extends Component {
       profileimg: "",
     };
   }
-
-  responseFacebook = async (response) => {
-    console.log(response);
-
-    let email = response.email;
-    const call = await fetch(`/api/v2/customer/find/${email}`);
-    const result = await call.json();
-    console.log(result);
-
-    if (result === undefined) {
-      const reg = await fetch("/api/v2/customer/register", {
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        method: "POST",
-        body: JSON.stringify({
-          name: email,
-          firstName: response.name.trim().split(" ")[0],
-          lastName: response.name.trim().split(" ")[1],
-          profilePicture: response.picture.data.url,
-        }),
-      });
-
-      console.log(reg);
-    } else {
-      sessionStorage.setItem("userId", result.customer_id);
-      sessionStorage.setItem("email", response.email);
-      sessionStorage.setItem("FirstName", response.name.trim().split(" ")[0]);
-      sessionStorage.setItem("LastName", response.name.trim().split(" ")[1]);
-      sessionStorage.setItem("profileImg", response.picture.data.url);
-      sessionStorage.setItem("telephone", result.telephone);
-      sessionStorage.setItem("address", result.address);
-      this.props.history.push("/");
-      
-    }
-  };
 
   componentClicked = () => {
     console.log();
@@ -88,22 +51,14 @@ class SignUp extends Component {
               <img
                 id="signUpImage"
                 alt=""
-                src="https://image.freepik.com/free-vector/account-concept-illustration_114360-409.jpg"
+                src="https://image.freepik.com/free-vector/add-notes-concept-illustration_114360-3376.jpg"
                 height="100%"
               />
             </div>
             <div className="card-stacked">
               <div className="card-content">
-                <h4 className="center-align grey-text">Signup</h4>
+                <h4 className="center-align grey-text">Add New Admin</h4>
                 <div className="row">
-                  <div className="center-align center">
-                    <p className="grey-text">
-                      {" "}
-                      If you already have an account with us, please login at
-                      the <Link to="/login">login page</Link>
-                    </p>
-                  </div>
-                  <br />
                   <form className="col s12">
                     <div className="row">
                       <div className="input-field col s6">
@@ -197,17 +152,6 @@ class SignUp extends Component {
                       <p>or else sign up with</p>
                       <br />
                     </div>
-
-                    <div className="container center-align">
-                      <FacebookLogin
-                        appId="3204620366282734"
-                        autoLoad={false}
-                        fields="name,email,picture"
-                        onClick={this.componentClicked}
-                        callback={this.responseFacebook}
-                      />
-                      {""}
-                    </div>
                   </form>
                 </div>
               </div>
@@ -223,12 +167,12 @@ class SignUp extends Component {
     let isvalid = true;
     let emptyColumns = [];
 
-    let name = SignUp.mytrim(document.getElementById("email").value);
-    let firstName = SignUp.mytrim(document.getElementById("first_name").value);
-    let lastName = SignUp.mytrim(document.getElementById("last_name").value);
-    let telephone = SignUp.mytrim(document.getElementById("mobile").value);
-    let password = SignUp.mytrim(document.getElementById("password").value);
-    let cpassword = SignUp.mytrim(document.getElementById("cpassword").value);
+    let name = AddAdmin.mytrim(document.getElementById("email").value);
+    let firstName = AddAdmin.mytrim(document.getElementById("first_name").value);
+    let lastName = AddAdmin.mytrim(document.getElementById("last_name").value);
+    let telephone = AddAdmin.mytrim(document.getElementById("mobile").value);
+    let password = AddAdmin.mytrim(document.getElementById("password").value);
+    let cpassword = AddAdmin.mytrim(document.getElementById("cpassword").value);
 
     name.length === 0
       ? emptyColumns.push(document.getElementById("emailNameLabel"))
@@ -331,4 +275,4 @@ class SignUp extends Component {
   };
 }
 
-export default SignUp;
+export default AddAdmin;

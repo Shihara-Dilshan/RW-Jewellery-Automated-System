@@ -58,6 +58,8 @@ import RecordDashBoard from "./components/Admin/Record/RecordDashBoard";
 import AdminLogs from "./components/Admin/Record/AdminLogs/AdminLogs";
 import UserCancel from "./components/Delivery/DeliverCancelRequest/UserCancel";
 import UserDelivercancel from "./components/Delivery/DeliverCancelRequest/UserDelivercancel";
+import AddAdmin from "./components/Admin/ManageAdmin/AddAdmin";
+
 const App = () => {
   return (
     <Router>
@@ -134,6 +136,7 @@ const App = () => {
           <Route path="/verifyorder" exact component={VerifyOrder} />
           <Route path="/recorddashboard" exact component={RecordDashBoard} />
           <Route path="/adminlogs" exact component={AdminLogs} />
+          <Route path="/addadmin" exact component={AddAdmin} />
         </Switch>
       </div>
       <Footer />

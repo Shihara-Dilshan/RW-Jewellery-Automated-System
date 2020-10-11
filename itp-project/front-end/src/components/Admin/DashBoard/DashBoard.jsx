@@ -51,7 +51,7 @@ class DashBoard extends Component {
               icon="recent_actors"
               to="recorddashboard"
             />
-            <StaticCards title="Add Admin" icon="add" to="AD" />
+            <StaticCards title="Add Admin" icon="add" to="addadmin" />
             <StaticCards title="Manage Admins" icon="people" to="manageadmin" />
           </div>
         </div>

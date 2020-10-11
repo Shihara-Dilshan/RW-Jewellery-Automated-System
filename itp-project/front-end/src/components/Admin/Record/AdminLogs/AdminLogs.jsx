@@ -55,7 +55,7 @@ class AdminLogs extends Component {
                   <div className="container">
                     <div class="row">
                       <div class="col s12">
-                        <div class="row" style={{ height: "350px" }}>
+                        <div class="row">
                           <table className="striped">
                             <thead>
                               <tr>

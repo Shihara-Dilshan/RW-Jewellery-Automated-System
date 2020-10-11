@@ -24,7 +24,7 @@ class AdminLogin extends Component {
     const check_account = await fetch(
       `/api/v2/admin/specificname/${Admin_account}`
     );
-    console.log(check_account);
+
     if (check_account.status === 404) {
       admin_email_lable.classList.add("red-text");
       admin_email_lable.innerHTML = "Acount does not exist";
@@ -35,6 +35,39 @@ class AdminLogin extends Component {
       }, 2000);
     } else {
       const result = await check_account.json();
+      if(result.active !== "active"){
+          admin_pword_lable.classList.add("red-text");
+          admin_pword_lable.innerHTML = "Your account has been temporary disabled";
+          admin_email_lable.classList.add("red-text");
+          admin_email_lable.innerHTML = "Your account has been temporary disabled";
+          
+          let x = new Date().toString();
+
+      let y = x.split(" ");
+      let finalString = "";
+
+      for (let i = 0; i <= y.length - 4; i++) {
+        finalString = finalString + " " + y[i];
+      }
+
+      const updateRecord = await fetch(`api/v2/record/add`, {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify({
+          loginTime: finalString.trim(),
+          activityTime: finalString.trim(),
+          activity: `disabled admin account: ${Admin_account} try to log in`,
+          admin: {
+            emp_id: result.emp_id,
+          },
+        }),
+      });
+          
+          return;
+      }
       if (admin_password === result.password) {
         sessionStorage.clear();
         let x = new Date().toString();
@@ -50,7 +83,8 @@ class AdminLogin extends Component {
         sessionStorage.setItem("loginTime", finalString.trim());
         sessionStorage.setItem("adminId", result.emp_id);
         this.props.history.push("/dashboard");
-      } else {
+      }
+       else {
         admin_pword_lable.classList.add("red-text");
         admin_pword_lable.innerHTML = "Check Your Password";
 

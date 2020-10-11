@@ -49,6 +49,7 @@ class AssignDriver extends Component {
     const DProvince = document.getElementById("province").value;
     const DphoneNumber = document.getElementById("phoneNumber").value;
     const Ddistrict = document.getElementById("district").value;
+    const reqDate=document.getElementById("reqDate").value;
     await fetch(`/api/updatestatus/${DeliverID}`, {
       headers: {
         Accept: "application/json",
@@ -68,6 +69,7 @@ class AssignDriver extends Component {
         district: Ddistrict,
         deliverBoy: { emp_id: DriverID },
         customerid: Cusid,
+        requestedTime:reqDate,
       }),
     });
 
@@ -160,6 +162,13 @@ class AssignDriver extends Component {
                     type="text"
                     className="validate"
                     value={this.state.TempDel.customerid}
+                    hidden
+                  />
+                  <input
+                    id="reqDate"
+                    type="text"
+                    className="validate"
+                    value={this.state.TempDel.requestedTime}
                     hidden
                   />
                 </div>

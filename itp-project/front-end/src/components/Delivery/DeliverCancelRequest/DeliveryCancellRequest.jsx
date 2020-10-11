@@ -30,11 +30,10 @@ class DeliveryCancellRequest extends Component {
           <table>
             <thead>
               <tr>
-                <th>Item Code</th>
-                <th>Customer ID</th>
-                <th>Delivery Number</th>
-                <th>Customer Name</th>
-                <th>Date</th>
+                <th>Delivery Address</th>
+                <th>status</th>
+                <th>customer id</th>
+                <th>Requested Date</th>
                 <th>Delete Delivery</th>
               </tr>
             </thead>
@@ -42,8 +41,8 @@ class DeliveryCancellRequest extends Component {
               {this.state.DeliveryCancellRequest.map((DelivereyCancel) => {
                 return (
                   <tr>
-                    <td>R1234</td>
-                    <td>CUS1234</td>
+                    <td>{DelivereyCancel.deliveryAddress}4</td>
+                    <td>{DelivereyCancel.status}</td>
                     <input
                       value={DelivereyCancel.delivery_id}
                       id="Deliveryid"
@@ -51,8 +50,8 @@ class DeliveryCancellRequest extends Component {
                       class="validate"
                       hidden
                     ></input>
-                    <td>Ruvin WIjesinghe</td>
-                    <td>2020-08-06</td>
+                    <td>{DelivereyCancel.customerid}</td>
+                <td>{DelivereyCancel.requestedTime}</td>
                     <td>
                       <Link to="/cancel">
                         <button

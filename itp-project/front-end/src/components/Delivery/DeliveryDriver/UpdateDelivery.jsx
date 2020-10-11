@@ -8,6 +8,8 @@ class UpdateDelivery extends Component {
     this.state = {
       temp: "",
       TempDel: {},
+      DriverOrderdetails:[],
+      DriverOrder:{},
     };
   }
   async componentDidMount() {
@@ -16,12 +18,23 @@ class UpdateDelivery extends Component {
     const apitemp = await fetch(`api/deliverybyid/${DeliverID}`);
     const tempResult = await apitemp.json();
     this.setState({ TempDel: tempResult });
-
+    const APICall = await fetch(`/api/v2/orders/OrderbyDelivery/${DeliverID}`);
+    const result = await APICall.json();
+    console.log(result);
+    this.setState({ DriverOrderdetails: result });
     const elems = document.querySelectorAll("select");
     M.FormSelect.init(elems);
+    this.setState({DriverOrder:this.state.DriverOrderdetails[0].sellable});
+    console.log(this.state.DriverOrder);
+
   }
   UpdateDelivery = async (event) => {
     event.preventDefault();
+    let today = new Date();
+     var dd = String(today.getDate()).padStart(2, '0');
+     var mm = String(today.getMonth() + 1).padStart(2, '0'); 
+     var yyyy = today.getFullYear();
+     today = mm + '-' + dd + '-' + yyyy;
     const DeliverID = sessionStorage.getItem("UpdateDelivery");
     const DriverID = sessionStorage.getItem("DriverID");
     const Daddress = document.getElementById("address").value;
@@ -31,6 +44,7 @@ class UpdateDelivery extends Component {
     const DphoneNumber = document.getElementById("phoneNumber").value;
     const Ddistrict = document.getElementById("district").value;
     const Cusid = document.getElementById("cusid").value;
+    const reqtime=document.getElementById("retime").value;
     await fetch(`/api/updatestatus/${DeliverID}`, {
       headers: {
         Accept: "application/json",
@@ -41,8 +55,8 @@ class UpdateDelivery extends Component {
         delivery_id: DeliverID,
         deliveryAddress: Daddress,
         deliveryCity: DCity,
-        requestedTime: null,
-        deliveredTime: null,
+        requestedTime: reqtime,
+        deliveredTime: today,
         status: "Delivered",
         distance: Ddistance,
         deliveryProvince: DProvince,
@@ -52,6 +66,10 @@ class UpdateDelivery extends Component {
         customerid: Cusid,
       }),
     });
+    sessionStorage.removeItem("UpdateDelivery");
+    setTimeout(() => {
+      this.props.history.push("/DeliveryDriver");
+    }, 1000);
   };
   render() {
     return (
@@ -82,6 +100,12 @@ class UpdateDelivery extends Component {
                 </h6>
                 <h6 className="center-align grey-text">
                   Distance you have to go - {this.state.TempDel.distance}KM
+                </h6>
+                <h6 className="center-align grey-text">
+                  Jewellery ID - {this.state.DriverOrder.jewellery_id}
+                </h6>
+                <h6 className="center-align grey-text">
+                  Jewellery Name - {this.state.DriverOrder.name}
                 </h6>
                 <button
                   data-target="modal1"
@@ -145,6 +169,13 @@ class UpdateDelivery extends Component {
           type="text"
           className="validate"
           value={this.state.TempDel.customerid}
+          hidden
+        />
+        <input
+          id="retime"
+          type="text"
+          className="validate"
+          value={this.state.TempDel.requestedTime}
           hidden
         />
       </div>

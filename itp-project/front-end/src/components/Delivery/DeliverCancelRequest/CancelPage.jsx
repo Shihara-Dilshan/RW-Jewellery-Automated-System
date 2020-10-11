@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import M from "materialize-css";
 import DeliveryCancellRequest from "./DeliveryCancellRequest";
+import { Link } from "react-router-dom";
 class CancelPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       Delcancel: {},
       Delcancel2: [],
+      
     };
   }
   async componentDidMount() {
@@ -20,6 +22,8 @@ class CancelPage extends Component {
     console.log(Result2);
     this.setState({ Delcancel2: Result2 });
     console.log(this.state.Delcancel2);
+    
+    
   }
   async remove(id, id2) {
     fetch(`/api/v2/orders/deleteOrder/${id}`, {
@@ -42,6 +46,7 @@ class CancelPage extends Component {
       .catch((err) => {
         console.error(err);
       });
+      
   }
   render() {
     return (
@@ -68,11 +73,13 @@ class CancelPage extends Component {
                   </h6>
                   <h6>Delivery City -{this.state.Delcancel.deliveryCity}</h6>
                   <h6>Delivery distance -{this.state.Delcancel.distance}</h6>
+                  
                 </p>
               </div>
               {this.state.Delcancel2.map((DelivereyCancel) => {
                 return (
                   <div class="card-action">
+                    <Link to="/del">
                     <button
                       data-target="modal1"
                       type="submit"
@@ -85,6 +92,7 @@ class CancelPage extends Component {
                     >
                       Remove from Delivery orders
                     </button>
+                    </Link>
                   </div>
                 );
               })}

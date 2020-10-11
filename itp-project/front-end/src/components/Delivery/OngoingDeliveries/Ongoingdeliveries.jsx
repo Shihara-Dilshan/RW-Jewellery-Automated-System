@@ -8,14 +8,14 @@ class Ongoingdeliveries extends Component {
       temp: "",
     };
   }
-  getData = (e) => {
+  OngoingGetData = (e) => {
     const delid = document.getElementById("DID").value;
     sessionStorage.setItem("delid", delid);
     const cusid = document.getElementById("cusid").value;
     sessionStorage.setItem("cusid", cusid);
   };
   async componentDidMount() {
-    const status = "Confrimed";
+    const status = "Driver Assigned";
     const APICall = await fetch(`/api/delivery/deliveryStatus/${status}`);
     const Result = await APICall.json();
     this.setState({ DeliveriesOngoing: Result });
@@ -32,11 +32,8 @@ class Ongoingdeliveries extends Component {
             <thead>
               <tr>
                 <th>Customer ID</th>
-                <th>Item Code</th>
                 <th>Address For Deliver</th>
-                <th>Item Category</th>
                 <th>Date</th>
-                <th>Item Price</th>
                 <th>Delivery Status</th>
                 <th>More Details</th>
               </tr>
@@ -58,23 +55,22 @@ class Ongoingdeliveries extends Component {
                       hidden
                       value={Delivery.customerid}
                     ></input>
-                    <input id="cusid" value={Delivery.customerid}></input>
-                    <td>B123</td>
+                    <input disabled={true} value={Delivery.customerid} ></input>
                     <td>{Delivery.deliveryAddress}</td>
-                    <td>Bangles</td>
-                    <td>2020-08-06</td>
-                    <td>12000/=</td>
-                    <td>{Delivery.status}</td>
+                    <td>{Delivery.requestedTime}</td>
                     <td>
-                      <Link to="/More">
+                      {Delivery.status}
+                    </td>
+                    <td>
+                    <Link to="/OngoingMore">
                         <button
                           className="btn center-align grey darken-3"
-                          onClick={this.getData}
+                          onClick={this.OngoingGetData}
                         >
                           More Details
                         </button>
                       </Link>
-                    </td>
+                      </td>
                   </tr>
                 );
               })}

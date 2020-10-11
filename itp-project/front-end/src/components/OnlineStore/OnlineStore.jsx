@@ -15,7 +15,7 @@ class OnlineStore extends Component {
     this.setState({
       jewelry: [
         {
-          jew_id: "71e632a3-d785-4930-9293-3fbab218b0a1",
+          jew_id: "ae15ae70-b739-48a9-9702-4462d8afdfb6",
           category: "Ring",
           description:
             "Bangles for every wrist in a range of designs that are contemporary and sophisticated yet timelessly sublime.",
@@ -39,7 +39,7 @@ class OnlineStore extends Component {
           supplyer_Id: "SUP-1236",
         },
         {
-          jew_id: "ae15ae70-b739-48a9-9702-4462d8afdfb6",
+          jew_id: "89296cc2-eb5c-4458-a49f-a19ef9ee9822",
           category: "Ring",
           description: "Stylish bracelets that put you in a class of your own",
           imageSrc:

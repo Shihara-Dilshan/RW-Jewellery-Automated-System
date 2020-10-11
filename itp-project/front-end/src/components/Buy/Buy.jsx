@@ -110,9 +110,10 @@ class Buy extends Component {
       // eslint-disable-next-line
       
      axios.put(`/api/v2/sellable/update/${cartItem.id}`, {
-      	      sellprice: amount,
-              amount: itemId,
-              customer: { customer_id: userId },})
+      	jewellery_id: cartItem.id,
+        name: "Banglfrfgfgghghes",
+        sellprice: 120898900,
+        customer: { customer_id : sessionStorage.getItem("userId")}})
           .then(res => console.log(res.data))
           .catch(err => console.log(err))   
        

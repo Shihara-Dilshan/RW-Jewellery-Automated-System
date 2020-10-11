@@ -95,6 +95,7 @@ class Login extends Component {
           name: email,
           firstName: response.name.trim().split(" ")[0],
           lastName: response.name.trim().split(" ")[1],
+          profilePicture: response.picture.data.url,
         }),
       });
       call = await fetch(`/api/v2/customer/find/${email}`);

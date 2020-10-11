@@ -11,6 +11,7 @@ class SignUp extends Component {
     super(props);
     this.state = {
       image: undefined,
+      profileimg: "",
     };
   }
 
@@ -33,6 +34,7 @@ class SignUp extends Component {
           name: email,
           firstName: response.name.trim().split(" ")[0],
           lastName: response.name.trim().split(" ")[1],
+          profilePicture: response.picture.data.url,
         }),
       });
 
@@ -85,7 +87,7 @@ class SignUp extends Component {
               <img
                 id="signUpImage"
                 alt=""
-                src="https://image.freepik.com/free-vector/account-concept-illustration_114360-399.jpg"
+                src="https://image.freepik.com/free-vector/account-concept-illustration_114360-409.jpg"
                 height="100%"
               />
             </div>
@@ -272,7 +274,7 @@ class SignUp extends Component {
       });
 
       const call = await fetch(`/api/v2/customer/find/${name}`);
-      const result = await call.json().catch((err) => console.log(err));
+      const result = await call.json();
       sessionStorage.setItem("userId", result.customer_id);
       sessionStorage.setItem("email", result.name);
       sessionStorage.setItem("FirstName", result.firstName);
@@ -296,12 +298,36 @@ class SignUp extends Component {
             .getDownloadURL()
             .then((url) => {
               console.log(url);
+              this.setState({ profileimg: url });
+            })
+            .then(() => {
+              fetch(
+                `/api/v2/customer/update/${sessionStorage.getItem("userId")}`,
+                {
+                  headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                  },
+                  method: "PUT",
+                  body: JSON.stringify({
+                    name: name,
+                    firstName: firstName,
+                    lastName: lastName,
+                    telephone: telephone,
+                    pword: password,
+                    profilePicture: this.state.profileimg,
+                  }),
+                }
+              );
+            })
+            .then(() => {
               waitIndicator.forEach((item) => {
                 item.classList.remove("show");
                 item.classList.add("hide");
               });
               M.toast({ html: "Successfully registered" });
               this.props.history.push("/");
+              sessionStorage.setItem("profileImg", this.state.profileimg);
             });
         }
       );

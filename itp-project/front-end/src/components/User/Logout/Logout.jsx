@@ -31,7 +31,12 @@ class Logout extends Component {
         }
       }
     })();
-
+    let cart = document.getElementById("cartIcon");
+    let DP = document.getElementById("profileImg");
+    cart.classList.add("show");
+    cart.classList.remove("hide");
+    DP.classList.add("show");
+    DP.classList.remove("hide");
     sessionStorage.clear();
     this.props.history.push("/");
   };

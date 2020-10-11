@@ -22,11 +22,12 @@ public class Customer {
     private String address;
     private String NIC;
     private String PWord;
+    private String profilePicture;
 
     public Customer() {
     }
 
-    public Customer(UUID customer_id, String name, String firstName, String lastName, String telephone, String address, String NIC, String PWord) {
+    public Customer(UUID customer_id, String name, String firstName, String lastName, String telephone, String address, String NIC, String PWord, String profilePicture) {
         this.customer_id = customer_id;
         this.name = name;
         this.firstName = firstName;
@@ -35,6 +36,7 @@ public class Customer {
         this.address = address;
         this.NIC = NIC;
         this.PWord = PWord;
+        this.profilePicture = profilePicture;
     }
 
     public UUID getCustomer_id() {
@@ -101,6 +103,14 @@ public class Customer {
         this.PWord = PWord;
     }
 
+    public String getProfilePicture() {
+        return profilePicture;
+    }
+
+    public void setProfilePicture(String profilePicture) {
+        this.profilePicture = profilePicture;
+    }
+
     @Override
     public String toString() {
         return "Customer{" +
@@ -112,6 +122,7 @@ public class Customer {
                 ", address='" + address + '\'' +
                 ", NIC='" + NIC + '\'' +
                 ", PWord='" + PWord + '\'' +
+                ", profilePicture='" + profilePicture + '\'' +
                 '}';
     }
 }

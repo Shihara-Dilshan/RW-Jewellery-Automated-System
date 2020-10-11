@@ -33,10 +33,9 @@ class Search extends Component {
                  <table className="striped">
             <thead>
               <tr>
-                <th>Item Category</th>
+                <th>Delivered District</th>
                 <th>Delivered Address</th>
                 <th>City</th>
-                <th>Cusomer Name</th>
                 <th>Phone Number</th>
                 <th>Details</th>
               </tr>
@@ -46,7 +45,7 @@ class Search extends Component {
               {this.state.DriverRep.map((del) => {
                 return (
                   <tr>
-                    <td>Ring</td>
+                    
                     <td>{del.deliveryAddress}</td>
                     <td>{del.deliveryCity}</td>
                     <input
@@ -56,10 +55,9 @@ class Search extends Component {
                       class="validate"
                       hidden
                     ></input>
-                    <td>Alvin</td>
-                    <td>0771922433</td>
+                    <td>{del.phoneNumber}</td>
                     <td>
-                      <Link to="/More">
+                      <Link to="/SearchMore">
                         <button
                           className="btn center-align grey darken-3"
                           onClick={this.getDataSearch}

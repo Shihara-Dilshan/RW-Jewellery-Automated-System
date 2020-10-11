@@ -10,7 +10,7 @@ class Report extends Component {
   getData = (e) => {
     let deliverID = document.getElementById("Deliveryid").value;
     console.log(deliverID);
-    sessionStorage.setItem("ReDid", deliverID);
+    sessionStorage.setItem("RepDid", deliverID);
   };
   getdate = (e) => {
     let Date = document.getElementById("date").value;

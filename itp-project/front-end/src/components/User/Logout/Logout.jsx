@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./../../../App.css";
 
-
 class Logout extends Component {
   constructor(props) {
     super(props);
@@ -11,28 +10,36 @@ class Logout extends Component {
 
   logout = async (e) => {
     e.preventDefault();
-    
+
     (function () {
-    var cookies = document.cookie.split("; ");
-    for (var c = 0; c < cookies.length; c++) {
+      var cookies = document.cookie.split("; ");
+      for (var c = 0; c < cookies.length; c++) {
         var d = window.location.hostname.split(".");
         while (d.length > 0) {
-            var cookieBase = encodeURIComponent(cookies[c].split(";")[0].split("=")[0]) + '=; expires=Thu, 01-Jan-1970 00:00:01 GMT; domain=' + d.join('.') + ' ;path=';
-            var p = window.location.pathname.split('/');
-            document.cookie = cookieBase + '/';
-            while (p.length > 0) {
-                document.cookie = cookieBase + p.join('/');
-                p.pop();
-            };
-            d.shift();
+          var cookieBase =
+            encodeURIComponent(cookies[c].split(";")[0].split("=")[0]) +
+            "=; expires=Thu, 01-Jan-1970 00:00:01 GMT; domain=" +
+            d.join(".") +
+            " ;path=";
+          var p = window.location.pathname.split("/");
+          document.cookie = cookieBase + "/";
+          while (p.length > 0) {
+            document.cookie = cookieBase + p.join("/");
+            p.pop();
+          }
+          d.shift();
         }
-    }
-})();
-    
+      }
+    })();
+    let cart = document.getElementById("cartIcon");
+    let DP = document.getElementById("profileImg");
+    cart.classList.add("show");
+    cart.classList.remove("hide");
+    DP.classList.add("show");
+    DP.classList.remove("hide");
     sessionStorage.clear();
     this.props.history.push("/");
   };
-
 
   style = () => {
     return {
@@ -48,10 +55,10 @@ class Logout extends Component {
       marginTop: "20px",
     };
   };
-  
+
   static removeWhiteSpaces = (inputString) => {
-  	return inputString.replace(/\s/g,'');
-  }
+    return inputString.replace(/\s/g, "");
+  };
 
   render() {
     return (
@@ -72,20 +79,38 @@ class Logout extends Component {
                   <form className="col s12">
                     <div className="row">
                       <div className="input-field col s12">
-                        <input id="Lemail" type="text" className="" value="All the current session Data will be delected" disabled/>
+                        <input
+                          id="Lemail"
+                          type="text"
+                          className=""
+                          value="All the current session Data will be delected"
+                          disabled
+                        />
                       </div>
                     </div>
                     <div className="row">
                       <div className="input-field col s12">
-                        <input id="alert2" type="text" className="" value="You will be logged out" disabled/>
+                        <input
+                          id="alert2"
+                          type="text"
+                          className=""
+                          value="You will be logged out"
+                          disabled
+                        />
                       </div>
                     </div>
                     <div className="row">
                       <div className="input-field col s12">
-                        <input id="alert3" type="text" className="" value="Any existing items fom cart will be lost" disabled/>
+                        <input
+                          id="alert3"
+                          type="text"
+                          className=""
+                          value="Any existing items fom cart will be lost"
+                          disabled
+                        />
                       </div>
                     </div>
-                    
+
                     <div className="center-align center">
                       <button
                         onClick={this.logout}
@@ -94,10 +119,11 @@ class Logout extends Component {
                       >
                         Log out
                       </button>
-                    </div><br />
+                    </div>
+                    <br />
                     <div className="center-align center">
                       <Link to="/">
-                      <p className="teal-text">Cancel and go back</p>
+                        <p className="teal-text">Cancel and go back</p>
                       </Link>
                     </div>
                   </form>

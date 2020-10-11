@@ -66,7 +66,7 @@ class UpdateDelivery extends Component {
         customerid: Cusid,
       }),
     });
-    sessionStorage.clear();
+    sessionStorage.removeItem("UpdateDelivery");
     setTimeout(() => {
       this.props.history.push("/DeliveryDriver");
     }, 1000);

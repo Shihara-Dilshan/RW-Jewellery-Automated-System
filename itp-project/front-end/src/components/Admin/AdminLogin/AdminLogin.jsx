@@ -2,67 +2,64 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./../../../App.css";
 
-
 class AdminLogin extends Component {
-  constructor(props){
-      super(props);
-      this.state = {};
+  constructor(props) {
+    super(props);
+    this.state = {};
   }
-  
-  componentDidMount(){
-      if(sessionStorage.getItem('adminAccount') !== null){
-  	    this.props.history.push("/dashboard");
-      }
+
+  componentDidMount() {
+    if (sessionStorage.getItem("adminAccount") !== null) {
+      this.props.history.push("/dashboard");
+    }
   }
 
   adminloginF = async (e) => {
     e.preventDefault();
-    let Admin_account = document.getElementById('Lemail').value;
-    let admin_password = document.getElementById('password').value;
-    let admin_email_lable = document.getElementById('LemailLabel');
-    let admin_pword_lable = document.getElementById('pwordLabel');
+    let Admin_account = document.getElementById("Lemail").value;
+    let admin_password = document.getElementById("password").value;
+    let admin_email_lable = document.getElementById("LemailLabel");
+    let admin_pword_lable = document.getElementById("pwordLabel");
 
-    const check_account = await fetch(`/api/v2/admin/specificname/${Admin_account}`);
-    console.log(check_account)
-    if(check_account.status === 404){
-    	admin_email_lable.classList.add('red-text');
-    	admin_email_lable.innerHTML = "Acount does not exist";
-    	
-    	setTimeout( () => {
-    	    	admin_email_lable.classList.remove('red-text');
-    	        admin_email_lable.innerHTML = "Email";
-    	}, 2000);
-    	
-    }else{
-    	const result = await check_account.json();
-    	if(admin_password === result.password){
-    	    sessionStorage.clear();
-    	    let x = new Date().toString();
+    const check_account = await fetch(
+      `/api/v2/admin/specificname/${Admin_account}`
+    );
+    console.log(check_account);
+    if (check_account.status === 404) {
+      admin_email_lable.classList.add("red-text");
+      admin_email_lable.innerHTML = "Acount does not exist";
 
-	    let y = x.split(" ");
-	    let finalString ="";
+      setTimeout(() => {
+        admin_email_lable.classList.remove("red-text");
+        admin_email_lable.innerHTML = "Email";
+      }, 2000);
+    } else {
+      const result = await check_account.json();
+      if (admin_password === result.password) {
+        sessionStorage.clear();
+        let x = new Date().toString();
 
-	    for(let i=0; i<= y.length-4; i++ ){
-            	finalString = finalString + " " + y[i];
-            }
+        let y = x.split(" ");
+        let finalString = "";
 
+        for (let i = 0; i <= y.length - 4; i++) {
+          finalString = finalString + " " + y[i];
+        }
 
-    	    sessionStorage.setItem("adminAccount" , "account1");
-    	    sessionStorage.setItem("loginTime",finalString.trim());	
-    	    sessionStorage.setItem("adminId",result.emp_id);	
-    	    this.props.history.push("/dashboard");
-    	}else{
-    	    admin_pword_lable.classList.add('red-text');
-    	    admin_pword_lable.innerHTML = "Check Your Password";
-    	    
-    	    setTimeout( () => {
-    	    	admin_pword_lable.classList.remove('red-text');
-    	        admin_pword_lable.innerHTML = "Password";
-    	    }, 2000);
-    	}
-    	
+        sessionStorage.setItem("adminAccount", "account1");
+        sessionStorage.setItem("loginTime", finalString.trim());
+        sessionStorage.setItem("adminId", result.emp_id);
+        this.props.history.push("/dashboard");
+      } else {
+        admin_pword_lable.classList.add("red-text");
+        admin_pword_lable.innerHTML = "Check Your Password";
+
+        setTimeout(() => {
+          admin_pword_lable.classList.remove("red-text");
+          admin_pword_lable.innerHTML = "Password";
+        }, 2000);
+      }
     }
-    
   };
 
   style = () => {
@@ -79,10 +76,10 @@ class AdminLogin extends Component {
       marginTop: "20px",
     };
   };
-  
+
   static removeWhiteSpaces = (inputString) => {
-  	return inputString.replace(/\s/g,'');
-  }
+    return inputString.replace(/\s/g, "");
+  };
 
   render() {
     return (
@@ -103,7 +100,12 @@ class AdminLogin extends Component {
                   <form className="col s12" method="post" action="/login">
                     <div className="row">
                       <div className="input-field col s12">
-                        <input id="Lemail" name="username" type="text" className="avalidate"/>
+                        <input
+                          id="Lemail"
+                          name="username"
+                          type="text"
+                          className="avalidate"
+                        />
                         <label htmlFor="Lemail" id="LemailLabel">
                           Email
                         </label>
@@ -117,7 +119,9 @@ class AdminLogin extends Component {
                           type="password"
                           className="validate"
                         />
-                        <label htmlFor="password" id="pwordLabel">Password</label>
+                        <label htmlFor="password" id="pwordLabel">
+                          Password
+                        </label>
                       </div>
                     </div>
                     <div className="container center-align grey-text">
@@ -142,7 +146,7 @@ class AdminLogin extends Component {
                     <br />
                     <div className="center-align center">
                       <Link to="/signup">
-                      <p className="teal-text">forget password?</p>
+                        <p className="teal-text">forget password?</p>
                       </Link>
                     </div>
                   </form>

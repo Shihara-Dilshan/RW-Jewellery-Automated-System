@@ -56,7 +56,7 @@ class UserDelivercancel extends Component {
         customerid: Cusid,
       }),
     });
-    sessionStorage.clear();
+    sessionStorage.removeItem("canceldelivery");
     setTimeout(() => {
       this.props.history.push("/");
     }, 1000);

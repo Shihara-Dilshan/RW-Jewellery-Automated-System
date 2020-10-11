@@ -7,14 +7,19 @@ class ConfirmDelivery extends Component {
     this.state = {
       temp: "",
       TempDel: {},
+      customerDetails: {},
     };
   }
   async componentDidMount() {
     const DeliverID = sessionStorage.getItem("assignItemDriver");
-    console.log(DeliverID);
+    const cusid = sessionStorage.getItem("cusid");
+    console.log(cusid);
     const apitemp = await fetch(`api/deliverybyid/${DeliverID}`);
     const tempResult = await apitemp.json();
     this.setState({ TempDel: tempResult });
+    const APICall = await fetch(`/api/v2/customer/${cusid}`);
+    const result = await APICall.json();
+    this.setState({ customerDetails: result });
 
     const elems = document.querySelectorAll("select");
     M.FormSelect.init(elems);
@@ -24,8 +29,9 @@ class ConfirmDelivery extends Component {
     const DeliverID = sessionStorage.getItem("assignItemDriver");
     const Daddress = document.getElementById("address").value;
     const DCity = document.getElementById("city").value;
-    const DboyID = document.getElementById("deliverBoy").value;
+    // const DboyID = document.getElementById("deliverBoy").value;
     const Cusid = document.getElementById("cusid").value;
+    console.log(Cusid);
     const Ddistance = document.getElementById("distance").value;
     const DProvince = document.getElementById("province").value;
     const DphoneNumber = document.getElementById("phoneNumber").value;
@@ -48,7 +54,7 @@ class ConfirmDelivery extends Component {
         phoneNumber: DphoneNumber,
         district: Ddistrict,
         customerid: Cusid,
-        deliverBoy: { emp_id: DboyID },
+        //deliverBoy: { emp_id: DboyID },
       }),
     });
   };
@@ -82,7 +88,10 @@ class ConfirmDelivery extends Component {
                   District - {this.state.TempDel.district}
                 </h6>
                 <h6 className="center-align grey-text">
-                  Distance - {this.state.TempDel.distance}
+                  Distance - {this.state.TempDel.distance}Km
+                </h6>
+                <h6 className="center-align grey-text">
+                  Customer Name - {this.state.customerDetails.name}
                 </h6>
                 <button
                   data-target="modal1"
@@ -146,7 +155,6 @@ class ConfirmDelivery extends Component {
           type="text"
           className="validate"
           value={this.state.TempDel.customerid}
-          hidden
         />
       </div>
     );

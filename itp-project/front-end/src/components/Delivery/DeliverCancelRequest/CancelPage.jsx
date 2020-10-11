@@ -15,14 +15,14 @@ class CancelPage extends Component {
     const Result = await APICall.json();
     console.log(Result);
     this.setState({ Delcancel: Result });
-    const APICall2 = await fetch(`api/v2/order/OrderbyDelivery/${DeliveryID}`);
+    const APICall2 = await fetch(`api/v2/orders/OrderbyDelivery/${DeliveryID}`);
     const Result2 = await APICall2.json();
     console.log(Result2);
     this.setState({ Delcancel2: Result2 });
     console.log(this.state.Delcancel2);
   }
   async remove(id, id2) {
-    fetch(`/api/v2/order/deleteOrder/${id}`, {
+    fetch(`/api/v2/orders/deleteOrder/${id}`, {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",

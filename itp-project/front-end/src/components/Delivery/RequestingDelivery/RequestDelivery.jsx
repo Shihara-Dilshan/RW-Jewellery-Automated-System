@@ -53,7 +53,7 @@ class RequestDelivery extends Component {
     const DeliveryIDD = responsDelivery.delivery_id;
     this.state.OrderDetails.delivery = { delivery_id: DeliveryIDD };
     let OOrderID = sessionStorage.getItem("ORID");
-    fetch(`/api/v2/order/updateOrder/${OOrderID}`, {
+    fetch(`/api/v2/orders/updateOrder/${OOrderID}`, {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -68,9 +68,11 @@ class RequestDelivery extends Component {
     const result = await APICall.json();
     this.setState({ customerDetails: result });
     let OrderID = sessionStorage.getItem("ORID");
-    const APICall1 = await fetch(`/api/v2/order/${OrderID}`);
+    console.log(OrderID);
+    const APICall1 = await fetch(`/api/v2/orders/${OrderID}`);
     const result1 = await APICall1.json();
     this.setState({ OrderDetails: result1 });
+    console.log(this.state.OrderDetails)
   }
   handldistance = (event) => {
     this.setState({

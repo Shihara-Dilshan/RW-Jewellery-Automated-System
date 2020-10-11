@@ -56,7 +56,8 @@ import VerifyPayment from "./components/Admin/AdminPayment/VerifyPayment";
 import VerifyOrder from "./components/User/userPurchase/VerifyOrder";
 import RecordDashBoard from "./components/Admin/Record/RecordDashBoard";
 import AdminLogs from "./components/Admin/Record/AdminLogs/AdminLogs"
-
+import UserCancel from "./components/Delivery/DeliverCancelRequest/UserCancel";
+import UserDelivercancel from "./components/Delivery/DeliverCancelRequest/UserDelivercancel";
 const App = () => {
   return (
     <Router>
@@ -98,6 +99,12 @@ const App = () => {
             exact
             component={DeliveryDriverReport}
           />
+           <Route path="/UserCancel" exact component={UserCancel} />
+          <Route
+            path="/UserDelivercancel"
+            exact
+            component={UserDelivercancel}
+          />
           <Route path="/DeliveryDriver" exact component={DeliveryDriver} />
           <Route path="/adminlogin" exact component={AdminLogin} />
           <Route path="/dashboard" exact component={DashBoard} />
@@ -130,4 +137,4 @@ const App = () => {
   );
 };
 
-export default App;    
+export default App;  

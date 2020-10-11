@@ -2,28 +2,25 @@ import React, { Component } from "react";
 import "./../../../App.css";
 import M from "materialize-css";
 
-
 class ManageService extends Component {
   constructor(props) {
     super(props);
-    this.state = { userPurchuses: [],  isLoading : true};
+    this.state = { userPurchuses: [], isLoading: true };
   }
-  
-  async componentDidMount(){
-    	const getCurrentPurchuses = await fetch(`/api/v2/admin/all`);
-    	
-    	const allPurchuses = await getCurrentPurchuses.json();
-    	console.log(allPurchuses.status);
-    	if(allPurchuses.status === 403){
-    	    alert("You dont have permission")
-    	}else{
-    	    this.setState({userPurchuses: allPurchuses, isLoading : false});
-    	}
-    	
-    	
+
+  async componentDidMount() {
+    const getCurrentPurchuses = await fetch(`/api/v2/admin/all`);
+
+    const allPurchuses = await getCurrentPurchuses.json();
+    console.log(allPurchuses.status);
+    if (allPurchuses.status === 403) {
+      alert("You dont have permission");
+    } else {
+      this.setState({ userPurchuses: allPurchuses, isLoading: false });
     }
-    
-    style = () => {
+  }
+
+  style = () => {
     return {
       backgroundColor: "#f5f5f5",
       borderRadius: "5px",
@@ -37,14 +34,10 @@ class ManageService extends Component {
       width: "20%",
     };
   };
-  
-  
 
   render = () => {
     return (
-    
-    
-          <div className="contsainer test" style={this.style()}>
+      <div className="contsainer test" style={this.style()}>
         <div className="col s12 m7">
           <div className="card horizontal">
             <div className="card-image hide-on-small-only">
@@ -59,52 +52,57 @@ class ManageService extends Component {
               <div className="card-content">
                 <h4 className="center-align grey-text">Current Admins</h4>
                 <div className="row">
-                  <div className="center-align center">
-                  </div>
+                  <div className="center-align center"></div>
                   <br />
                   <div className="container">
-        <div class="row">
-    <div class="col s12">
-      <div class="row">
-         <table className="striped">
-        <thead>
-          <tr>
-              <th className="hide">Admin ID</th>
-              <th>Name</th>
-              <th>Account Name</th>
-               <th>Password</th>
-              <th>Role</th>
-              <th>Edit</th>
-          </tr>
-        </thead>
+                    <div class="row">
+                      <div class="col s12">
+                        <div class="row">
+                          <table className="striped">
+                            <thead>
+                              <tr>
+                                <th className="hide">Admin ID</th>
+                                <th>Name</th>
+                                <th>Account Name</th>
+                                <th>Password</th>
+                                <th>Role</th>
+                                <th>Edit</th>
+                              </tr>
+                            </thead>
 
-        <tbody>
-          {this.state.isLoading ? null : this.state.userPurchuses.map((admin) => {return (<tr>
-			    <td className="hide">{admin.emp_id}</td>
-			    <td>{admin.fname+ " " +admin.lName}</td>
-			    <td>{admin.uname}</td>
-			    <td>{admin.password}</td>
-			    <td>{admin.roles}</td>
-			    <td><button className="btn red">Delete</button></td>
-			  </tr>  )})}
-                  
-        </tbody>
-      </table>
-      </div>
-    </div>
-  </div>
-</div>
+                            <tbody>
+                              {this.state.isLoading
+                                ? null
+                                : this.state.userPurchuses.map((admin) => {
+                                    return (
+                                      <tr>
+                                        <td className="hide">{admin.emp_id}</td>
+                                        <td>
+                                          {admin.fname + " " + admin.lName}
+                                        </td>
+                                        <td>{admin.uname}</td>
+                                        <td>{admin.password}</td>
+                                        <td>{admin.roles}</td>
+                                        <td>
+                                          <button className="btn red">
+                                            Delete
+                                          </button>
+                                        </td>
+                                      </tr>
+                                    );
+                                  })}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-
-     
-
-
-
     );
   };
 }

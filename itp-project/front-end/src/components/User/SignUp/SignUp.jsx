@@ -2,12 +2,16 @@ import React, { Component } from "react";
 import FacebookLogin from "react-facebook-login";
 import { Link } from "react-router-dom";
 import "./../../../App.css";
+
+import { storageRef } from "../../../firebase";
 import M from "materialize-css";
 
 class SignUp extends Component {
-  constructor(props){
-      super(props);
-      this.state = {};
+  constructor(props) {
+    super(props);
+    this.state = {
+      image: undefined,
+    };
   }
 
   responseFacebook = async (response) => {
@@ -15,7 +19,7 @@ class SignUp extends Component {
 
     let email = response.email;
     const call = await fetch(`/api/v2/customer/find/${email}`);
-    const result = await call.json().catch((err) => console.log(err));
+    const result = await call.json();
     console.log(result);
 
     if (result === undefined) {
@@ -64,6 +68,14 @@ class SignUp extends Component {
     };
   };
 
+  imageUpdalod = (e) => {
+    if (e.target.files[0]) {
+      this.setState({ image: e.target.files[0] });
+    } else {
+      alert("please choose a profile picture");
+    }
+  };
+
   render() {
     return (
       <div className="contsainer test" style={this.style()}>
@@ -85,10 +97,7 @@ class SignUp extends Component {
                     <p className="grey-text">
                       {" "}
                       If you already have an account with us, please login at
-                      the{" "}
-                      <Link to="/login">
-                        login page
-                      </Link>
+                      the <Link to="/login">login page</Link>
                     </p>
                   </div>
                   <br />
@@ -157,6 +166,19 @@ class SignUp extends Component {
                     <div className="progress hide test">
                       <div className="indeterminate"></div>
                     </div>
+                    <div className="row">
+                      <div className="col s6">
+                        <p>Choose an profile image</p>
+                      </div>
+                      <div className="col s6">
+                        <input
+                          type="file"
+                          onChange={this.imageUpdalod}
+                          placeholder="Upload an image"
+                        />
+                      </div>
+                    </div>
+
                     <div className="center-align center">
                       <button
                         className="btn center-align grey darken-3"
@@ -222,7 +244,7 @@ class SignUp extends Component {
     cpassword.length === 0
       ? emptyColumns.push(document.getElementById("cpasswordLabel"))
       : console.log("mobile is not empty");
-    
+
     emptyColumns.length === 0 ? (isvalid = true) : (isvalid = false);
 
     if (isvalid) {
@@ -232,7 +254,6 @@ class SignUp extends Component {
         item.classList.remove("hide");
         item.classList.add("show");
       });
-
 
       //api call
       const reg = await fetch("/api/v2/customer/register", {
@@ -249,24 +270,42 @@ class SignUp extends Component {
           pword: password,
         }),
       });
-      setTimeout( () => {
-        waitIndicator.forEach((item) => {
-           item.classList.remove("show");
-           item.classList.add("hide");
-        });
-      	M.toast({ html: "Successfully registered" });
-      	setTimeout(async() => {
-      	    const call = await fetch(`/api/v2/customer/find/${name}`);
-    	    const result = await call.json().catch((err) => console.log(err));
-      	    sessionStorage.setItem("userId", result.customer_id);
-      	    sessionStorage.setItem("email", result.name);
-      	    sessionStorage.setItem("FirstName", result.firstName);
-            sessionStorage.setItem("LastName", result.lastName);
-            sessionStorage.setItem("telephone", result.telephone);
-            sessionStorage.setItem("address", result.address);
-            this.props.history.push("/");
-      	},1000);
-      }, 1000);
+
+      const call = await fetch(`/api/v2/customer/find/${name}`);
+      const result = await call.json().catch((err) => console.log(err));
+      sessionStorage.setItem("userId", result.customer_id);
+      sessionStorage.setItem("email", result.name);
+      sessionStorage.setItem("FirstName", result.firstName);
+      sessionStorage.setItem("LastName", result.lastName);
+      sessionStorage.setItem("telephone", result.telephone);
+      sessionStorage.setItem("address", result.address);
+
+      const upload = storageRef
+        .ref(`images/${this.state.image.name}`)
+        .put(this.state.image);
+      upload.on(
+        "state_changed",
+        (snapshot) => {},
+        (error) => {
+          console.log(error);
+        },
+        () => {
+          storageRef
+            .ref("images")
+            .child(this.state.image.name)
+            .getDownloadURL()
+            .then((url) => {
+              console.log(url);
+              waitIndicator.forEach((item) => {
+                item.classList.remove("show");
+                item.classList.add("hide");
+              });
+              M.toast({ html: "Successfully registered" });
+              this.props.history.push("/");
+            });
+        }
+      );
+
       console.log(reg);
     } else {
       emptyColumns.forEach((emptyColumn) => {
@@ -279,7 +318,7 @@ class SignUp extends Component {
         });
       }, 2000);
     }
-  }
+  };
 
   static mytrim = (inputString) => {
     return inputString.replace(/\s/g, "");

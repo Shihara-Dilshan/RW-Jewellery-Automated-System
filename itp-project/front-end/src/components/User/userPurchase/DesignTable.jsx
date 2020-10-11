@@ -7,24 +7,27 @@ import DesignPurchuseCard from "./DesignPurchuseCard";
 class DesignTable extends Component {
   constructor(props) {
     super(props);
-    this.state = { userPurchuses: []};
+    this.state = { userPurchuses: [] };
   }
-  
-  async componentDidMount(){
-    	//const getCurrentPurchuses = await fetch(`/api/v2/services`);
-    	//const allPurchuses = await getCurrentPurchuses.json();
-    	//this.setState({userPurchuses: allPurchuses.filter((data) => data.customer.customer_id == sessionStorage.getItem("userId"))});
-    
-    	const tempAPICall = await fetch(`/api/v2/makeservices`);
-    	const tempResult = await tempAPICall.json();
-    	
-    	this.setState({userPurchuses: tempResult.filter((data) => data.customer.customer_id == sessionStorage.getItem("userId"))});
-    	
-    	console.log(tempResult);
-    	
-    }
-    
-    style = () => {
+
+  async componentDidMount() {
+    //const getCurrentPurchuses = await fetch(`/api/v2/services`);
+    //const allPurchuses = await getCurrentPurchuses.json();
+    //this.setState({userPurchuses: allPurchuses.filter((data) => data.customer.customer_id == sessionStorage.getItem("userId"))});
+
+    const tempAPICall = await fetch(`/api/v2/makeservices`);
+    const tempResult = await tempAPICall.json();
+
+    this.setState({
+      userPurchuses: tempResult.filter(
+        (data) => data.customer.customer_id == sessionStorage.getItem("userId")
+      ),
+    });
+
+    console.log(tempResult);
+  }
+
+  style = () => {
     return {
       backgroundColor: "#f5f5f5",
       borderRadius: "5px",
@@ -38,7 +41,7 @@ class DesignTable extends Component {
       width: "20%",
     };
   };
-  
+
   /*removeService = async (e) => {
   	const removeId = e.target.parentElement.parentElement.firstChild.innerHTML;
   	console.log(removeId);
@@ -55,31 +58,26 @@ class DesignTable extends Component {
 
   render = () => {
     return (
-    	 <div className="container">
+      <div className="container">
         <h4 className="center-align">
           <span className="teal-text">My </span> Designs
         </h4>
         <div className="row">
-        {this.state.userPurchuses.map((design) => {
-        	return(
-        	<DesignPurchuseCard
-            	imageSrc={design.imageUrl}
-            	title={design.design.name}
-            	description={design.design.description}
-            	price={design.price}
-            	madeDate={design.localDateTime}
-            	serviceId={design.service_id}
-            	editable={design.isEditable}
-          />);
-        })}
-          
+          {this.state.userPurchuses.map((design) => {
+            return (
+              <DesignPurchuseCard
+                imageSrc={design.imageUrl}
+                title={design.design.name}
+                description={design.design.description}
+                price={design.price}
+                madeDate={design.localDateTime}
+                serviceId={design.service_id}
+                editable={design.isEditable}
+              />
+            );
+          })}
         </div>
       </div>
-
-     
-
-
-
     );
   };
 }

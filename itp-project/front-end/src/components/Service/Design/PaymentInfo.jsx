@@ -3,41 +3,45 @@ import "./../../../App.css";
 import M from "materialize-css";
 
 class PaymentInfo extends Component {
-  constructor(props){
-      super(props);
-      this.state = {
-      	Discount : "", 
-      	design: "",
-        finalPrice: "",
-      };
+  constructor(props) {
+    super(props);
+    this.state = {
+      Discount: "",
+      design: "",
+      finalPrice: "",
+    };
   }
 
-  componentDidMount(){
-  	const discount = JSON.parse(sessionStorage.getItem('designRequestDet')).discount;
-	const designId = JSON.parse(sessionStorage.getItem('designRequestDet')).selectedDesign;
-	const deadline = JSON.parse(sessionStorage.getItem('designRequestDet')).deadline;
-	
-	fetch(`/api/v2/designs/${designId}`)
-		.then(res => res.json())
-		.then( (data) => {
-			this.setState({
-				design:data, 
-				Discount: discount,
-				deadline: deadline,
-				finalPrice : Number.parseInt(data.price) - discount,
-				})
-				//alert(this.state.finalPrice);
-			})
-		.catch(err => console.log(err));
+  componentDidMount() {
+    const discount = JSON.parse(sessionStorage.getItem("designRequestDet"))
+      .discount;
+    const designId = JSON.parse(sessionStorage.getItem("designRequestDet"))
+      .selectedDesign;
+    const deadline = JSON.parse(sessionStorage.getItem("designRequestDet"))
+      .deadline;
+
+    fetch(`/api/v2/designs/${designId}`)
+      .then((res) => res.json())
+      .then((data) => {
+        this.setState({
+          design: data,
+          Discount: discount,
+          deadline: deadline,
+          finalPrice: Number.parseInt(data.price) - discount,
+        });
+        //alert(this.state.finalPrice);
+      })
+      .catch((err) => console.log(err));
   }
 
   request = async (e) => {
-  	e.preventDefault();
-  	const indicator = document.getElementById('indicate');
-  	indicator.classList.remove('hide');
-  	indicator.classList.add('show');
-  	const designId = JSON.parse(sessionStorage.getItem('designRequestDet')).selectedDesign;
-  	/*
+    e.preventDefault();
+    const indicator = document.getElementById("indicate");
+    indicator.classList.remove("hide");
+    indicator.classList.add("show");
+    const designId = JSON.parse(sessionStorage.getItem("designRequestDet"))
+      .selectedDesign;
+    /*
   	const insertService = await fetch(`/api/v2/services/addnew`,{
   		headers: {
           	Accept: "application/json",
@@ -55,35 +59,38 @@ class PaymentInfo extends Component {
   	const result = await insertService.json();
   	const ServiceID = result.service_id;
   	*/
-  	const insertRequestDesign = await fetch(`/api/v2/makeservice`,{
-  		headers: {
-          	Accept: "application/json",
-          	"Content-Type": "application/json",
-        	},
-        	method: "POST",
-        	body: JSON.stringify({
-          	//service_id: ServiceID,
-          	price: this.state.finalPrice,
-          	status: "new",
-          	weight: JSON.parse(sessionStorage.getItem('designRequestDet')).weight,
-          	design: { design_id: designId},
-          	imageUrl: JSON.parse(sessionStorage.getItem('designRequestDet')).imageUrl,
-          	jewellerytype: "normal",
-          	isEditable: "yes",
-          	localDateTime: JSON.parse(sessionStorage.getItem('designRequestDet')).dueDate,
-          	customer: { customer_id: sessionStorage.getItem('userId')},
-        }),
-  	});
-  	// eslint-disable-next-line
-  	const resultDesign = await insertRequestDesign.json();
-  	
-  	setTimeout( () => {
-  	   M.toast({ html: "Your Request has been placed. You can visit our show room with your gold" });
-  	   this.props.history.push("/");
-  	}, 2000);
-  	
-  	
-  }
+    const insertRequestDesign = await fetch(`/api/v2/makeservice`, {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify({
+        //service_id: ServiceID,
+        price: this.state.finalPrice,
+        status: "new",
+        weight: JSON.parse(sessionStorage.getItem("designRequestDet")).weight,
+        design: { design_id: designId },
+        imageUrl: JSON.parse(sessionStorage.getItem("designRequestDet"))
+          .imageUrl,
+        jewellerytype: "normal",
+        isEditable: "yes",
+        localDateTime: JSON.parse(sessionStorage.getItem("designRequestDet"))
+          .dueDate,
+        customer: { customer_id: sessionStorage.getItem("userId") },
+      }),
+    });
+    // eslint-disable-next-line
+    const resultDesign = await insertRequestDesign.json();
+
+    setTimeout(() => {
+      M.toast({
+        html:
+          "Your Request has been placed. You can visit our show room with your gold",
+      });
+      this.props.history.push("/");
+    }, 2000);
+  };
 
   style = () => {
     return {

@@ -64,6 +64,7 @@ import Ongoingdeliveries from "./components/Delivery/OngoingDeliveries/Ongoingde
 import More from "./components/Delivery/OngoingDeliveries/More";
 import SearchMore from "./components/Delivery/DeliveryDriverReport/SearchMore";
 import AddAdmin from "./components/Admin/ManageAdmin/AddAdmin";
+import ServiceLogs from "./components/Admin/Record/ServiceLogs/ServiceLogs";
 
 const App = () => {
   return (
@@ -151,6 +152,7 @@ const App = () => {
     <Route path="/OngoingMore" exact component={More}/>
     <Route path="/SearchMore" exact component={SearchMore}/>
           <Route path="/addadmin" exact component={AddAdmin} />
+          <Route path="/servicelogs" exact component={ServiceLogs} />
         </Switch>
       </div>
       <Footer />

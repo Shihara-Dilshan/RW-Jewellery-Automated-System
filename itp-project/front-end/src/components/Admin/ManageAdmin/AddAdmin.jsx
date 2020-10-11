@@ -14,6 +14,11 @@ class AddAdmin extends Component {
       profileimg: "",
     };
   }
+  
+  componentDidMount(){
+  	let elems = document.querySelectorAll('select');
+    	M.FormSelect.init(elems, {});
+  }
 
   componentClicked = () => {
     console.log();
@@ -82,22 +87,34 @@ class AddAdmin extends Component {
                         </label>
                       </div>
                     </div>
+                     <div className="row">
+                      <div className="input-field col s12">
+                        <input id="Nic" type="email" className="validate" />
+                        <label htmlFor="Nic" id="emailNameLabel">
+                          NIC 
+                        </label>
+                      </div>
+                    </div>
                     <div className="row">
                       <div className="input-field col s12">
                         <input id="email" type="email" className="validate" />
                         <label htmlFor="email" id="emailNameLabel">
-                          Email
+                          User Name
                         </label>
                       </div>
                     </div>
-                    <div className="row">
-                      <div className="input-field col s12">
-                        <input id="mobile" type="text" />
-                        <label htmlFor="mobile" id="telephoneLable">
-                          Telephone
-                        </label>
-                      </div>
-                    </div>
+                    <div class="input-field col s12">
+    			<select>
+      				<option value="" disabled selected>Choose admin role</option>
+      				<option value="ROOT_DRIVER">Driver</option>
+      				<option value="ROOT_JMANAGER">Jewellery Manager</option>
+      				<option value="ROOT_RMANAGER">Renatal Manager</option>
+      				<option value="ROOT_SMANAGER">Service Manager</option>
+      				<option value="ROOT_SUPMANAGER">Renatal Manager</option>
+      				<option value="ROOT_OMANAGER">Order Manager</option>
+    			</select>
+    			<label>Materialize Select</label>
+  		    </div>
 
                     <div className="row">
                       <div className="input-field col s6">
@@ -124,19 +141,7 @@ class AddAdmin extends Component {
                     <div className="progress hide test">
                       <div className="indeterminate"></div>
                     </div>
-                    <div className="row">
-                      <div className="col s6">
-                        <p>Choose an profile image</p>
-                      </div>
-                      <div className="col s6">
-                        <input
-                          type="file"
-                          id="photoupload"
-                          onChange={this.imageUpdalod}
-                          placeholder="Upload an image"
-                        />
-                      </div>
-                    </div>
+                    
 
                     <div className="center-align center">
                       <button
@@ -144,14 +149,11 @@ class AddAdmin extends Component {
                         style={{ width: "100%" }}
                         onClick={this.signUp}
                       >
-                        signup
+                        Add Admin
                       </button>
                     </div>
                     <br />
-                    <div className="container center-align">
-                      <p>or else sign up with</p>
-                      <br />
-                    </div>
+                    
                   </form>
                 </div>
               </div>

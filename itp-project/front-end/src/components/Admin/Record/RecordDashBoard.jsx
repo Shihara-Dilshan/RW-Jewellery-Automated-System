@@ -35,7 +35,7 @@ class RecordDashBoard extends Component {
             <StaticCards
               title="Service logs"
               icon="contact_phone"
-              to="servicedashBoard"
+              to="servicelogs"
             />
             <StaticCards title="Supplier logs" icon="store" to="SupM" />
             <StaticCards title="Jewellery logs" icon="local_atm" to="VL" />

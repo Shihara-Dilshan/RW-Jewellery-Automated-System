@@ -1,6 +1,7 @@
 package com.noobstack.jewellery.model;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -17,8 +18,8 @@ public class CustomerRentals {
     @ManyToOne
     private Rental rental;
 
-    private LocalDateTime rentalDate;
-    private LocalDateTime returnDate;
+    private LocalDate rentalDate;
+    private LocalDate returnDate;
 
     private String status;
 
@@ -35,7 +36,7 @@ public class CustomerRentals {
     public CustomerRentals() {
     }
 
-    public CustomerRentals(Customer customer, Rental rental, LocalDateTime rentalDate, LocalDateTime returnDate, String status) {
+    public CustomerRentals(Customer customer, Rental rental, LocalDate rentalDate, LocalDate returnDate, String status) {
         this.customer = customer;
         this.rental = rental;
         this.rentalDate = rentalDate;
@@ -67,19 +68,19 @@ public class CustomerRentals {
         this.rental = rental;
     }
 
-    public LocalDateTime getRentalDate() {
+    public LocalDate getRentalDate() {
         return rentalDate;
     }
 
-    public void setRentalDate(LocalDateTime rentalDate) {
+    public void setRentalDate(LocalDate rentalDate) {
         this.rentalDate = rentalDate;
     }
 
-    public LocalDateTime getReturnDate() {
+    public LocalDate getReturnDate() {
         return returnDate;
     }
 
-    public void setReturnDate(LocalDateTime returnDate) {
+    public void setReturnDate(LocalDate returnDate) {
         this.returnDate = returnDate;
     }
 
@@ -103,4 +104,5 @@ public class CustomerRentals {
                 ", TotalAmount='"+ totalAmount +
                 '}';
     }
+
 }

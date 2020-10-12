@@ -4,6 +4,18 @@ import M from "materialize-css";
 import { Link } from "react-router-dom";
 
 class totalPaymentOne extends Component {
+
+  constructor(props) {
+    super(props);
+    //const orderId = props.location.state.data;
+    this.state = {
+      // customer_rentals: [],
+      customer_rentals: {},
+      totalamt:"",
+      orderId:"",
+      
+    };
+  }
   
 
     style = () => {
@@ -14,8 +26,32 @@ class totalPaymentOne extends Component {
         marginBottom: "-10px",
       };
     };
+
+    async componentDidMount() {
+      // const orderId = this.props.location.state.data;
+      // this.setState({
+      //   orderId: orderId,
+      // })
+      // console.log(orderId);
+      const orderId=sessionStorage.getItem("newRenatalId");
+  
+      const APICall = await fetch(`/api/v2/rentalcus/rentalById/${orderId}`);
+      const Result = await APICall.json();
+      //.then(response => console.log('Success:', response))
+            
+      // this.setState({ totalPayment1: Result });
+      this.setState({ 
+        customer_rentals:Result
+       });
+       
+
+    }
   
     render() {
+      document.addEventListener("DOMContentLoaded", function () {
+        const elems = document.querySelectorAll(".modal");
+        M.Modal.init(elems);
+      });
       
       return (
        
@@ -26,7 +62,7 @@ class totalPaymentOne extends Component {
               <div className="card-image hide-on-small-only">
                 <img
                   alt=""
-                  src="https://cdn.shopify.com/s/files/1/0031/9468/3441/products/il_fullxfull.1918175288_cd7c_345x345@2x.jpg?v=1586184264"
+                  src="https://image.freepik.com/free-vector/online-payment-with-mobile-phone-isometric_1124-1404.jpg"
                   width ="75%"
                   height="90%"
                 />
@@ -47,39 +83,58 @@ class totalPaymentOne extends Component {
                     <form className="col s12" onSubmit={this.confirm}>
                       <div className="row">
                         <div className="input-field col s6">
+                        <label class="active" htmlFor="first_name">First Name</label>
                           <input
                             id="first_name"
                             type="text"
                             className="validate"
+                            value = {this.state.customer_rentals.customer? (this.state.customer_rentals.customer||{}).firstName||0 : 0 }
                           />
-                          <label htmlFor="first_name">First Name</label>
+                         
                         </div>
+                        
                         <div className="input-field col s6">
+                        
+                        <label class="active" htmlFor="last_name">Last Name</label>
                           <input
                             id="last_name"
                             type="text"
                             className="validate"
+                            value = {this.state.customer_rentals.customer? (this.state.customer_rentals.customer||{}).lastName||0 : 0 }
                           />
-                          <label htmlFor="last_name">Last Name</label>
+                          
                         </div>
                       </div>
                       <div className="row">
+                      <label class="active" htmlFor="nic">NIC</label>
                         <div className="input-field col s12">
-                          <input id="nic" type="text" className="validate" />
-                          <label htmlFor="nic">NIC</label>
+                          <input id="nic" type="text" 
+                          value = {this.state.customer_rentals.customer? (this.state.customer_rentals.customer||{}).nic||0 : 0 }
+                          className="validate " />
+                          
                         </div>
                       </div>
-                    
+          
                       <div className="row">
+                      <label class="active" htmlFor="totalpay">Total Amount</label>
                         <div className="input-field col s12">
                           <input
                             id="totamt"
                             type="text"
-                          />
-                          <label htmlFor="totalpay">Total Amount</label>
+                            value = {this.state.customer_rentals.totalAmount}
+                            className="validate" 
+                            />
+                          
                         </div>
+                        
                       </div>
-                      <Link to ="../Myrentals">
+                  
+                      <Link to ={{
+  pathname: '../Myrentals',
+  state: {
+    id: this.state.orderId,
+  }
+}}>
                       <div className="center-align center">
                         <button
                           className="btn center-align grey darken-3"

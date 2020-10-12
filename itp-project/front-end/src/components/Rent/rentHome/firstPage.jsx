@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import M from "materialize-css";
+
 import { Link } from "react-router-dom";
 
 import './stylefirst.css';
 
 
 class RentList extends Component {
-    state = {};
 
     style = () => {
       return {
@@ -24,6 +23,12 @@ class RentList extends Component {
       this.state = {};
     }
   
+    rental = (e) => {
+        
+        sessionStorage.setItem("rentalid",e.target.id );
+
+    }
+
     buttonStyle = () => {
       return {
         width: "100%",
@@ -32,7 +37,12 @@ class RentList extends Component {
     render() {
       return (
         <div>
-          <Link to ="../Myrentals">
+          <Link to ={{
+  pathname: '../MyRentals',
+  state: {
+    id: "f60e9d92-6d29-4975-a083-9b2a67dc4f57",
+  }
+}}>
           <div id="myrentals">
             <button class="rentals">My Rentals</button>
           </div>
@@ -48,16 +58,22 @@ class RentList extends Component {
             <div className="card-content">
               <p>{this.props.description}</p>
             </div>
-            <Link to ="../RentPayment">
+            
+           
             <div className="card-action white-text">
+            <Link to="/RentPayment">
               <button
+                id={this.props.jid}
                 className="btn white-text grey darken-3"
-                style={this.buttonStyle()}
+                style={this.buttonStyle()
+               }
+               onClick={this.rental}
               >
                 Rent now
               </button>
+              </Link>
             </div>
-            </Link>
+            
           </div>
         </div>
         </div>

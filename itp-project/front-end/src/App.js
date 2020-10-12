@@ -41,6 +41,7 @@ import earstuds from "./components/Rent/rentHome2/mainEarrings";
 import totPayone from "./components/Rent/TotalPay/totalpayment1";
 import myrentals from "./components/Rent/Myrentals/userRentals";
 import updatetable from "./components/Rent/updateTable/u_table";
+import myRreport from "./components/Rent/MonthlyRentals/Report";
 
 
 const App = () => {
@@ -86,6 +87,7 @@ const App = () => {
           <Route path="/TotalPay" exact component = {totPayone} />
           <Route path="/Myrentals" exact component = {myrentals} />
           <Route path="/updateTable" exact component = {updatetable} />
+          <Route path="/MonthlyRentals" exact component = {myRreport} />
         </Switch>
       </div>
       <Footer />

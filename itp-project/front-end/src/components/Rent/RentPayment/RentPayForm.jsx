@@ -1,24 +1,45 @@
 import React, { Component } from "react";
 import M from "materialize-css";
+import {default as UUID} from "uuid";
 
 import { Link } from 'react-router-dom';
 
 class RentPayForm extends Component {
 
   
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
 
+    
       this.state = {
         fields: {},
-        errors: {}
+        errors: {},
+        itemId: sessionStorage.getItem("rentalid"),
+        orderId:"",
+        rentals:[],
+        item:{}
       }
 
-      this.handleChange = this.handleChange.bind(this);
-      this.submituserRegistrationForm = this.submituserRegistrationForm.bind(this);
     
 
     };
+    async componentDidMount() {
+
+      const first_name = document.querySelector('#first_name');
+      first_name.value = sessionStorage.getItem("FirstName");
+
+
+      const APICall = await fetch(`/api/v2/rentalcus/jewelById/${this.state.itemId}`);
+      const Result = await APICall.json();
+      //.then(response => console.log('Success:', response))
+            
+      // this.setState({ totalPayment1: Result });
+      this.setState({ 
+        item:Result
+       });
+       
+
+    }
     
     style = () => {
       return {
@@ -29,34 +50,37 @@ class RentPayForm extends Component {
       };
     };
 
-    handleChange(e) {
+   
+
+    handleChange = (e) => {
       let fields = this.state.fields;
       fields[e.target.name] = e.target.value;
+
       this.setState({
-        fields
+        fields:fields,
       });
 
     }
 
-    submituserRegistrationForm(e) {
+    submituserRegistrationForm = (e) => {
       e.preventDefault();
     
       if (this.validateForm()) {
-          let fields = {};
-          fields["unic"] = "";
-          fields["rentdate"] = "";
-          fields["returndate"] = "";
-          /*fields["password"] = "";*/
-          this.setState({fields:fields});
-          
-          alert("Form submitted");
+          // let fields = {};
+          // fields["unic"] = "";
+          // fields["rentdate"] = "";
+          // fields["returndate"] = "";
+          // /*fields["password"] = "";*/
+          // this.setState({fields:fields});
          
+          alert("Form submitted");
           
       }
-      
+      this.exe();
+  
     }
-
-    validateForm() {
+    
+    validateForm = () => {
 
       let fields = this.state.fields;
       let errors = {};
@@ -92,19 +116,122 @@ class RentPayForm extends Component {
       return formIsValid;
       
     }
+
+
+    SubmitRentalPayment = async (event) => {
+     // event.preventDefault();
+      console.log(this.state.fields);
+
+      // const rentdate= document.getElementById("rentd").value;
+      // const returndate = document.getElementById("returnd").value;
+
+      const total = this.getTotal();
+      
+      await fetch("/api/v2/rentalcus/sendRental", {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify({
+     
+          "status":"pending",
+          "rentalDate": this.state.fields.rentdate,
+          "returnDate":this.state.fields.returndate,
+          "rental": this.state.item,
+          "totalAmount": total,
+    }),
+      }).then(res => res.json())
+         
+.then(response => {
+  console.log('Success:', response);
+  sessionStorage.setItem("newRenatalId",response.id );
+  sessionStorage.setItem("newRenatalprice",response.totalAmount );
+  sessionStorage.setItem("newJewelryname",);
+})
+.catch(error => console.error('Error:', error))
+      ;
+      //this.props.history.push("/TotalPay");
+      this.props.history.push({
+        pathname: '/TotalPay',
+        state: { data: this.state.orderId }
+      })
+     
+    }
+    
+    handletoast = (event) => {
+      setTimeout(() => {
+        M.toast({ html: "Your request has been recorded" });
+        this.props.history.push("/");
+      }, 1000);
+    };
+  
+    exe = (event) => {
+
+      this.SubmitRentalPayment(event);
+  
+    };
+
+    //1.caculate the no of days******2.take the rental price******3.calculate the total= price * no of days
+
+    // getTotal = (rent, returndate) => {
+    //   var date1 = new Date(rent); 
+    //   var date2 = new Date(returndate); 
+        
+    //   // To calculate the time difference of two dates 
+    //   var Difference_In_Time = date2.getTime() - date1.getTime(); 
+        
+    //   // To calculate the no. of days between two dates 
+    //    var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24); 
+    //    var numberofDays= Difference_In_Days +1;
+
+
+    //   return numberofDays;
+
+
+    //   }
+    getTotal = () => {
+      var date1 = new Date(this.state.fields.rentdate); 
+      var date2 = new Date(this.state.fields.returndate); 
+        
+      // To calculate the time difference of two dates 
+      var Difference_In_Time = date2.getTime() - date1.getTime(); 
+        
+      // To calculate the no. of days between two dates 
+       var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24); 
+       var numberofDays= Difference_In_Days +1;
+
+       var totalPrice = this.state.item.rentalPrice * numberofDays;
+
+
+      return totalPrice;
+
+
+      }
+
+
+    handleDemo=(event)=> {
+      event.preventDefault();
+      this.setState({
+        // : '2020-10-30',
+        // returnDate:'2020-10-31',
+        fields:{returndate:'2020-10-31', rentdate:'2020-10-25' }
+          
+      })
+  }
     render() {
       
       return (
         
        
         <div className="contsainer test" style={this.style()}>
-         
+
           <div className="col s12 m7">
             <div className="card horizontal">
               <div className="card-image hide-on-small-only">
                 <img
                   alt=""
-                  src="https://slimages.macysassets.com/is/image/MCY/products/7/optimized/8448567_fpx.tif?op_sharpen=1&wid=500&hei=613&fit=fit,1&$filtersm$"
+                  src="https://blog.testproject.io/wp-content/uploads/2019/12/marginalia-payment-processed.png"
                   width ="75%"
                   height="90%"
                 />
@@ -123,13 +250,15 @@ class RentPayForm extends Component {
                     </div>
                     <br />
                     
-                    <form className="col s12" name ="userRegistrationForm" onSubmit={this.submituserRegistrationForm}>
+                    <form className="col s12" name ="userRegistrationForm"  onSubmit={this.submituserRegistrationForm}>
+                  
                       <div className="row">
                         <div className="input-field col s6">
                           <input
                             id="first_name"
                             type="text"
                             className="validate"
+                           
                           />
                           <label htmlFor="first_name">First Name</label>
                         </div>
@@ -138,6 +267,7 @@ class RentPayForm extends Component {
                             id="last_name"
                             type="text"
                             className="validate"
+                           
                           />
                           <label htmlFor="last_name">Last Name</label>
                         </div>
@@ -145,22 +275,11 @@ class RentPayForm extends Component {
                       <div className="row">
                         <div className="input-field col s12">
                         <label>NIC</label>
-                          <input id="nic" type="text" name = "unic" value={this.state.fields.unic} className="validate" onChange={this.handleChange} />
+                          <input id="nic" type="text" name = "unic" value={this.state.fields.unic} className="validate" onChange={this.handleChange} required/>
                           <div>{this.state.errors.unic}</div> 
                         </div>
                       
                       </div>
-                      
-                      <div className="row">
-                        <div className="input-field col s12">
-                          <input
-                            id="mobile"
-                            type="text"
-                          />
-                          <label htmlFor="mobile">Telephone</label>
-                        </div>
-                      </div>
-                      
                       
                       <div className="row">
                         <div className="input-field col s12">
@@ -189,17 +308,22 @@ class RentPayForm extends Component {
                         </div>
                         <div>{this.state.errors.returndate}</div>
                       </div>
-                     
-                     
+                      
                         <div className="center-align center">
+                        
+                          {/* <Link to = "../TotalPay"> */}
                             <button
                               className="btn center-align grey darken-3"
                               style={{ width: "100%" }}
+                              // onClick={this.exe}
                             >
                               Confirm
                             </button>
+                            <br/>
+                            <button  class="waves-effect grey darken-1 btn-small col s4" onClick={this.handleDemo}>DEMO</button>
+                            {/* </Link> */}
                       </div><br/>
-                     
+                    
                     </form>
                     
                   </div>

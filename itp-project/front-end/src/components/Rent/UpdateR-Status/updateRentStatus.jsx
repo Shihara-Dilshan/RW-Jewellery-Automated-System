@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import M from "materialize-css";
+import { Link } from 'react-router-dom';
 
 class updateRentStatus extends Component {
     state = {};
@@ -36,7 +37,7 @@ class updateRentStatus extends Component {
                       <div className="row">
                         <div className="input-field col s12">
                           <input id="nic" type="text" className="validate" />
-                          <label htmlFor="cnic">CUSTOMER NIC</label>
+                          <label htmlFor="cnic" required>CUSTOMER NIC</label>
                         </div>
                       </div>
                       <div className="row">
@@ -50,12 +51,13 @@ class updateRentStatus extends Component {
                       </div>
                       
                       <div className="center-align center">
+                      <Link to="../updateTable">
                         <button
                           className="btn center-align grey darken-3"
                           style={{ width: "100%" }}
                         >
                           Find
-                        </button>
+                        </button></Link>
                       </div><br/>
                     </form>
                   </div>

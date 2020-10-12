@@ -35,7 +35,7 @@ class LeaveReports extends Component{
             firstDate:"",
             lastDate: "",
             Leave:[],
-            
+            Sum:[]
           };
         
     }
@@ -130,7 +130,12 @@ class LeaveReports extends Component{
 
         const response = await fetch(`/apiLeave/le/${this.state.id}/${firstDate}/${lastDate}`);
         const data = await response.json();
-        this.setState({ Leave: data});    
+        this.setState({ Leave: data}); 
+
+        const res = await fetch(`/apiLeave/sumWithID/${firstDate}/${lastDate}/${this.state.id}`);
+        const result = await res.json();
+        console.log(result);
+        this.setState({ Sum: result}); 
     }
     showReport(){
         if(this.state.Leave.length === 0){
@@ -143,6 +148,8 @@ class LeaveReports extends Component{
                <div class="row"><span class="grey-text text-darken-4"> Employee Name: {this.state.text}</span></div>
                <div class="row"><span class="grey-text text-darken-4"> Leave records for {this.state.firstDate} - {this.state.lastDate} </span></div>
                <div class="row"> <span class="grey-text text-darken-4"> Date : {this.state.date}</span></div>
+               {this.state.Sum.map((s)=>
+                <div class="row"> <span class="grey-text text-darken-4"> Total Number of Leave Applied : {s.sum}</span></div>)}
             <table>
          <thead>
          <tr>

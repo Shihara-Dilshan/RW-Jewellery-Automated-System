@@ -99,6 +99,13 @@ applyLeave = (id) =>{
       })
       
     }
+    getSum(sum){
+      if (sum == null){
+        return 0
+      }
+      else 
+      return sum;
+    }
       
     render(){
       const {text} = this.state;
@@ -137,7 +144,7 @@ applyLeave = (id) =>{
             <tr>
             <td id= "empName">{emp.fname} {emp.lName}</td>
             {/* <td id= "empId">{emp.emp_id}</td> */}
-            <td id = "numberodDays">{emp.sum}</td>
+            <td id = "numberodDays">{this.getSum(emp.sum)}</td>
             <td><button class="waves-effect waves-light grey darken-1 btn-small" id ="ApplyLeave" value ={emp.emp_id} onClick ={() => {this.applyLeave(emp.emp_id)}}>Apply Leave</button></td>
 
           </tr>

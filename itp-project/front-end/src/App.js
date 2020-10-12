@@ -41,6 +41,13 @@ import ConfirmDriver from "./components/Delivery/DeliveryDriverReport/ConfirmDri
 import Report from "./components/Delivery/DeliveryDriverReport/Report";
 import Moredetails from "./components/Delivery/DeliveryDriverReport/Moredetails";
 import CancelPage from "./components/Delivery/DeliverCancelRequest/CancelPage";
+import JewelleryDisplay from "./components/Jewellery/JewelleryDisplay";
+import JewelleryInfo from "./components/Jewellery/JewelleryInfo";
+import JewelleryInsert from "./components/Jewellery/JewelleryInsert";
+import UpdateJewellery from "./components/Jewellery/UpdateJewellery";
+
+
+
 
 const App = () => {
   return (
@@ -92,7 +99,12 @@ const App = () => {
           <Route path="/ConfirmDriver" exact component={ConfirmDriver} />
           <Route path="/Report" exact component={Report} />
           <Route path="/More" exact component={Moredetails} />
-          <Route path="/cancel" exact component={CancelPage} />
+          <Route path="/cancel" exact component={CancelPage} />           
+          <Route path="/JewelleryDisplay" exact component={JewelleryDisplay} />
+          <Route path="/jewellery" exact component={JewelleryInfo} />
+          <Route path="/JewelleryInsert" exact component={JewelleryInsert} />
+          <Route path="/UpdateJewellery/:id" exact component={UpdateJewellery} />
+
         </Switch>
       </div>
       <Footer />

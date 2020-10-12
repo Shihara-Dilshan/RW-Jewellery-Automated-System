@@ -39,6 +39,8 @@ public class SellableService {
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
+
+
     public ResponseEntity<Sellable> addNewSellable(Sellable sellable) throws URISyntaxException{
         Sellable result = this.sellableRepository.save(sellable);
         return ResponseEntity.created(new URI("/sendSellable" + result.getJewellery_id())).body(result);
@@ -47,6 +49,11 @@ public class SellableService {
     public ResponseEntity<Sellable> updateSellable(Sellable sellable){
         Sellable result = this.sellableRepository.save(sellable);
         return ResponseEntity.ok().body(result);
+    }
+
+    public ResponseEntity<?> deleteSellable(UUID id) {
+        sellableRepository.deleteById(id);
+        return ResponseEntity.ok().build();
     }
 
 }

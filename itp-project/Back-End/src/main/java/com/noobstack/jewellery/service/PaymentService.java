@@ -16,7 +16,7 @@ import java.util.UUID;
 @Service
 public class PaymentService {
 
-   private final PaymentRepository paymentRepository;
+    private final PaymentRepository paymentRepository;
 
     @Autowired
     public PaymentService( PaymentRepository paymentRepository) {this.paymentRepository = paymentRepository;}
@@ -35,6 +35,20 @@ public class PaymentService {
         return ResponseEntity.created(new URI("/sendPayment" + result.getPayment_id())).body(result);
     }
 
+
+    public ResponseEntity<?> deletePayment(UUID id) {
+        paymentRepository.deleteById(id);
+        return ResponseEntity.ok().build();
+    }
+
+    public List<Payment> getPaymentByPaymentStatus(String paymentstatus) {
+        return paymentRepository.findByPaymentstatus(paymentstatus);
+    }
+
+    public ResponseEntity<Payment> updatePayment(Payment payment) {
+        Payment result = this.paymentRepository.save(payment);
+        return ResponseEntity.ok().body(result);
+    }
 
 
 }

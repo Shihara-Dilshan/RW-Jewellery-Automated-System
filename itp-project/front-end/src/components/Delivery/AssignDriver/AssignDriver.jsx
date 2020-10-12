@@ -24,14 +24,13 @@ class AssignDriver extends Component {
     console.log(e.target.value);
   };
   async componentDidMount() {
-    console.log(this.state.Daddress);
     // eslint-disable-next-line
     const APICall = await fetch("/api/alldrivers");
     const Result = await APICall.json();
     this.setState({ DeliveryDrivers: Result });
 
     const DeliverID = sessionStorage.getItem("assignItemDriver");
-
+    console.log(DeliverID);
     const apitemp = await fetch(`api/deliverybyid/${DeliverID}`);
     const tempResult = await apitemp.json();
     this.setState({ TempDel: tempResult });
@@ -39,17 +38,18 @@ class AssignDriver extends Component {
     const elems = document.querySelectorAll("select");
     M.FormSelect.init(elems);
   }
-   AssignDriver = async (event) => {
+  AssignDriver = async (event) => {
     event.preventDefault();
     const DeliverID = sessionStorage.getItem("assignItemDriver");
     const DriverID = document.getElementById("DriverID").value;
     const Daddress = document.getElementById("address").value;
     const DCity = document.getElementById("city").value;
-
+    const Cusid = document.getElementById("cusid").value;
     const Ddistance = document.getElementById("distance").value;
     const DProvince = document.getElementById("province").value;
     const DphoneNumber = document.getElementById("phoneNumber").value;
     const Ddistrict = document.getElementById("district").value;
+    const reqDate=document.getElementById("reqDate").value;
     await fetch(`/api/updatestatus/${DeliverID}`, {
       headers: {
         Accept: "application/json",
@@ -68,14 +68,15 @@ class AssignDriver extends Component {
         phoneNumber: DphoneNumber,
         district: Ddistrict,
         deliverBoy: { emp_id: DriverID },
+        customerid: Cusid,
+        requestedTime:reqDate,
       }),
     });
-    
-    setTimeout( () => {
-    	this.props.history.push("/del");
-    },1000)
-    
-  }
+
+    setTimeout(() => {
+      this.props.history.push("/del");
+    }, 1000);
+  };
   render() {
     document.addEventListener("DOMContentLoaded", function () {
       const elems = document.querySelectorAll(".modal");
@@ -154,6 +155,20 @@ class AssignDriver extends Component {
                     type="text"
                     className="validate"
                     value={this.state.TempDel.district}
+                    hidden
+                  />
+                  <input
+                    id="cusid"
+                    type="text"
+                    className="validate"
+                    value={this.state.TempDel.customerid}
+                    hidden
+                  />
+                  <input
+                    id="reqDate"
+                    type="text"
+                    className="validate"
+                    value={this.state.TempDel.requestedTime}
                     hidden
                   />
                 </div>

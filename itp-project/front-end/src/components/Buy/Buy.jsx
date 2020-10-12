@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import axios from "axios";
 import "./../../App.css";
 
 class Buy extends Component {
@@ -88,51 +88,38 @@ class Buy extends Component {
         paymentstatus: paymentstatus,
       }),
     });
-    
+
     const response = await putPayment.json();
     const paymentId = response.payment_id;
-    
 
+    let itemId = JSON.parse(sessionStorage.getItem("cart"));
 
-    let itemId = JSON.parse(sessionStorage.getItem('cart'))[0].id;
-
-    console.log(response);
-	
-    // eslint-disable-next-line
-    const postOrder = await fetch(`/api/v2/order/sendorder`,{
-    	headers: {
-           Accept: "application/json",
-           "Content-Type": "application/json",
-        },
-
-      method: "POST",
-      body: JSON.stringify(
-      	{
-      	   recipe: "requested",
-      	   payment:{ payment_id: paymentId},
-      	   sellable: {jewellery_id: itemId},
-	}
-      ),
-    });
-    // eslint-disable-next-line
-    const updateSellableItem = await fetch(`/api/v2/sellable/update/${itemId}`,{
-    	headers: {
-           Accept: "application/json",
-           "Content-Type": "application/json",
-        },
-
-        method: "PUT",
-        body: JSON.stringify(
-      	{
-      	   sellprice: amount,
-      	   amount: itemId,
-      	   customer: {customer_id: userId},
-	}
-      ),
-    
-    
+    itemId.forEach((cartItem) => {
+      // eslint-disable-next-line
+      
+      axios.post('/api/v2/orders/sendorder', {
+      	  recipe: "requested",
+          payment: { payment_id: paymentId },
+          sellable: { jewellery_id: cartItem.id },})
+          .then(res => sessionStorage.setItem("ORID", res.data.o_id))
+          .catch(err => console.log(err))
+       
     });
     
+    itemId.forEach((cartItem) => {
+      // eslint-disable-next-line
+      
+     axios.put(`/api/v2/sellable/update/${cartItem.id}`, {
+      	jewellery_id: cartItem.id,
+        name: "Banglfrfgfgghghes",
+        sellprice: 120898900,
+        customer: { customer_id : sessionStorage.getItem("userId")}})
+          .then(res => console.log(res.data))
+          .catch(err => console.log(err))   
+       
+    });
+    
+     
 
     this.props.history.push("/RequestDelivery");
   };
@@ -181,6 +168,16 @@ class Buy extends Component {
                     name="address"
                     disabled={true}
                     value="2020-08-30"
+                  ></input>
+                  <br></br>
+                  <br></br>
+                  <label htmlFor="address">Phone Number</label>
+                  <input
+                    type="number"
+                    id="tp"
+                    length="10"
+                    //disabled={true}
+                    //value={this.state.curTime}
                   ></input>
                   <br></br>
                   <h6>Payement Method</h6>

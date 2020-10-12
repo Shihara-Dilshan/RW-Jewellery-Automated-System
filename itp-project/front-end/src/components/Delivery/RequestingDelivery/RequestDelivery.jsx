@@ -1,15 +1,18 @@
 import React, { Component } from "react";
 import M from "materialize-css";
 import "./../../../App.css";
-
 class RequestDelivery extends Component {
   constructor() {
     super();
     this.state = {
       distance: " ",
       customerDetails: {},
+      OrderDetails: {},
       cal: "40",
       DeliveryCharge: " ",
+      deliveryiid: " ",
+      bbb: "",
+      
     };
   }
   style = () => {
@@ -20,15 +23,41 @@ class RequestDelivery extends Component {
       marginBottom: "-15px",
     };
   };
+
+  validate = (event) => {
+    const Vcity = document.getElementById("City").value;
+    const Vlocation = document.getElementById("Location").value;
+    const VDistance = document.getElementById("Distance").value;
+    const VProvince = document.getElementById("Province").value;
+    const VPhoneNumber = document.getElementById("PhoneNumber").value;
+    const VDistrict = document.getElementById("District").value;
+
+    if (Vcity.value==""||Vlocation.value==""||VDistance.value==""||VProvince.value==""||VPhoneNumber.value==""||VDistrict.value==""){
+
+    }
+  };
+  
+
   async SubmitDelivery(event) {
-    event.preventDefault();
+     event.preventDefault();
+
+     
+     let today = new Date();
+     var dd = String(today.getDate()).padStart(2, '0');
+     var mm = String(today.getMonth() + 1).padStart(2, '0'); 
+     var yyyy = today.getFullYear();
+     today = mm + '-' + dd + '-' + yyyy;
+     console.log(today);
+    const CusIDS = sessionStorage.getItem("userId");
     const city = document.getElementById("City").value;
     const location = document.getElementById("Location").value;
     const Distance = document.getElementById("Distance").value;
     const Province = document.getElementById("Province").value;
     const PhoneNumber = document.getElementById("PhoneNumber").value;
     const District = document.getElementById("District").value;
-    await fetch("/api/RequestDelivery", {
+    
+    
+    const postDelivery_Request = await fetch("/api/RequestDelivery", {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -41,51 +70,79 @@ class RequestDelivery extends Component {
         deliveryProvince: Province,
         phoneNumber: PhoneNumber,
         district: District,
+        requestedTime: today,
         status: "Pending",
+        customerid: CusIDS,
+        
       }),
+      
     });
+    const responsDelivery = await postDelivery_Request.json();
+    const DeliveryIDD = responsDelivery.delivery_id;
+    this.state.OrderDetails.delivery = { delivery_id: DeliveryIDD };
+    let OOrderID = sessionStorage.getItem("ORID");
+    fetch(`/api/v2/orders/updateOrder/${OOrderID}`, {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      method: "PUT",
+      body: JSON.stringify(this.state.OrderDetails),
+    });
+  
   }
   async componentDidMount() {
-
+  
+     const elems2 = document.querySelectorAll("select");
+      M.FormSelect.init(elems2);
+   
+    
+      const elems3 = document.querySelectorAll(".modal");
+      M.Modal.init(elems3);
+  
     const CusIDS = sessionStorage.getItem("userId");
     const APICall = await fetch(`/api/v2/customer/${CusIDS}`);
     const result = await APICall.json();
     this.setState({ customerDetails: result });
+    let OrderID = sessionStorage.getItem("ORID");
+    console.log(OrderID);
+    const APICall1 = await fetch(`/api/v2/orders/${OrderID}`);
+    const result1 = await APICall1.json();
+    this.setState({ OrderDetails: result1 });
+    console.log(this.state.OrderDetails)
   }
+  
   handldistance = (event) => {
     this.setState({
       distance: event.target.value,
     });
   };
+  handletoast = (event) => {
+    setTimeout(() => {
+      M.toast({ html: "Your request has been recorded" });
+      this.props.history.push("/");
+    }, 1000);
+  };
+
   exe = (event) => {
-  
-    const indicator = document.getElementById('indigator');
-    indicator.classList.remove('hide');
-    indicator.classList.add('show');
+    const indicator = document.getElementById("indigator");
+    indicator.classList.remove("hide");
+    indicator.classList.add("show");
     this.setState({
       DeliveryCharge: parseInt(this.state.distance) * parseInt(this.state.cal),
     });
     this.SubmitDelivery(event);
-    
-    setTimeout( () => {
-        M.toast({ html: "Your request has been recorded" });
-    	this.props.history.push("/");
-    },1000);
   };
   render() {
-    document.addEventListener("DOMContentLoaded", function () {
-      const elems = document.querySelectorAll("select");
-      M.FormSelect.init(elems);
-    });
-    document.addEventListener("DOMContentLoaded", function () {
-      const elems = document.querySelectorAll(".modal");
-      M.Modal.init(elems);
-    });
+    
     return (
+      
       <div className="constainer test" style={this.style()}>
+        
         <div className="row">
           <div className="col s6 hide-on-med-only">
             <div className="card-image">
+            
               <img
                 alt=""
                 src="https://png.pngtree.com/png-vector/20190723/ourlarge/pngtree-flat-on-time-delivery-icon--vector-png-image_1569069.jpg"
@@ -101,7 +158,7 @@ class RequestDelivery extends Component {
               </div>
               <div className="constainer">
                 <div className="row">
-                  <form className="col s12">
+                  <form className="col s12" id="form">
                     <div className="row">
                       <div className="input-field col s6">
                         <input
@@ -109,11 +166,12 @@ class RequestDelivery extends Component {
                           type="text"
                           className="validate"
                           value={this.state.customerDetails.name}
+                          required
                         />
                         <label htmlFor="first_name"></label>
                       </div>
                       <div className="input-field col s6">
-                        <input id="Location" type="text" className="validate" />
+                        <input id="Location" type="text" className="validate"  required/>
                         <label htmlFor="Location">
                           Enter Location to deliver
                         </label>
@@ -126,6 +184,7 @@ class RequestDelivery extends Component {
                           className="validate"
                           value={this.state.distance}
                           onChange={this.handldistance}
+                          required
                         />
                         <label htmlFor="Distance">
                           How far is it from Mawanella to the given location
@@ -138,6 +197,7 @@ class RequestDelivery extends Component {
                           type="text"
                           className="validate"
                           value={this.state.customerDetails.telephone}
+                          required
                         />
                         <label htmlFor="Phone Number"></label>
                       </div>
@@ -174,11 +234,11 @@ class RequestDelivery extends Component {
                         <label htmlFor="Province">Province</label>
                       </div>
                       <div className="input-field col s6">
-                        <input id="District" type="text" className="validate" />
+                        <input id="District" type="text" className="validate"  required/>
                         <label htmlFor="District">Enter Your District</label>
                       </div>
                       <div className="input-field col s6">
-                        <input id="City" type="text" className="validate" />
+                        <input id="City" type="text" className="validate"  required />
                         <label htmlFor="City">Enter Your City</label>
                       </div>
                     </div>
@@ -201,15 +261,17 @@ class RequestDelivery extends Component {
           </div>
           <div id="modal1" class="modal">
             <div class="modal-content">
-              <h4>Your Delivery Chargers - {this.state.DeliveryCharge} /=</h4>
+              <h4>Your Delivery Chargers -{this.state.DeliveryCharge} /=</h4>
             </div>
             <div class="modal-footer">
-              <a
-                href="#!"
-                class="modal-close waves-effect waves-green btn-flat"
+              <button
+                data-target="modal1"
+                type="submit"
+                class="btn modal-trigger"
+                onClick={this.handletoast}
               >
                 OK
-              </a>
+              </button>
             </div>
           </div>
         </div>

@@ -17,14 +17,26 @@ class DeliveryRequestsFromCustomer extends Component {
       marginLeft: "15px",
     };
   };
+  style2 = () => {
+    return {
+      backgroundColor: "#f5f5f5",
+      borderRadius: "5px",
+      marginBottom: "-98px",
+      marginLeft: "820px",
+    };
+  };
 
   getData = (e) => {
     let deliverID =
       e.target.parentElement.parentElement.parentElement.firstChild.innerHTML;
     sessionStorage.setItem("assignItemDriver", deliverID);
+    const cusid = document.getElementById("cusid").value;
+    sessionStorage.setItem("cusid", cusid);
   };
   async componentDidMount() {
-    const APICall = await fetch("/api/alldelivery");
+    const status = "Pending"
+    const status2="Confrimed"
+    const APICall = await fetch(`/api/delivery/deliveryByStatus/${status2}/${status}`);
     const Result = await APICall.json();
     this.setState({ Deliveries: Result });
   }
@@ -48,24 +60,29 @@ class DeliveryRequestsFromCustomer extends Component {
             Delivery Cancell Requests
           </button>
         </Link>
+        <Link to="/OngoingDelivery">
+          <button
+            className="btn center-align grey darken-3"
+            style={this.style2()}
+          >
+            Ongoing Delivereis
+          </button>
+        </Link>
 
         <h4 className="center-align grey-text">
-          <b style={{marginLeft:"100px"}}>DELIVERY REQUESTS FROM CUSTOMER</b>
+          <b style={{ marginLeft: "100px" }}>DELIVERY REQUESTS FROM CUSTOMER</b>
         </h4>
         <div className="#eeeeee grey lighten-3">
           <table className="responsive-table">
             <thead>
               <tr>
-                <th>Delivery Number</th>
-                <th>Customer ID</th>
-                <th>Item Code</th>
                 <th>Address For Deliver</th>
-                <th>Item Category</th>
-                <th>Date</th>
-                <th>Item Price</th>
+                <th>Requested Date</th>
                 <th>Assign Driver</th>
                 <th>Delivery Status</th>
                 <th>Confirm</th>
+                <th>Delivery city</th>
+                <th>Delivery District</th>
               </tr>
             </thead>
 
@@ -73,13 +90,13 @@ class DeliveryRequestsFromCustomer extends Component {
               {this.state.Deliveries.map((Delivery) => {
                 return (
                   <tr className="center-align grey-text">
-                    <td>{Delivery.delivery_id}</td>
-                    <td>CUS1234</td>
-                    <td>B123</td>
+                    <td id="delID" hidden>
+                      {Delivery.delivery_id}
+                    </td>
+
+                    <input id="cusid" hidden value={Delivery.customerid}></input>
                     <td>{Delivery.deliveryAddress}</td>
-                    <td>Bangles</td>
-                    <td>2020-08-06</td>
-                    <td>12000/=</td>
+                <td>{Delivery.requestedTime}</td>
                     <td>
                       <Link to="/AssignDriver">
                         <button
@@ -92,9 +109,20 @@ class DeliveryRequestsFromCustomer extends Component {
                     </td>
                     <td>{Delivery.status}</td>
                     <td>
-                      <button className="btn center-align grey darken-3">
-                        Confirm
-                      </button>
+                      <Link to="/ConfirmDelivery">
+                        <button
+                          className="btn center-align grey darken-3"
+                          onClick={this.getData}
+                        >
+                          Confirm
+                        </button>
+                      </Link>
+                    </td>
+                    <td>
+                      {Delivery.deliveryCity}
+                    </td>
+                    <td>
+                      {Delivery.district}
                     </td>
                   </tr>
                 );

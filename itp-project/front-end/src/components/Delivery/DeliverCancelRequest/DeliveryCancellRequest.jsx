@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 class DeliveryCancellRequest extends Component {
   constructor() {
@@ -9,11 +10,16 @@ class DeliveryCancellRequest extends Component {
     };
   }
   async componentDidMount() {
-    let Status = "Pending";
+    let Status = "need to cancel";
     const APICall = await fetch(`/api/delivery/deliveryStatus/${Status}`);
     const Result = await APICall.json();
     this.setState({ DeliveryCancellRequest: Result });
   }
+  getDeliveryID = (e) => {
+    let Deliveryid = document.getElementById("Deliveryid").value;
+    sessionStorage.setItem("DDid", Deliveryid);
+    console.log(Deliveryid);
+  };
   render() {
     return (
       <div>
@@ -24,11 +30,10 @@ class DeliveryCancellRequest extends Component {
           <table>
             <thead>
               <tr>
-                <th>Item Code</th>
-                <th>Customer ID</th>
-                <th>Delivery Number</th>
-                <th>Customer Name</th>
-                <th>Date</th>
+                <th>Delivery Address</th>
+                <th>status</th>
+                <th>customer id</th>
+                <th>Requested Date</th>
                 <th>Delete Delivery</th>
               </tr>
             </thead>
@@ -36,15 +41,26 @@ class DeliveryCancellRequest extends Component {
               {this.state.DeliveryCancellRequest.map((DelivereyCancel) => {
                 return (
                   <tr>
-                    <td>R1234</td>
-                    <td>CUS1234</td>
-                    <td>{DelivereyCancel.delivery_id}</td>
-                    <td>Ruvin WIjesinghe</td>
-                    <td>2020-08-06</td>
+                    <td>{DelivereyCancel.deliveryAddress}4</td>
+                    <td>{DelivereyCancel.status}</td>
+                    <input
+                      value={DelivereyCancel.delivery_id}
+                      id="Deliveryid"
+                      type="text"
+                      class="validate"
+                      hidden
+                    ></input>
+                    <td>{DelivereyCancel.customerid}</td>
+                <td>{DelivereyCancel.requestedTime}</td>
                     <td>
-                      <button className="btn center-align grey darken-3">
-                        Delete
-                      </button>
+                      <Link to="/cancel">
+                        <button
+                          className="btn center-align grey darken-3"
+                          onClick={this.getDeliveryID}
+                        >
+                          Delete
+                        </button>
+                      </Link>
                     </td>
                   </tr>
                 );

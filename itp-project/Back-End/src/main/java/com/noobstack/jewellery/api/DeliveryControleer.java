@@ -30,12 +30,22 @@ public class DeliveryControleer {
     @RequestMapping("/delivery/deliveryStatus/{status}")
     List<Delivery> getDeliveryByStatus(@PathVariable String status){
         return this.deliveryService.getdeliveryByStatus(status); }
-
+    @RequestMapping("/delivery/deliveryByStatus/{status}/{status2}")
+    List<Delivery> getDeliveryByTwoStatus(@PathVariable("status") String status,@PathVariable("status2") String status2){
+        return this.deliveryService.getdeliveryByTwoStatus(status,status2); }
+    @RequestMapping("/delivery/{status}/{deliverBoy}")
+    List<Delivery> getDeliverBoyAndStatus(@PathVariable("status")String status,@PathVariable("deliverBoy")DeliverBoy deliveryBoy){
+        return this.deliveryService.getDeliverBoyAndStatus(status,deliveryBoy); }
+    @RequestMapping("/delivery/deliverycustomer/{customerid}/{status}")
+    List<Delivery> getDeliveryBycustomerid(@PathVariable("customerid")String customerid,@PathVariable("status")String status){
+        return this.deliveryService.getdeliveryBycustomerid(customerid,status);}
+    @RequestMapping("/delivery/Report/{deliverBoy}/{status}/{deliveredTime}")
+    List<Delivery> getDeliveryBydate(@PathVariable("deliverBoy")DeliverBoy deliverBoy,@PathVariable("status")String status,@PathVariable("deliveredTime")String deliveredTime){
+        return this.deliveryService.getdeliveryBydate(deliverBoy,status,deliveredTime);}
     @GetMapping("/alldelivery")
     List<Delivery> getAlldeliveries(){
         return this.deliveryService.getAlldeliveries();
     }
-
     @GetMapping("/alldrivers")
     List<DeliverBoy> getAllDeliveryDrivers(){
         return this.deliveryService.getAlldeliverdrivers();

@@ -40,8 +40,10 @@ class confirmEmail extends Component {
                   <form className="col s12">
                     <div className="row">
                       <div className="col s12">
-                        <br/>
-                        <p className="grey-text left-align">We have send and email to shihara@gmail.com</p>
+                        <br />
+                        <p className="grey-text left-align">
+                          We have send and email to shihara@gmail.com
+                        </p>
                       </div>
                     </div>
                     <div className="row">
@@ -51,13 +53,17 @@ class confirmEmail extends Component {
                           type="password"
                           className="validate"
                         />
-                        <label htmlFor="password">Enter confirmation code here</label>
+                        <label htmlFor="password">
+                          Enter confirmation code here
+                        </label>
                       </div>
                     </div>
                     <div className="container center-align grey-text">
                       <p>
                         <label>
-                        <p className="grey-text center-align">haven't got email? send it agian</p>
+                          <p className="grey-text center-align">
+                            haven't got email? send it agian
+                          </p>
                           <br />
                           <br />
                         </label>
@@ -75,7 +81,7 @@ class confirmEmail extends Component {
                       className="container center-align grey-text"
                       style={this.getStyle()}
                     >
-                      <br/>
+                      <br />
                       <p>Change email</p>
                       <br />
                     </div>

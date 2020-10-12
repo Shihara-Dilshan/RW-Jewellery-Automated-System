@@ -2,18 +2,98 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./../../../App.css";
 
-
 class AdminLogin extends Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
 
+  componentDidMount() {
+    if (sessionStorage.getItem("adminAccount") !== null) {
+      this.props.history.push("/dashboard");
+    }
+  }
+
   adminloginF = async (e) => {
     e.preventDefault();
-    sessionStorage.setItem("adminAccount" , "account1");
-    this.props.history.push("/dashboard");
-    
+    let Admin_account = document.getElementById("Lemail").value;
+    let admin_password = document.getElementById("password").value;
+    let admin_email_lable = document.getElementById("LemailLabel");
+    let admin_pword_lable = document.getElementById("pwordLabel");
+
+    const check_account = await fetch(
+      `/api/v2/admin/specificname/${Admin_account}`
+    );
+
+    if (check_account.status === 404) {
+      admin_email_lable.classList.add("red-text");
+      admin_email_lable.innerHTML = "Acount does not exist";
+
+      setTimeout(() => {
+        admin_email_lable.classList.remove("red-text");
+        admin_email_lable.innerHTML = "Email";
+      }, 2000);
+    } else {
+      const result = await check_account.json();
+      if(result.active !== "active"){
+          admin_pword_lable.classList.add("red-text");
+          admin_pword_lable.innerHTML = "Your account has been temporary disabled";
+          admin_email_lable.classList.add("red-text");
+          admin_email_lable.innerHTML = "Your account has been temporary disabled";
+          
+          let x = new Date().toString();
+
+      let y = x.split(" ");
+      let finalString = "";
+
+      for (let i = 0; i <= y.length - 4; i++) {
+        finalString = finalString + " " + y[i];
+      }
+
+      const updateRecord = await fetch(`api/v2/record/add`, {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify({
+          loginTime: finalString.trim(),
+          activityTime: finalString.trim(),
+          activity: `disabled admin account: ${Admin_account} try to log in`,
+          admin: {
+            emp_id: result.emp_id,
+          },
+        }),
+      });
+          
+          return;
+      }
+      if (admin_password === result.password) {
+        sessionStorage.clear();
+        let x = new Date().toString();
+
+        let y = x.split(" ");
+        let finalString = "";
+
+        for (let i = 0; i <= y.length - 4; i++) {
+          finalString = finalString + " " + y[i];
+        }
+
+        sessionStorage.setItem("adminAccount", "account1");
+        sessionStorage.setItem("loginTime", finalString.trim());
+        sessionStorage.setItem("adminId", result.emp_id);
+        this.props.history.push("/dashboard");
+      }
+       else {
+        admin_pword_lable.classList.add("red-text");
+        admin_pword_lable.innerHTML = "Check Your Password";
+
+        setTimeout(() => {
+          admin_pword_lable.classList.remove("red-text");
+          admin_pword_lable.innerHTML = "Password";
+        }, 2000);
+      }
+    }
   };
 
   style = () => {
@@ -30,10 +110,10 @@ class AdminLogin extends Component {
       marginTop: "20px",
     };
   };
-  
+
   static removeWhiteSpaces = (inputString) => {
-  	return inputString.replace(/\s/g,'');
-  }
+    return inputString.replace(/\s/g, "");
+  };
 
   render() {
     return (
@@ -51,10 +131,15 @@ class AdminLogin extends Component {
               <div className="card-content">
                 <h4 className="center-align grey-text">Admin Login</h4>
                 <div className="row">
-                  <form className="col s12">
+                  <form className="col s12" method="post" action="/login">
                     <div className="row">
                       <div className="input-field col s12">
-                        <input id="Lemail" type="email" className="validate"/>
+                        <input
+                          id="Lemail"
+                          name="username"
+                          type="text"
+                          className="avalidate"
+                        />
                         <label htmlFor="Lemail" id="LemailLabel">
                           Email
                         </label>
@@ -64,10 +149,13 @@ class AdminLogin extends Component {
                       <div className="input-field col s12">
                         <input
                           id="password"
+                          name="password"
                           type="password"
                           className="validate"
                         />
-                        <label htmlFor="password" id="pwordLabel">Password</label>
+                        <label htmlFor="password" id="pwordLabel">
+                          Password
+                        </label>
                       </div>
                     </div>
                     <div className="container center-align grey-text">
@@ -92,7 +180,7 @@ class AdminLogin extends Component {
                     <br />
                     <div className="center-align center">
                       <Link to="/signup">
-                      <p className="teal-text">forget password?</p>
+                        <p className="teal-text">forget password?</p>
                       </Link>
                     </div>
                   </form>

@@ -69,3 +69,18 @@ INSERT INTO record(leave_id, activity, activity_time, login_time, admin_emp_id)
     VALUES('866d9257-28b8-489c-8c62-b3fb6c981155', 'New requested design order assigned as a ongoing order', 'Sat Oct 10 2020 16:36:29', 'Sat Oct 10 2020 15:00:00', '532818b4-6123-44f8-ada7-2bd1289ca4f1');
 INSERT INTO record(leave_id, activity, activity_time, login_time, admin_emp_id)
     VALUES('a8d973d2-f19f-49f8-bbd7-75f079b1c185', 'Ongoing design order assigned as a completed order', 'Sun Oct 11 2020 11:34:10', 'Sun Oct 11 2020 10:12:34', '532818b4-6123-44f8-ada7-2bd1289ca4f1');
+
+INSERT INTO public.leave(
+	leave_id, leave_from, leave_to, reason, employee_emp_id)
+	VALUES 
+	('7cf3f61f-6a26-48a3-9c00-9cf1ee84ced2', '2020-09-01', '2020-09-01', 'doctor appointment', 'fbe19622-d35c-44e3-8fa9-4e52cb3a1c9e'),
+	('6fd2ac87-3701-427d-828d-2a626147e266', '2020-09-09', '2020-09-10', 'sick leave', 'fbe19622-d35c-44e3-8fa9-4e52cb3a1c9e'),
+	('9835520a-71eb-49e8-9dcd-c7c70c4102d6', '2020-09-12', '2020-09-15', 'trip', 'fbe19622-d35c-44e3-8fa9-4e52cb3a1c9e'),
+	('d3f443b3-0e76-47e0-88a6-11f22edf0341', '2020-09-26', '2020-09-26', 'family wedding','fbe19622-d35c-44e3-8fa9-4e52cb3a1c9e'),
+	('a7e525ef-fd2b-489b-a4bb-a364c58dfa35', '2020-10-02', '2020-10-03', 'trip', '532818b4-6123-44f8-ada7-2bd1289ca4f1'),
+	('1d74a11c-0f2d-49b1-999b-000a3b424918', '2020-10-15', '2020-10-18', 'family commitments', '70d60598-94e6-42d8-9d8a-5a730e4bf130'),
+	('26cc2b9b-0cb8-47a6-80b9-f5b5d7e8a4b9', '2020-10-12', '2020-10-13', 'Family Member is Sick', 'd6246900-55d7-4894-9a2d-5443eb41585c'),
+	('16407e62-d49b-4fb1-b5e5-83a3e614ac72', '2020-10-20', '2020-10-20', 'Dentist Appoinment', 'fbe19622-d35c-44e3-8fa9-4e52cb3a1c9e'),
+	('47c9738d-b43a-466b-8004-b69c7051ff31', '2020-10-25', '2020-10-27', 'Going to the village', 'fbe19622-d35c-44e3-8fa9-4e52cb3a1c9e'),
+	('02203b15-9307-4e05-bc97-713334ad88de', '2020-10-19', '2020-10-19', 'Family Birthday party', '532818b4-6123-44f8-ada7-2bd1289ca4f1'),
+	('618bfd20-0062-49dd-b6d4-572d0c02a38a', '2020-10-30', '2020-10-31', 'getting some time off from work', 'd6246900-55d7-4894-9a2d-5443eb41585c');

@@ -15,6 +15,7 @@ class ConfirmDelivery extends Component {
   }
   async componentDidMount() {
     const DeliverID = sessionStorage.getItem("assignItemDriver");
+    console.log(DeliverID)
     const cusid = sessionStorage.getItem("cusid");
     console.log(cusid);
     const apitemp = await fetch(`api/deliverybyid/${DeliverID}`);

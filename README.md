@@ -1,4 +1,4 @@
-<img alt="systemOverview" src="https://raw.githubusercontent.com/Shihara-Dilshan/RW-Jewellery-Automated-System-React-SpringBoot/master/itp-project/System%20Overview.png"></img>
+<img alt="systemOverview" src="https://raw.githubusercontent.com/Shihara-Dilshan/img/master/oie_RjiBepaIxZqb.png"></img>
 
 Automated system for RW Jewellery developed with Spring boot and React
 

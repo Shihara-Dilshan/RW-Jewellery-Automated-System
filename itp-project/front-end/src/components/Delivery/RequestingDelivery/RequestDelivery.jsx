@@ -79,7 +79,15 @@ class RequestDelivery extends Component {
     });
     const responsDelivery = await postDelivery_Request.json();
     const DeliveryIDD = responsDelivery.delivery_id;
+    const JewlID=sessionStorage.getItem("CartID")
+    console.log(JewlID);
+    const payid=sessionStorage.getItem("Payid")
+    console.log(payid);
     this.state.OrderDetails.delivery = { delivery_id: DeliveryIDD };
+    this.state.OrderDetails.recipe="requested";
+    this.state.OrderDetails.payment={payment_id:payid};
+    this.state.OrderDetails.sellable={jewellery_id:JewlID};
+    //this.state.OrderDetails.payment={payment_id:}
     let OOrderID = sessionStorage.getItem("ORID");
     fetch(`/api/v2/orders/updateOrder/${OOrderID}`, {
       headers: {
@@ -99,7 +107,8 @@ class RequestDelivery extends Component {
     
       const elems3 = document.querySelectorAll(".modal");
       M.Modal.init(elems3);
-  
+      
+    
     const CusIDS = sessionStorage.getItem("userId");
     const APICall = await fetch(`/api/v2/customer/${CusIDS}`);
     const result = await APICall.json();

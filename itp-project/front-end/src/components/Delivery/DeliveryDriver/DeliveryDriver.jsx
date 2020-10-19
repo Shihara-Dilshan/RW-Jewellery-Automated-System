@@ -16,7 +16,7 @@ class DeliveryDriver extends Component {
     sessionStorage.setItem("UpdateDelivery", deliverID);
   };
   async componentDidMount() {
-    let DriverID = "f2158718-76d7-4770-a90f-874cfb7d9611";
+    let DriverID = sessionStorage.getItem("adminId");
     sessionStorage.setItem("DriverID", DriverID);
     let Drivstatus="Driver Assigned";
     const APICall = await fetch(`/api/delivery/${Drivstatus}/${DriverID}`);
@@ -48,6 +48,7 @@ class DeliveryDriver extends Component {
                     <td>{DelivereyPending.district}</td>
                     <td>{DelivereyPending.deliveryAddress}</td>
                     <td>{DelivereyPending.deliveryCity}</td>
+                <td>{DelivereyPending.phoneNumber}</td>
                     <input
                       value={DelivereyPending.delivery_id}
                       id="DID"
@@ -55,7 +56,6 @@ class DeliveryDriver extends Component {
                       class="validate"
                       hidden
                     ></input>
-                <td>{DelivereyPending.phoneNumber}</td>
                     <td>
                       <Link to="/UpdateDelivery">
                         <button

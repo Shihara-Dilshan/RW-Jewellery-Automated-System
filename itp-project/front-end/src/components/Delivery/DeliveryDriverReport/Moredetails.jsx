@@ -14,12 +14,12 @@ class Moredetails extends Component {
   }
   back = (e) => {
     setTimeout(() => {
-      sessionStorage.removeItem("ReDid");
+      sessionStorage.removeItem("RepDid");
       this.props.history.push("/Report");
     }, 1000);
   };
   async componentDidMount() {
-    const DeliverID = sessionStorage.getItem("ReDid");
+    const DeliverID = sessionStorage.getItem("RepDid");
     console.log(DeliverID);
     const apitemp = await fetch(`api/deliverybyid/${DeliverID}`);
     const tempResult = await apitemp.json();

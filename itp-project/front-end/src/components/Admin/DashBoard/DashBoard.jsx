@@ -28,7 +28,7 @@ class DashBoard extends Component {
             <StaticCards
               title="Rental Management"
               icon="directions_walk"
-              to="RM"
+              to="/updateR-Status"
             />
             <StaticCards
               title="Employee Management"

@@ -19,9 +19,9 @@ public interface LeaveRepository extends JpaRepository<Leave, UUID> {
     List<Leave> findByDate(UUID eid, LocalDate d1, LocalDate d2);
 
     @Query("select e.emp_id as emp_id, e.fname as fname, e.lName as lName,sum(l.leaveTo-l.leaveFrom+1) as sum " +
-            "from Leave as l,Employee as e " +
-            "where l.employee = e and l.leaveFrom between ?1 and ?2 " +
-            "Group BY e.emp_id, e.fname, e.lName")
+            "from Leave l RIGHT JOIN l.employee e " +
+            "where l.leaveFrom is NULL or l.leaveFrom between ?1 and ?2 " +
+            "Group BY e.emp_id")
     List<IMonthlyLeave> getSum(LocalDate d1, LocalDate d2);
 
     @Query("select e.emp_id as emp_id, e.fname as fname, e.lName as lName,sum(l.leaveTo-l.leaveFrom+1) as sum " +

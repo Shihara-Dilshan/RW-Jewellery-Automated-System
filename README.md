@@ -1,6 +1,4 @@
-# RW-Jewellery-Automated-System-React-SpringBoot
 ![visitors](https://visitor-badge.glitch.me/badge?page_id=rwjewelery.visitor-badge)
-
 <img alt="systemOverview" src="https://raw.githubusercontent.com/Shihara-Dilshan/img/master/oie_RjiBepaIxZqb.png"></img>
 
 Automated system for RW Jewellery developed with Spring boot and React

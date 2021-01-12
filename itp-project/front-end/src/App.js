@@ -65,6 +65,12 @@ import More from "./components/Delivery/OngoingDeliveries/More";
 import SearchMore from "./components/Delivery/DeliveryDriverReport/SearchMore";
 import AddAdmin from "./components/Admin/ManageAdmin/AddAdmin";
 import ServiceLogs from "./components/Admin/Record/ServiceLogs/ServiceLogs";
+import JewelleryDisplay from "./components/Jewellery/JewelleryDisplay";
+import JewelleryInfo from "./components/Jewellery/JewelleryInfo";
+import JewelleryInsert from "./components/Jewellery/JewelleryInsert";
+import UpdateJewellery from "./components/Jewellery/UpdateJewellery";
+import ViewJewellery from "./components/Jewellery/ViewJewellery";
+
 
 const App = () => {
   return (
@@ -153,6 +159,11 @@ const App = () => {
     <Route path="/SearchMore" exact component={SearchMore}/>
           <Route path="/addadmin" exact component={AddAdmin} />
           <Route path="/servicelogs" exact component={ServiceLogs} />
+          <Route path="/JewelleryDisplay" exact component={JewelleryDisplay} />
+          <Route path="/jewellery" exact component={JewelleryInfo} />
+          <Route path="/JewelleryInsert" exact component={JewelleryInsert} />
+          <Route path="/UpdateJewellery/:id" exact component={UpdateJewellery} />
+          <Route path="/ViewJewellery/:id" exact component={ViewJewellery} />
         </Switch>
       </div>
       <Footer />
